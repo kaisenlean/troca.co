@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNoticiaComentarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNoticiaComentarioEmpty}" rendered="#{noticiaComentarioController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{noticiaComentarioController.items.rowCount > 0}">
+                    <h:outputText value="#{noticiaComentarioController.pagination.pageFirstItem + 1}..#{noticiaComentarioController.pagination.pageLastItem + 1}/#{noticiaComentarioController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{noticiaComentarioController.previous}" value="#{bundle.Previous} #{noticiaComentarioController.pagination.pageSize}" rendered="#{noticiaComentarioController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{noticiaComentarioController.next}" value="#{bundle.Next} #{noticiaComentarioController.pagination.pageSize}" rendered="#{noticiaComentarioController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{noticiaComentarioController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaComentarioTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaComentarioTitle_noticia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.noticia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaComentarioTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaComentarioTitle_comentario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.comentario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{noticiaComentarioController.prepareView}" value="#{bundle.ListNoticiaComentarioViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{noticiaComentarioController.prepareEdit}" value="#{bundle.ListNoticiaComentarioEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{noticiaComentarioController.destroy}" value="#{bundle.ListNoticiaComentarioDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{noticiaComentarioController.prepareCreate}" value="#{bundle.ListNoticiaComentarioCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListNoticiaComentarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTruequeMensajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTruequeMensajeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{truequeMensajeController.selected.id}" title="#{bundle.CreateTruequeMensajeTitle_id}" required="true" requiredMessage="#{bundle.CreateTruequeMensajeRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTruequeMensajeLabel_trueque}" for="trueque" />
+                    <h:inputText id="trueque" value="#{truequeMensajeController.selected.trueque}" title="#{bundle.CreateTruequeMensajeTitle_trueque}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeMensajeLabel_usuarioEmisor}" for="usuarioEmisor" />
+                    <h:inputText id="usuarioEmisor" value="#{truequeMensajeController.selected.usuarioEmisor}" title="#{bundle.CreateTruequeMensajeTitle_usuarioEmisor}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeMensajeLabel_usuarioReceptor}" for="usuarioReceptor" />
+                    <h:inputText id="usuarioReceptor" value="#{truequeMensajeController.selected.usuarioReceptor}" title="#{bundle.CreateTruequeMensajeTitle_usuarioReceptor}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeMensajeLabel_mensaje}" for="mensaje" />
+                    <h:inputText id="mensaje" value="#{truequeMensajeController.selected.mensaje}" title="#{bundle.CreateTruequeMensajeTitle_mensaje}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{truequeMensajeController.create}" value="#{bundle.CreateTruequeMensajeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{truequeMensajeController.prepareList}" value="#{bundle.CreateTruequeMensajeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTruequeMensajeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

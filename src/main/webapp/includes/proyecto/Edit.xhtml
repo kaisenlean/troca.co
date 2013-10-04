@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProyectoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{proyectoController.selected.id}" title="#{bundle.EditProyectoTitle_id}" required="true" requiredMessage="#{bundle.EditProyectoRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_owner}" for="owner" />
+                    <h:inputText id="owner" value="#{proyectoController.selected.owner}" title="#{bundle.EditProyectoTitle_owner}" />
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{proyectoController.selected.nombre}" title="#{bundle.EditProyectoTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{proyectoController.selected.descripcion}" title="#{bundle.EditProyectoTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_descripcionLarga}" for="descripcionLarga" />
+                    <h:inputText id="descripcionLarga" value="#{proyectoController.selected.descripcionLarga}" title="#{bundle.EditProyectoTitle_descripcionLarga}" />
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_licencia}" for="licencia" />
+                    <h:inputText id="licencia" value="#{proyectoController.selected.licencia}" title="#{bundle.EditProyectoTitle_licencia}" />
+                    <h:outputLabel value="#{bundle.EditProyectoLabel_categoria}" for="categoria" />
+                    <h:inputText id="categoria" value="#{proyectoController.selected.categoria}" title="#{bundle.EditProyectoTitle_categoria}" />
+                </h:panelGrid>
+                <h:commandLink action="#{proyectoController.update}" value="#{bundle.EditProyectoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProyectoViewLink}"/>
+                <br />
+                <h:commandLink action="#{proyectoController.prepareList}" value="#{bundle.EditProyectoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProyectoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

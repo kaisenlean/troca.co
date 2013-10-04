@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCalificacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCalificacionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{calificacionController.selected.id}" title="#{bundle.CreateCalificacionTitle_id}" required="true" requiredMessage="#{bundle.CreateCalificacionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCalificacionLabel_puntajeText}" for="puntajeText" />
+                    <h:inputText id="puntajeText" value="#{calificacionController.selected.puntajeText}" title="#{bundle.CreateCalificacionTitle_puntajeText}" />
+                    <h:outputLabel value="#{bundle.CreateCalificacionLabel_puntajeVal}" for="puntajeVal" />
+                    <h:inputTextarea rows="4" cols="30" id="puntajeVal" value="#{calificacionController.selected.puntajeVal}" title="#{bundle.CreateCalificacionTitle_puntajeVal}" />
+                    <h:outputLabel value="#{bundle.CreateCalificacionLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{calificacionController.selected.usuario}" title="#{bundle.CreateCalificacionTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.CreateCalificacionLabel_usuarioRegistro}" for="usuarioRegistro" />
+                    <h:inputText id="usuarioRegistro" value="#{calificacionController.selected.usuarioRegistro}" title="#{bundle.CreateCalificacionTitle_usuarioRegistro}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{calificacionController.create}" value="#{bundle.CreateCalificacionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{calificacionController.prepareList}" value="#{bundle.CreateCalificacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCalificacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

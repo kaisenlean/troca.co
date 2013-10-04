@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsusarioRecomendacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUsusarioRecomendacionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ususarioRecomendacionController.selected.id}" title="#{bundle.EditUsusarioRecomendacionTitle_id}" required="true" requiredMessage="#{bundle.EditUsusarioRecomendacionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditUsusarioRecomendacionLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{ususarioRecomendacionController.selected.usuario}" title="#{bundle.EditUsusarioRecomendacionTitle_usuario}" />
+                    <h:outputLabel value="#{bundle.EditUsusarioRecomendacionLabel_usuarioRecomienda}" for="usuarioRecomienda" />
+                    <h:inputText id="usuarioRecomienda" value="#{ususarioRecomendacionController.selected.usuarioRecomienda}" title="#{bundle.EditUsusarioRecomendacionTitle_usuarioRecomienda}" />
+                    <h:outputLabel value="#{bundle.EditUsusarioRecomendacionLabel_observacion}" for="observacion" />
+                    <h:inputText id="observacion" value="#{ususarioRecomendacionController.selected.observacion}" title="#{bundle.EditUsusarioRecomendacionTitle_observacion}" />
+                </h:panelGrid>
+                <h:commandLink action="#{ususarioRecomendacionController.update}" value="#{bundle.EditUsusarioRecomendacionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUsusarioRecomendacionViewLink}"/>
+                <br />
+                <h:commandLink action="#{ususarioRecomendacionController.prepareList}" value="#{bundle.EditUsusarioRecomendacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUsusarioRecomendacionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTruequeCalificacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTruequeCalificacionLabel_id}"/>
+                    <h:outputText value="#{truequeCalificacionController.selected.id}" title="#{bundle.ViewTruequeCalificacionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTruequeCalificacionLabel_puntajeText}"/>
+                    <h:outputText value="#{truequeCalificacionController.selected.puntajeText}" title="#{bundle.ViewTruequeCalificacionTitle_puntajeText}"/>
+                    <h:outputText value="#{bundle.ViewTruequeCalificacionLabel_trueque}"/>
+                    <h:outputText value="#{truequeCalificacionController.selected.trueque}" title="#{bundle.ViewTruequeCalificacionTitle_trueque}"/>
+                    <h:outputText value="#{bundle.ViewTruequeCalificacionLabel_puntajeVal}"/>
+                    <h:outputText value="#{truequeCalificacionController.selected.puntajeVal}" title="#{bundle.ViewTruequeCalificacionTitle_puntajeVal}"/>
+                    <h:outputText value="#{bundle.ViewTruequeCalificacionLabel_usuario}"/>
+                    <h:outputText value="#{truequeCalificacionController.selected.usuario}" title="#{bundle.ViewTruequeCalificacionTitle_usuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{truequeCalificacionController.destroyAndView}" value="#{bundle.ViewTruequeCalificacionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTruequeCalificacionEditLink}"/>
+                <br />
+                <h:commandLink action="#{truequeCalificacionController.prepareCreate}" value="#{bundle.ViewTruequeCalificacionCreateLink}" />
+                <br />
+                <h:commandLink action="#{truequeCalificacionController.prepareList}" value="#{bundle.ViewTruequeCalificacionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTruequeCalificacionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

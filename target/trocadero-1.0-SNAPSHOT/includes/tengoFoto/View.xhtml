@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTengoFotoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTengoFotoLabel_id}"/>
+                    <h:outputText value="#{tengoFotoController.selected.id}" title="#{bundle.ViewTengoFotoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTengoFotoLabel_fotografia}"/>
+                    <h:outputText value="#{tengoFotoController.selected.fotografia}" title="#{bundle.ViewTengoFotoTitle_fotografia}"/>
+                    <h:outputText value="#{bundle.ViewTengoFotoLabel_estado}"/>
+                    <h:outputText value="#{tengoFotoController.selected.estado}" title="#{bundle.ViewTengoFotoTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewTengoFotoLabel_tengo}"/>
+                    <h:outputText value="#{tengoFotoController.selected.tengo}" title="#{bundle.ViewTengoFotoTitle_tengo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tengoFotoController.destroyAndView}" value="#{bundle.ViewTengoFotoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTengoFotoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tengoFotoController.prepareCreate}" value="#{bundle.ViewTengoFotoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tengoFotoController.prepareList}" value="#{bundle.ViewTengoFotoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTengoFotoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTruequeCalificacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTruequeCalificacionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{truequeCalificacionController.selected.id}" title="#{bundle.CreateTruequeCalificacionTitle_id}" required="true" requiredMessage="#{bundle.CreateTruequeCalificacionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTruequeCalificacionLabel_puntajeText}" for="puntajeText" />
+                    <h:inputText id="puntajeText" value="#{truequeCalificacionController.selected.puntajeText}" title="#{bundle.CreateTruequeCalificacionTitle_puntajeText}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeCalificacionLabel_trueque}" for="trueque" />
+                    <h:inputText id="trueque" value="#{truequeCalificacionController.selected.trueque}" title="#{bundle.CreateTruequeCalificacionTitle_trueque}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeCalificacionLabel_puntajeVal}" for="puntajeVal" />
+                    <h:inputText id="puntajeVal" value="#{truequeCalificacionController.selected.puntajeVal}" title="#{bundle.CreateTruequeCalificacionTitle_puntajeVal}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeCalificacionLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{truequeCalificacionController.selected.usuario}" title="#{bundle.CreateTruequeCalificacionTitle_usuario}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{truequeCalificacionController.create}" value="#{bundle.CreateTruequeCalificacionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{truequeCalificacionController.prepareList}" value="#{bundle.CreateTruequeCalificacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTruequeCalificacionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

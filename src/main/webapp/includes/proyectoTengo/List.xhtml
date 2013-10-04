@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProyectoTengoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProyectoTengoEmpty}" rendered="#{proyectoTengoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{proyectoTengoController.items.rowCount > 0}">
+                    <h:outputText value="#{proyectoTengoController.pagination.pageFirstItem + 1}..#{proyectoTengoController.pagination.pageLastItem + 1}/#{proyectoTengoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{proyectoTengoController.previous}" value="#{bundle.Previous} #{proyectoTengoController.pagination.pageSize}" rendered="#{proyectoTengoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{proyectoTengoController.next}" value="#{bundle.Next} #{proyectoTengoController.pagination.pageSize}" rendered="#{proyectoTengoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{proyectoTengoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTengoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTengoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTengoTitle_proyecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoTengoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{proyectoTengoController.prepareView}" value="#{bundle.ListProyectoTengoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{proyectoTengoController.prepareEdit}" value="#{bundle.ListProyectoTengoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{proyectoTengoController.destroy}" value="#{bundle.ListProyectoTengoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{proyectoTengoController.prepareCreate}" value="#{bundle.ListProyectoTengoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProyectoTengoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

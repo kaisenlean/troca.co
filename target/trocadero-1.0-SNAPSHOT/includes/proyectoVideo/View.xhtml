@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProyectoVideoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProyectoVideoLabel_id}"/>
+                    <h:outputText value="#{proyectoVideoController.selected.id}" title="#{bundle.ViewProyectoVideoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProyectoVideoLabel_video}"/>
+                    <h:outputText value="#{proyectoVideoController.selected.video}" title="#{bundle.ViewProyectoVideoTitle_video}"/>
+                    <h:outputText value="#{bundle.ViewProyectoVideoLabel_proyecto}"/>
+                    <h:outputText value="#{proyectoVideoController.selected.proyecto}" title="#{bundle.ViewProyectoVideoTitle_proyecto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proyectoVideoController.destroyAndView}" value="#{bundle.ViewProyectoVideoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProyectoVideoEditLink}"/>
+                <br />
+                <h:commandLink action="#{proyectoVideoController.prepareCreate}" value="#{bundle.ViewProyectoVideoCreateLink}" />
+                <br />
+                <h:commandLink action="#{proyectoVideoController.prepareList}" value="#{bundle.ViewProyectoVideoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProyectoVideoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

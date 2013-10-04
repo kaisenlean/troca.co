@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTruequeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTruequeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{truequeController.selected.id}" title="#{bundle.CreateTruequeTitle_id}" required="true" requiredMessage="#{bundle.CreateTruequeRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateTruequeLabel_usuarioTrueque1}" for="usuarioTrueque1" />
+                    <h:inputText id="usuarioTrueque1" value="#{truequeController.selected.usuarioTrueque1}" title="#{bundle.CreateTruequeTitle_usuarioTrueque1}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeLabel_usuarioTrueque2}" for="usuarioTrueque2" />
+                    <h:inputText id="usuarioTrueque2" value="#{truequeController.selected.usuarioTrueque2}" title="#{bundle.CreateTruequeTitle_usuarioTrueque2}" />
+                    <h:outputLabel value="#{bundle.CreateTruequeLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{truequeController.selected.estado}" title="#{bundle.CreateTruequeTitle_estado}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{truequeController.create}" value="#{bundle.CreateTruequeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{truequeController.prepareList}" value="#{bundle.CreateTruequeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTruequeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

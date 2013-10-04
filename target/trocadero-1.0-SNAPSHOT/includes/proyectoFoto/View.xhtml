@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProyectoFotoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProyectoFotoLabel_id}"/>
+                    <h:outputText value="#{proyectoFotoController.selected.id}" title="#{bundle.ViewProyectoFotoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProyectoFotoLabel_fotografia}"/>
+                    <h:outputText value="#{proyectoFotoController.selected.fotografia}" title="#{bundle.ViewProyectoFotoTitle_fotografia}"/>
+                    <h:outputText value="#{bundle.ViewProyectoFotoLabel_proyecto}"/>
+                    <h:outputText value="#{proyectoFotoController.selected.proyecto}" title="#{bundle.ViewProyectoFotoTitle_proyecto}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proyectoFotoController.destroyAndView}" value="#{bundle.ViewProyectoFotoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProyectoFotoEditLink}"/>
+                <br />
+                <h:commandLink action="#{proyectoFotoController.prepareCreate}" value="#{bundle.ViewProyectoFotoCreateLink}" />
+                <br />
+                <h:commandLink action="#{proyectoFotoController.prepareList}" value="#{bundle.ViewProyectoFotoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProyectoFotoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProyectoVideoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProyectoVideoEmpty}" rendered="#{proyectoVideoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{proyectoVideoController.items.rowCount > 0}">
+                    <h:outputText value="#{proyectoVideoController.pagination.pageFirstItem + 1}..#{proyectoVideoController.pagination.pageLastItem + 1}/#{proyectoVideoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{proyectoVideoController.previous}" value="#{bundle.Previous} #{proyectoVideoController.pagination.pageSize}" rendered="#{proyectoVideoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{proyectoVideoController.next}" value="#{bundle.Next} #{proyectoVideoController.pagination.pageSize}" rendered="#{proyectoVideoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{proyectoVideoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoVideoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoVideoTitle_video}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.video}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProyectoVideoTitle_proyecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proyecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{proyectoVideoController.prepareView}" value="#{bundle.ListProyectoVideoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{proyectoVideoController.prepareEdit}" value="#{bundle.ListProyectoVideoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{proyectoVideoController.destroy}" value="#{bundle.ListProyectoVideoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{proyectoVideoController.prepareCreate}" value="#{bundle.ListProyectoVideoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProyectoVideoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

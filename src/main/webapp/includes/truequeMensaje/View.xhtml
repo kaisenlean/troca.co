@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTruequeMensajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTruequeMensajeLabel_id}"/>
+                    <h:outputText value="#{truequeMensajeController.selected.id}" title="#{bundle.ViewTruequeMensajeTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTruequeMensajeLabel_trueque}"/>
+                    <h:outputText value="#{truequeMensajeController.selected.trueque}" title="#{bundle.ViewTruequeMensajeTitle_trueque}"/>
+                    <h:outputText value="#{bundle.ViewTruequeMensajeLabel_usuarioEmisor}"/>
+                    <h:outputText value="#{truequeMensajeController.selected.usuarioEmisor}" title="#{bundle.ViewTruequeMensajeTitle_usuarioEmisor}"/>
+                    <h:outputText value="#{bundle.ViewTruequeMensajeLabel_usuarioReceptor}"/>
+                    <h:outputText value="#{truequeMensajeController.selected.usuarioReceptor}" title="#{bundle.ViewTruequeMensajeTitle_usuarioReceptor}"/>
+                    <h:outputText value="#{bundle.ViewTruequeMensajeLabel_mensaje}"/>
+                    <h:outputText value="#{truequeMensajeController.selected.mensaje}" title="#{bundle.ViewTruequeMensajeTitle_mensaje}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{truequeMensajeController.destroyAndView}" value="#{bundle.ViewTruequeMensajeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTruequeMensajeEditLink}"/>
+                <br />
+                <h:commandLink action="#{truequeMensajeController.prepareCreate}" value="#{bundle.ViewTruequeMensajeCreateLink}" />
+                <br />
+                <h:commandLink action="#{truequeMensajeController.prepareList}" value="#{bundle.ViewTruequeMensajeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTruequeMensajeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

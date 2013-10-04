@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCalificacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCalificacionLabel_id}"/>
+                    <h:outputText value="#{calificacionController.selected.id}" title="#{bundle.ViewCalificacionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCalificacionLabel_puntajeText}"/>
+                    <h:outputText value="#{calificacionController.selected.puntajeText}" title="#{bundle.ViewCalificacionTitle_puntajeText}"/>
+                    <h:outputText value="#{bundle.ViewCalificacionLabel_puntajeVal}"/>
+                    <h:outputText value="#{calificacionController.selected.puntajeVal}" title="#{bundle.ViewCalificacionTitle_puntajeVal}"/>
+                    <h:outputText value="#{bundle.ViewCalificacionLabel_usuario}"/>
+                    <h:outputText value="#{calificacionController.selected.usuario}" title="#{bundle.ViewCalificacionTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewCalificacionLabel_usuarioRegistro}"/>
+                    <h:outputText value="#{calificacionController.selected.usuarioRegistro}" title="#{bundle.ViewCalificacionTitle_usuarioRegistro}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{calificacionController.destroyAndView}" value="#{bundle.ViewCalificacionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCalificacionEditLink}"/>
+                <br />
+                <h:commandLink action="#{calificacionController.prepareCreate}" value="#{bundle.ViewCalificacionCreateLink}" />
+                <br />
+                <h:commandLink action="#{calificacionController.prepareList}" value="#{bundle.ViewCalificacionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCalificacionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
