@@ -11,10 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -43,14 +46,25 @@ public class Usuario implements Serializable {
     private String nombre;
     @Column(name = "apellido")
     private String apellido;
-    @Column(name = "ciudad")
-    private Integer ciudad;
+    @ManyToOne
+    @JoinColumn(name = "ciudad")
+    private Ciudad ciudad;
     @Column(name = "fotografia")
     private String fotografia;
     @Lob
     @Column(name = "biografia")
     private String biografia;
 
+    @Column(name = "email")
+    private String email;
+    
+
+    @Column(name = "password")
+    private String password;
+    
+    @Transient
+    private String repeatMail;
+    
     public Usuario() {
     }
 
@@ -82,11 +96,11 @@ public class Usuario implements Serializable {
         this.apellido = apellido;
     }
 
-    public Integer getCiudad() {
+    public Ciudad getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(Integer ciudad) {
+    public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
 
@@ -106,6 +120,23 @@ public class Usuario implements Serializable {
         this.biografia = biografia;
     }
 
+    public String getEmail() {
+		return email;
+	}public String getPassword() {
+		return password;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRepeatMail() {
+		return repeatMail;
+	}
+	public void setRepeatMail(String repeatMail) {
+		this.repeatMail = repeatMail;
+	}
     @Override
     public int hashCode() {
         int hash = 0;

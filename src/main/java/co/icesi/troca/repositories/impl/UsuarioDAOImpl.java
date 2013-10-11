@@ -15,9 +15,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	private EntityManager em = null;
 
-    /**
-     * Sets the entity manager.
-     */
+   
     @PersistenceContext
     public void setEntityManager(EntityManager em) {
         this.em = em;
@@ -27,6 +25,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public List<Usuario> findAll() {
 		return this.em.createQuery( new StringBuilder("SELECT u FROM Usuario u").toString()).getResultList();
+	}
+
+	@Override
+	public void create(Usuario u) {
+	this.em.persist(u);
+	
+		
 	}
 
 

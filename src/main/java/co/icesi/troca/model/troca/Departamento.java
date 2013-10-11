@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -38,8 +40,9 @@ public class Departamento implements Serializable {
     private Integer id;
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "pais")
-    private Integer pais;
+    @ManyToOne
+    @JoinColumn(name = "pais",referencedColumnName="id")
+    private Pais pais;
 
     public Departamento() {
     }
@@ -64,11 +67,11 @@ public class Departamento implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(Integer pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 

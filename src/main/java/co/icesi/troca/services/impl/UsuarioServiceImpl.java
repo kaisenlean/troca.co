@@ -1,5 +1,6 @@
 package co.icesi.troca.services.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,10 +19,9 @@ import co.icesi.troca.services.UsuarioService;
  */
 
 @Service("usuarioService")
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements UsuarioService ,Serializable{
 
-
-	
+	private static final long serialVersionUID = -7342021171479215673L;
 	@Resource(name="usuarioDao")
 	private UsuarioDAO usuarioDAO;
 
@@ -35,6 +35,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
+	}
+
+	@Override
+	public void create(Usuario u) {
+		usuarioDAO.create(u);
+		
 	}
 	
 }

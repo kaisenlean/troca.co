@@ -7,4 +7,5 @@ import co.icesi.troca.model.troca.Usuario;
 public interface UsuarioDAO {
 
 	List<Usuario> findAll();
+	void create(Usuario u);
 }
