@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <script src="js/modernizr.js"></script>
+</head>
+<body>
+            <!--[if lt IE 7]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+                <![endif]-->
+                <!-- Navegación Principal (tope de todas las páginas)-->
+
+          <nav class="navbar navbar-default margined" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">El Trocadero</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="ayuda.html" class="oneline help">Ayuda</a></li>
+      <li><a href="registro_1.html" class="oneline log-alpha">Regístrate</a></li>
+      <li class="hidden-xs  divider-log"></li>
+      <li><a href="#" class="oneline log-omega">Ingresa</a></li>
+      
+    </ul>
+  <form class="navbar-form navbar-right" role="search">
+      <div class="form-group oneline">
+        <input type="text" class="form-control" placeholder="Búsqueda">
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="que_somos.html" class="oneline">Qué Somos</a></li>
+      <li class="divider-vertical hidden-xs hidden-sm"></li>
+      <li><a href="ultimos_proyectos.html" class="hidden-sm hidden-xs">Últimos<br />Proyectos</a></li>
+      <li class="divider-vertical hidden-sm hidden-xs"></li>
+      <li><a href="ultimas_noticias.html" class="hidden-sm hidden-xs">Últimas<br />Noticias</a></li>
+      <li class="dropdown visible-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Información<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="faq.html">Preguntas<br />Frecuentes</a></li>
+          <li><a href="politicas.html">Política de<br />Privacidad</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    
+  </div><!-- /.navbar-collapse -->
+</nav>
+<!-- Modals -->
+<!-- Modal Trocar Necesito -->
+  <div class="modal fade" id="modal-necesito" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Propuesta de Trueque</h4>
+        </div>
+        <div class="modal-body">
+        <h5>Elige tengo del proyecto por el que quieres trocar</h5>
+        <small>Si buscas algo que no está en la lista, proponlo escogiendo la opción "otro"</small>
+        <div class="form-group">
+      <label for="tengo-proyecto" class="black">Tengos del Proyecto</label>
+      <select id="tengo-proyecto" class="form-control">
+      <option value="Tengo1">Tengo1</option>
+      <option value="Tengo2">Tengo2</option>
+      <option value="Tengo3">Tengo3</option>
+      <option value="Tengo4">Tengo4</option>
+      <option value="otro">Otro</option>
+      </select>
+
+      </div>
+           <div class="form-group">
+        <label for="otro-proyecto" class="black">Otro</label>
+        <input type="text" class="form-control" id="otro-proyecto-tengo" disabled placeHolder="Escribe lo que buscas">
+      </div>
+
+
+        
+         <p class="gray margined-top">Agrega un comentario personal a la propuesta</p>
+        <textarea class="form-control gap extra-necesito" rows="3"></textarea>
+        </div>
+
+        
+        <button type="button" class="btn btn-default margined-left preview-trueque-necesito">Previsualizar mensaje</button>
+        <button type="button" class="btn btn-default margined-left close-trueque-necesito">Cerrar</button>
+
+
+
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link va">Enviar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal trocar Necesito -->
+
+  <!-- Modal Trocar Tengo -->
+  <div class="modal fade" id="modal-tengo" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Propuesta de Trueque</h4>
+        </div>
+        <div class="modal-body">
+        <h5>Elige uno de los necesito del proyecto con el que puedas colaborar</h5>
+        <small>Si buscas algo que no está en la lista, proponlo escogiendo la opción "otro"</small>
+        <div class="form-group">
+      <label for="necesito-proyecto" class="black">Necesitos del Proyecto</label>
+      <select id="necesito-proyecto" class="form-control">
+      <option value="Necesito1">Necesito1</option>
+      <option value="Necesito2">Necesito2</option>
+      <option value="Necesito3">Necesito3</option>
+      <option value="Necesito4">Necesito4</option>
+      <option value="otro">Otro</option>
+      </select>
+
+      </div>
+           <div class="form-group">
+        <label for="otro-proyecto" class="black">Otro</label>
+        <input type="text" class="form-control" id="otro-proyecto-necesito" disabled placeHolder="Escribe lo que buscas">
+      </div>
+
+
+        
+         <p class="gray margined-top">Agrega un comentario personal a la propuesta</p>
+        <textarea class="form-control gap extra-tengo" rows="3"></textarea>
+        </div>
+
+        
+        <button type="button" class="btn btn-default margined-left preview-trueque-tengo">Previsualizar mensaje</button>
+        <button type="button" class="btn btn-default margined-left close-trueque-tengo">Cerrar</button>
+
+
+
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link va">Enviar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal trocar Tengo -->
+
+
+<!-- Nombre proyecto -->
+<div class="row gap">
+  <div class="col-md-12 red">
+    <h2 class="margined-left">"Nombre de Proyecto"</h2><span class="margined-left"><small>por "Nombre de Usuario" - (espacio para botones de compartir en redes sociales)</small></span>
+  </div>
+</div>
+<!-- Perfil de proyecto -->
+<div class="row gap with-vid">
+
+<!-- Foto y descripción -->
+  <div class="col-md-6 col-lg-6 col-sm-6">
+    <h3 class="margined-left red">"Nombre de Proyecto</h3>
+    <div class="margined">
+    <img src="img/reg.jpg" class="img-responsive">
+    </div>
+    <br />
+    <p class="margined justify">Pellentesque consequat metus in turpis facilisis, in convallis dolor porttitor. Praesent in turpis at risus vestibulum tempor eu tincidunt neque. Sed consequat augue eget neque accumsan, non lobortis enim viverra. Fusce vel velit id quam laoreet molestie vel pulvinar lacus. Suspendisse potenti. Donec convallis diam vitae gravida sollicitudin. Nunc viverra elit velit, at placerat leo accumsan dapibus. In sed nibh malesuada, eleifend nisi eleifend, sodales arcu. Nulla id cursus eros. Etiam a nulla convallis, cursus velit non, viverra ante. Nam fringilla dui in odio pulvinar lacinia. Ut nunc velit, dapibus vel urna ut, suscipit molestie sapien. Maecenas rutrum libero arcu, at cursus neque rhoncus eu. Phasellus lobortis velit et odio venenatis eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed quis eros metus.</p>
+  </div>
+
+  <!-- Video del proyecto -->
+  <div class="col-md-6 col-lg-6 col-sm-6">
+  <h3 class="margined-left red">Video del proyecto</h3>
+  <div class="flex-video widescreen margined-right">
+
+    <iframe src="//www.youtube.com/embed/VQH8ZTgna3Q?rel=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Creador del proyecto -->
+    <h3 class="red">Creador del Proyecto</h3>
+    <div class="col-md-6 col-sm-6 col-lg-6">
+      
+    <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+    
+
+    </div> 
+    <div class="col-md-6 col-sm-6 col-lg-6">
+        <div class="margined">
+        <h4 class="red no-margin-top">Biografía</h4>
+        <p class="black justify">Pellentesque consequat metus in turpis facilisis, in convallis dolor porttitor. Praesent in turpis at risus vestibulum tempor eu tincidunt neque. Sed consequat augue eget neque accumsan, non lobortis enim viverra. Fusce vel velit id quam laoreet molestie vel pulvinar lacus. Suspendisse potenti. Donec convallis diam vitae gravida sollicitudin. Nunc viverra elit velit, at placerat leo accumsan dapibus. In sed nibh malesuada.
+        </div>
+    </div>
+  </div>
+ 
+</div>
+
+<!-- Usuarios participantes -->
+
+<div class="row big-gap with-vid">
+  <div class="col-md-4 col-lg-4 col-sm-4 light-gray-box">
+    <h3 class="black margined-left">Usuarios Participantes</h3>
+    <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
+      <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+
+   <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="col-md-6 col-lg-4 col-sm-6 hidden-xs">
+      <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    </div>
+    <div class="col-lg-4 visible-lg">
+
+      <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    <div class="thumbnail margined margined-bot white-box no-border">
+      <a href="#"><img src="img/profile.jpg" class="img-responsive"></a>
+      <div class="caption">
+        <p><strong><small>Nombre de Usuario</small></strong></p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Necesitos del proyecto -->
+  <div class="col-md-4 col-lg-4 col-sm-4 red-box">
+    <h3 class="white margined-left">Este proyecto necesita</h3>
+
+    <div class="col-md-12 col-lg-6 col-sm-12">
+      <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Necesito 1</h3>
+      
+      <div class="caption not">
+        <p class="white justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p> <a href="#modal-necesito" data-toggle="modal" class="necesito-trocar btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Necesito 1</h3>
+      
+      <div class="caption not">
+        <p class="white justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p> <a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Necesito 1</h3>
+      
+      <div class="caption not">
+        <p class="white justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p> <a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+    </div>
+
+    <div class=" col-lg-6 visible-lg">
+      <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Necesito 1</h3>
+      
+      <div class="caption not">
+        <p class="white justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p> <a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Necesito 1</h3>
+      
+      <div class="caption not">
+        <p class="white justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p> <a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Necesito 1</h3>
+      
+      <div class="caption not">
+        <p class="white justify">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p> <a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- Tengos del proyecto -->
+  <div class="col-md-4 col-sm-4 col-lg-4 blue-box">
+    <h3 class="white margined-left">A cambio, este proyecto tiene</h3>
+    <div class="col-md-12 col-sm-12 col-lg-6">
+      <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Tengo 1</h3>
+      <img src="img/profile.jpg" class="img-responsive not" style="display: none">
+      <div class="caption not">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p><a href="#modal-tengo" data-toggle="modal" class="btn btn-white small-margin-top tengo-trocar">Trocar</a></p>
+      </div>
+    </div>
+
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Tengo 1</h3>
+      <img src="img/profile.jpg" class="img-responsive not" style="display: none">
+      <div class="caption not">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p><a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Tengo 1</h3>
+      <img src="img/profile.jpg" class="img-responsive not" style="display: none">
+      <div class="caption not">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p><a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+    </div>
+
+    <div class="col-lg-6 visible-lg">
+      <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Tengo 1</h3>
+      <img src="img/profile.jpg" class="img-responsive not" style="display: none">
+      <div class="caption not">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p><a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Tengo 1</h3>
+      <img src="img/profile.jpg" class="img-responsive not" style="display: none">
+      <div class="caption not">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p><a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+    <div class="thumbnail no-border margined margined-bot cien">
+      <h3 class="white white-link small-margin-left tengo-btn">Tengo 1</h3>
+      <img src="img/profile.jpg" class="img-responsive not" style="display: none">
+      <div class="caption not">
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+        <p><a href="#" class="btn btn-white small-margin-top">Trocar</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Foot Redes -->
+<div class="row light-gray-box">
+<div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8  hidden-xs">
+    <nav>
+      <ul class="nav nav-tabs centre nav-justified">
+  <li class="disabled"><a href="#" class="gray">Síguenos</a></li>
+  <li><a href="#" class="gray"><img src="img/fb.png"></a></li>
+  <li><a href="#" class="gray"><img src="img/twitter.png"></a></li>
+  <li><a href="#" class="gray"><img src="img/vimeo.png"></a></li>
+  <li><a href="#" class="gray"><img src="img/tumblr.png"></a></li>
+</ul>
+    </nav>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+<div class="row light-gray-box">
+  <div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8 hidden-xs">
+    
+    <!-- Espacio para Logos de alianzas -->
+    <p>Alianzas</p>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+</footer>
+
+               
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+       <!-- <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script> -->
+    </body>
+    </html>
