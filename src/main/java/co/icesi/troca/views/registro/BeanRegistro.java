@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
-import co.icesi.troca.model.troca.Ciudad;
 import co.icesi.troca.model.troca.Departamento;
 import co.icesi.troca.model.troca.Pais;
 import co.icesi.troca.model.troca.Usuario;

@@ -5,24 +5,25 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core" class="no-js">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" class="no-js">
 <!--<![endif]-->
 <h:head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title></title>
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="css/normalize.css" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
-<link rel="stylesheet" href="/css/vex.css" />
-<link rel="stylesheet" href="css/vex-theme-flat-attack.css" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title></title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+	<link rel="stylesheet" href="/css/vex.css" />
+	<link rel="stylesheet" href="css/vex-theme-flat-attack.css" />
 
 
-<!-- <h:outputScript name="main.css" library="css"></h:outputScript> -->
-<!-- <h:outputScript name="normalize.css" library="css"></h:outputScript> -->
-<!-- <h:outputScript name="bootstrap.css" library="css"></h:outputScript> -->
-<script src="/js/modernizr.js"></script>
+	<!-- <h:outputScript name="main.css" library="css"></h:outputScript> -->
+	<!-- <h:outputScript name="normalize.css" library="css"></h:outputScript> -->
+	<!-- <h:outputScript name="bootstrap.css" library="css"></h:outputScript> -->
+	<script src="/js/modernizr.js"></script>
 </h:head>
 <body>
 	<!--[if lt IE 7]>
@@ -97,7 +98,8 @@
 					<h:outputLabel value="Nombre(s)" styleClass="white" />
 
 					<p:inputText styleClass="form-control" id="nombre"
-						placeholder="Ingresa tu nombre(s)" value="#{beanRegistro.usuario.nombre}"></p:inputText>
+						placeholder="Ingresa tu nombre(s)"
+						value="#{beanRegistro.usuario.nombre}"></p:inputText>
 					<!-- 					<label for="nombre" class="white">Nombre(s)</label> <input -->
 					<!-- 						type="text" class="form-control" id="nombre" -->
 					<!-- 						placeHolder="Ingresa tu nombre(s)"/> -->
@@ -106,51 +108,62 @@
 					<h:outputLabel value="Apellido(s)" styleClass="white" />
 
 					<p:inputText styleClass="form-control" id="apellidos"
-						placeholder="Ingresa tu Apellido(s)" value="#{beanRegistro.usuario.apellido}"></p:inputText>
+						placeholder="Ingresa tu Apellido(s)"
+						value="#{beanRegistro.usuario.apellido}"></p:inputText>
 				</div>
 				<div class="form-group">
 
 					<h:outputLabel value="Correo Electrónico" styleClass="white" />
 					<small class="light-gray">- El correo no es público</small>
 					<p:inputText styleClass="form-control" id="emailRegistro"
-						placeholder="Ingresa tu Correo Electrónico" value="#{beanRegistro.usuario.email}"></p:inputText>
+						placeholder="Ingresa tu Correo Electrónico"
+						value="#{beanRegistro.usuario.email}"></p:inputText>
 
 				</div>
 				<div class="form-group">
-				
-					<h:outputLabel value="Ingresa tu Correo Electrónico de Nuevo" styleClass="white" />
+
+					<h:outputLabel value="Ingresa tu Correo Electrónico de Nuevo"
+						styleClass="white" />
 					<small class="light-gray">- El correo no es público</small>
 					<p:inputText styleClass="form-control" id="emailRegistroRep"
-						placeholder="Ingresa tu Correo Electrónico"  value="#{beanRegistro.usuario.repeatMail}"></p:inputText>
+						placeholder="Ingresa tu Correo Electrónico"
+						value="#{beanRegistro.usuario.repeatMail}"></p:inputText>
 				</div>
 				<div class="form-group">
-						<h:outputLabel value="Contraseña" styleClass="white" />
+					<h:outputLabel value="Contraseña" styleClass="white" />
 					<p:password styleClass="form-control" id="passwordReg"
 						placeholder="Ingresa tu password"></p:password>
 				</div>
 				<div class="form-group">
-								<h:outputLabel value="Pais" styleClass="white" />
-								<h:selectOneMenu value="#{beanRegistro.selPais}"  styleClass="form-control" >
-								<p:ajax event="change" update="deptos" partialSubmit="true" listener="#{beanRegistro.cambioPais}"></p:ajax>
-								<f:selectItems value="#{beanRegistro.itemPaises}"   />
-								</h:selectOneMenu>
+					<h:outputLabel value="Pais" styleClass="white" />
+					<h:selectOneMenu value="#{beanRegistro.selPais}"
+						styleClass="form-control">
+						<p:ajax event="change" update="deptos" partialSubmit="true"
+							listener="#{beanRegistro.cambioPais}"></p:ajax>
+						<f:selectItems value="#{beanRegistro.itemPaises}" />
+					</h:selectOneMenu>
 				</div>
 				<div class="form-group">
-						<h:outputLabel value="Departamento" styleClass="white" />
-								<h:selectOneMenu value="#{beanRegistro.selDepto}" id="deptos"  styleClass="form-control" >
-								<p:ajax event="change" update="ciudades" partialSubmit="true" listener="#{beanRegistro.cambioDepto}"></p:ajax>
-								<f:selectItems value="#{beanRegistro.itemDeptos}"   />
-								</h:selectOneMenu>
+					<h:outputLabel value="Departamento" styleClass="white" />
+					<h:selectOneMenu value="#{beanRegistro.selDepto}" id="deptos"
+						styleClass="form-control">
+						<p:ajax event="change" update="ciudades" partialSubmit="true"
+							listener="#{beanRegistro.cambioDepto}"></p:ajax>
+						<f:selectItems value="#{beanRegistro.itemDeptos}" />
+					</h:selectOneMenu>
 				</div>
 				<div class="form-group">
-			<h:outputLabel value="Ciudad" styleClass="white" />
-								<h:selectOneMenu value="#{beanRegistro.selCiudad}" id="ciudades"  styleClass="form-control" >
-								<p:ajax event="change"  partialSubmit="true" listener="#{beanRegistro.cambioCiudad}"></p:ajax>
-								<f:selectItems value="#{beanRegistro.itemCiudades}"   />
-								</h:selectOneMenu>
+					<h:outputLabel value="Ciudad" styleClass="white" />
+					<h:selectOneMenu value="#{beanRegistro.selCiudad}" id="ciudades"
+						styleClass="form-control">
+						<p:ajax event="change" partialSubmit="true"
+							listener="#{beanRegistro.cambioCiudad}"></p:ajax>
+						<f:selectItems value="#{beanRegistro.itemCiudades}" />
+					</h:selectOneMenu>
 
 				</div>
-				<p:commandButton action="/paginas/registro/registro_2.jsf" value="Continuar" styleClass="btn btn-default right margined-right"></p:commandButton>
+				<p:commandButton action="/paginas/registro/registro_2.jsf"
+					value="Continuar" styleClass="btn btn-default right margined-right"></p:commandButton>
 				<p class="white">
 					<small>Al continuar, asegura que acepta los <a href="#"
 						class="black white-link">términos y condiciones</a></small>
