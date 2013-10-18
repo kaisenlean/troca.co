@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.troca.Departamento;
 import co.icesi.troca.model.troca.Pais;
 import co.icesi.troca.model.troca.Usuario;
@@ -19,8 +20,8 @@ import co.icesi.troca.services.UsuarioService;
 
 @ManagedBean
 @SessionScoped
-public class BeanRegistro implements Serializable {
-
+public class BeanRegistro extends BaseBean  implements Serializable {
+ 
 	private static final long serialVersionUID = -1562983451567645385L;
 
 	@ManagedProperty(value = "#{usuarioService}")
@@ -50,6 +51,14 @@ public class BeanRegistro implements Serializable {
 
 		usuario = new Usuario();
 		itemPaises = paisService.getItmems();
+	}
+	
+	
+	public void guardarUsuario(){
+		usuario.setCiudad(ciudadService.find(selCiudad));
+		usuarioService.create(usuario);
+		goTo("/index.jsf");
+		
 	}
 
 	public void cambioPais() {

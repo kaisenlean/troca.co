@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -18,6 +19,12 @@
 	<link rel="stylesheet" href="css/bootstrap.css" media="screen" />
 	<link rel="stylesheet" href="/css/vex.css" />
 	<link rel="stylesheet" href="css/vex-theme-flat-attack.css" />
+	<h:outputStylesheet name="normalize.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="main.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="bootstrap.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="vex.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="vex-theme-flat-attack.css" library="css"></h:outputStylesheet>
+	
 
 
 	<!-- <h:outputScript name="main.css" library="css"></h:outputScript> -->
@@ -163,7 +170,7 @@
 
 				</div>
 				<p:commandButton action="/paginas/registro/registro_2.jsf"
-					value="Continuar" styleClass="btn btn-default right margined-right"></p:commandButton>
+					value="Continuar" process="@all" update="@all" styleClass="btn btn-default right margined-right"></p:commandButton>
 				<p class="white">
 					<small>Al continuar, asegura que acepta los <a href="#"
 						class="black white-link">términos y condiciones</a></small>

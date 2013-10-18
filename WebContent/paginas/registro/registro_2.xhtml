@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -8,7 +9,7 @@
 <h:head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title></title>
+    <title>Troca</title>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -17,6 +18,13 @@
     <link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
 
     <script src="/js/modernizr.js"></script>
+    
+    
+    <h:outputStylesheet name="normalize.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="main.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="bootstrap.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="vex.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="vex-theme-flat-attack.css" library="css"></h:outputStylesheet>
 </h:head>
 <body>
             <!--[if lt IE 7]>
@@ -89,7 +97,7 @@
   </div>
   <p class="light-gray margined-top">Escribe tu biografía</p>
   <p:inputTextarea styleClass="form-control gap" rows="8" value="#{beanRegistro.usuario.biografia}"></p:inputTextarea> 
-   <button href="/paginas/registro/registro_3.jsf"  type="submit" class="btn btn-default right margined-right">Continuar</button>
+   <p:button process="@all" update="@all" outcome="/paginas/registro/registro_3.jsf"  styleClass="btn btn-default right margined-right" value="Continuar"></p:button>
   <small class="white visible-xs">Es importante que los demás participantes conozcan algo de ti</small>
 
 
@@ -108,11 +116,11 @@
   <div class="col-md-12 hard-gray-box">
     <nav>
       <ul class="nav nav-tabs centre nav-justified">
-  <li><a href="faq.html" class="white hidden-xs">Preguntas Frecuentes</a></li>
-  <li><a href="#" class="white">Contacto</a></li>
+  	    	 <li><a href="faq.html" class="white hidden-xs">Preguntas Frecuentes</a></li>
+    		 <li><a href="#" class="white">Contacto</a></li>
   <li><a href="politicas.html" class="white hidden-xs">Política de Privacidad</a></li>
   <li><a href="#" class="white">Blog</a></li>
-</ul>
+	 </ul>
     </nav>
   </div>
 </div>
@@ -141,8 +149,8 @@
         <script src="/js/bootstrap.min.js"></script>
 <script src="/js/vex.combined.min.js"></script>
 <script>vex.defaultOptions.className = 'vex-theme-flat-attack';</script>
-<link rel="stylesheet" href="css/vex.css" />
-<link rel="stylesheet" href="css/vex-theme-flat-attack.css" />
+<link rel="stylesheet" href=".../../css/vex.css" />
+<link rel="stylesheet" href="../../css/vex-theme-flat-attack.css" />
        <!-- <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

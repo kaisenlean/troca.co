@@ -6,11 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.icesi.troca.model.troca.Usuario;
 import co.icesi.troca.repositories.UsuarioDAO;
 
 @Repository("usuarioDao")
+@Transactional
 public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	private EntityManager em = null;

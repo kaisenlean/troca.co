@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -17,9 +17,14 @@
     <link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
 
     <script src="/js/modernizr.js"></script>
+    <h:outputStylesheet name="normalize.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="main.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="bootstrap.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="vex.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="vex-theme-flat-attack.css" library="css"></h:outputStylesheet>
 </h:head>
 <body>
-<h:form>
+<!-- <h:form> -->
 
 
             <!--[if lt IE 7]>
@@ -82,7 +87,7 @@
 <!-- Formulario -->
 <div class="row big-gap">
   <div class="col-md-6 col-sm-4 blue-box padded-bot know-height">
-    <form role="registro" class="margined-left basic margined-top">
+    <h:form role="registro" styleClass="margined-left basic margined-top">
     <label for="links" class="white">Registra links personales o de tu trabajo</label>
       <input type="text"   class="form-control links nombre-link" placeholder="Nombre del link Ej: Facebook"/>
       <input type="text"  class="form-control links last-link profile-link" placeholder="Ingresa un link"/>
@@ -90,13 +95,13 @@
       <button type="button" class="btn btn-default link-btn">+</button>
       <br />
       <br />
-      <button type="submit" class="btn btn-default right margined-right">Continuar</button>
+      <p:commandButton value="Continuar" process="@all" update="@all" actionListener="#{beanRegistro.guardarUsuario()}" styleClass="btn btn-default right margined-right" ></p:commandButton>
       <small class="white visible-xs">Ayuda si los demás pueden ver tu trabajo o conocer más sobre ti</small>
 
      
       
        
-    </form><!-- Termina formulario-->
+    </h:form><!-- Termina formulario-->
 
   </div>
   <div class="col-md-6 col-sm-8 hidden-xs img-reg"></div>
@@ -123,10 +128,10 @@
     <nav>
       <ul class="nav nav-tabs centre nav-justified">
   <li class="disabled"><a href="#" class="gray">Síguenos</a></li>
-  <li><a href="#" class="gray"><img src="img/fb.png"/></a></li>
-  <li><a href="#" class="gray"><img src="img/twitter.png"/></a></li>
-  <li><a href="#" class="gray"><img src="img/vimeo.png"/></a></li>
-  <li><a href="#" class="gray"><img src="img/tumblr.png"/></a></li>
+  <li><a href="#" class="gray"><img src="../../img/fb.png"/></a></li>
+  <li><a href="#" class="gray"><img src="../../img/twitter.png"/></a></li>
+  <li><a href="#" class="gray"><img src="../../img/vimeo.png"/></a></li>
+  <li><a href="#" class="gray"><img src="../../img/tumblr.png"/></a></li>
 </ul>
     </nav>
   </div>
@@ -137,9 +142,9 @@
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <!--         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script> -->
 
-        <script src="/js/main.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/vex.combined.min.js"></script>
+        <script src="../../js/main.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/vex.combined.min.js"></script>
 <script>vex.defaultOptions.className = 'vex-theme-flat-attack';</script>
 <link rel="stylesheet" href="css/vex.css" />
 <link rel="stylesheet" href="css/vex-theme-flat-attack.css" />
@@ -150,6 +155,6 @@
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script> -->
         
-        </h:form>
+<!--         </h:form> -->
     </body>
     </html>
