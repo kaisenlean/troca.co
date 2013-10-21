@@ -1,11 +1,7 @@
 package co.icesi.troca.repositories;
 
-import java.util.List;
-
 import co.icesi.troca.model.troca.Pais;
 
-public interface PaisDAO {
+public interface PaisDAO extends GenericRepository<Pais, Integer> {
 
-	List<Pais> findAll();
-	Pais find(int id);
 }

@@ -46,7 +46,7 @@ public class PaisServiceImpl implements PaisService, Serializable {
 
 	@Override
 	public Pais find(int id) {
-		return paisDao.find(id);
+		return paisDao.findById(id);
 	}
 
 }

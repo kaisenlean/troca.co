@@ -39,7 +39,7 @@ public class UsuarioServiceImpl implements UsuarioService ,Serializable{
 
 	@Override
 	public void create(Usuario u) {
-		usuarioDAO.create(u);
+		usuarioDAO.save(u);
 		
 	}
 	

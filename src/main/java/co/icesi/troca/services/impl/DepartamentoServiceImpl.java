@@ -37,7 +37,7 @@ public class DepartamentoServiceImpl implements DepartamentoService, Serializabl
 
 	@Override
 	public Departamento find(int id) {
-		return departamentoDao.find(id);
+		return departamentoDao.findById(id);
 	}
 
 

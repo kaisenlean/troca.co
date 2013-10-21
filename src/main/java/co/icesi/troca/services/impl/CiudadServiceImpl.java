@@ -21,9 +21,6 @@ public class CiudadServiceImpl implements CiudadService, Serializable {
 	@Resource(name = "ciudadDao")
 	private CiudadDAO ciudadDao;
 
-
-
-
 	@Override
 	public List<SelectItem> getItmemsByDepto(Departamento departamento) {
 		List<SelectItem> items = new ArrayList<SelectItem>();
@@ -37,7 +34,7 @@ public class CiudadServiceImpl implements CiudadService, Serializable {
 
 	@Override
 	public Ciudad find(int id) {
-		return ciudadDao.find(id);
+		return ciudadDao.findById(id);
 	}
 
 

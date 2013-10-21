@@ -1,11 +1,9 @@
 package co.icesi.troca.repositories;
 
-import java.util.List;
-
 import co.icesi.troca.model.troca.Usuario;
 
-public interface UsuarioDAO {
+public interface UsuarioDAO extends GenericRepository<Usuario, Integer> {
 
-	List<Usuario> findAll();
-	void create(Usuario u);
+//	List<Usuario> findAll();
+//	void create(Usuario u);
 }
