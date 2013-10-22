@@ -1,46 +1,65 @@
 package co.icesi.troca.services.impl;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import co.icesi.troca.model.troca.Usuario;
-import co.icesi.troca.repositories.UsuarioDAO;
+import co.icesi.troca.repositories.GenericRepository;
+import co.icesi.troca.repositories.UsuarioDao;
 import co.icesi.troca.services.UsuarioService;
 
-/* 
- * Spring defined service for performing all operations on bikes:
- * - loading all bikes from given category
- * - loading selected bike details
- * - adding new bike 
+/**
+ * 
+* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @project troca-co
+* @class UsuarioServiceImpl
+* @date 22/10/2013
+*
  */
-
 @Service("usuarioService")
-public class UsuarioServiceImpl implements UsuarioService ,Serializable{
+public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> implements UsuarioService, Serializable {
 
+	/**
+	 * 22/10/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
 	private static final long serialVersionUID = -7342021171479215673L;
-	@Resource(name="usuarioDao")
-	private UsuarioDAO usuarioDAO;
+	/**
+	 * 22/10/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioDAO
+	 */
+	@Resource(name = "usuarioDao")
+	private UsuarioDao usuarioDAO;
 
-	@Override
-	public List<Usuario> findAll() {
-		return usuarioDAO.findAll();
-	}
-	
-	public UsuarioDAO getUsuarioDAO() {
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 22/10/2013
+	* @return
+	*/
+	public UsuarioDao getUsuarioDAO() {
 		return usuarioDAO;
 	}
-	public void setUsuarioDAO(UsuarioDAO usuarioDAO) {
+
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 22/10/2013
+	* @param usuarioDAO
+	*/
+	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
 	@Override
-	public void create(Usuario u) {
-		usuarioDAO.save(u);
-		
+	public GenericRepository<Usuario, Integer> getDao() {
+		return usuarioDAO;
 	}
-	
+
 }

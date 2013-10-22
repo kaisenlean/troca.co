@@ -5,7 +5,6 @@ package co.icesi.troca.commons;
  * and open the template in the editor.
  */
 
-
 import javax.annotation.PostConstruct;
 
 /**

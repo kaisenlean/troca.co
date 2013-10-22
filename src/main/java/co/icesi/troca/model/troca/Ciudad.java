@@ -21,7 +21,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * 
  * @author Elmer Jose Diaz Lazo
  * @email elmerdiazlazo@gmail.com
  * @date 3/10/2013
@@ -30,77 +30,79 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ciudad")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c"),
-    @NamedQuery(name = "Ciudad.findById", query = "SELECT c FROM Ciudad c WHERE c.id = :id"),
-    @NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre"),
-    @NamedQuery(name = "Ciudad.findByDepartamento", query = "SELECT c FROM Ciudad c WHERE c.departamento = :departamento")})
+		@NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c"),
+		@NamedQuery(name = "Ciudad.findById", query = "SELECT c FROM Ciudad c WHERE c.id = :id"),
+		@NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre"),
+		@NamedQuery(name = "Ciudad.findByDepartamento", query = "SELECT c FROM Ciudad c WHERE c.departamento = :departamento") })
 public class Ciudad implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "nombre")
-    private String nombre;
-    @ManyToOne
-    @JoinColumn(name = "departamento")
-    private Departamento departamento;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "nombre")
+	private String nombre;
+	@ManyToOne
+	@JoinColumn(name = "departamento")
+	private Departamento departamento;
 
-    public Ciudad() {
-    }
+	public Ciudad() {
+	}
 
-    public Ciudad(Integer id) {
-        this.id = id;
-    }
+	public Ciudad(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public Departamento getDepartamento() {
-        return departamento;
-    }
+	public Departamento getDepartamento() {
+		return departamento;
+	}
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ciudad)) {
-            return false;
-        }
-        Ciudad other = (Ciudad) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are
+		// not set
+		if (!(object instanceof Ciudad)) {
+			return false;
+		}
+		Ciudad other = (Ciudad) object;
+		if ((this.id == null && other.id != null)
+				|| (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "com.icesi.trocadero.data.entities.Ciudad[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "com.icesi.trocadero.data.entities.Ciudad[ id=" + id + " ]";
+	}
 
 }

@@ -4,7 +4,6 @@ package co.icesi.troca.commons;
  * 
  */
 
-
 import java.io.IOException;
 
 import javax.faces.application.FacesMessage;
@@ -111,40 +110,37 @@ public class BaseBean {
 				.getExternalContext();
 
 		try {
-			
+
 			ctx.getSessionMap().put(beanName, null);
-			
+
 		} catch (Exception ex) {
 			mensaje("Error", ex.toString());
 		}
 
 	}
-	
-	
+
 	/**
 	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 6/09/2013
-	* @param script
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/09/2013
+	 * @param script
 	 */
-	public void runJavascript(String script){
+	public void runJavascript(String script) {
 		RequestContext.getCurrentInstance().execute(script);
-		
+
 	}
 
-        
-    
-        public void goTo(String url){
-        
-        ExternalContext ctx = FacesContext.getCurrentInstance()
+	public void goTo(String url) {
+
+		ExternalContext ctx = FacesContext.getCurrentInstance()
 				.getExternalContext();
 		String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
 
 		try {
-			ctx.redirect(new StringBuilder(ctxPath).append( url).toString());
+			ctx.redirect(new StringBuilder(ctxPath).append(url).toString());
 		} catch (IOException ex) {
 			mensaje("Error", ex.toString());
 		}
-        }
+	}
 
 }

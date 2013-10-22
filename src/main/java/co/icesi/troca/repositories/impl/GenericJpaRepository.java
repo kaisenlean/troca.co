@@ -95,11 +95,11 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findByExample(final T exampleInstance) {
-		
+
 		Session session = getEntityManager().unwrap(Session.class);
 		Criteria crit = session.createCriteria(getEntityClass());
-		final List<T> result = crit.list();  
-		return result; 
+		final List<T> result = crit.list();
+		return result;
 	}
 
 	/**
@@ -112,7 +112,8 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	}
 
 	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQuery(java.lang.String, java.lang.Object[])
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQuery(java.lang.String,
+	 *      java.lang.Object[])
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -129,7 +130,8 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	}
 
 	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQueryAndNamedParams(java.lang.String, java.util.Map)
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQueryAndNamedParams(java.lang.String,
+	 *      java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -157,7 +159,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 
 	/**
 	 * set the JPA entity manager to use.
-	 *
+	 * 
 	 * @param entityManager
 	 */
 	@Required
@@ -181,11 +183,10 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 * Use this inside subclasses as a convenience method.
 	 */
 	@SuppressWarnings("unchecked")
-	
 	protected List<T> findByCriteria(final int firstResult,
 			final int maxResults, final Criterion... criterion) {
 		Session session = getEntityManager().unwrap(Session.class);
-		
+
 		Criteria crit = session.createCriteria(getEntityClass());
 
 		for (final Criterion c : criterion) {
@@ -201,7 +202,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 		}
 
 		final List<T> result = crit.list();
-		
+
 		return result;
 	}
 
@@ -217,11 +218,11 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 		return (Integer) crit.list().get(0);
 	}
 
-
 	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#delete(java.lang.Object)
 	 */
 	@Override
+	
 	public void delete(T entity) {
 		getEntityManager().remove(entity);
 	}
@@ -230,6 +231,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#save(java.lang.Object)
 	 */
 	@Override
+
 	public T save(T entity) {
 		final T savedEntity = getEntityManager().merge(entity);
 		return savedEntity;

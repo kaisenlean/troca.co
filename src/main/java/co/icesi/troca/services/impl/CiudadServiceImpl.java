@@ -11,32 +11,45 @@ import org.springframework.stereotype.Service;
 
 import co.icesi.troca.model.troca.Ciudad;
 import co.icesi.troca.model.troca.Departamento;
-import co.icesi.troca.repositories.CiudadDAO;
+import co.icesi.troca.repositories.CiudadDao;
+import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.services.CiudadService;
-
+/**
+ * 
+* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @project troca-co
+* @class CiudadServiceImpl
+* @date 22/10/2013
+*
+ */
 @Service("ciudadService")
-public class CiudadServiceImpl implements CiudadService, Serializable {
+public class CiudadServiceImpl extends GenericServiceImpl<Ciudad, Integer> implements CiudadService, Serializable {
 
 	private static final long serialVersionUID = -7342021171479215673L;
 	@Resource(name = "ciudadDao")
-	private CiudadDAO ciudadDao;
-
+	private CiudadDao ciudadDao;
+/**
+ * (non-Javadoc)
+ * @see co.icesi.troca.services.CiudadService#getItmemsByDepto(co.icesi.troca.model.troca.Departamento)
+ */
 	@Override
 	public List<SelectItem> getItmemsByDepto(Departamento departamento) {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		List<Ciudad> departamentos = ciudadDao.findByDepto(departamento);
 		for (Ciudad ciudad : departamentos) {
-			items.add(new SelectItem(ciudad.getId(),ciudad.getNombre()));
+			items.add(new SelectItem(ciudad.getId(), ciudad.getNombre()));
 		}
-		
+
 		return items;
 	}
 
+/**
+ * (non-Javadoc)
+ * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+ */
 	@Override
-	public Ciudad find(int id) {
-		return ciudadDao.findById(id);
+	public GenericRepository<Ciudad, Integer> getDao() {
+		return ciudadDao;
 	}
-
-
 
 }

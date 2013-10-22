@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * 
  * @author Elmer Jose Diaz Lazo
  * @email elmerdiazlazo@gmail.com
  * @date 3/10/2013
@@ -28,76 +28,78 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "usuario_link")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UsuarioLink.findAll", query = "SELECT u FROM UsuarioLink u"),
-    @NamedQuery(name = "UsuarioLink.findById", query = "SELECT u FROM UsuarioLink u WHERE u.id = :id"),
-    @NamedQuery(name = "UsuarioLink.findByLink", query = "SELECT u FROM UsuarioLink u WHERE u.link = :link"),
-    @NamedQuery(name = "UsuarioLink.findByUsuario", query = "SELECT u FROM UsuarioLink u WHERE u.usuario = :usuario")})
+		@NamedQuery(name = "UsuarioLink.findAll", query = "SELECT u FROM UsuarioLink u"),
+		@NamedQuery(name = "UsuarioLink.findById", query = "SELECT u FROM UsuarioLink u WHERE u.id = :id"),
+		@NamedQuery(name = "UsuarioLink.findByLink", query = "SELECT u FROM UsuarioLink u WHERE u.link = :link"),
+		@NamedQuery(name = "UsuarioLink.findByUsuario", query = "SELECT u FROM UsuarioLink u WHERE u.usuario = :usuario") })
 public class UsuarioLink implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "link")
-    private String link;
-    @Column(name = "usuario")
-    private Integer usuario;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "link")
+	private String link;
+	@Column(name = "usuario")
+	private Integer usuario;
 
-    public UsuarioLink() {
-    }
+	public UsuarioLink() {
+	}
 
-    public UsuarioLink(Integer id) {
-        this.id = id;
-    }
+	public UsuarioLink(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getLink() {
-        return link;
-    }
+	public String getLink() {
+		return link;
+	}
 
-    public void setLink(String link) {
-        this.link = link;
-    }
+	public void setLink(String link) {
+		this.link = link;
+	}
 
-    public Integer getUsuario() {
-        return usuario;
-    }
+	public Integer getUsuario() {
+		return usuario;
+	}
 
-    public void setUsuario(Integer usuario) {
-        this.usuario = usuario;
-    }
+	public void setUsuario(Integer usuario) {
+		this.usuario = usuario;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsuarioLink)) {
-            return false;
-        }
-        UsuarioLink other = (UsuarioLink) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are
+		// not set
+		if (!(object instanceof UsuarioLink)) {
+			return false;
+		}
+		UsuarioLink other = (UsuarioLink) object;
+		if ((this.id == null && other.id != null)
+				|| (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "com.icesi.trocadero.data.entities.UsuarioLink[ id=" + id + " ]";
-    }
+	@Override
+	public String toString() {
+		return "com.icesi.trocadero.data.entities.UsuarioLink[ id=" + id + " ]";
+	}
 
 }

@@ -5,10 +5,22 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import co.icesi.troca.model.troca.Pais;
+/**
+ * 
+* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @project troca-co
+* @class PaisService
+* @date 22/10/2013
+*
+ */
+public interface PaisService extends  GenericService<Pais, Integer>{
 
-public interface PaisService {
-
-	List<Pais> findAll();
+	/**
+	 * Cargar los items de paises
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 22/10/2013
+	* @return
+	 */
 	List<SelectItem> getItmems();
-	Pais find(int id);
+
 }
