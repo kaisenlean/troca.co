@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
@@ -23,28 +23,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "proyecto_video")
+@Table(name = "proyecto_foto")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "ProyectoVideo.findAll", query = "SELECT p FROM ProyectoVideo p"),
-		@NamedQuery(name = "ProyectoVideo.findById", query = "SELECT p FROM ProyectoVideo p WHERE p.id = :id"),
-		@NamedQuery(name = "ProyectoVideo.findByVideo", query = "SELECT p FROM ProyectoVideo p WHERE p.video = :video"),
-		@NamedQuery(name = "ProyectoVideo.findByProyecto", query = "SELECT p FROM ProyectoVideo p WHERE p.proyecto = :proyecto") })
-public class ProyectoVideo implements Serializable {
+		@NamedQuery(name = "ProyectoFoto.findAll", query = "SELECT p FROM ProyectoFoto p"),
+		@NamedQuery(name = "ProyectoFoto.findById", query = "SELECT p FROM ProyectoFoto p WHERE p.id = :id"),
+		@NamedQuery(name = "ProyectoFoto.findByFotografia", query = "SELECT p FROM ProyectoFoto p WHERE p.fotografia = :fotografia"),
+		@NamedQuery(name = "ProyectoFoto.findByProyecto", query = "SELECT p FROM ProyectoFoto p WHERE p.proyecto = :proyecto") })
+public class ProyectoFoto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "video")
-	private String video;
+	@Column(name = "fotografia")
+	private String fotografia;
 	@Column(name = "proyecto")
 	private Integer proyecto;
 
-	public ProyectoVideo() {
+	public ProyectoFoto() {
 	}
 
-	public ProyectoVideo(Integer id) {
+	public ProyectoFoto(Integer id) {
 		this.id = id;
 	}
 
@@ -56,12 +56,12 @@ public class ProyectoVideo implements Serializable {
 		this.id = id;
 	}
 
-	public String getVideo() {
-		return video;
+	public String getFotografia() {
+		return fotografia;
 	}
 
-	public void setVideo(String video) {
-		this.video = video;
+	public void setFotografia(String fotografia) {
+		this.fotografia = fotografia;
 	}
 
 	public Integer getProyecto() {
@@ -83,10 +83,10 @@ public class ProyectoVideo implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof ProyectoVideo)) {
+		if (!(object instanceof ProyectoFoto)) {
 			return false;
 		}
-		ProyectoVideo other = (ProyectoVideo) object;
+		ProyectoFoto other = (ProyectoFoto) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -96,7 +96,7 @@ public class ProyectoVideo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.ProyectoVideo[ id=" + id
+		return "com.icesi.trocadero.data.entities.ProyectoFoto[ id=" + id
 				+ " ]";
 	}
 

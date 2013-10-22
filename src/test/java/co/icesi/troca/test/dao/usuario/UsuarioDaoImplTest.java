@@ -17,7 +17,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.icesi.troca.model.troca.Usuario;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.UsuarioDao;
 import co.icesi.troca.repositories.impl.UsuarioDaoImpl;
 import static org.junit.Assert.*;

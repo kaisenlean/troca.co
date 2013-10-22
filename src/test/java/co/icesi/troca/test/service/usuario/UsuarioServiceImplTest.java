@@ -21,7 +21,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.icesi.troca.model.troca.Usuario;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.impl.UsuarioServiceImpl;
 

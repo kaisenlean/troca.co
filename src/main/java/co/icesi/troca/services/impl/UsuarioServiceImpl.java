@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import co.icesi.troca.model.troca.Usuario;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.UsuarioDao;
 import co.icesi.troca.services.UsuarioService;

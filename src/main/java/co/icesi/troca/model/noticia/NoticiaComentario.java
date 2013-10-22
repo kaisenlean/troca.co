@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.noticia;
 
 import java.io.Serializable;
 
@@ -25,29 +25,32 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "usuario_link")
+@Table(name = "noticia_comentario")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "UsuarioLink.findAll", query = "SELECT u FROM UsuarioLink u"),
-		@NamedQuery(name = "UsuarioLink.findById", query = "SELECT u FROM UsuarioLink u WHERE u.id = :id"),
-		@NamedQuery(name = "UsuarioLink.findByLink", query = "SELECT u FROM UsuarioLink u WHERE u.link = :link"),
-		@NamedQuery(name = "UsuarioLink.findByUsuario", query = "SELECT u FROM UsuarioLink u WHERE u.usuario = :usuario") })
-public class UsuarioLink implements Serializable {
+		@NamedQuery(name = "NoticiaComentario.findAll", query = "SELECT n FROM NoticiaComentario n"),
+		@NamedQuery(name = "NoticiaComentario.findById", query = "SELECT n FROM NoticiaComentario n WHERE n.id = :id"),
+		@NamedQuery(name = "NoticiaComentario.findByNoticia", query = "SELECT n FROM NoticiaComentario n WHERE n.noticia = :noticia"),
+		@NamedQuery(name = "NoticiaComentario.findByUsuario", query = "SELECT n FROM NoticiaComentario n WHERE n.usuario = :usuario"),
+		@NamedQuery(name = "NoticiaComentario.findByComentario", query = "SELECT n FROM NoticiaComentario n WHERE n.comentario = :comentario") })
+public class NoticiaComentario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "link")
-	private String link;
+	@Column(name = "noticia")
+	private Integer noticia;
 	@Column(name = "usuario")
 	private Integer usuario;
+	@Column(name = "comentario")
+	private String comentario;
 
-	public UsuarioLink() {
+	public NoticiaComentario() {
 	}
 
-	public UsuarioLink(Integer id) {
+	public NoticiaComentario(Integer id) {
 		this.id = id;
 	}
 
@@ -59,12 +62,12 @@ public class UsuarioLink implements Serializable {
 		this.id = id;
 	}
 
-	public String getLink() {
-		return link;
+	public Integer getNoticia() {
+		return noticia;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setNoticia(Integer noticia) {
+		this.noticia = noticia;
 	}
 
 	public Integer getUsuario() {
@@ -73,6 +76,14 @@ public class UsuarioLink implements Serializable {
 
 	public void setUsuario(Integer usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 
 	@Override
@@ -86,10 +97,10 @@ public class UsuarioLink implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof UsuarioLink)) {
+		if (!(object instanceof NoticiaComentario)) {
 			return false;
 		}
-		UsuarioLink other = (UsuarioLink) object;
+		NoticiaComentario other = (NoticiaComentario) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -99,7 +110,8 @@ public class UsuarioLink implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.UsuarioLink[ id=" + id + " ]";
+		return "com.icesi.trocadero.data.entities.NoticiaComentario[ id=" + id
+				+ " ]";
 	}
 
 }

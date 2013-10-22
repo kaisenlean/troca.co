@@ -9,7 +9,7 @@ import javax.faces.model.SelectItem;
 
 import org.springframework.stereotype.Service;
 
-import co.icesi.troca.model.troca.Pais;
+import co.icesi.troca.model.Pais;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.PaisDao;
 import co.icesi.troca.services.PaisService;

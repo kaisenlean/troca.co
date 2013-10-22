@@ -3,15 +3,16 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.trueque;
 
 import java.io.Serializable;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,34 +25,35 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "calificacion")
+@Table(name = "trueque_calificacion")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "Calificacion.findAll", query = "SELECT c FROM Calificacion c"),
-		@NamedQuery(name = "Calificacion.findById", query = "SELECT c FROM Calificacion c WHERE c.id = :id"),
-		@NamedQuery(name = "Calificacion.findByPuntajeText", query = "SELECT c FROM Calificacion c WHERE c.puntajeText = :puntajeText"),
-		@NamedQuery(name = "Calificacion.findByUsuario", query = "SELECT c FROM Calificacion c WHERE c.usuario = :usuario"),
-		@NamedQuery(name = "Calificacion.findByUsuarioRegistro", query = "SELECT c FROM Calificacion c WHERE c.usuarioRegistro = :usuarioRegistro") })
-public class Calificacion implements Serializable {
+		@NamedQuery(name = "TruequeCalificacion.findAll", query = "SELECT t FROM TruequeCalificacion t"),
+		@NamedQuery(name = "TruequeCalificacion.findById", query = "SELECT t FROM TruequeCalificacion t WHERE t.id = :id"),
+		@NamedQuery(name = "TruequeCalificacion.findByPuntajeText", query = "SELECT t FROM TruequeCalificacion t WHERE t.puntajeText = :puntajeText"),
+		@NamedQuery(name = "TruequeCalificacion.findByTrueque", query = "SELECT t FROM TruequeCalificacion t WHERE t.trueque = :trueque"),
+		@NamedQuery(name = "TruequeCalificacion.findByPuntajeVal", query = "SELECT t FROM TruequeCalificacion t WHERE t.puntajeVal = :puntajeVal"),
+		@NamedQuery(name = "TruequeCalificacion.findByUsuario", query = "SELECT t FROM TruequeCalificacion t WHERE t.usuario = :usuario") })
+public class TruequeCalificacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	@Column(name = "puntaje_text")
 	private String puntajeText;
-	@Lob
+	@Column(name = "trueque")
+	private Integer trueque;
 	@Column(name = "puntaje_val")
-	private String puntajeVal;
+	private Integer puntajeVal;
 	@Column(name = "usuario")
 	private Integer usuario;
-	@Column(name = "usuario_registro")
-	private Integer usuarioRegistro;
 
-	public Calificacion() {
+	public TruequeCalificacion() {
 	}
 
-	public Calificacion(Integer id) {
+	public TruequeCalificacion(Integer id) {
 		this.id = id;
 	}
 
@@ -71,11 +73,19 @@ public class Calificacion implements Serializable {
 		this.puntajeText = puntajeText;
 	}
 
-	public String getPuntajeVal() {
+	public Integer getTrueque() {
+		return trueque;
+	}
+
+	public void setTrueque(Integer trueque) {
+		this.trueque = trueque;
+	}
+
+	public Integer getPuntajeVal() {
 		return puntajeVal;
 	}
 
-	public void setPuntajeVal(String puntajeVal) {
+	public void setPuntajeVal(Integer puntajeVal) {
 		this.puntajeVal = puntajeVal;
 	}
 
@@ -85,14 +95,6 @@ public class Calificacion implements Serializable {
 
 	public void setUsuario(Integer usuario) {
 		this.usuario = usuario;
-	}
-
-	public Integer getUsuarioRegistro() {
-		return usuarioRegistro;
-	}
-
-	public void setUsuarioRegistro(Integer usuarioRegistro) {
-		this.usuarioRegistro = usuarioRegistro;
 	}
 
 	@Override
@@ -106,10 +108,10 @@ public class Calificacion implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof Calificacion)) {
+		if (!(object instanceof TruequeCalificacion)) {
 			return false;
 		}
-		Calificacion other = (Calificacion) object;
+		TruequeCalificacion other = (TruequeCalificacion) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -119,8 +121,8 @@ public class Calificacion implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Calificacion[ id=" + id
-				+ " ]";
+		return "com.icesi.trocadero.data.entities.TruequeCalificacion[ id="
+				+ id + " ]";
 	}
 
 }

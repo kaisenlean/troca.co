@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.usuario;
 
 import java.io.Serializable;
 
@@ -25,29 +25,29 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "trueque_tengo")
+@Table(name = "usuario_link")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "TruequeTengo.findAll", query = "SELECT t FROM TruequeTengo t"),
-		@NamedQuery(name = "TruequeTengo.findById", query = "SELECT t FROM TruequeTengo t WHERE t.id = :id"),
-		@NamedQuery(name = "TruequeTengo.findByTengo", query = "SELECT t FROM TruequeTengo t WHERE t.tengo = :tengo"),
-		@NamedQuery(name = "TruequeTengo.findByTrueque", query = "SELECT t FROM TruequeTengo t WHERE t.trueque = :trueque") })
-public class TruequeTengo implements Serializable {
+		@NamedQuery(name = "UsuarioLink.findAll", query = "SELECT u FROM UsuarioLink u"),
+		@NamedQuery(name = "UsuarioLink.findById", query = "SELECT u FROM UsuarioLink u WHERE u.id = :id"),
+		@NamedQuery(name = "UsuarioLink.findByLink", query = "SELECT u FROM UsuarioLink u WHERE u.link = :link"),
+		@NamedQuery(name = "UsuarioLink.findByUsuario", query = "SELECT u FROM UsuarioLink u WHERE u.usuario = :usuario") })
+public class UsuarioLink implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "tengo")
-	private Integer tengo;
-	@Column(name = "trueque")
-	private Integer trueque;
+	@Column(name = "link")
+	private String link;
+	@Column(name = "usuario")
+	private Integer usuario;
 
-	public TruequeTengo() {
+	public UsuarioLink() {
 	}
 
-	public TruequeTengo(Integer id) {
+	public UsuarioLink(Integer id) {
 		this.id = id;
 	}
 
@@ -59,20 +59,20 @@ public class TruequeTengo implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getTengo() {
-		return tengo;
+	public String getLink() {
+		return link;
 	}
 
-	public void setTengo(Integer tengo) {
-		this.tengo = tengo;
+	public void setLink(String link) {
+		this.link = link;
 	}
 
-	public Integer getTrueque() {
-		return trueque;
+	public Integer getUsuario() {
+		return usuario;
 	}
 
-	public void setTrueque(Integer trueque) {
-		this.trueque = trueque;
+	public void setUsuario(Integer usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
@@ -86,10 +86,10 @@ public class TruequeTengo implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof TruequeTengo)) {
+		if (!(object instanceof UsuarioLink)) {
 			return false;
 		}
-		TruequeTengo other = (TruequeTengo) object;
+		UsuarioLink other = (UsuarioLink) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -99,8 +99,7 @@ public class TruequeTengo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.TruequeTengo[ id=" + id
-				+ " ]";
+		return "com.icesi.trocadero.data.entities.UsuarioLink[ id=" + id + " ]";
 	}
 
 }

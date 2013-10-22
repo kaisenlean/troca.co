@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
@@ -11,8 +11,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,14 +23,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "departamento")
+@Table(name = "proyecto_tengo")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "Departamento.findAll", query = "SELECT d FROM Departamento d"),
-		@NamedQuery(name = "Departamento.findById", query = "SELECT d FROM Departamento d WHERE d.id = :id"),
-		@NamedQuery(name = "Departamento.findByNombre", query = "SELECT d FROM Departamento d WHERE d.nombre = :nombre"),
-		@NamedQuery(name = "Departamento.findByPais", query = "SELECT d FROM Departamento d WHERE d.pais = :pais") })
-public class Departamento implements Serializable {
+		@NamedQuery(name = "ProyectoTengo.findAll", query = "SELECT p FROM ProyectoTengo p"),
+		@NamedQuery(name = "ProyectoTengo.findById", query = "SELECT p FROM ProyectoTengo p WHERE p.id = :id"),
+		@NamedQuery(name = "ProyectoTengo.findByNombre", query = "SELECT p FROM ProyectoTengo p WHERE p.nombre = :nombre"),
+		@NamedQuery(name = "ProyectoTengo.findByProyecto", query = "SELECT p FROM ProyectoTengo p WHERE p.proyecto = :proyecto"),
+		@NamedQuery(name = "ProyectoTengo.findByDescripcion", query = "SELECT p FROM ProyectoTengo p WHERE p.descripcion = :descripcion") })
+public class ProyectoTengo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Basic(optional = false)
@@ -40,14 +39,15 @@ public class Departamento implements Serializable {
 	private Integer id;
 	@Column(name = "nombre")
 	private String nombre;
-	@ManyToOne
-	@JoinColumn(name = "pais", referencedColumnName = "id")
-	private Pais pais;
+	@Column(name = "proyecto")
+	private Integer proyecto;
+	@Column(name = "descripcion")
+	private String descripcion;
 
-	public Departamento() {
+	public ProyectoTengo() {
 	}
 
-	public Departamento(Integer id) {
+	public ProyectoTengo(Integer id) {
 		this.id = id;
 	}
 
@@ -67,12 +67,20 @@ public class Departamento implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Pais getPais() {
-		return pais;
+	public Integer getProyecto() {
+		return proyecto;
 	}
 
-	public void setPais(Pais pais) {
-		this.pais = pais;
+	public void setProyecto(Integer proyecto) {
+		this.proyecto = proyecto;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	@Override
@@ -86,10 +94,10 @@ public class Departamento implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof Departamento)) {
+		if (!(object instanceof ProyectoTengo)) {
 			return false;
 		}
-		Departamento other = (Departamento) object;
+		ProyectoTengo other = (ProyectoTengo) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -99,7 +107,7 @@ public class Departamento implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Departamento[ id=" + id
+		return "com.icesi.trocadero.data.entities.ProyectoTengo[ id=" + id
 				+ " ]";
 	}
 

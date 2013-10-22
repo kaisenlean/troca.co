@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model;
 
 import java.io.Serializable;
 
@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,28 +25,29 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "proyecto_foto")
+@Table(name = "departamento")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "ProyectoFoto.findAll", query = "SELECT p FROM ProyectoFoto p"),
-		@NamedQuery(name = "ProyectoFoto.findById", query = "SELECT p FROM ProyectoFoto p WHERE p.id = :id"),
-		@NamedQuery(name = "ProyectoFoto.findByFotografia", query = "SELECT p FROM ProyectoFoto p WHERE p.fotografia = :fotografia"),
-		@NamedQuery(name = "ProyectoFoto.findByProyecto", query = "SELECT p FROM ProyectoFoto p WHERE p.proyecto = :proyecto") })
-public class ProyectoFoto implements Serializable {
+		@NamedQuery(name = "Departamento.findAll", query = "SELECT d FROM Departamento d"),
+		@NamedQuery(name = "Departamento.findById", query = "SELECT d FROM Departamento d WHERE d.id = :id"),
+		@NamedQuery(name = "Departamento.findByNombre", query = "SELECT d FROM Departamento d WHERE d.nombre = :nombre"),
+		@NamedQuery(name = "Departamento.findByPais", query = "SELECT d FROM Departamento d WHERE d.pais = :pais") })
+public class Departamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "fotografia")
-	private String fotografia;
-	@Column(name = "proyecto")
-	private Integer proyecto;
+	@Column(name = "nombre")
+	private String nombre;
+	@ManyToOne
+	@JoinColumn(name = "pais", referencedColumnName = "id")
+	private Pais pais;
 
-	public ProyectoFoto() {
+	public Departamento() {
 	}
 
-	public ProyectoFoto(Integer id) {
+	public Departamento(Integer id) {
 		this.id = id;
 	}
 
@@ -56,20 +59,20 @@ public class ProyectoFoto implements Serializable {
 		this.id = id;
 	}
 
-	public String getFotografia() {
-		return fotografia;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setFotografia(String fotografia) {
-		this.fotografia = fotografia;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public Integer getProyecto() {
-		return proyecto;
+	public Pais getPais() {
+		return pais;
 	}
 
-	public void setProyecto(Integer proyecto) {
-		this.proyecto = proyecto;
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 
 	@Override
@@ -83,10 +86,10 @@ public class ProyectoFoto implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof ProyectoFoto)) {
+		if (!(object instanceof Departamento)) {
 			return false;
 		}
-		ProyectoFoto other = (ProyectoFoto) object;
+		Departamento other = (Departamento) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -96,7 +99,7 @@ public class ProyectoFoto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.ProyectoFoto[ id=" + id
+		return "com.icesi.trocadero.data.entities.Departamento[ id=" + id
 				+ " ]";
 	}
 

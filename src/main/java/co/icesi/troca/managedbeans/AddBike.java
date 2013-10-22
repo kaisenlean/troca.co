@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import co.icesi.troca.model.troca.Usuario;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.UsuarioService;
 
 @ManagedBean(name = "addBike")

@@ -9,8 +9,8 @@ import javax.faces.model.SelectItem;
 
 import org.springframework.stereotype.Service;
 
-import co.icesi.troca.model.troca.Ciudad;
-import co.icesi.troca.model.troca.Departamento;
+import co.icesi.troca.model.Ciudad;
+import co.icesi.troca.model.Departamento;
 import co.icesi.troca.repositories.CiudadDao;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.services.CiudadService;
@@ -30,7 +30,7 @@ public class CiudadServiceImpl extends GenericServiceImpl<Ciudad, Integer> imple
 	private CiudadDao ciudadDao;
 /**
  * (non-Javadoc)
- * @see co.icesi.troca.services.CiudadService#getItmemsByDepto(co.icesi.troca.model.troca.Departamento)
+ * @see co.icesi.troca.services.CiudadService#getItmemsByDepto(co.icesi.troca.model.Departamento)
  */
 	@Override
 	public List<SelectItem> getItmemsByDepto(Departamento departamento) {

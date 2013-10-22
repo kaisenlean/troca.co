@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model;
 
 import java.io.Serializable;
 
@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,29 +27,30 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "proyecto_usuario")
+@Table(name = "ciudad")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "ProyectoUsuario.findAll", query = "SELECT p FROM ProyectoUsuario p"),
-		@NamedQuery(name = "ProyectoUsuario.findById", query = "SELECT p FROM ProyectoUsuario p WHERE p.id = :id"),
-		@NamedQuery(name = "ProyectoUsuario.findByProyecto", query = "SELECT p FROM ProyectoUsuario p WHERE p.proyecto = :proyecto"),
-		@NamedQuery(name = "ProyectoUsuario.findByUsuario", query = "SELECT p FROM ProyectoUsuario p WHERE p.usuario = :usuario") })
-public class ProyectoUsuario implements Serializable {
+		@NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c"),
+		@NamedQuery(name = "Ciudad.findById", query = "SELECT c FROM Ciudad c WHERE c.id = :id"),
+		@NamedQuery(name = "Ciudad.findByNombre", query = "SELECT c FROM Ciudad c WHERE c.nombre = :nombre"),
+		@NamedQuery(name = "Ciudad.findByDepartamento", query = "SELECT c FROM Ciudad c WHERE c.departamento = :departamento") })
+public class Ciudad implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "proyecto")
-	private Integer proyecto;
-	@Column(name = "usuario")
-	private Integer usuario;
+	@Column(name = "nombre")
+	private String nombre;
+	@ManyToOne
+	@JoinColumn(name = "departamento")
+	private Departamento departamento;
 
-	public ProyectoUsuario() {
+	public Ciudad() {
 	}
 
-	public ProyectoUsuario(Integer id) {
+	public Ciudad(Integer id) {
 		this.id = id;
 	}
 
@@ -59,20 +62,20 @@ public class ProyectoUsuario implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getProyecto() {
-		return proyecto;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setProyecto(Integer proyecto) {
-		this.proyecto = proyecto;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public Integer getUsuario() {
-		return usuario;
+	public Departamento getDepartamento() {
+		return departamento;
 	}
 
-	public void setUsuario(Integer usuario) {
-		this.usuario = usuario;
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
 
 	@Override
@@ -86,10 +89,10 @@ public class ProyectoUsuario implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof ProyectoUsuario)) {
+		if (!(object instanceof Ciudad)) {
 			return false;
 		}
-		ProyectoUsuario other = (ProyectoUsuario) object;
+		Ciudad other = (Ciudad) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -99,8 +102,7 @@ public class ProyectoUsuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.ProyectoUsuario[ id=" + id
-				+ " ]";
+		return "com.icesi.trocadero.data.entities.Ciudad[ id=" + id + " ]";
 	}
 
 }

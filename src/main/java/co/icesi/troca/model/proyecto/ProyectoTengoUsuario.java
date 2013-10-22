@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
@@ -23,31 +23,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "tengo_foto")
+@Table(name = "proyecto_tengo_usuario")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "TengoFoto.findAll", query = "SELECT t FROM TengoFoto t"),
-		@NamedQuery(name = "TengoFoto.findById", query = "SELECT t FROM TengoFoto t WHERE t.id = :id"),
-		@NamedQuery(name = "TengoFoto.findByFotografia", query = "SELECT t FROM TengoFoto t WHERE t.fotografia = :fotografia"),
-		@NamedQuery(name = "TengoFoto.findByEstado", query = "SELECT t FROM TengoFoto t WHERE t.estado = :estado"),
-		@NamedQuery(name = "TengoFoto.findByTengo", query = "SELECT t FROM TengoFoto t WHERE t.tengo = :tengo") })
-public class TengoFoto implements Serializable {
+		@NamedQuery(name = "ProyectoTengoUsuario.findAll", query = "SELECT p FROM ProyectoTengoUsuario p"),
+		@NamedQuery(name = "ProyectoTengoUsuario.findById", query = "SELECT p FROM ProyectoTengoUsuario p WHERE p.id = :id"),
+		@NamedQuery(name = "ProyectoTengoUsuario.findByTengo", query = "SELECT p FROM ProyectoTengoUsuario p WHERE p.tengo = :tengo"),
+		@NamedQuery(name = "ProyectoTengoUsuario.findByProyecto", query = "SELECT p FROM ProyectoTengoUsuario p WHERE p.proyecto = :proyecto") })
+public class ProyectoTengoUsuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "fotografia")
-	private String fotografia;
-	@Column(name = "estado")
-	private String estado;
 	@Column(name = "tengo")
 	private Integer tengo;
+	@Column(name = "proyecto")
+	private Integer proyecto;
 
-	public TengoFoto() {
+	public ProyectoTengoUsuario() {
 	}
 
-	public TengoFoto(Integer id) {
+	public ProyectoTengoUsuario(Integer id) {
 		this.id = id;
 	}
 
@@ -59,28 +56,20 @@ public class TengoFoto implements Serializable {
 		this.id = id;
 	}
 
-	public String getFotografia() {
-		return fotografia;
-	}
-
-	public void setFotografia(String fotografia) {
-		this.fotografia = fotografia;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
 	public Integer getTengo() {
 		return tengo;
 	}
 
 	public void setTengo(Integer tengo) {
 		this.tengo = tengo;
+	}
+
+	public Integer getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Integer proyecto) {
+		this.proyecto = proyecto;
 	}
 
 	@Override
@@ -94,10 +83,10 @@ public class TengoFoto implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof TengoFoto)) {
+		if (!(object instanceof ProyectoTengoUsuario)) {
 			return false;
 		}
-		TengoFoto other = (TengoFoto) object;
+		ProyectoTengoUsuario other = (ProyectoTengoUsuario) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -107,7 +96,8 @@ public class TengoFoto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.TengoFoto[ id=" + id + " ]";
+		return "com.icesi.trocadero.data.entities.ProyectoTengoUsuario[ id="
+				+ id + " ]";
 	}
 
 }

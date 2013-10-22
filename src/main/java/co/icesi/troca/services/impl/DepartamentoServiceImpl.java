@@ -9,8 +9,8 @@ import javax.faces.model.SelectItem;
 
 import org.springframework.stereotype.Service;
 
-import co.icesi.troca.model.troca.Departamento;
-import co.icesi.troca.model.troca.Pais;
+import co.icesi.troca.model.Departamento;
+import co.icesi.troca.model.Pais;
 import co.icesi.troca.repositories.DepartamentoDao;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.services.DepartamentoService;
@@ -31,7 +31,7 @@ public class DepartamentoServiceImpl extends GenericServiceImpl<Departamento, In
 	private DepartamentoDao departamentoDao;
 /**
  * (non-Javadoc)
- * @see co.icesi.troca.services.DepartamentoService#getItmemsByPais(co.icesi.troca.model.troca.Pais)
+ * @see co.icesi.troca.services.DepartamentoService#getItmemsByPais(co.icesi.troca.model.Pais)
  */
 	@Override
 	public List<SelectItem> getItmemsByPais(Pais pais) {

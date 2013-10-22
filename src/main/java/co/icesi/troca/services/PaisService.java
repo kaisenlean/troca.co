@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import co.icesi.troca.model.troca.Pais;
+import co.icesi.troca.model.Pais;
 /**
  * 
 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

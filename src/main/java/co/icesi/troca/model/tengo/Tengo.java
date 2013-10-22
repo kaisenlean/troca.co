@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.tengo;
 
 import java.io.Serializable;
 
@@ -25,18 +25,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "proyecto")
+@Table(name = "tengo")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p"),
-		@NamedQuery(name = "Proyecto.findById", query = "SELECT p FROM Proyecto p WHERE p.id = :id"),
-		@NamedQuery(name = "Proyecto.findByOwner", query = "SELECT p FROM Proyecto p WHERE p.owner = :owner"),
-		@NamedQuery(name = "Proyecto.findByNombre", query = "SELECT p FROM Proyecto p WHERE p.nombre = :nombre"),
-		@NamedQuery(name = "Proyecto.findByDescripcion", query = "SELECT p FROM Proyecto p WHERE p.descripcion = :descripcion"),
-		@NamedQuery(name = "Proyecto.findByDescripcionLarga", query = "SELECT p FROM Proyecto p WHERE p.descripcionLarga = :descripcionLarga"),
-		@NamedQuery(name = "Proyecto.findByLicencia", query = "SELECT p FROM Proyecto p WHERE p.licencia = :licencia"),
-		@NamedQuery(name = "Proyecto.findByCategoria", query = "SELECT p FROM Proyecto p WHERE p.categoria = :categoria") })
-public class Proyecto implements Serializable {
+		@NamedQuery(name = "Tengo.findAll", query = "SELECT t FROM Tengo t"),
+		@NamedQuery(name = "Tengo.findById", query = "SELECT t FROM Tengo t WHERE t.id = :id"),
+		@NamedQuery(name = "Tengo.findByOwner", query = "SELECT t FROM Tengo t WHERE t.owner = :owner"),
+		@NamedQuery(name = "Tengo.findByDescripcion", query = "SELECT t FROM Tengo t WHERE t.descripcion = :descripcion"),
+		@NamedQuery(name = "Tengo.findByEstado", query = "SELECT t FROM Tengo t WHERE t.estado = :estado"),
+		@NamedQuery(name = "Tengo.findByNombre", query = "SELECT t FROM Tengo t WHERE t.nombre = :nombre"),
+		@NamedQuery(name = "Tengo.findByCategoria", query = "SELECT t FROM Tengo t WHERE t.categoria = :categoria") })
+public class Tengo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,21 +44,19 @@ public class Proyecto implements Serializable {
 	private Integer id;
 	@Column(name = "owner")
 	private Integer owner;
-	@Column(name = "nombre")
-	private String nombre;
 	@Column(name = "descripcion")
 	private String descripcion;
-	@Column(name = "descripcion_larga")
-	private String descripcionLarga;
-	@Column(name = "licencia")
-	private String licencia;
+	@Column(name = "estado")
+	private String estado;
+	@Column(name = "nombre")
+	private String nombre;
 	@Column(name = "categoria")
 	private Integer categoria;
 
-	public Proyecto() {
+	public Tengo() {
 	}
 
-	public Proyecto(Integer id) {
+	public Tengo(Integer id) {
 		this.id = id;
 	}
 
@@ -79,14 +76,6 @@ public class Proyecto implements Serializable {
 		this.owner = owner;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -95,20 +84,20 @@ public class Proyecto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getDescripcionLarga() {
-		return descripcionLarga;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setDescripcionLarga(String descripcionLarga) {
-		this.descripcionLarga = descripcionLarga;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
-	public String getLicencia() {
-		return licencia;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setLicencia(String licencia) {
-		this.licencia = licencia;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Integer getCategoria() {
@@ -130,10 +119,10 @@ public class Proyecto implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof Proyecto)) {
+		if (!(object instanceof Tengo)) {
 			return false;
 		}
-		Proyecto other = (Proyecto) object;
+		Tengo other = (Tengo) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -143,7 +132,7 @@ public class Proyecto implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Proyecto[ id=" + id + " ]";
+		return "com.icesi.trocadero.data.entities.Tengo[ id=" + id + " ]";
 	}
 
 }

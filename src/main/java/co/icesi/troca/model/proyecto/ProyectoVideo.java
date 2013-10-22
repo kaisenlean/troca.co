@@ -3,15 +3,13 @@
  * and open the template in the editor.
  */
 
-package co.icesi.troca.model.troca;
+package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,26 +23,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 3/10/2013
  */
 @Entity
-@Table(name = "categoria")
+@Table(name = "proyecto_video")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
-		@NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"),
-		@NamedQuery(name = "Categoria.findByDescripcion", query = "SELECT c FROM Categoria c WHERE c.descripcion = :descripcion") })
-public class Categoria implements Serializable {
+		@NamedQuery(name = "ProyectoVideo.findAll", query = "SELECT p FROM ProyectoVideo p"),
+		@NamedQuery(name = "ProyectoVideo.findById", query = "SELECT p FROM ProyectoVideo p WHERE p.id = :id"),
+		@NamedQuery(name = "ProyectoVideo.findByVideo", query = "SELECT p FROM ProyectoVideo p WHERE p.video = :video"),
+		@NamedQuery(name = "ProyectoVideo.findByProyecto", query = "SELECT p FROM ProyectoVideo p WHERE p.proyecto = :proyecto") })
+public class ProyectoVideo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "descripcion")
-	private String descripcion;
+	@Column(name = "video")
+	private String video;
+	@Column(name = "proyecto")
+	private Integer proyecto;
 
-	public Categoria() {
+	public ProyectoVideo() {
 	}
 
-	public Categoria(Integer id) {
+	public ProyectoVideo(Integer id) {
 		this.id = id;
 	}
 
@@ -56,12 +56,20 @@ public class Categoria implements Serializable {
 		this.id = id;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getVideo() {
+		return video;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
+	public Integer getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(Integer proyecto) {
+		this.proyecto = proyecto;
 	}
 
 	@Override
@@ -75,10 +83,10 @@ public class Categoria implements Serializable {
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
 		// not set
-		if (!(object instanceof Categoria)) {
+		if (!(object instanceof ProyectoVideo)) {
 			return false;
 		}
-		Categoria other = (Categoria) object;
+		ProyectoVideo other = (ProyectoVideo) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -88,7 +96,8 @@ public class Categoria implements Serializable {
 
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Categoria[ id=" + id + " ]";
+		return "com.icesi.trocadero.data.entities.ProyectoVideo[ id=" + id
+				+ " ]";
 	}
 
 }

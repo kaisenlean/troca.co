@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import co.icesi.troca.model.troca.Ciudad;
-import co.icesi.troca.model.troca.Departamento;
+import co.icesi.troca.model.Ciudad;
+import co.icesi.troca.model.Departamento;
 import co.icesi.troca.repositories.CiudadDao;
 /**
  * 
@@ -23,7 +23,7 @@ public class CiudadDaoImpl extends GenericJpaRepository<Ciudad, Integer>
 	private static final long serialVersionUID = 1L;
 /**
  * (non-Javadoc)
- * @see co.icesi.troca.repositories.CiudadDao#findByDepto(co.icesi.troca.model.troca.Departamento)
+ * @see co.icesi.troca.repositories.CiudadDao#findByDepto(co.icesi.troca.model.Departamento)
  */
 	@SuppressWarnings("unchecked")
 	@Override

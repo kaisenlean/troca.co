@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import co.icesi.troca.model.troca.Departamento;
-import co.icesi.troca.model.troca.Pais;
+import co.icesi.troca.model.Departamento;
+import co.icesi.troca.model.Pais;
 import co.icesi.troca.repositories.DepartamentoDao;
 /**
  * 
@@ -25,7 +25,7 @@ public class DepartamentoDaoImpl extends
 	private static final long serialVersionUID = 1L;
 /**
  * (non-Javadoc)
- * @see co.icesi.troca.repositories.DepartamentoDao#findByPais(co.icesi.troca.model.troca.Pais)
+ * @see co.icesi.troca.repositories.DepartamentoDao#findByPais(co.icesi.troca.model.Pais)
  */
 	@SuppressWarnings("unchecked")
 	@Override

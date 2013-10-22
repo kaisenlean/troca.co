@@ -10,9 +10,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import co.icesi.troca.commons.BaseBean;
-import co.icesi.troca.model.troca.Departamento;
-import co.icesi.troca.model.troca.Pais;
-import co.icesi.troca.model.troca.Usuario;
+import co.icesi.troca.model.Departamento;
+import co.icesi.troca.model.Pais;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.CiudadService;
 import co.icesi.troca.services.DepartamentoService;
 import co.icesi.troca.services.PaisService;

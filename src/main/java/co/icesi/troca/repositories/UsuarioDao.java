@@ -1,6 +1,6 @@
 package co.icesi.troca.repositories;
 
-import co.icesi.troca.model.troca.Usuario;
+import co.icesi.troca.model.usuario.Usuario;
 /**
  * 
 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
