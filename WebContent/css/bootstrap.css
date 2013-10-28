@@ -5428,6 +5428,8 @@ body.modal-open,
 }
 .affix {
   position: fixed;
+  width:350px;
+  top:10px;
 }
 @-ms-viewport {
   width: device-width;
