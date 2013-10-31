@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+	
+	
+          <!-- Primera parte perfil-->
+          <div class="row gap">
+            <div class="col-md-2 col-sm-2 col-xs-4  pic"><a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive margined-left gray-border"/></a></div>
+            <div class="col-md-10 col-sm-10 hidden-xs padded-top">
+              <h3 class="big-margin-left left">#{login.usuario}</h3><a href="#" class="black black-link"><small class="left big-pad-top margined-left">Editar Perfil</small></a>
+              <div class="col-md-12 nav-profile">
+
+				<p:tabView styleClass="nav nav-tabs aligned-bot big-margin-left huge-margin-top">
+				<p:tab  title="Perfil"></p:tab>
+				<p:tab  title="Tengos">
+				<ui:include src="/paginas/tengo/tengos.xhtml"></ui:include>
+				</p:tab>
+				<p:tab  title="Proyectos"></p:tab>
+				<p:tab  title="Noticias"></p:tab>
+				<p:tab  title="Trueques"></p:tab>
+				<p:tab  title="Calificaciones"></p:tab>
+				</p:tabView>
+                
+              </div>
+            </div>
+         	   <div class="col-md-8 col-sm-8 col-xs-6 visible-xs">
+              <h4 class="special-margin-left">#{login.usuario}</h4>
+              <div class="col-xs-4 margined-right">
+
+                <ul class="nav nav-pills nav-stacked aligned-bot margined-left">
+                  <li><a href="#" ><small>Tengos</small></a></li>
+                  <li><a href="#" ><small>Proyectos</small></a></li>
+                </ul>
+
+              </div>
+              <div class="col-xs-4 margined-right">
+
+                <ul class="nav nav-pills nav-stacked aligned-bot">
+                  <li><a href="#"><small>Trueques</small></a></li>
+                  <li><a href="#"><small class="no-margin no-padding">Calificaciones</small></a></li>
+                </ul>
+
+              </div>
+              <div class="col-xs-4"></div>
+            </div>
+				
+          </div> <!-- Fin de primera parte del perfil -->
+
+          <!-- Segunda parte perfil -->
+          <div class="row">
+            <div class="col-md-5 col-lg-4 col-sm-5 hidden-xs bot-pad">
+              <h3 class="gray margined-left">Biografía</h3>
+              <p class="black margined justify">#{login.usuario.biografia}</p>
+            </div>
+            <div class="col-xs-12 visible-xs big-pad">
+              <h4 class="gray margined">Biografía</h4>
+              <p class="black margined justify"><small>Pellentesque consequat metus in turpis facilisis, in convallis dolor porttitor. Praesent in turpis at risus vestibulum tempor eu tincidunt neque. Sed consequat augue eget neque accumsan, non lobortis enim viverra. Fusce vel velit id quam laoreet molestie vel pulvinar lacus. Suspendisse potenti. Donec convallis diam vitae gravida sollicitudin. Nunc viverra elit velit, at placerat leo accumsan dapibus. In sed nibh malesuada, eleifend nisi eleifend, sodales arcu. Nulla id cursus eros. Etiam a nulla convallis, cursus velit non, viverra ante. Nam fringilla dui in odio pulvinar lacinia. Ut nunc velit, dapibus vel urna ut, suscipit molestie sapien. Maecenas rutrum libero arcu, at cursus neque rhoncus eu. Phasellus lobortis velit et odio venenatis eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed quis eros metus.</small></p>
+            </div>
+            
+            <div class="col-md-5 col-lg-3 col-sm-4 hidden-xs bot-pad red-box">
+              <h3 class=" white margined-left">Proyectos Activos</h3>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+            </div>
+      
+            <div class="col-xs-12 visible-xs bot-pad red-box">
+              <h3 class=" white margined-left padded-top">Proyectos Activos</h3>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 visible-lg padded-bot">
+            <h3 class="gray margined-left">Recomendaciones</h3>
+              <div class="col-lg-3 margined-left">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+              </div>
+              <div class="col-lg-3 medium-margin-left">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+              </div>
+
+              <div class="col-lg-3 medium-margin-left">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+              </div>
+              <div class="clearfix"></div>
+              <p class="black margined-left margined-top">Y otras <a href="#" class="black black-link">xxxx</a> personas han recomendado a Daniel Bolívar</p>
+              <button type="submit" class="btn btn-default right margined-right">Recomendar</button>
+            </div>
+
+            <div class="col-xs-12 visible-xs padded-bot big-gap">
+            <h4 class="gray margined-left padded-top">Recomendaciones</h4>
+              <div class="col-xs-3 margined-left">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+              </div>
+              <div class="col-xs-3 medium-margin-left">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+              </div>
+
+              <div class="col-xs-3 medium-margin-left">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top"/></a>
+              </div>
+              <div class="clearfix"></div>
+              
+              <p class="black margined-left margined-top">Y otras xxxx personas han recomendado a Daniel Bolívar</p>
+              <button type="submit" class="btn btn-default right margined-right">Recomendar</button>
+            </div>
+              
+            <div class="col-md-2 col-lg-2 col-sm-2 hidden-xs bot-pad light-gray-box">
+              <h3 class="blue margined-left">Links</h3>
+              <ul class="no-padding margined-left">
+              <a href="#" class="white white-link"><h4>Facebook</h4></a>
+              <a href="#" class="white white-link"><h4>Blog</h4></a>
+              <a href="#" class="white white-link"><h4>Twitter</h4></a>
+              <a href="#" class="white white-link"><h4>Portafolio</h4></a>
+              <a href="#" class="white white-link"><h4>Flickr</h4></a>
+              </ul>
+            </div>
+            <div class="col-xs-12 visible-xs bot-pad light-gray-box">
+              <h4 class="blue margined-left padded-top">Links</h4>
+              <ul class="no-padding margined-left">
+              <a href="#" class="white white-link"><h5>Facebook</h5></a>
+              <a href="#" class="white white-link"><h5>Blog</h5></a>
+              <a href="#" class="white white-link"><h5>Twitter</h5></a>
+              <a href="#" class="white white-link"><h5>Portafolio</h5></a>
+              <a href="#" class="white white-link"><h5>Flickr</h5></a>
+              </ul>
+            </div>
+          </div> <!-- Fin de segunda parte del perfil (sin recomendaciones) -->
+          <!-- Recomendaciones -->
+          <div class="row hidden-xs hidden-lg">
+            <div class="col-md-12 col-sm-12">
+            <h3 class="gray margined-left">Recomendaciones</h3>
+              <div class="col-md-8 col-sm-8">
+              <div class="col-md-2 col-sm-2">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+                <a href="#"><img src="#{request.contextPath}/img/profile.jpg" class="img-responsive small-margin-top pad"/></a>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+            <div class="padded marginede">
+              <p class="black margined margined-top">Y otras xxxx personas han recomendado a <strong>"Nombre de Usuario"</strong></p>
+              <button type="submit" class="btn btn-default right margined-right">Recomendar</button>
+              </div>
+            </div>
+          </div>
+          </div>
+         
+	
+	</ui:define>
+	</ui:composition>
+</html>

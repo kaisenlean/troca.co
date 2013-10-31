@@ -127,11 +127,11 @@
 
         </ul>
 				</li>
-					 <li><p:commandLink styleClass="oneline"
+					 <li><h:outputLink   styleClass="oneline" value="#{request.contextPath}/paginas/perfil/perfil.jsf"
 						rendered="${login.usuario ne null ? true:false}"
-						value="#{login.usuario}">
-						
-					</p:commandLink></li>
+						>
+						#{login.usuario}
+					</h:outputLink></li>
 
 			</ul>
 			

@@ -7,16 +7,19 @@ package co.icesi.troca.model.tengo;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import co.icesi.troca.model.Categoria;
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -26,32 +29,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "tengo")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "Tengo.findAll", query = "SELECT t FROM Tengo t"),
-		@NamedQuery(name = "Tengo.findById", query = "SELECT t FROM Tengo t WHERE t.id = :id"),
-		@NamedQuery(name = "Tengo.findByOwner", query = "SELECT t FROM Tengo t WHERE t.owner = :owner"),
-		@NamedQuery(name = "Tengo.findByDescripcion", query = "SELECT t FROM Tengo t WHERE t.descripcion = :descripcion"),
-		@NamedQuery(name = "Tengo.findByEstado", query = "SELECT t FROM Tengo t WHERE t.estado = :estado"),
-		@NamedQuery(name = "Tengo.findByNombre", query = "SELECT t FROM Tengo t WHERE t.nombre = :nombre"),
-		@NamedQuery(name = "Tengo.findByCategoria", query = "SELECT t FROM Tengo t WHERE t.categoria = :categoria") })
 public class Tengo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "owner")
-	private Integer owner;
+	@ManyToOne
+	@JoinColumn(name = "owner",referencedColumnName="id")
+	private Usuario owner;
 	@Column(name = "descripcion")
 	private String descripcion;
 	@Column(name = "estado")
-	private String estado;
+	@Enumerated(EnumType.STRING)
+	private EstadoTengo estado;
 	@Column(name = "nombre")
 	private String nombre;
-	@Column(name = "categoria")
-	private Integer categoria;
+	@JoinColumn(name = "categoria")
+	private Categoria categoria;
 
 	public Tengo() {
 	}
@@ -68,11 +63,11 @@ public class Tengo implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getOwner() {
+	public Usuario getOwner() {
 		return owner;
 	}
 
-	public void setOwner(Integer owner) {
+	public void setOwner(Usuario owner) {
 		this.owner = owner;
 	}
 
@@ -84,11 +79,11 @@ public class Tengo implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getEstado() {
+	public EstadoTengo getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(EstadoTengo estado) {
 		this.estado = estado;
 	}
 
@@ -100,11 +95,11 @@ public class Tengo implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Integer getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Integer categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
