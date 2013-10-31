@@ -37,6 +37,7 @@ public class DepartamentoServiceImpl extends GenericServiceImpl<Departamento, In
 	public List<SelectItem> getItmemsByPais(Pais pais) {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		List<Departamento> departamentos = departamentoDao.findByPais(pais);
+		items.add(new SelectItem(0,"- - SELECCIONA UN DEPARTAMENTO - -"));
 		for (Departamento departamento : departamentos) {
 			items.add(new SelectItem(departamento.getId(), departamento
 					.getNombre()));

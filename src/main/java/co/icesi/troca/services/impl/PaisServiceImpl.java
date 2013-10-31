@@ -64,6 +64,7 @@ public class PaisServiceImpl extends GenericServiceImpl<Pais, Integer> implement
 	public List<SelectItem> getItmems() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		List<Pais> paises = paisDao.findAll();
+		items.add(new SelectItem(0,"- - SELECCIONA UNA PAIS - -"));
 		for (Pais pais : paises) {
 			items.add(new SelectItem(pais.getId(), pais.getNombre()));
 		}

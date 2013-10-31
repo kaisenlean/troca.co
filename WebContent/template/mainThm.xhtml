@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:loadBundle basename="co.icesi.troca.i18n.messages_en" var="#{msg}" />
+
+<ui:include src="/template/head.xhtml"></ui:include>
+
+<h:body>
+
+	<ui:include src="/template/headerMenu.xhtml"></ui:include>
+	<ui:include src="/includes/modalRegistro.xhtml"></ui:include>
+	<ui:insert name="content">
+
+
+	</ui:insert>
+	<ui:include src="/template/footerPage.xhtml"></ui:include>
+</h:body>
+
+
+</html>

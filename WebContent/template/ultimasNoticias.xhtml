@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<f:loadBundle var="msgsNoticias" basename="co.icesi.troca.i18n.messages_ultimas_noticias_es"/>
+
+	<div class="col-md-4 clearfix">
+		<p>
+			<h4>
+				<a href="#" class="margined-left blue blue-link">#{msgsNoticias.labelUltimas} <br />
+					<span class="margined-left"><strong>#{msgsNoticias.labelNoticias}</strong></span>
+				</a><a class="right margined-right blue blue-link" href="#">#{msgsNoticias.sigteValue}</a>
+			</h4>
+		</p>
+
+
+		<c:forEach var="notice" items="#{beanNoticia.ultimasNoticias}">
+
+			<div class="col-md-12 col-lg-6 col-sm-6 red-box clearfix">
+				<div class="content centre">
+					<p>
+						<a href="#" class="white white-link"><h3>
+								<strong>#{notice.titulo}</strong>
+							</h3></a>
+					</p>
+					<p class="white">#{notice.noticia}</p>
+					<a href="#" class="content-btn right">#{msgsNoticias.labelLeerMas}</a>
+				</div>
+			</div>
+		</c:forEach>
+
+	</div>
+
+</f:view>

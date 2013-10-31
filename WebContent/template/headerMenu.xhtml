@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<f:loadBundle var="msgMenu"
+		basename="co.icesi.troca.i18n.messages_menu_header_es" />
+	<!-- Navegación Principal (tope de todas las páginas)-->
+	<header> <nav class="navbar navbar-default margined"
+		role="navigation"> <!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target=".navbar-ex1-collapse">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		<h:form>
+			<h:commandLink value="#{msgMenu.tituloWeb}" action="/index.jsf"
+				styleClass="navbar-brand" />
+
+		</h:form>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		<h:form>
+		
+     
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="ayuda.html" class="oneline help oneline">#{msgMenu.labelAyuda}</a></li>
+				<li><p:commandLink rendered="${login.usuario eq null ? true:false}"
+						ajax="false" process="@this"
+						action="/paginas/registro/registro_1.jsf"
+						styleClass="oneline log-alpha" value="#{msgMenu.labelRegistrate}"></p:commandLink></li>
+				<li class="hidden-xs  divider-log"></li>
+				<li><a href="#modal-registro" data-toggle="modal"
+					 class="oneline log-omega" style="visibility: #{login.usuario eq null?'visible':'hidden'}">#{msgMenu.labelIngresa}</a></li>
+				<li><a href="#" class="oneline log-alpha not" id="notif"><span class="glyphicon glyphicon-envelope"></span></a>
+				 <!-- Notificaciones -->
+        <ul class="not" id="body-notif">
+
+<!-- formato notificación nuevo trueque -->
+        <a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p>Nueva propuesta de Trueque por <strong>"Nombre de Usuario</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+    <!-- formato notificación nueva respuesta en trueque -->
+    <a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p>Nueva respuesta en tu Trueque con <strong>"Nombre de Usuario</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+<!-- Formato notificación nueva propuesta de trueque en proyecto (para el creador) -->
+<a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p>Propuesta de trueque en <strong>"Nombre de Proyecto"</strong> entre <strong>"Nombre de Usuario 1"</strong> y <strong>Nombre de Usuario 2</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+<!-- Formato de notificación por invitación a proyecto -->
+<a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p> <strong>"Nombre de Usuario</strong> te invita a su proyecto <strong>"Nombre de Proyecto"</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+
+      <!-- Formato de notificación por eliminación de proyecto -->
+<a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p> Se ha eliminado el proyecto: <strong>"Nombre de Proyecto"</strong> de <strong>"Nombre de Usuario Creador"</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+<!-- Formato de notificación por cancelación de trueque -->
+<a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p>Cancelaron tu trueque con <strong>"Nombre de Usuario</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+<!-- Formato de notificación por Finalización de trueque -->
+<a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p>Finalizaron tu trueque con <strong>"Nombre de Usuario</strong>. Para que se finalice realmente, debes finalizarlo también</p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+<!-- formato de notificación por comentario en noticia -->
+<a href="#" class="gray gray-link"><li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p><strong>"Nombre de Usuario</strong> ha comentado en tu noticia <strong>"Nombre de Noticia"</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+<!-- formato de notificación por respuesta en comentario en noticia -->
+     <a href="#" class="gray gray-link"> <li>
+        <div class="notif-content small-margin-top small-margin-right">
+        <div class="izq notif-pic"><img src="img/comment.jpg"/></div>
+        <div class="izq notif-caption"><p><strong>"Nombre de Usuario</strong> ha respondido a tu comentario en <strong>"Nombre de Noticia"</strong></p></div>
+        </div>
+      </li>
+      <div class="clear"></div>
+      <li class="divisor clear"></li></a>
+
+
+        </ul>
+				</li>
+					 <li><p:commandLink styleClass="oneline"
+						rendered="${login.usuario ne null ? true:false}"
+						value="#{login.usuario}">
+						
+					</p:commandLink></li>
+
+			</ul>
+			
+
+		</h:form>
+		<form class="navbar-form navbar-right" role="search">
+			<div class="form-group oneline">
+				<input type="text" class="form-control"
+					placeholder="#{msgMenu.labelBusqueda}" />
+			</div>
+		</form>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="que_somos.html" class="oneline">#{msgMenu.labelQuienesSomos}</a></li>
+			<li class="divider-vertical hidden-xs hidden-sm"></li>
+			<li><a href="ultimos_proyectos.html" class="oneline">#{msgMenu.labelUltimosProyectos}
+			</a></li>
+			<li class="divider-vertical hidden-sm hidden-xs"></li>
+			<li><a href="ultimas_noticias.jsf" class="hidden-sm hidden-xs oneline">#{msgMenu.labelUltimasNOticias}
+			</a></li>
+			<li class="dropdown visible-xs"><a href="#"
+				class="dropdown-toggle" data-toggle="dropdown">#{msgMenu.labelInformacion}<b
+					class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="faq.jsf">#{msgMenu.labelPreguntasFrecuentes}
+					</a></li>
+					<li><a href="politicas.jsf">#{msgMenu.labelPoliticasPrivacidad}
+					</a></li>
+				</ul></li>
+
+		</ul>
+
+	</div>
+	<!-- /.navbar-collapse --> </nav> </header>
+</f:view>

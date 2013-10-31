@@ -43,7 +43,7 @@ public class UsuarioDaoImplTest  {
 	
 
 	private static final String BIOGRAPHY_PRUEBA = "biography";
-	private static final String PASSWORD_PRUEBA = "******";
+	private static final String PASSWORD_PRUEBA = "666";
 	private static final String EMAIL_PRUEBA = "TROCA@TROCA.COM";
 	private static final String APELLIDO_PRUEBA = "APELLIDO PRUEBA";
 	private static final String NOMBRE_PRUEBA = "NOMBRE PRUEBA";
@@ -53,12 +53,22 @@ public class UsuarioDaoImplTest  {
 
 	private Logger logger = Logger.getLogger(getClass());
 	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	 */
 	@Test
 	public void testCreate() {
 		Usuario temp = saveTestUsuario();
 		assertNotNull(temp.getId());
 	}
 
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	 */
 	@Test
 	public void testFindAll() {
 		List<Usuario> lista = dao.findAll();
@@ -66,7 +76,11 @@ public class UsuarioDaoImplTest  {
 		assertNotNull(lista);
 
 	}
-	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	 */
 	@Test
 	public void testDelete() {
 		Usuario temp = saveTestUsuario();
@@ -75,7 +89,12 @@ public class UsuarioDaoImplTest  {
 		Usuario ret = dao.findById(temp.getId());
 		assertNull(ret);
 	}
-
+/**
+ * 
+* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @date 31/10/2013
+* @param dao
+ */
 	public void setDao(UsuarioDao dao) {
 		this.dao = dao;
 	}
@@ -95,5 +114,18 @@ public class UsuarioDaoImplTest  {
 		usuario.setBiografia(BIOGRAPHY_PRUEBA);
 		Usuario temp = dao.save(usuario);
 		return temp;
+	}
+	/**
+	 * Test del metodo de validacion de usuario
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	 */
+	@Test
+	public void loggedInTest(){
+		Usuario usuario= saveTestUsuario();
+		Usuario uTemp= dao.loggedIn(usuario);
+		logger.info(uTemp);
+		assertNotNull(uTemp);
+		
 	}
 }

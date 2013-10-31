@@ -62,4 +62,10 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
 		return usuarioDAO;
 	}
 
+	@Override
+	public Usuario loggedIn(Usuario usuario) {
+		return usuarioDAO.loggedIn(usuario);
+		
+	}
+
 }

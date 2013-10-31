@@ -11,4 +11,13 @@ import co.icesi.troca.model.usuario.Usuario;
  */
 public interface UsuarioService  extends GenericService<Usuario, Integer>{
 
+	
+	/**
+	 *Método que busca un usuario en la base de datos para ser logeado en el sistema
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	* @param usuario
+	* @return {@link Usuario}
+	 */
+	public Usuario loggedIn(Usuario usuario);
 }

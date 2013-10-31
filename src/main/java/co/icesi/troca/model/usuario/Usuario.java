@@ -40,6 +40,12 @@ import co.icesi.troca.model.Ciudad;
 		@NamedQuery(name = "Usuario.findByCiudad", query = "SELECT u FROM Usuario u WHERE u.ciudad = :ciudad"),
 		@NamedQuery(name = "Usuario.findByFotografia", query = "SELECT u FROM Usuario u WHERE u.fotografia = :fotografia") })
 public class Usuario implements Serializable {
+	/**
+	 * 31/10/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * BLANK_SPACE
+	 */
+	private static final String BLANK_SPACE = " ";
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 22/10/2013
@@ -323,7 +329,7 @@ public class Usuario implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Usuario[ id=" + id + " ]";
+		return new StringBuilder(nombre==null?BLANK_SPACE:nombre).append(BLANK_SPACE).append(apellido==null?BLANK_SPACE:apellido).toString();
 	}
 
 }

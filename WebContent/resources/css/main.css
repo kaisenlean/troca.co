@@ -190,6 +190,50 @@ a:focus{
 	border: none;
 }
 
+	cursor: pointer;
+}
+.yellow-link:hover, 
+.yellow-link:focus{
+	color: #FFF047;
+	text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
+	text-decoration: none;
+	cursor: pointer;
+
+}
+
+.yellow{
+	color: #FFF047;
+	text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.right-border-gray{
+	border-right: 1px solid #5A5A5A;
+}
+.black-link-dos:hover, 
+.black-link-dos:focus{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+.gray-link:hover, 
+.gray-link:focus{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.no-border{
+	border: none;
+}
+
 /* Color Scheme */
 
 .blue{

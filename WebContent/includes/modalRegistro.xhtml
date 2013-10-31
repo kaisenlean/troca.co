@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<f:loadBundle var="msgs"
+		basename="co.icesi.troca.i18n.messages_modal_login_es" />
+
+	<!-- Modals -->
+	<!-- Modal Registro -->
+	<div class="modal fade" id="modal-registro" tabindex="-1" role="dialog"
+		aria-labelledby="Ingreso" aria-hidden="true">
+		<div class="modal-dialog">
+		
+			<div class="modal-content">
+<!-- 			<h:form role="registro" -->
+<!-- 						styleClass="margined-left basic margined-top" id="frmReg"> -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+					<h4 class="modal-title blue">#{msgs.labelLinkIngresa}</h4>
+				</div>
+				<div class="modal-body">
+					
+						<div class="form-group">
+							#{msgs.placeHolderEmail}
+							<p:inputText value="#{login.user}" styleClass="form-control" id="maillog" />
+					
+						</div>
+						<div class="form-group">
+
+							#{msgs.placeHolderContrasena}
+							<h:inputSecret value="#{login.contrasena}" styleClass="form-control" id="passwordlog" />
+							
+						</div>
+					
+				</div>
+				<div class="modal-footer">
+				
+					<button type="button" class="btn btn-default" data-dismiss="modal">#{msgs.btnCancelar}</button>
+					<p:commandButton  process="@this,maillog,passwordlog" update="@all" partialSubmit="true" styleClass="btn btn-blue white white-link "   actionListener="#{login.loggedIn()}"
+						value="#{msgs.btnEntrar}"></p:commandButton>
+				</div>
+<!-- 					</h:form> -->
+			</div>
+		
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal registro -->
+</f:view>

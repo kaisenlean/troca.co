@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:loadBundle var="msgFooter" basename="co.icesi.troca.i18n.messages_footer_page_es"/>
+	<!-- Foot -->
+	<div class="row">
+		<div class="col-md-12 hard-gray-box">
+			<nav>
+			<ul class="nav nav-tabs centre nav-justified">
+				<li><a href="faq.html" class="white hidden-xs">#{msgFooter.labelPreguntasFrecuentes}</a></li>
+				<li><a href="#" class="white">#{msgFooter.labelContacto}</a></li>
+				<li><a href="politicas.html" class="white hidden-xs">#{msgFooter.labelPoliticaPrivacidad}</a></li>
+				<li><a href="#" class="white">#{msgFooter.labelBlog}</a></li>
+			</ul>
+			</nav>
+		</div>
+	</div>
+
+	<!-- Foot Redes -->
+	<div class="row">
+		<div class="col-md-12 light-gray-box hidden-xs">
+			<nav>
+			<ul class="nav nav-tabs centre nav-justified">
+				<li class="disabled"><a href="#" class="gray">#{msgFooter.labelSiguenos}</a></li>
+				<li><a href="#" class="gray"><img src="img/fb.png" /></a></li>
+				<li><a href="#" class="gray"><img src="img/twitter.png" /></a></li>
+				<li><a href="#" class="gray"><img src="img/vimeo.png" /></a></li>
+				<li><a href="#" class="gray"><img src="img/tumblr.png" /></a></li>
+			</ul>
+			</nav>
+		</div>
+	</div>
+</f:view>

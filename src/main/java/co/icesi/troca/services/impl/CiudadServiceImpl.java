@@ -36,6 +36,7 @@ public class CiudadServiceImpl extends GenericServiceImpl<Ciudad, Integer> imple
 	public List<SelectItem> getItmemsByDepto(Departamento departamento) {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		List<Ciudad> departamentos = ciudadDao.findByDepto(departamento);
+		items.add(new SelectItem(0,"- - SELECCIONA UNA CIUDAD - -"));
 		for (Ciudad ciudad : departamentos) {
 			items.add(new SelectItem(ciudad.getId(), ciudad.getNombre()));
 		}

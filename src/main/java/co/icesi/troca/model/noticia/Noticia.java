@@ -6,6 +6,7 @@
 package co.icesi.troca.model.noticia;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -49,6 +52,9 @@ public class Noticia implements Serializable {
 	private String titulo;
 	@Column(name = "link")
 	private String link;
+	
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
 
 	public Noticia() {
 	}
@@ -117,6 +123,24 @@ public class Noticia implements Serializable {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	@Override

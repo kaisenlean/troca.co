@@ -108,12 +108,7 @@ public class UsuarioServiceImplTest {
 		assertNotNull(temp.getId());
 	}
 
-	/**
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 22/10/2013
-	 * @return
-	 */
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 22/10/2013
@@ -141,6 +136,19 @@ public class UsuarioServiceImplTest {
 		usuarioService.delete(temp);
 		Usuario ret = usuarioService.findById(temp.getId());
 		assertNull(ret);
+	}
+	
+	/**
+	 * test del metodo {@link UsuarioService#loggedIn(Usuario)}
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	 */
+	@Test
+	public void loggedInTest(){
+		Usuario usuario = saveTestUsuario();
+		Usuario uTemp = usuarioService.loggedIn(usuario);
+		assertNotNull(uTemp);
+		
 	}
 
 }
