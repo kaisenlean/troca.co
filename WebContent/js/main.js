@@ -38,7 +38,7 @@ $(window).resize(function(){
 
 	 $('#side').affix({
     offset: {
-      top: 20
+      top: 100
     , bottom: function () {
         return (this.bottom = $('footer').outerHeight(true))
       }
