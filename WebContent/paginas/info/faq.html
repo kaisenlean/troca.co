@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
+    <script src="js/modernizr.js"></script>
+</head>
+<body>
+            <!--[if lt IE 7]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+                <![endif]-->
+                <!-- Navegación Principal (tope de todas las páginas)-->
+
+<header>
+
+          <nav class="navbar navbar-default margined" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">El Trocadero</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="ayuda.html" class="oneline help">Ayuda</a></li>
+      <li><a href="registro_1.html" class="oneline log-alpha">Regístrate</a></li>
+      <li class="hidden-xs  divider-log"></li>
+      <li><a href="#modal-registro" data-toggle="modal" class="oneline log-omega">Ingresa</a></li>
+
+  
+
+    </ul>
+  <form class="navbar-form navbar-right" role="search">
+      <div class="form-group oneline">
+        <input type="text" class="form-control" placeholder="Búsqueda"/>
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="que_somos.html" data-toggle="tooltip" title="AUEhaE" id="quesomos" class="oneline">Qué Somos</a></li>
+      <li class="divider-vertical hidden-xs hidden-sm"></li>
+      <li><a href="ultimos_proyectos.html" class="hidden-sm hidden-xs">Últimos<br />Proyectos</a></li>
+      <li class="divider-vertical hidden-sm hidden-xs"></li>
+      <li><a href="ultimas_noticias.html" class="hidden-sm hidden-xs">Últimas<br />Noticias</a></li>
+      <li class="dropdown visible-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Información<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="faq.html">Preguntas<br />Frecuentes</a></li>
+          <li><a href="politicas.html">Política de<br />Privacidad</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    
+  </div><!-- /.navbar-collapse -->
+</nav>
+</header>
+
+<!-- Modals -->
+  <!-- Modal Registro -->
+  <div class="modal fade" id="modal-registro" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Ingresa</h4>
+        </div>
+        <div class="modal-body">
+<form role="registro" class="margined-left basic margined-top">
+      <div class="form-group">
+        
+        <input type="email" class="form-control" id="mail-log" placeHolder="Correo Electrónico"/>
+      </div>
+      <div class="form-group">
+        
+        <input type="password" class="form-control" id="password-log" placeHolder="Contraseña"/>
+      </div>
+      </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link">Entrar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal registro -->
+
+  <!-- Modal Contacto -->
+  <div class="modal fade" id="modal-contacto" tabindex="-1" role="dialog" aria-labelledby="Contacto" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Contáctanos</h4>
+        </div>
+        <div class="modal-body">
+
+      <form role="registro" class="margined-left basic margined-top">
+        <div class="form-group">
+        
+          <input type="email" class="form-control" id="mail-contacto" placeHolder="Correo Electrónico"/>
+        </div>
+        <div class="form-group">
+        
+         <input type="text" class="form-control" id="name-contacto" placeHolder="Nombre y Apellido"/>
+        </div>
+
+        <div class="form-group">
+        
+         <p class="gray margined-top">Escribe tu mensaje</p>
+        <textarea class="form-control gap" rows="5"></textarea>
+        </div>
+      </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link">Enviar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal registro -->
+
+<div class="row border-top"></div>
+<!-- Imagen -->
+<div class="row gap">
+  <div class="col-md-12">
+    <h1 class="margined-left blue">Preguntas Frecuentes</h1>
+  </div>
+</div>
+
+<!-- FAQ -->
+
+<div class="row">
+  <div class="col-md-4 col-sm-4 hidden-xs col-lg-3">
+    
+    <div id="side" data-spy="affix">
+    <h4 class="gray margined-left"> Preguntas: </h4>
+      <p class="margined-left nav"><a href="#faq-one" class="blue blue-link">¿Cómo elimino mi perfil?</a></p>
+      <p class="margined-left nav"><a href="#faq-two" class="blue blue-link">¿Por qué no puedo cambiar mi nombre?</a></p>
+      <p class="margined-left nav"><a href="#faq-three" class="blue blue-link">¿Cómo creo un proyecto?</a></p>
+      <p class="margined-left nav"><a href="#faq-four" class="blue blue-link">¿Qué tipo de proyectos busca apoyar “TROCA.CO”?</a></p>
+      <p class="margined-left nav"><a href="#faq-five" class="blue blue-link">¿Debo pagar para hacer uso de la plataforma?</a></p>
+      <p class="margined-left nav"><a href="#faq-six" class="blue blue-link">¿Por qué debo usar un tipo de licencia de creative commons en mis proyectos?</a></p>
+      <p class="margined-left nav" ><a href="#faq-seven" class="blue blue-link">¿Cómo puedo ser parte de un proyecto?</a></p>
+      <p class="margined-left nav"><a href="#faq-eight" class="blue blue-link">¿Cómo propongo un trueque?</a></p>
+      <p class="margined-left nav" ><a href="#faq-nine" class="blue blue-link">¿Cómo sé que un usuario es confiable?</a></p>
+      <p class="margined-left nav" ><a href="#faq-ten" class="blue blue-link">¿Quién es el responsable de que se realice el trueque?</a></p>
+      <p class="margined-left nav"><a href="#faq-eleven" class="blue blue-link">¿Qué pasa si por algún motivo no puedo cumplir con el trueque?</a></p>
+      <p class="margined-left nav" ><a href="#faq-twelve" class="blue blue-link">¿Cómo encuentro personas, “tengos” y “necesitos”?</a></p>
+      <p class="margined-left nav"><a href="#faq-thirteen" class="blue blue-link">¿Cómo informo un error o un abuso?</a></p>
+      <p class="margined-left nav"><a href="#faq-fourteen" class="blue blue-link">Tengo preguntas que no están aquí</a></p>
+
+    </div>
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12 col-lg-6 " >
+  <div id="faq-one" class="clearfix"></div>
+    <h4 class="blue big-margin-left">¿Cómo elimino mi perfil?</h4>
+    <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.</p>
+    
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-two" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Por qué no puedo cambiar mi nombre?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+  </p>
+ <p class="margined-big justify"> Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-three" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" id="faq-three">¿Cómo creo un proyecto?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+  </p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-four" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Qué tipo de proyectos busca apoyar “TROCA.CO”?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-five" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Debo pagar para hacer uso de la plataforma?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+  </p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-six" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Por qué debo usar un tipo de licencia de creative commons en mis proyectos?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+ </p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-seven" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left">¿Cómo puedo ser parte de un proyecto?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+ </p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-eight" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Cómo propongo un trueque?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-nine" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Cómo sé que un usuario es confiable?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+ <p class="margined-big justify"> Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-ten" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Quién es el responsable de que se realice el trueque?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-eleven" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left">¿Qué pasa si por algún motivo no puedo cumplir con el trueque?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-twelve" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left">¿Cómo encuentro personas, “tengos” y “necesitos”?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-thirteen" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left" >¿Cómo informo un error o un abuso?</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+  <div id="faq-fourteen" class="clearfix"></div>
+
+  <h4 class="blue big-margin-left">Tengo preguntas que no están aquí</h4>
+  <p class="margined-big justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent diam tortor, pretium et tempus at, dignissim luctus neque. Sed bibendum augue non enim congue, sed dapibus metus vehicula. Pellentesque eu vulputate arcu, nec tincidunt lorem. Cras placerat dictum neque, egestas ullamcorper magna vulputate vitae. Phasellus laoreet vulputate mattis. Sed facilisis suscipit lacus, et blandit nisi pulvinar a. Aenean vitae rhoncus augue. Vestibulum blandit massa velit, id luctus augue vulputate eu. Aenean non volutpat ipsum. Nullam at libero mi.
+</p>
+
+  <p class="margined-big justify">Praesent aliquam non justo quis venenatis. Suspendisse tempus feugiat nibh a tristique. Fusce nisi libero, adipiscing eget metus ac, ultrices mattis est. Etiam vitae faucibus neque, eu suscipit velit. Duis consectetur elit in libero luctus, a lacinia ligula tristique. Nunc at est sagittis ante commodo pulvinar sit amet et urna. Duis placerat tincidunt mi nec faucibus. Duis accumsan lobortis metus ut scelerisque. Vivamus pretium, massa id sodales ultrices, sapien purus convallis dolor, sed fringilla quam neque nec nibh.</p>
+
+  </div>
+  <div class="col-lg-3 visible-lg"></div>
+</div>
+<footer>
+<!-- Foot -->
+<div class="row hard-gray-box">
+<div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8">
+    <nav>
+      <ul class="nav nav-tabs centre nav-justified">
+  <li><a href="faq.html" class="white hidden-xs">Preguntas Frecuentes</a></li>
+  <li ><a href="#modal-contacto" data-toggle="modal" class="white contact">Contacto</a></li>
+  <li><a href="politicas.html" class="white hidden-xs">Política de Privacidad</a></li>
+  <li><a href="#" class="white">Blog</a></li>
+</ul>
+    </nav>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+
+<!-- Foot Redes -->
+<div class="row light-gray-box">
+<div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8  hidden-xs">
+    <nav>
+      <ul class="nav nav-tabs centre nav-justified">
+  <li class="disabled"><a href="#" class="gray">Síguenos</a></li>
+  <li><a href="#" class="gray"><img src="img/fb.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/twitter.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/vimeo.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/tumblr.png"/></a></li>
+</ul>
+    </nav>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+<div class="row light-gray-box">
+  <div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8 hidden-xs">
+    
+    <!-- Espacio para Logos de alianzas -->
+    <p>Alianzas</p>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+</footer>
+
+
+               
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+       <!-- <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script> -->
+    </body>
+    </html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
+    <script src="js/modernizr.js"></script>
+</head>
+<body>
+            <!--[if lt IE 7]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+                <![endif]-->
+                <!-- Navegación Principal (tope de todas las páginas)-->
+
+<header>
+
+          <nav class="navbar navbar-default margined" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">El Trocadero</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="ayuda.html" class="oneline help">Ayuda</a></li>
+      <li><a href="registro_1.html" class="oneline log-alpha">Regístrate</a></li>
+      <li class="hidden-xs  divider-log"></li>
+      <li><a href="#modal-registro" data-toggle="modal" class="oneline log-omega">Ingresa</a></li>
+
+  
+
+    </ul>
+  <form class="navbar-form navbar-right" role="search">
+      <div class="form-group oneline">
+        <input type="text" class="form-control" placeholder="Búsqueda"/>
+      </div>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="que_somos.html" data-toggle="tooltip" title="AUEhaE" id="quesomos" class="oneline">Qué Somos</a></li>
+      <li class="divider-vertical hidden-xs hidden-sm"></li>
+      <li><a href="ultimos_proyectos.html" class="hidden-sm hidden-xs">Últimos<br />Proyectos</a></li>
+      <li class="divider-vertical hidden-sm hidden-xs"></li>
+      <li><a href="ultimas_noticias.html" class="hidden-sm hidden-xs">Últimas<br />Noticias</a></li>
+      <li class="dropdown visible-xs">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Información<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="faq.html">Preguntas<br />Frecuentes</a></li>
+          <li><a href="politicas.html">Política de<br />Privacidad</a></li>
+        </ul>
+      </li>
+      
+    </ul>
+    
+  </div><!-- /.navbar-collapse -->
+</nav>
+</header>
+
+<!-- Modals -->
+  <!-- Modal Registro -->
+  <div class="modal fade" id="modal-registro" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Ingresa</h4>
+        </div>
+        <div class="modal-body">
+<form role="registro" class="margined-left basic margined-top">
+      <div class="form-group">
+        
+        <input type="email" class="form-control" id="mail-log" placeHolder="Correo Electrónico"/>
+      </div>
+      <div class="form-group">
+        
+        <input type="password" class="form-control" id="password-log" placeHolder="Contraseña"/>
+      </div>
+      </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link">Entrar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal registro -->
+
+  <!-- Modal Contacto -->
+  <div class="modal fade" id="modal-contacto" tabindex="-1" role="dialog" aria-labelledby="Contacto" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Contáctanos</h4>
+        </div>
+        <div class="modal-body">
+
+      <form role="registro" class="margined-left basic margined-top">
+        <div class="form-group">
+        
+          <input type="email" class="form-control" id="mail-contacto" placeHolder="Correo Electrónico"/>
+        </div>
+        <div class="form-group">
+        
+         <input type="text" class="form-control" id="name-contacto" placeHolder="Nombre y Apellido"/>
+        </div>
+
+        <div class="form-group">
+        
+         <p class="gray margined-top">Escribe tu mensaje</p>
+        <textarea class="form-control gap" rows="5"></textarea>
+        </div>
+      </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link">Enviar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal registro -->
+
+<div class="row border-top"></div>
+<!-- Imagen -->
+<div class="row gap">
+  <div class="col-md-12">
+    <h1 class="margined-left red">Ayuda</h1>
+  </div>
+</div>
+
+<!-- FAQ -->
+
+<div class="row">
+  <div class="col-md-4 col-sm-4 hidden-xs col-lg-3">
+    
+    <div id="side" data-spy="affix">
+    <h4 class="gray margined-left"> Temas </h4>
+      <p class="margined-left nav"><a href="#help-one" class="red red-link">Creación de proyecto
+</a></p>
+      <p class="margined-left nav"><a href="#help-two" class="red red-link">Creación de tengo</a></p>
+      
+      <p class="margined-left nav"><a href="#help-three" class="red red-link">Confianza y comunidad</a></p>
+      
+    </div>
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12 col-lg-6 " >
+  <div id="help-one" class="clearfix"></div>
+    <h4 class="red big-margin-left">Creación de proyecto</h4>
+    <p class="margined-big justify">“TROCA.CO” está enfocado en la realización de proyectos de creación y comunicación, por eso los proyectos son el corazón de la plataforma y debes crear uno para poder publicar “los necesito” que deseas. Debes tener en cuenta que en “TROCA.CO” no puedes crear proyectos si nos has creado algunos “tengo” que después puedas intercambiar.</p>
+
+  <p class="margined-big justify">Lo primero que se debe hacer es definir el proyecto, saber qué se quiere hacer (un fin claro) y un objetivo, de esta forma el resto de la comunidad sabrá con claridad de qué se trata tu proyecto y decidirá si le interesa intercambiar los “necesito” o incluso darlos a cambio de un agradecimiento.</p>
+  <p class="margined-big justify">Para lograr cubrir todos los “necesito” del proyecto son importantes: la confianza y la comunidad. Para llegar a un número grande de personas interesadas en que tu proyecto se lleve a cabo es importante hacer uso de redes sociales y medios que muestren el proyecto.
+</p>
+  <p class="margined-big justify">“TROCA.CO” te recomienda realizar un video para comunicar de qué se trata el proyecto, es un excelente medio para captar la atención de la comunidad. Algunos videos pueden tener grandes montajes, pero lo importante es que se cuente el proyecto frente a la cámara. Intenta mencionar en el video: quién realiza el proyecto, de dónde salió la idea, de qué se trata, en qué etapa se encuentra, por qué y para qué lo realizas, y por último que necesitas para llevarlo a cabo. Recuerda usar música con licencias de creative commons para no tener problemas por los derechos de autor y subirlo a una plataforma de videos en la web.
+</p>
+  <p class="margined-big justify">Finalmente haz tu publicación, escoge un título simple y memorable que describa el proyecto, también debes publicar una imagen que refleje la esencia de lo que buscas realizar y la cual representará el proyecto en la plataforma. Escribe una descripción del proyecto, y si lo realizas con más personas, puedes invitarlas mediante la plataforma para que agreguen sus “tengo” al proyecto y la comunidad sepa quienes son los responsables.
+</p>
+  <p class="margined-big justify">Si consigues todos los “necesito” para realizar el proyecto, llévalo a cabo como un gracias a la comunidad, y comparte con nosotros el proceso y el resultado final, estaremos muy felices de haberte podido colaborar.</p>
+
+
+
+  <div id="help-two" class="clearfix">
+</div>
+
+  <h4 class="red big-margin-left" >Creación de tengo</h4>
+  <p class="margined-big justify">Para poder crear y publicar un proyecto es necesario que cuentes en tu perfil con “tengo” que podrás intercambiar por tus futuros “necesito”. Por eso lo primero que te invita a hacer TROCA.CO después de completar los formularios de registro es que ingreses los objetos, conocimiento o espacios con los cuentas, y que estás dispuesto a entregar a otros usuarios. 
+</p>
+  <p class="margined-big justify">Una vez hayas iniciado sesión, en cualquier momento puedes agregar los “tengo” con los que cuentas, los cuales son muy importantes para cumplir el objetivo de TROCA.CO que es apoyar la realización de proyectos de creación y comunicación que se inscriban en la plataforma a travás del trueque.
+</p>
+  <p class="margined-big justify">Crear un “tengo” es muy fácil, primero debes pensar con qué cosas cuentas y asegurarte de que estás dispuesto a intercambiarlas o entregarlas a algún proyecto. Una vez que sepas que cosas vas a publicar, debes entrar a tu perfil, en la parte superior de la página encontrarás una pestaña con el texto “tengos” donde debes hacer clic. En está página verás un botón que dice “crear nuevo” que te llevará a un formulario con el que podrás crear un “tengo”.
+</p>
+  <p class="margined-big justify">En el formulario tendrás que decidir si tu “tengo” es conocimiento, objeto o espacio, además tendrás que darle un nombre con el cuál los otros usuarios podrán buscarlo, al igual que incluirlo en las categorías que propone TROCA.CO. Finalmente escribe una corta descripción de tu “tengo” y sube una foto para que los otros usuarios sepan de qué se trata. 
+</p>
+  <p class="margined-big justify">Listo ya puedes crear tu proyecto y proponer trueques. 
+</p>
+
+  
+  <div id="help-three" class="clearfix"></div>
+
+  <h4 class="red big-margin-left" id="help-three">Confianza y comunidad</h4>
+  <p class="margined-big justify">El objetivo principal de TROCA.CO es apoyar la realización de proyectos de creación y comunicación a través del trueque. Como entenderás, para que los trueques se den y sean exitosos es necesario poder confiar en los usuarios de la plataforma, por esto es necesario que seas sincero y que tanto los “tengo” como los proyectos que publiques en TROCA.CO sean reales.
+</p>
+  <p class="margined-big justify">TROCA.CO cuenta con mecanismos para que la comunidad ayude a la plataforma y a otros usuarios a saber en quien confiar, por ejemplo, después de un trueque debes calificar al usuario y la calidad del intercambio. También puedes recomendar a un usuario que acaba de ingresar a la plataforma, y así lograr que otros usuarios puedan confiar en él.
+</p>
+  <p class="margined-big justify">Deseamos que TROCA.CO sea un espacio donde la tecnología facilite los procesos de intercambio, y de esta forma se lleven a cabo la mayor cantidad de proyectos de creación y comunicación que generan cultura. Para la comunidad será importante el respeto mutuo, la sinceridad, el cumplimiento y especialmente la capacidad de valorar adecuadamente los objetos, conocimiento o espacios con los que se hace trueque.
+</p>
+  
+
+  </div>
+  <div class="col-lg-3 visible-lg"></div>
+</div>
+<footer>
+<!-- Foot -->
+<div class="row hard-gray-box">
+<div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8">
+    <nav>
+      <ul class="nav nav-tabs centre nav-justified">
+  <li><a href="faq.html" class="white hidden-xs">Preguntas Frecuentes</a></li>
+  <li ><a href="#modal-contacto" data-toggle="modal" class="white contact">Contacto</a></li>
+  <li><a href="politicas.html" class="white hidden-xs">Política de Privacidad</a></li>
+  <li><a href="#" class="white">Blog</a></li>
+</ul>
+    </nav>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+
+<!-- Foot Redes -->
+<div class="row light-gray-box">
+<div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8  hidden-xs">
+    <nav>
+      <ul class="nav nav-tabs centre nav-justified">
+  <li class="disabled"><a href="#" class="gray">Síguenos</a></li>
+  <li><a href="#" class="gray"><img src="img/fb.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/twitter.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/vimeo.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/tumblr.png"/></a></li>
+</ul>
+    </nav>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+<div class="row light-gray-box">
+  <div class="col-lg-2 visible-lg"></div>
+  <div class="col-md-12 col-lg-8 hidden-xs">
+    
+    <!-- Espacio para Logos de alianzas -->
+    <p>Alianzas</p>
+  </div>
+  <div class="col-lg-2 visible-lg"></div>
+</div>
+</footer>
+
+
+               
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+       <!-- <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script> -->
+    </body>
+    </html>
