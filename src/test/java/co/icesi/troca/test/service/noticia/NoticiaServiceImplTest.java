@@ -3,7 +3,8 @@
  */
 package co.icesi.troca.test.service.noticia;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 import java.util.List;

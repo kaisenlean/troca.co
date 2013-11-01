@@ -2,6 +2,9 @@ package co.icesi.troca.test.dao.usuario;
 
 //import static org.junit.Assert.*;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -20,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.UsuarioDao;
 import co.icesi.troca.repositories.impl.UsuarioDaoImpl;
-import static org.junit.Assert.*;
 
 /**
  * Unidad de test de la clase {@link UsuarioDaoImpl}
