@@ -27,4 +27,14 @@ public interface NoticiaDao  extends GenericRepository<Noticia, Integer>{
 	* @return
 	 */
 	public List<Noticia> findNoticiasByFechas( Date start , Date end);
+	
+	
+	/**
+	 * Metodo que consulta las ultimas noticas segun una fecha estipulada
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	* @param limit
+	* @return
+	 */
+	public List<Noticia> findUltimasNoticias(int limit);
 }

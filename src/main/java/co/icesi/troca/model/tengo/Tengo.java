@@ -6,6 +6,7 @@
 package co.icesi.troca.model.tengo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import co.icesi.troca.model.Categoria;
 import co.icesi.troca.model.usuario.Usuario;
@@ -36,7 +39,7 @@ public class Tengo implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 	@ManyToOne
-	@JoinColumn(name = "owner",referencedColumnName="id")
+	@JoinColumn(name = "owner", referencedColumnName = "id")
 	private Usuario owner;
 	@Column(name = "descripcion")
 	private String descripcion;
@@ -47,6 +50,17 @@ public class Tengo implements Serializable {
 	private String nombre;
 	@JoinColumn(name = "categoria")
 	private Categoria categoria;
+
+	@Column(name = "tipo")
+	@Enumerated(EnumType.STRING)
+	private TipoTengo tipo;
+
+	@Column(name = "foto")
+	private String foto;
+	
+	@Temporal(TemporalType.DATE)
+	 @Column(name="fecha_registro")
+	private Date  fechaRegistro;
 
 	public Tengo() {
 	}
@@ -123,6 +137,63 @@ public class Tengo implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the foto
+	 */
+	public String getFoto() {
+		return foto;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param foto
+	 *            the foto to set
+	 */
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the tipo
+	 */
+	public TipoTengo getTipo() {
+		return tipo;
+	}
+
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/11/2013
+	 * @return the fechaRegistro
+	 */
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/11/2013
+	 * @param fechaRegistro the fechaRegistro to set
+	 */
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param tipo
+	 *            the tipo to set
+	 */
+	public void setTipo(TipoTengo tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+        xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 
@@ -15,45 +16,19 @@
 				</a><a class="right margined-right blue blue-link" href="#">>></a>
 			</h4>
 		</p>
-		<div class="col-md-12 col-lg-6 col-sm-6 hard-red-box clearfix">
+		
+		<c:forEach var="tengo" items="#{beanTengo.ultimosTengos}" >
+			<div class="col-md-12 col-lg-6 col-sm-6 hard-red-box clearfix">
 			<div class="content centre">
 				<p>
 					<a href="#" class="white white-link"><h3>
-							<strong>Lorem Ipsum</strong>
+							<strong>#{tengo.nombre}</strong>
 						</h3></a>
 				</p>
-				<p class="white">Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Nunc condimentum</p>
+				<p class="white">#{tengo.descripcion}</p>
 				<a href="#" class="content-btn right">Leer más ></a>
 			</div>
 		</div>
-
-		<div
-			class="col-md-12 col-lg-6 col-sm-6 visible-sm hard-red-box clearfix">
-			<div class="content centre">
-				<p>
-					<a href="#" class="white white-link"><h3>
-							<strong>Lorem Ipsum</strong>
-						</h3></a>
-				</p>
-				<p class="white">Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Nunc condimentum</p>
-				<a href="#" class="content-btn right">Leer más ></a>
-			</div>
-		</div>
-
-		<div class="col-md-12 col-lg-6 visible-lg hard-red-box clearfix">
-			<div class="content centre">
-				<p>
-					<a href="#" class="white white-link"><h3>
-							<strong>Lorem Ipsum</strong>
-						</h3></a>
-				</p>
-				<p class="white">Lorem ipsum dolor sit amet, consectetur
-					adipiscing elit. Nunc condimentum</p>
-				<a href="#" class="content-btn right">Leer más ></a>
-			</div>
-		</div>
-
+		</c:forEach>
 	</div>
 </f:view>

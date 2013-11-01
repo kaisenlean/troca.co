@@ -6,22 +6,25 @@
 package co.icesi.troca.model.usuario;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import co.icesi.troca.model.Ciudad;
+import co.icesi.troca.model.tengo.Tengo;
 
 /**
  * 
@@ -31,14 +34,6 @@ import co.icesi.troca.model.Ciudad;
  */
 @Entity
 @Table(name = "usuario")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-		@NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
-		@NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-		@NamedQuery(name = "Usuario.findByApellido", query = "SELECT u FROM Usuario u WHERE u.apellido = :apellido"),
-		@NamedQuery(name = "Usuario.findByCiudad", query = "SELECT u FROM Usuario u WHERE u.ciudad = :ciudad"),
-		@NamedQuery(name = "Usuario.findByFotografia", query = "SELECT u FROM Usuario u WHERE u.fotografia = :fotografia") })
 public class Usuario implements Serializable {
 	/**
 	 * 31/10/2013
@@ -118,6 +113,10 @@ public class Usuario implements Serializable {
 	@Transient
 	private String repeatMail;
 
+	
+	@OneToMany(mappedBy="owner",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	private List<Tengo> tengos= new ArrayList<Tengo>();
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
@@ -294,6 +293,25 @@ public class Usuario implements Serializable {
 	*/
 	public void setRepeatMail(String repeatMail) {
 		this.repeatMail = repeatMail;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the tengos
+	 */
+	public List<Tengo> getTengos() {
+		return tengos;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param tengos the tengos to set
+	 */
+	public void setTengos(List<Tengo> tengos) {
+		this.tengos = tengos;
 	}
 
 	/* (non-Javadoc)

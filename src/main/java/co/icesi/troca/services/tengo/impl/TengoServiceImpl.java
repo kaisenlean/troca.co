@@ -4,11 +4,13 @@
 package co.icesi.troca.services.tengo.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.icesi.troca.model.tengo.Tengo;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.tengo.TengoDao;
 import co.icesi.troca.services.impl.GenericServiceImpl;
@@ -48,5 +50,21 @@ public class TengoServiceImpl extends GenericServiceImpl<Tengo, Integer> impleme
 	 */
 	public void setTengoDao(TengoDao tengoDao) {
 		this.tengoDao = tengoDao;
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.tengo.TengoService#findTengosByUsuario()
+	 */
+	@Override
+	public List<Tengo> findTengosByUsuario(Usuario usuario) {
+		return tengoDao.findTengosByUsuario(usuario);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.tengo.TengoService#findUltimosTengo(int)
+	 */
+	@Override
+	public List<Tengo> findUltimosTengo(int maxResults) {
+		return tengoDao.findUltimosTengo(maxResults);
 	}
 }

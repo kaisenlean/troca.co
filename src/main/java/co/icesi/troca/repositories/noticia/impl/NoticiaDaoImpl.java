@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
 import co.icesi.troca.model.noticia.Noticia;
@@ -34,6 +37,23 @@ public class NoticiaDaoImpl extends GenericJpaRepository<Noticia, Integer> imple
 		query.setParameter("start", start);
 		query.setParameter("end", end);
 		return query.getResultList();
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.noticia.NoticiaDao#findUltimasNoticias(int)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Noticia> findUltimasNoticias(int limit) {
+		Order order = Order.desc("fecha");
+		Session session = getEntityManager().unwrap(Session.class);
+
+		Criteria crit = session.createCriteria(getEntityClass());
+		crit.addOrder(order);
+		crit.setFirstResult(0);
+		crit.setMaxResults(limit);
+		
+		return crit.list();
 	}
 
 }

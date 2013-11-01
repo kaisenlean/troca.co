@@ -1,13 +1,23 @@
 package co.icesi.troca.views.login;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.model.tengo.Tengo;
+import co.icesi.troca.model.tengo.TipoTengo;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.UsuarioService;
 
@@ -25,6 +35,13 @@ import co.icesi.troca.services.UsuarioService;
 public class Login extends BaseBean implements Serializable {
 
 	/**
+	 * 31/10/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * ES_UN_TEXT
+	 */
+	private static final String ES_UN_TEXT = "Es un ";
+
+	/**
 	 * 28/10/2013
 	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -35,15 +52,30 @@ public class Login extends BaseBean implements Serializable {
 	private Usuario usuario;
 	private String user;
 	private String contrasena;
+	private List<SelectItem> itemsTipoTengo=new ArrayList<SelectItem>();
 
+	private Tengo tengo;
+	
 	@ManagedProperty(value = "#{usuarioService}")
 	private UsuarioService usuarioService;
 
 	@PostConstruct
 	public void init() {
-//		user=new String();
-//		contrasena=new String();
+		cargarItemTipoTengo();
+		tengo= new Tengo();
 
+
+	}
+
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	*/
+	private void cargarItemTipoTengo() {
+		for (int i = 0; i < TipoTengo.values().length; i++) {
+			itemsTipoTengo.add(new SelectItem(TipoTengo.values()[i].name(),new StringBuilder(ES_UN_TEXT).append(TipoTengo.values()[i].name()).toString()));
+		}
+		
 	}
 
 	/**
@@ -63,6 +95,31 @@ public class Login extends BaseBean implements Serializable {
 		goTo("/index.jsf");
 	}
 
+	
+	/**
+    *
+    * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+    * @date 22/07/2013
+    */
+   public void logOut() {
+       ExternalContext ctx = FacesContext.getCurrentInstance()
+               .getExternalContext();
+       String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+
+       try {
+           // Usar el contexto de JSF para invalidar la sesión,
+           // NO EL DE SERVLETS (nada de HttpServletRequest)
+           ((HttpSession) ctx.getSession(false)).invalidate();
+
+           // Redirección de nuevo con el contexto de JSF,
+           // si se usa una HttpServletResponse fallará.
+           // Sin embargo, como ya está fuera del ciclo de vida
+           // de JSF se debe usar la ruta completa -_-U
+           ctx.redirect(ctxPath + "/");
+       } catch (IOException ex) {
+           mensaje("Error", ex.toString());
+       }
+   }
 	/**
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -130,5 +187,41 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void setUser(String user) {
 		this.user = user;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the itemsTipoTengo
+	 */
+	public List<SelectItem> getItemsTipoTengo() {
+		return itemsTipoTengo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param itemsTipoTengo the itemsTipoTengo to set
+	 */
+	public void setItemsTipoTengo(List<SelectItem> itemsTipoTengo) {
+		this.itemsTipoTengo = itemsTipoTengo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the tengo
+	 */
+	public Tengo getTengo() {
+		return tengo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param tengo the tengo to set
+	 */
+	public void setTengo(Tengo tengo) {
+		this.tengo = tengo;
 	}
 }

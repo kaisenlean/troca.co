@@ -3,7 +3,6 @@
  */
 package co.icesi.troca.services.noticia.impl;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,6 @@ import co.icesi.troca.services.noticia.NoticiaService;
 @Service("noticiaService")
 public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> implements NoticiaService {
 
-	private static final int NATURAL_ZERO = 0;
-	private static final int ONE_NUMBER = 1;
 	@Autowired
 	private NoticiaDao noticiaDao;
 	/** (non-Javadoc)
@@ -51,22 +48,7 @@ public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> imp
 	 */
 	@Override
 	public List<Noticia> findUltimasNoticias() {
-		Calendar fechaInicio= Calendar.getInstance();
-		fechaInicio.set(Calendar.HOUR, NATURAL_ZERO);
-		fechaInicio.set(Calendar.MINUTE, NATURAL_ZERO);
-		fechaInicio.set(Calendar.SECOND, NATURAL_ZERO);
-		fechaInicio.set(Calendar.MILLISECOND,NATURAL_ZERO);
-		
-		Calendar fechaFin = Calendar.getInstance();
-		fechaFin.add(Calendar.DAY_OF_MONTH, fechaInicio.get(Calendar.DAY_OF_MONTH)-ONE_NUMBER);
-		fechaFin.set(Calendar.HOUR, NATURAL_ZERO);
-		fechaFin.set(Calendar.MINUTE, NATURAL_ZERO);
-		fechaFin.set(Calendar.SECOND, NATURAL_ZERO);
-		fechaFin.set(Calendar.MILLISECOND, NATURAL_ZERO);
-		
-		
-		
-		return noticiaDao.findNoticiasByFechas(fechaInicio.getTime(), fechaFin.getTime());
+		return noticiaDao.findUltimasNoticias(2);
 	}
 
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+	
+<!-- Formulario -->
+<div class="row big-gap blue-box">
+  <div class="col-md-6 col-sm-6 blue-box hugely-padded-bot know-height">
+    <h:form role="registro" styleClass="margined-left basic margined-top">
+    <div class="form-group">
+      <label for="tipo-tengo" class="white">¿Qué es lo que tienes?</label>
+      <h:selectOneMenu styleClass="form-control" id="tipo-tengo" value="#{beanTengo.tipoTengo}">
+      <p:ajax event="change" process="@this"></p:ajax>
+      	<f:selectItems value="#{login.itemsTipoTengo}"></f:selectItems>
+      </h:selectOneMenu>
+    
+      </div>
+      <div class="form-group">
+        <label for="tengo-nombre" class="white">Dale un Nombre</label>
+        <p:inputText   styleClass="form-control" id="tengo-nombre" value="#{beanTengo.tengo.nombre}"></p:inputText>
+       <p:watermark value=" Ej: Cámara Análoga" for="tengo-nombre"></p:watermark>
+      </div>
+      <p class="white margined-top">Escribe la descripción de lo que tienes <small class="white margined-top">(Máximo 140 caracteres)</small></p>
+  <p:inputTextarea styleClass="form-control gap" rows="3" value="#{beanTengo.tengo.descripcion}"></p:inputTextarea>
+  <div class="form-group">
+    <label for="tengo-pic" class="white">Foto de lo que tienes</label>
+    <input type="file" id="tengo-pic"/>
+    <p class="help-block">Carga una foto de lo que tienes</p>
+  </div>
+      
+      <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar" process="@all" partialSubmit="true" update="@form" actionListener="#{beanTengo.crearTengo()}"></p:commandButton>
+      <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar y crear otro" process="@all" partialSubmit="true" update="@form" actionListener="#{beanTengo.crearTengoYPrepararOtro()}"></p:commandButton>
+      
+      <button type="submit" class="btn btn-default right small-margin-right small-margin-top padded-bot hidden-xs">Cancelar</button>
+<!-- 	  <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar" process="@all" partialSubmit="true" update="@all" actionListener="#{beanTengo.crearTengo()}"></p:commandButton> -->
+
+<!--       <button type="submit" class="btn btn-default right small-margin-right small-margin-top padded-bot visible-xs">Cancelar</button> -->
+
+       
+    </h:form><!-- Termina formulario-->
+
+  </div>
+  <div class="col-md-6 col-sm-6 hidden-xs img-reg"></div>
+</div> 
+
+
+    </f:view>

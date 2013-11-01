@@ -31,6 +31,12 @@ public class TengoServiceImplTest  extends BaseUnit{
 
 
 	/**
+	 * 1/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MAX_RESULTS
+	 */
+	private static final int MAX_RESULTS = 2;
+	/**
 	 * 31/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * DESCRIPCION_TENGO
@@ -139,6 +145,33 @@ public class TengoServiceImplTest  extends BaseUnit{
 		usuario.setBiografia(BIOGRAPHY_PRUEBA);
 		Usuario temp = usuarioService.save(usuario);
 		return temp;
+	}
+	
+	
+	/**
+	 * Test method for {@link TengoServiceImpl#findTengosByUsuario(Usuario)}
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 */
+	@Test
+	public void findTengosByUsuario() {
+
+		Tengo tengo1 = createTengoTest();
+		List<Tengo> tengos = tengoService.findTengosByUsuario(tengo1.getOwner());
+		assertNotNull(tengos);
+	}
+	
+	/**
+	 * test form method {@link TengoServiceImpl#findUltimosTengo(int)}
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/11/2013
+	 */
+	@Test
+	public void findUltimosTengo(){
+		List<Tengo> tengos= tengoService.findUltimosTengo(MAX_RESULTS);
+		assertNotNull(tengos);
+		
 	}
 	
 
