@@ -4,15 +4,15 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen"/>
     <script src="js/modernizr.js"></script>
 </head>
 <body>
@@ -44,7 +44,7 @@
     </ul>
   <form class="navbar-form navbar-right" role="search">
       <div class="form-group oneline">
-        <input type="text" class="form-control" placeholder="Búsqueda">
+        <input type="text" class="form-control" placeholder="Búsqueda"/>
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
@@ -66,9 +66,78 @@
   </div><!-- /.navbar-collapse -->
 </nav>
 
+<!-- Modal Agregar Tengos -->
+  <div class="modal fade" id="modal-agregar-tengos" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Agregar Tengos</h4>
+        </div>
+        <div class="modal-body">
+        <p>Escoge los tengos que quieras agregarle a este proyecto</p>
+        <div class="checkbox">
+    <label>
+      <input type="checkbox"/> Tengo 1
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"/> Tengo 2
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"/> Tengo 3
+    </label>
+  </div>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link">Enviar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal Agregar Tengos -->
+
+  <!-- Modal Invitar Usuarios -->
+  <div class="modal fade" id="modal-invitar-usuarios" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title blue">Invitar otros usuarios</h4>
+        </div>
+        <div class="modal-body">
+        <p>Invita otros usuarios como participantes de tu proyecto</p>
+        <p>Búsca por nombre de usuario o correo electrónico</p>
+        <div class="form-group">
+        <input type="text" class="form-control" placeholder="Busca Usuarios"/>
+      </div>
+      <!-- Resultado de la búsqueda ejemplo -->
+      <div class="margined-bot">
+        <a href="#" class="black black-link"><img src="img/comment.jpg"/> "Nombre de Usuario"</a>
+      </div>
+      <div class="margined-bot">
+        <a href="#" class="black black-link"><img src="img/comment.jpg"/> "Nombre de Usuario"</a>
+      </div>
+      <div class="margined-bot">
+        <a href="#" class="black black-link"><img src="img/comment.jpg"/> "Nombre de Usuario"</a>
+      </div>
+       
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-blue white white-link">Enviar</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal Invitar usuarios-->
+
 <!-- Primera parte perfil-->
           <div class="row gap">
-            <div class="col-md-2 col-sm-2 col-xs-4  pic"><a href="#"><img src="img/profile.jpg" class="img-responsive margined-left gray-border"></a></div>
+            <div class="col-md-2 col-sm-2 col-xs-4  pic"><a href="#"><img src="img/profile.jpg" class="img-responsive margined-left gray-border"/></a></div>
             <div class="col-md-10 col-sm-10 hidden-xs padded-top">
               <h3 class="big-margin-left left">Daniel Bolívar</h3><a href="#" class="black black-link"><small class="left big-pad-top margined-left">Editar Perfil</small></a>
               <div class="col-md-12 nav-profile">
@@ -119,7 +188,7 @@
     <form role="registro" class="margined-left basic margined-top">
           <div class="form-group">
           <label for="necesito" class="white">Qué necesita tu proyecto ?</label>
-      <input type="text"   class="form-control necesito last-necesito" placeholder="Nombre del Necesito">
+      <input type="text"   class="form-control necesito last-necesito" placeholder="Nombre del Necesito"/>
       <label for="categoria-necesito" class="white desc-last-necesito">¿Qué es?</label>
       <select id="categoria-necesito" class="form-control desc-last-necesito">
       <option value="1">Es Conocimiento</option>
@@ -131,8 +200,10 @@
   <textarea class="form-control gap desc-last-necesito" rows="2"></textarea>
 
       <button type="button" class="btn btn-default necesito-btn">Agregar</button>
-      <p class="white margined-top white-link add-tengos"><strong>Agregar Tengos </strong></p>
-<p class="white margined-top white-link add-usuarios"><strong>Invitar Usuarios </strong></p>
+      <div class="clearfix margined-bot"></div>
+      <a href="#modal-agregar-tengos" data-toggle="modal" class="white margined-top white-link add-tengos"><strong>Agregar Tengos </strong></a>
+      <div class="clearfix margined-bot"></div>
+      <a href="#modal-invitar-usuarios" data-toggle="modal" class="white margined-top white-link add-tengos"><strong>Invitar Usuarios</strong></a>
       <button type="submit" class="btn btn-default big-margin-top right">Crear proyecto</button>
       <button type="submit" class="btn btn-default big-margin-top padded-bot margined-right right">Cancelar</button>
       <small class="red"> .</small>
@@ -143,7 +214,7 @@
     </form><!-- Termina formulario-->
 
   </div>
-  <div class="col-md-6 col-sm-6 hidden-xs img-reg"></div>
+  <div class="col-md-6 col-sm-6 hidden-xs img-reg"/></div>
 </div> 
 
 
@@ -167,10 +238,10 @@
     <nav>
       <ul class="nav nav-tabs centre nav-justified">
   <li class="disabled"><a href="#" class="gray">Síguenos</a></li>
-  <li><a href="#" class="gray"><img src="img/fb.png"></a></li>
-  <li><a href="#" class="gray"><img src="img/twitter.png"></a></li>
-  <li><a href="#" class="gray"><img src="img/vimeo.png"></a></li>
-  <li><a href="#" class="gray"><img src="img/tumblr.png"></a></li>
+  <li><a href="#" class="gray"><img src="img/fb.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/twitter.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/vimeo.png"/></a></li>
+  <li><a href="#" class="gray"><img src="img/tumblr.png"/></a></li>
 </ul>
     </nav>
   </div>

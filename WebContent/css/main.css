@@ -167,6 +167,13 @@ a:focus{
 	cursor: pointer;
 
 }
+.yellow-link{
+	cursor: pointer;
+}
+
+.pointing{
+	cursor: pointer;
+}
 
 .yellow{
 	color: #FFF047;
@@ -174,7 +181,7 @@ a:focus{
   -moz-text-shadow: 0 0 2px #000;
   -webkit-text-shadow: 0 0 2px #000;
 	text-decoration: none;
-	cursor: pointer;
+	
 }
 
 .right-border-gray{
@@ -312,6 +319,10 @@ a:focus{
 .gray-border{
 	border: 5px solid #E0E0E0;
 }
+
+.gray-border-light{
+	border: 1px solid #E0E0E0;
+}
 /* Home buttons */
 
 .home-btn{
@@ -398,6 +409,9 @@ textarea{
 
 .min-height{
 	min-height: 350px;
+}
+.min-heighter{
+	min-height: 455px;
 }
 
 /* Text classes */
@@ -487,4 +501,9 @@ p.nav{
 	width: 226px;
 
 
+}
+
+.notif-caption-two{
+	min-width: 300px;
+	max-width: 700px;
 }
