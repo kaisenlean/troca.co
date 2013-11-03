@@ -4,7 +4,7 @@ $(document).ready(function(){
 	function regImgHeight(){
 	var height = $(".know-height").css("height");
 	$(".img-reg").css("height", parseInt(height));
-	console.log(height);
+	
 
 	
 	
@@ -38,7 +38,7 @@ $(window).resize(function(){
 
 	 $('#side').affix({
     offset: {
-      top: 100
+      top: 20
     , bottom: function () {
         return (this.bottom = $('footer').outerHeight(true))
       }
@@ -441,6 +441,7 @@ if(threeClick == false || threeClick == undefined){
 starColors();
 modalTruequeNecesito();
 modalTruequeTengo();
+modalTruequeTengoPerfil();
 
 /* Modal Trueque Necesito */
 
@@ -452,7 +453,16 @@ function modalTruequeNecesito(){
 	var mensaje;
 
 	$(".necesito-trocar").click(function(){
-		necesito = $(this).parent().parent().parent().children("h3").text();
+		$(".preview-trueque-necesito").popover("hide");
+		value = "";
+		otro = "";
+		extra = "";
+		mensaje = "";
+		$("#tengo-proyecto").val("");
+		$("#otro-proyecto-tengo").val("");
+		$(".extra-necesito").val("");
+		$("#otro-proyecto-tengo").attr("disabled", "disabled");
+		necesito = $(this).parent().parent().parent().children("h4").text();
 
 	});
 	$("#tengo-proyecto").click(function(){
@@ -501,7 +511,17 @@ function modalTruequeTengo(){
 	var mensaje;
 
 	$(".tengo-trocar").click(function(){
-		tengo = $(this).parent().parent().parent().children("h3").text();
+		$(".preview-trueque-tengo").popover("hide");
+		value = "";
+		otro = "";
+		extra = "";
+		mensaje = "";
+		console.log("asdf");
+		$("#necesito-proyecto").val("");
+		$("#otro-proyecto-necesito").val("");
+		$(".extra-tengo").val("");
+		$("#otro-proyecto-necesito").attr("disabled", "disabled");
+		tengo = $(this).parent().parent().parent().children("h4").text();
 
 	});
 	$("#necesito-proyecto").click(function(){
@@ -526,6 +546,67 @@ function modalTruequeTengo(){
 			mensaje = "Yo necesito "+tengo+". A cambio te puedo ofrecer "+value+". "+extra;
 		}
 $(".preview-trueque-tengo").popover({
+		placement: "top",
+		trigger: "manual",
+		title: "Propuesta de Trueque",
+		content: mensaje
+	});
+		$(this).popover('show');
+
+console.log(mensaje);
+	});
+	$(".close-trueque-tengo").click(function(){
+		$(".preview-trueque-tengo").popover('hide');
+	})
+};
+
+/*Modal Trueque Tengo*/
+
+function modalTruequeTengoPerfil(){
+	var tengo;
+	var value;
+	var otro;
+	var extra;
+	var mensaje;
+
+	$(".tengo-perfil").click(function(){
+
+		$(".preview-trueque-tengo-perfil").popover("hide");
+		
+
+		value = "";
+		otro = "";
+		extra = "";
+		mensaje = "";
+		$("#tengo-perfil").val("");
+		$("#otro-perfil-tengo").val("");
+		$(".extra-tengo").val("");
+		$("#otro-perfil-tengo").attr("disabled", "disabled");
+		tengo = $(this).parent().parent().parent().children("h4").text();
+
+	});
+	$("#tengo-perfil").click(function(){
+		value = $(this).val();
+	if(value == "otro"){
+
+		$("#otro-perfil-tengo").removeAttr("disabled");
+	}else{
+		$("#otro-perfil-tengo").attr("disabled", "disabled").val("");
+	};
+
+	});
+
+	$(".preview-trueque-tengo-perfil").click(function(){
+		$(this).popover("destroy");
+		otro = $("#otro-perfil-tengo").val();
+		extra = $(".extra-tengo").val();
+		if($("#otro-perfil-tengo").val()!= ""){
+		
+		mensaje = "Yo necesito "+tengo+". A cambio te puedo ofrecer "+otro+". "+extra;
+		}else{
+			mensaje = "Yo necesito "+tengo+". A cambio te puedo ofrecer "+value+". "+extra;
+		}
+$(".preview-trueque-tengo-perfil").popover({
 		placement: "top",
 		trigger: "manual",
 		title: "Propuesta de Trueque",
