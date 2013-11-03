@@ -35,6 +35,13 @@ import co.icesi.troca.services.UsuarioService;
 public class Login extends BaseBean implements Serializable {
 
 	/**
+	 * 1/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * SELECCIONA_UNA_CATEGORIA_TXT
+	 */
+	private static final String SELECCIONA_UNA_CATEGORIA_TXT = "- - Selecciona una categoria - -";
+
+	/**
 	 * 31/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * ES_UN_TEXT
@@ -72,6 +79,7 @@ public class Login extends BaseBean implements Serializable {
 	* @date 31/10/2013
 	*/
 	private void cargarItemTipoTengo() {
+		itemsTipoTengo.add(new SelectItem("",new StringBuilder(SELECCIONA_UNA_CATEGORIA_TXT).toString()));
 		for (int i = 0; i < TipoTengo.values().length; i++) {
 			itemsTipoTengo.add(new SelectItem(TipoTengo.values()[i].name(),new StringBuilder(ES_UN_TEXT).append(TipoTengo.values()[i].name()).toString()));
 		}

@@ -58,6 +58,45 @@
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 
+
+    <!--#lectura del fichero administrable  -->  
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="ignoreUnresolvablePlaceholders">  
+            <value>true</value>  
+        </property>  
+        <property name="locations">  
+            <list>  
+                <value>classpath:mail.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+      
+    <!--#Configuración del servicio de Spring: MailSernder -->  
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+      <property name="host" value="${mail.host}"/>  
+      <property name="port" value="${mail.port}"/>  
+      <property name="username" value="${mail.username}"/>  
+      <property name="password" value="${mail.password}"/>  
+      <property name="defaultEncoding" value="UTF-8"/>  
+       <property name="javaMailProperties">
+        <props>
+            <!-- Use SMTP-AUTH to authenticate to SMTP server -->
+            <prop key="mail.smtp.auth">true</prop>
+            <!-- Use TLS to encrypt communication with SMTP server -->
+            <prop key="mail.smtp.starttls.enable">true</prop>
+        </props>
+    </property>
+    </bean>  
+  
+    <!--#Configuración de nuestro servicio:MailService -->  
+    <bean id="mailService" class="co.icesi.troca.mail.impl.MailServiceImpl">  
+      <property name="active" value="true"/>  
+      <property name="mailSender" ref="mailSender"/>  
+      <property name="from" value="elmerdiazlazo@gmail.com"/>  
+      
+    </bean>  
+
+
 	<!-- resource security Note: Access-denied-page is invoked when user is 
 		AUTHENTICATED but is not AUTHORIZED to access protected resources. When user 
 		is NOT AUTHENTICATED, he is moved into form-login instead of access-denied-page. -->

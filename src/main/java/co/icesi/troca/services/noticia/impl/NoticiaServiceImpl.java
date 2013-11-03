@@ -24,6 +24,12 @@ import co.icesi.troca.services.noticia.NoticiaService;
 @Service("noticiaService")
 public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> implements NoticiaService {
 
+	/**
+	 * 1/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MAX_RESULTS
+	 */
+	private static final int MAX_RESULTS = 2;
 	@Autowired
 	private NoticiaDao noticiaDao;
 	/** (non-Javadoc)
@@ -48,7 +54,7 @@ public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> imp
 	 */
 	@Override
 	public List<Noticia> findUltimasNoticias() {
-		return noticiaDao.findUltimasNoticias(2);
+		return noticiaDao.findUltimasNoticias(MAX_RESULTS);
 	}
 
 }
