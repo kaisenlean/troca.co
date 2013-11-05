@@ -112,7 +112,8 @@ public class Login extends BaseBean implements Serializable {
    public void logOut() {
        ExternalContext ctx = FacesContext.getCurrentInstance()
                .getExternalContext();
-       String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+       String ctxPath =null;
+       ctxPath=((ServletContext) ctx.getContext()).getContextPath();
 
        try {
            // Usar el contexto de JSF para invalidar la sesión,
