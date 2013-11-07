@@ -10,12 +10,20 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.icesi.troca.model.noticia.Noticia;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.noticia.impl.NoticiaServiceImpl;
-import co.icesi.troca.test.BaseUnit;
 
 /**
  * Test case para la clase {@link NoticiaServiceImpl}
@@ -25,7 +33,15 @@ import co.icesi.troca.test.BaseUnit;
  * @date 31/10/2013
  *
  */
-public class NoticiaServiceImplTest  extends BaseUnit{
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "file:WebContent/WEB-INF/applicationContext.xml" })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+		DirtiesContextTestExecutionListener.class,
+		TransactionalTestExecutionListener.class,
+		TransactionalTestExecutionListener.class })
+@TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManager")
+@Transactional
+public class NoticiaServiceImplTest{
 
 	/**
 	 * 31/10/2013

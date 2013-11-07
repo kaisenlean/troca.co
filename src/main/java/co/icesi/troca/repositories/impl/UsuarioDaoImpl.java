@@ -1,5 +1,7 @@
 package co.icesi.troca.repositories.impl;
 
+import java.io.Serializable;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -17,7 +19,13 @@ import co.icesi.troca.repositories.UsuarioDao;
  */
 @Repository("usuarioDao")
 public class UsuarioDaoImpl extends GenericJpaRepository<Usuario, Integer>
-		implements UsuarioDao {
+		implements UsuarioDao ,Serializable{
+	/**
+	 * 7/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int MAX_RESULT_ONE = 1;
 
 	/**

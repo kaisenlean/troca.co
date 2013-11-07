@@ -3,10 +3,10 @@
  */
 package co.icesi.troca.test;
 
-import java.io.Serializable;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -30,15 +30,9 @@ import org.springframework.transaction.annotation.Transactional;
 		TransactionalTestExecutionListener.class })
 @TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManager")
 @Transactional
-public  class BaseUnit implements Serializable {
+public  class BaseUnit  {
 
-	/**
-	 * 5/11/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 1L;
-	
+	protected Logger log=LoggerFactory.getLogger(getClass());
 	
 	/**
 	 * Metodo default para evitar la excepcion del sistema al no encontrar metodos Runnables en esta clase

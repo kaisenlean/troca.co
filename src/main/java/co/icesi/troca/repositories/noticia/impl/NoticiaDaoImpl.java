@@ -1,4 +1,5 @@
 package co.icesi.troca.repositories.noticia.impl;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +26,14 @@ import co.icesi.troca.repositories.noticia.NoticiaDao;
  *
  */
 @Repository("noticiaDao")
-public class NoticiaDaoImpl extends GenericJpaRepository<Noticia, Integer> implements NoticiaDao {
+public class NoticiaDaoImpl extends GenericJpaRepository<Noticia, Integer> implements NoticiaDao ,Serializable {
+
+	/**
+	 * 7/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/** (non-Javadoc)
 	 * @see co.icesi.troca.repositories.noticia.NoticiaDao#findNoticiasByFechas(java.util.Date, java.util.Date)
@@ -36,7 +44,10 @@ public class NoticiaDaoImpl extends GenericJpaRepository<Noticia, Integer> imple
 		Query query= getEntityManager().createQuery( new StringBuilder("select n from Noticia n where n.fecha between :start and :end").toString());
 		query.setParameter("start", start);
 		query.setParameter("end", end);
-		return query.getResultList();
+		
+		List<Noticia> resultList = query.getResultList();
+		
+		return resultList;
 	}
 
 	/** (non-Javadoc)

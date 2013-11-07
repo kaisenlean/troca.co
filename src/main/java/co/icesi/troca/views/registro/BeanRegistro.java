@@ -9,9 +9,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.mail.login.LoginNotification;
 import co.icesi.troca.model.Departamento;
 import co.icesi.troca.model.Pais;
+import co.icesi.troca.model.usuario.EstadoUsuarioEnum;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.CiudadService;
 import co.icesi.troca.services.DepartamentoService;
@@ -35,6 +40,9 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = -1562983451567645385L;
+	
+	
+	private static Logger LOGGER= LoggerFactory.getLogger(BeanRegistro.class);
 
 	/**
 	 * 22/10/2013
@@ -68,6 +76,10 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	@ManagedProperty(value = "#{ciudadService}")
 	private CiudadService ciudadService;
 
+	
+	@ManagedProperty(value="#{loginNotification}")
+	private LoginNotification loginNotification;
+	
 	/**
 	 * 22/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -140,7 +152,13 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	*/
 	public void guardarUsuario() {
 		usuario.setCiudad(ciudadService.findById(selCiudad));
+		usuario.setEstado(EstadoUsuarioEnum.INACTIVO);
+		try {
+		loginNotification.enviarMailAutenticacionCuenta(usuario);
 		usuarioService.save(usuario);
+		} catch (Exception e) {
+			LOGGER.error(e.toString());
+		}
 		goTo("/index.jsf");
 
 	}
@@ -365,4 +383,13 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		this.itemCiudades = itemCiudades;
 	}
 
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @param loginNotification the loginNotification to set
+	 */
+	public void setLoginNotification(LoginNotification loginNotification) {
+		this.loginNotification = loginNotification;
+	}
 }

@@ -3,6 +3,7 @@
  */
 package co.icesi.troca.services.noticia.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,14 @@ import co.icesi.troca.services.noticia.NoticiaService;
  *
  */
 @Service("noticiaService")
-public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> implements NoticiaService {
+public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> implements NoticiaService,Serializable {
 
+	/**
+	 * 7/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 1/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

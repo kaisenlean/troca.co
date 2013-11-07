@@ -21,7 +21,7 @@ public interface LoginNotification {
 	 * @date 3/11/2013
 	 * @param usuario
 	 */
-	public void enviarMailAutenticacionCuenta(Usuario usuario);
+	public void enviarMailAutenticacionCuenta(Usuario usuario) throws Exception;
 
 	
 	

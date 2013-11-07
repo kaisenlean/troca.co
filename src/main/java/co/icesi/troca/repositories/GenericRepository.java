@@ -111,4 +111,5 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 *            the entity to delete
 	 */
 	void delete(final T entity);
+	
 }

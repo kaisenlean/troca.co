@@ -12,18 +12,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import co.icesi.troca.model.Ciudad;
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.tengo.Tengo;
 
 /**
@@ -85,7 +87,7 @@ public class Usuario implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * biografia
 	 */
-	@Lob
+	
 	@Column(name = "biografia")
 	private String biografia;
 
@@ -105,6 +107,27 @@ public class Usuario implements Serializable {
 	@Column(name = "password")
 	private String password;
 
+	
+	/**
+	 * 6/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * estado
+	 */
+	@Column(name="estado")
+	@Enumerated(EnumType.STRING)
+	private EstadoUsuarioEnum estado;
+	
+	
+	
+	/**
+	 * 6/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * claveVerificacion
+	 */
+	@Column(name="clave_verificacion")
+	private String claveVerificacion;
+	
+	
 	/**
 	 * 22/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -114,8 +137,16 @@ public class Usuario implements Serializable {
 	private String repeatMail;
 
 	
-	@OneToMany(mappedBy="owner",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+//	@OneToMany(mappedBy="owner",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
+	@Transient
 	private List<Tengo> tengos= new ArrayList<Tengo>();
+
+	
+	
+
+	@Transient
+	private List<Proyecto> proyectos;
+	
 	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -313,8 +344,64 @@ public class Usuario implements Serializable {
 	public void setTengos(List<Tengo> tengos) {
 		this.tengos = tengos;
 	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @return the claveVerificacion
+	 */
+	public String getClaveVerificacion() {
+		return claveVerificacion;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @return the estado
+	 */
+	public EstadoUsuarioEnum getEstado() {
+		return estado;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @param claveVerificacion the claveVerificacion to set
+	 */
+	public void setClaveVerificacion(String claveVerificacion) {
+		this.claveVerificacion = claveVerificacion;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @param estado the estado to set
+	 */
+	public void setEstado(EstadoUsuarioEnum estado) {
+		this.estado = estado;
+	}
 
-	/* (non-Javadoc)
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/11/2013
+	 * @return the proyectos
+	 */
+	public List<Proyecto> getProyectos() {
+		return proyectos;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/11/2013
+	 * @param proyectos the proyectos to set
+	 */
+	public void setProyectos(List<Proyecto> proyectos) {
+		this.proyectos = proyectos;
+	}
+	/** (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -324,7 +411,7 @@ public class Usuario implements Serializable {
 		return hash;
 	}
 
-	/* (non-Javadoc)
+	/**qr v (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -342,7 +429,7 @@ public class Usuario implements Serializable {
 	}
 
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

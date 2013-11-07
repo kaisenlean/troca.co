@@ -13,10 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -26,16 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "proyecto")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p"),
-		@NamedQuery(name = "Proyecto.findById", query = "SELECT p FROM Proyecto p WHERE p.id = :id"),
-		@NamedQuery(name = "Proyecto.findByOwner", query = "SELECT p FROM Proyecto p WHERE p.owner = :owner"),
-		@NamedQuery(name = "Proyecto.findByNombre", query = "SELECT p FROM Proyecto p WHERE p.nombre = :nombre"),
-		@NamedQuery(name = "Proyecto.findByDescripcion", query = "SELECT p FROM Proyecto p WHERE p.descripcion = :descripcion"),
-		@NamedQuery(name = "Proyecto.findByDescripcionLarga", query = "SELECT p FROM Proyecto p WHERE p.descripcionLarga = :descripcionLarga"),
-		@NamedQuery(name = "Proyecto.findByLicencia", query = "SELECT p FROM Proyecto p WHERE p.licencia = :licencia"),
-		@NamedQuery(name = "Proyecto.findByCategoria", query = "SELECT p FROM Proyecto p WHERE p.categoria = :categoria") })
 public class Proyecto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -43,8 +34,9 @@ public class Proyecto implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
-	@Column(name = "owner")
-	private Integer owner;
+	@ManyToOne
+	@JoinColumn(name = "owner",referencedColumnName="id")
+	private Usuario owner;
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "descripcion")
@@ -71,11 +63,11 @@ public class Proyecto implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getOwner() {
+	public Usuario getOwner() {
 		return owner;
 	}
 
-	public void setOwner(Integer owner) {
+	public void setOwner(Usuario owner) {
 		this.owner = owner;
 	}
 
