@@ -13,10 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
@@ -26,66 +23,136 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "trueque")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "Trueque.findAll", query = "SELECT t FROM Trueque t"),
-		@NamedQuery(name = "Trueque.findById", query = "SELECT t FROM Trueque t WHERE t.id = :id"),
-		@NamedQuery(name = "Trueque.findByUsuarioTrueque1", query = "SELECT t FROM Trueque t WHERE t.usuarioTrueque1 = :usuarioTrueque1"),
-		@NamedQuery(name = "Trueque.findByUsuarioTrueque2", query = "SELECT t FROM Trueque t WHERE t.usuarioTrueque2 = :usuarioTrueque2"),
-		@NamedQuery(name = "Trueque.findByEstado", query = "SELECT t FROM Trueque t WHERE t.estado = :estado") })
 public class Trueque implements Serializable {
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * id
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioTrueque1
+	 */
 	@Column(name = "usuario_trueque_1")
 	private Integer usuarioTrueque1;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioTrueque2
+	 */
 	@Column(name = "usuario_trueque_2")
 	private Integer usuarioTrueque2;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * estado
+	 */
 	@Column(name = "estado")
 	private String estado;
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	*/
 	public Trueque() {
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public Trueque(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getUsuarioTrueque1() {
 		return usuarioTrueque1;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param usuarioTrueque1
+	*/
 	public void setUsuarioTrueque1(Integer usuarioTrueque1) {
 		this.usuarioTrueque1 = usuarioTrueque1;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getUsuarioTrueque2() {
 		return usuarioTrueque2;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param usuarioTrueque2
+	*/
 	public void setUsuarioTrueque2(Integer usuarioTrueque2) {
 		this.usuarioTrueque2 = usuarioTrueque2;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public String getEstado() {
 		return estado;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param estado
+	*/
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -93,6 +160,9 @@ public class Trueque implements Serializable {
 		return hash;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
@@ -108,6 +178,9 @@ public class Trueque implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "com.icesi.trocadero.data.entities.Trueque[ id=" + id + " ]";

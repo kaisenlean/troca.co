@@ -15,6 +15,9 @@ import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.Opcion;
 import co.icesi.troca.model.tengo.Tengo;
@@ -24,6 +27,7 @@ import co.icesi.troca.repositories.constants.OpcionConstants;
 import co.icesi.troca.services.OpcionService;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.proyecto.ProyectoService;
+import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.tengo.TengoService;
 
 /**
@@ -38,6 +42,13 @@ import co.icesi.troca.services.tengo.TengoService;
 @ManagedBean
 @SessionScoped
 public class Login extends BaseBean implements Serializable {
+
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MSG_ERROR_MD5_HASH
+	 */
+	private static final String MSG_ERROR_MD5_HASH = "MD5 Hash inválido";
 
 	/**
 	 * 1/11/2013
@@ -70,6 +81,9 @@ public class Login extends BaseBean implements Serializable {
 
 	private Tengo tengo;
 
+	@ManagedProperty(value="#{encoderManager}")
+	private EncoderManager encoderManager;
+	
 	@ManagedProperty(value = "#{usuarioService}")
 	private UsuarioService usuarioService;
 
@@ -81,6 +95,9 @@ public class Login extends BaseBean implements Serializable {
 	
 	@ManagedProperty(value="#{tengoService}")
 	private TengoService tengoService;
+	
+	private static final Logger LOGGER= LoggerFactory.getLogger(Login.class);
+	
 
 	@PostConstruct
 	public void init() {
@@ -136,10 +153,15 @@ public class Login extends BaseBean implements Serializable {
 	public void loggedIn() {
 		Usuario utemp = new Usuario();
 		utemp.setEmail(user);
-		utemp.setPassword(contrasena);
+		String md5Pass= encoderManager.encodeMd5Hash(contrasena);
+		if (md5Pass==null) {
+			LOGGER.error(MSG_ERROR_MD5_HASH);
+		}
+		utemp.setPassword(md5Pass);
 		usuario = usuarioService.loggedIn(utemp);
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+		
 		if (usuario == null) {
 			runJavascript("Usuario no existe");
 			return;
@@ -308,5 +330,14 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void setTengoService(TengoService tengoService) {
 		this.tengoService = tengoService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param encoderManager the encoderManager to set
+	 */
+	public void setEncoderManager(EncoderManager encoderManager) {
+		this.encoderManager = encoderManager;
 	}
 }

@@ -11,5 +11,20 @@ package co.icesi.troca.model.usuario;
  *
  */
 public enum EstadoUsuarioEnum {
-ACTIVO,INACTIVO,BLOQUEADO
+/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * ACTIVO
+ */
+ACTIVO,/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * INACTIVO
+ */
+INACTIVO,/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * BLOQUEADO
+ */
+BLOQUEADO
 }

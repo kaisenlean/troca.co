@@ -45,21 +45,51 @@ public class BeanTengo extends BaseBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * login
+	 */
 	@ManagedProperty(value="#{login}")
 	private Login login;
 	
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * tengo
+	 */
 	private Tengo tengo;
 	
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * tipoTengo
+	 */
 	private String tipoTengo;
 	
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * ultimosTengos
+	 */
 	private List<Tengo> ultimosTengos;
-	
+
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	 */
 	@PostConstruct
 	public void init(){
 		tengo=new Tengo();
 		ultimosTengos=tengoService.findUltimosTengo(MAX_RESULTS);
 	}
 	
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * tengoService
+	 */
 	@ManagedProperty( value="#{tengoService}")
 	private TengoService tengoService;
 	

@@ -13,10 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
@@ -26,55 +23,111 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "usuario_link")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "UsuarioLink.findAll", query = "SELECT u FROM UsuarioLink u"),
-		@NamedQuery(name = "UsuarioLink.findById", query = "SELECT u FROM UsuarioLink u WHERE u.id = :id"),
-		@NamedQuery(name = "UsuarioLink.findByLink", query = "SELECT u FROM UsuarioLink u WHERE u.link = :link"),
-		@NamedQuery(name = "UsuarioLink.findByUsuario", query = "SELECT u FROM UsuarioLink u WHERE u.usuario = :usuario") })
 public class UsuarioLink implements Serializable {
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * id
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * link
+	 */
 	@Column(name = "link")
 	private String link;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuario
+	 */
 	@Column(name = "usuario")
 	private Integer usuario;
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	*/
 	public UsuarioLink() {
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public UsuarioLink(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public String getLink() {
 		return link;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param link
+	*/
 	public void setLink(String link) {
 		this.link = link;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getUsuario() {
 		return usuario;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param usuario
+	*/
 	public void setUsuario(Integer usuario) {
 		this.usuario = usuario;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -82,6 +135,9 @@ public class UsuarioLink implements Serializable {
 		return hash;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
@@ -97,6 +153,9 @@ public class UsuarioLink implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "com.icesi.trocadero.data.entities.UsuarioLink[ id=" + id + " ]";

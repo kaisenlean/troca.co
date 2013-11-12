@@ -27,15 +27,30 @@ public class Opcion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * key
+	 */
 	@Id
 	@Column(name="clave")
 	private String key;
 	
 	
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * value
+	 */
 	@Column(name="valor")
 	private String value;
 	
 	
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * descripcion
+	 */
 	@Column(name="description")
 	private String descripcion;
 	

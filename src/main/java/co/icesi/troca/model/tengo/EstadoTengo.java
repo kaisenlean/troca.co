@@ -11,5 +11,10 @@ package co.icesi.troca.model.tengo;
  *
  */
 public enum EstadoTengo {
+/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * ACTIVO
+ */
 ACTIVO,INACTIVO
 }

@@ -13,10 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
@@ -26,77 +23,161 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "trueque_mensaje")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "TruequeMensaje.findAll", query = "SELECT t FROM TruequeMensaje t"),
-		@NamedQuery(name = "TruequeMensaje.findById", query = "SELECT t FROM TruequeMensaje t WHERE t.id = :id"),
-		@NamedQuery(name = "TruequeMensaje.findByTrueque", query = "SELECT t FROM TruequeMensaje t WHERE t.trueque = :trueque"),
-		@NamedQuery(name = "TruequeMensaje.findByUsuarioEmisor", query = "SELECT t FROM TruequeMensaje t WHERE t.usuarioEmisor = :usuarioEmisor"),
-		@NamedQuery(name = "TruequeMensaje.findByUsuarioReceptor", query = "SELECT t FROM TruequeMensaje t WHERE t.usuarioReceptor = :usuarioReceptor"),
-		@NamedQuery(name = "TruequeMensaje.findByMensaje", query = "SELECT t FROM TruequeMensaje t WHERE t.mensaje = :mensaje") })
 public class TruequeMensaje implements Serializable {
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * id
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * trueque
+	 */
 	@Column(name = "trueque")
 	private Integer trueque;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioEmisor
+	 */
 	@Column(name = "usuario_emisor")
 	private Integer usuarioEmisor;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioReceptor
+	 */
 	@Column(name = "usuario_receptor")
 	private Integer usuarioReceptor;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * mensaje
+	 */
 	@Column(name = "mensaje")
 	private String mensaje;
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	*/
 	public TruequeMensaje() {
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public TruequeMensaje(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getTrueque() {
 		return trueque;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param trueque
+	*/
 	public void setTrueque(Integer trueque) {
 		this.trueque = trueque;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getUsuarioEmisor() {
 		return usuarioEmisor;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param usuarioEmisor
+	*/
 	public void setUsuarioEmisor(Integer usuarioEmisor) {
 		this.usuarioEmisor = usuarioEmisor;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getUsuarioReceptor() {
 		return usuarioReceptor;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param usuarioReceptor
+	*/
 	public void setUsuarioReceptor(Integer usuarioReceptor) {
 		this.usuarioReceptor = usuarioReceptor;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public String getMensaje() {
 		return mensaje;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param mensaje
+	*/
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -104,6 +185,9 @@ public class TruequeMensaje implements Serializable {
 		return hash;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
@@ -119,6 +203,9 @@ public class TruequeMensaje implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "com.icesi.trocadero.data.entities.TruequeMensaje[ id=" + id

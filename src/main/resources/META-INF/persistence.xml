@@ -7,6 +7,7 @@
 
 	<persistence-unit name="persistenceUnit"
 		transaction-type="RESOURCE_LOCAL">
+
 		<provider>org.hibernate.ejb.HibernatePersistence</provider> 
 		<!-- 
 			Only specific settings for persistence unit (orm) should be placed here.

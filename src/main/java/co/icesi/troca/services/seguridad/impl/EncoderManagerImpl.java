@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import co.icesi.troca.services.seguridad.EncoderManager;
@@ -21,6 +23,7 @@ import co.icesi.troca.services.seguridad.EncoderManager;
 @Service("encoderManager")
 public class EncoderManagerImpl implements EncoderManager {
 
+	private static Logger LOGGER= LoggerFactory.getLogger(EncoderManagerImpl.class); 
 	/**
 	 * 6/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -50,7 +53,7 @@ public class EncoderManagerImpl implements EncoderManager {
 
 		} catch (NoSuchAlgorithmException e) {
 
-			e.printStackTrace();
+			LOGGER.error(e.toString());
 		}
 		return md5;
 	}

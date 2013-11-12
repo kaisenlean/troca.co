@@ -11,10 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
@@ -24,54 +21,110 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "proyecto_video")
-@XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "ProyectoVideo.findAll", query = "SELECT p FROM ProyectoVideo p"),
-		@NamedQuery(name = "ProyectoVideo.findById", query = "SELECT p FROM ProyectoVideo p WHERE p.id = :id"),
-		@NamedQuery(name = "ProyectoVideo.findByVideo", query = "SELECT p FROM ProyectoVideo p WHERE p.video = :video"),
-		@NamedQuery(name = "ProyectoVideo.findByProyecto", query = "SELECT p FROM ProyectoVideo p WHERE p.proyecto = :proyecto") })
 public class ProyectoVideo implements Serializable {
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * id
+	 */
 	@Id
 	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * video
+	 */
 	@Column(name = "video")
 	private String video;
+	/**
+	 * 12/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * proyecto
+	 */
 	@Column(name = "proyecto")
 	private Integer proyecto;
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	*/
 	public ProyectoVideo() {
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public ProyectoVideo(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param id
+	*/
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public String getVideo() {
 		return video;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param video
+	*/
 	public void setVideo(String video) {
 		this.video = video;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @return
+	*/
 	public Integer getProyecto() {
 		return proyecto;
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 12/11/2013
+	* @param proyecto
+	*/
 	public void setProyecto(Integer proyecto) {
 		this.proyecto = proyecto;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		int hash = 0;
@@ -79,6 +132,9 @@ public class ProyectoVideo implements Serializable {
 		return hash;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are
@@ -94,6 +150,9 @@ public class ProyectoVideo implements Serializable {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "com.icesi.trocadero.data.entities.ProyectoVideo[ id=" + id

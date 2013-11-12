@@ -11,5 +11,20 @@ package co.icesi.troca.model.tengo;
  *
  */
 public enum TipoTengo {
-CONOCIMIENTO,OBJETO,ESPACIO
+/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * CONOCIMIENTO
+ */
+CONOCIMIENTO,/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * OBJETO
+ */
+OBJETO,/**
+ * 12/11/2013
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * ESPACIO
+ */
+ESPACIO
 }
