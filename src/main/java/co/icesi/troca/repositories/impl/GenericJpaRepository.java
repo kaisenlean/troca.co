@@ -34,6 +34,7 @@ import co.icesi.troca.repositories.GenericRepository;
  *            The primary key type
  */
 @Transactional
+@SuppressWarnings("unchecked")
 public class GenericJpaRepository<T, ID extends Serializable> implements
 		GenericRepository<T, ID> {
 
@@ -115,7 +116,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQuery(java.lang.String,
 	 *      java.lang.Object[])
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<T> findByNamedQuery(final String name, Object... params) {
 		javax.persistence.Query query = getEntityManager().createNamedQuery(
@@ -125,15 +126,15 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 			query.setParameter(i + 1, params[i]);
 		}
 
-		final List<T> result = (List<T>) query.getResultList();
-		return result;
+		final List<T> resultado = (List<T>) query.getResultList();
+		return resultado;
 	}
 
 	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQueryAndNamedParams(java.lang.String,
 	 *      java.util.Map)
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<T> findByNamedQueryAndNamedParams(final String name,
 			final Map<String, ? extends Object> params) {
@@ -145,8 +146,8 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 			query.setParameter(param.getKey(), param.getValue());
 		}
 
-		final List<T> result = (List<T>) query.getResultList();
-		return result;
+		final List<T> resultado = (List<T>) query.getResultList();
+		return resultado;
 	}
 
 	/**
@@ -201,9 +202,9 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 			crit.setMaxResults(maxResults);
 		}
 
-		final List<T> result = crit.list();
+		final List<T> resultado = crit.list();
 
-		return result;
+		return resultado;
 	}
 
 	protected int countByCriteria(Criterion... criterion) {

@@ -3,57 +3,35 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 
 	<div class="col-md-4">
-			<p>
+		<p>
 			<h4>
 				<a href="#" class="margined-left blue blue-link">Últimos<br />
 					<span class="margined-left"><strong>Necesito</strong></span>
 				</a><a class="right margined-right blue blue-link" href="#">>></a>
 			</h4>
-			</p>
-
+		</p>
+		<c:forEach items="#{beanNecesito.listado}" var="necesito">
 			<div class="col-md-12 col-lg-6 col-sm-6 red-box clearfix">
 				<div class="content centre">
 					<p>
 						<a href="#" class="white white-link"><h3>
-								<strong>Lorem Ipsum</strong>
+								<strong>#{necesito.nombre}</strong>
 							</h3></a>
 					</p>
-					<p class="white">Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nunc condimentum</p>
+					<p class="white">#{necesito.descripcion}</p>
 					<a href="#" class="content-btn right">Leer más ></a>
 				</div>
 			</div>
 
-			<div class="col-md-12 col-lg-6 col-sm-6 visible-sm red-box clearfix">
-				<div class="content centre">
-					<p>
-						<a href="#" class="white white-link"><h3>
-								<strong>Lorem Ipsum</strong>
-							</h3></a>
-					</p>
-					<p class="white">Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nunc condimentum</p>
-					<a href="#" class="content-btn right">Leer más ></a>
-				</div>
-			</div>
 
-			<div class="col-md-12 col-lg-6 visible-lg red-box clearfix">
-				<div class="content centre">
-					<p>
-						<a href="#" class="white white-link"><h3>
-								<strong>Lorem Ipsum</strong>
-							</h3></a>
-					</p>
-					<p class="white">Lorem ipsum dolor sit amet, consectetur
-						adipiscing elit. Nunc condimentum</p>
-					<a href="#" class="content-btn right">Leer más ></a>
-				</div>
-			</div>
+		</c:forEach>
 
-		</div>
+		
+	</div>
 </f:view>

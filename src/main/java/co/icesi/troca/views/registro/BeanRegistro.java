@@ -127,13 +127,13 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * pais
 	 */
-	protected Pais pais;
+	private Pais pais;
 	/**
 	 * 22/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * departamento
 	 */
-	protected Departamento departamento;
+	private Departamento departamento;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -392,4 +392,43 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	public void setLoginNotification(LoginNotification loginNotification) {
 		this.loginNotification = loginNotification;
 	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return the pais
+	 */
+	public Pais getPais() {
+		return pais;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param pais the pais to set
+	 */
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return the departamento
+	 */
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param departamento the departamento to set
+	 */
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+	
+	
 }

@@ -3,6 +3,7 @@
  */
 package co.icesi.troca.services.seguridad.impl;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,8 +22,14 @@ import co.icesi.troca.services.seguridad.EncoderManager;
  *
  */
 @Service("encoderManager")
-public class EncoderManagerImpl implements EncoderManager {
+public class EncoderManagerImpl implements EncoderManager ,Serializable{
 
+	/**
+	 * 13/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 	private static Logger LOGGER= LoggerFactory.getLogger(EncoderManagerImpl.class); 
 	/**
 	 * 6/11/2013

@@ -5,36 +5,52 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
-<!-- Crear proyecto 2da parte-->
-<div class="row gap">
-  <div class="col-md-12 red">
-    <h2 class="margined-left">Proyectos</h2><span class="margined-left"/><small><a href="crear_proyecto_1.html" class="red red-link">Crear nuevo</a></small><a href="crear_proyecto_1.html"><button type="button" class="btn btn-red margined-left red-box">+</button></a>
-  </div>
-</div>
-
-<!-- Listado de Proyectos -->
+<h:form>
 
 
+	<!-- Crear proyecto 2da parte-->
+	<div class="row gap">
+		<div class="col-md-12 red">
+			<h2 class="margined-left">Proyectos</h2>
+			<span class="margined-left" /><small><a
+				href="crear_proyecto_1.html" class="red red-link">Crear nuevo</a></small><a
+				href="crear_proyecto_1.html"><p:commandButton value="+" 
+					styleClass="btn btn-red margined-left red-box" process="@all" update="@all" actionListener="#{login.verNuevoProyectoVista1()}" ></p:commandButton></a>
+		</div>
+	</div>
 
 
-<div class="row">
-<c:forEach var="proy" items="#{login.usuario.proyectos}">
+<h:panelGrid rendered="#{login.verNuevoProyecto1}">
+
+	<ui:include src="/paginas/proyecto/crear_proyecto_1.xhtml"  ></ui:include>
+</h:panelGrid>
+	<!-- Listado de Proyectos -->
 
 
-  <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 clearfix">
-    <div class="thumbnail red-border margined margined-bot">
-      <a href="#" class="red-link red"><h3 class="small-margin-left tengo-btn">#{proy.nombre}</h3></a>
-      <img src="img/profile.jpg" class="img-responsive"/>
-      <div class="caption">
-        <p>#{proy.descripcion}</p>
-        <p><a href="#" class="btn btn-default small-margin-top">Editar</a> <a href="#" class="btn btn-red small-margin-top">Ver más</a></p>
-      </div>
-    </div>
-  </div>
 
-</c:forEach>
 
-</div>
+	<div class="row">
+		<c:forEach var="proy" items="#{login.usuario.proyectos}">
 
+
+			<div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 clearfix">
+				<div class="thumbnail red-border margined margined-bot">
+					<a href="#" class="red-link red"><h3
+							class="small-margin-left tengo-btn">#{proy.nombre}</h3></a> <img
+						src="img/profile.jpg" class="img-responsive" />
+					<div class="caption">
+						<p>#{proy.descripcion}</p>
+						<p>
+							<a href="#" class="btn btn-default small-margin-top">Editar</a> <a
+								href="#" class="btn btn-red small-margin-top">Ver más</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</c:forEach>
+
+	</div>
+
+</h:form>
 </f:view>

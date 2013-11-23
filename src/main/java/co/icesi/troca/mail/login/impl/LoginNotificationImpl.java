@@ -3,6 +3,7 @@
  */
 package co.icesi.troca.mail.login.impl;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,14 @@ import co.icesi.troca.services.registro.VerificationMailService;
  * 
  */
 @Service("loginNotification")
-public class LoginNotificationImpl implements LoginNotification {
+public class LoginNotificationImpl implements LoginNotification ,Serializable{
+
+	/**
+	 * 13/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 6/11/2013

@@ -25,7 +25,7 @@ public class VerificacionMailServiceImpl implements VerificationMailService {
 
 	
 	
-	public static Logger LOGGER = LoggerFactory
+	private  Logger LOGGER = LoggerFactory
 			.getLogger(VerificacionMailServiceImpl.class);
 	/**
 	 * 6/11/2013
@@ -90,6 +90,24 @@ public class VerificacionMailServiceImpl implements VerificationMailService {
 		String hashKey = crearClaveVerificacion(usuario);
 		usuario.setClaveVerificacion(hashKey);
 		loginNotification.enviarMailAutenticacionCuenta(usuario);
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return the lOGGER
+	 */
+	public Logger getLogger() {
+		return LOGGER;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param lOGGER the lOGGER to set
+	 */
+	public void setLogger(Logger logger) {
+		LOGGER = logger;
 	}
 
 }

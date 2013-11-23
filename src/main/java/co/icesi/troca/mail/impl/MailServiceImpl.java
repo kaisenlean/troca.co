@@ -1,6 +1,7 @@
 package co.icesi.troca.mail.impl;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -31,7 +32,14 @@ import co.icesi.troca.mail.MailService;
  * 
  */
 @Service("mailService")
-public class MailServiceImpl implements MailService {
+public class MailServiceImpl implements MailService ,Serializable{
+
+	/**
+	 * 23/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 5/11/2013
@@ -69,7 +77,7 @@ public class MailServiceImpl implements MailService {
 	/** wrapper de Spring sobre javax.mail */
 	private JavaMailSenderImpl mailSender;
 
-	public static String basePath = new StrBuilder(System.getProperty(USER_DIR)
+	private  String basePath = new StrBuilder(System.getProperty(USER_DIR)
 			.toString()).append(PATH_RELATIVE).toString();
 
 	public void setMailSender(JavaMailSenderImpl mailSender) {
@@ -97,7 +105,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	/** flag para indicar si está activo el servicio */
-	public boolean active = true;
+	private boolean active = true;
 
 	public boolean isActive() {
 		return active;
@@ -269,6 +277,24 @@ public class MailServiceImpl implements MailService {
 			Map<String, Object> hTemplateVariables) {
 		send(to, subject, template, hTemplateVariables, NO_ATTACHMENTS);
 
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return the basePath
+	 */
+	public String getBasePath() {
+		return basePath;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param basePath the basePath to set
+	 */
+	public void setBasePath(String basePath) {
+		this.basePath = basePath;
 	}
 
 }

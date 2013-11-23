@@ -207,8 +207,7 @@ public class Calificacion implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Calificacion[ id=" + id
-				+ " ]";
+		return "com.icesi.trocadero.data.entities.Calificacion[ id=" + id+ " ]";
 	}
 
 }

@@ -39,6 +39,13 @@ import co.icesi.troca.services.tengo.TengoService;
  * @date 31/10/2013
  * 
  */
+/**
+* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @project troca-co
+* @class Login
+* @date 13/11/2013
+*
+*/
 @ManagedBean
 @SessionScoped
 public class Login extends BaseBean implements Serializable {
@@ -98,6 +105,20 @@ public class Login extends BaseBean implements Serializable {
 	
 	private static final Logger LOGGER= LoggerFactory.getLogger(Login.class);
 	
+	
+	/**
+	 * 13/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * verNuevoProyecto1
+	 */
+	private boolean verNuevoProyecto1=false;
+	/**
+	 * 13/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * verNuevoProyecto2
+	 */
+	private boolean verNuevoProyecto2=false;
+	
 
 	@PostConstruct
 	public void init() {
@@ -105,6 +126,29 @@ public class Login extends BaseBean implements Serializable {
 		tengo = new Tengo();
 		captureContextPath();
 
+	}
+	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 13/11/2013
+	 */
+	public void verNuevoProyectoVista1(){
+		
+		verNuevoProyecto1=true;
+		verNuevoProyecto2=false;
+	}
+
+	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 13/11/2013
+	 */
+	public void verNuevoProyectoVista2(){
+		verNuevoProyecto1=false;
+		verNuevoProyecto2=false;
+		
 	}
 
 	/**
@@ -144,6 +188,9 @@ public class Login extends BaseBean implements Serializable {
 		}
 
 	}
+	
+	
+	
 
 	/**
 	 * 
@@ -339,5 +386,44 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void setEncoderManager(EncoderManager encoderManager) {
 		this.encoderManager = encoderManager;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @return the verNuevoProyecto1
+	 */
+	public boolean isVerNuevoProyecto1() {
+		return verNuevoProyecto1;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @return the verNuevoProyecto2
+	 */
+	public boolean isVerNuevoProyecto2() {
+		return verNuevoProyecto2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @param verNuevoProyecto1 the verNuevoProyecto1 to set
+	 */
+	public void setVerNuevoProyecto1(boolean verNuevoProyecto1) {
+		this.verNuevoProyecto1 = verNuevoProyecto1;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @param verNuevoProyecto2 the verNuevoProyecto2 to set
+	 */
+	public void setVerNuevoProyecto2(boolean verNuevoProyecto2) {
+		this.verNuevoProyecto2 = verNuevoProyecto2;
 	}
 }
