@@ -14,9 +14,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -80,6 +84,17 @@ public class Noticia implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
+	
+	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuario
+	 */
+	@ManyToOne
+	@JoinColumn(name="usuario",referencedColumnName="id")
+	private Usuario usuario;
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 12/11/2013
@@ -232,6 +247,24 @@ public class Noticia implements Serializable {
 		this.fecha = fecha;
 	}
 
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

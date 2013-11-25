@@ -7,11 +7,16 @@ package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.tengo.Tengo;
 
 /**
  * 
@@ -34,23 +39,28 @@ public class ProyectoTengoUsuario implements Serializable {
 	 * id
 	 */
 	@Id
-	@Basic(optional = false)
 	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * tengo
 	 */
-	@Column(name = "tengo")
-	private Integer tengo;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="tengo",referencedColumnName="id")
+	private Tengo tengo;
+	
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * proyecto
 	 */
-	@Column(name = "proyecto")
-	private Integer proyecto;
+	@ManyToOne
+	@JoinColumn(name="proyecto",referencedColumnName="id")
+	private Proyecto proyecto;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -91,7 +101,7 @@ public class ProyectoTengoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getTengo() {
+	public Tengo getTengo() {
 		return tengo;
 	}
 
@@ -100,7 +110,7 @@ public class ProyectoTengoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @param tengo
 	*/
-	public void setTengo(Integer tengo) {
+	public void setTengo(Tengo tengo) {
 		this.tengo = tengo;
 	}
 
@@ -109,7 +119,7 @@ public class ProyectoTengoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getProyecto() {
+	public Proyecto getProyecto() {
 		return proyecto;
 	}
 
@@ -118,7 +128,7 @@ public class ProyectoTengoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @param proyecto
 	*/
-	public void setProyecto(Integer proyecto) {
+	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
 

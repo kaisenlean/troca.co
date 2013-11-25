@@ -20,12 +20,14 @@ import org.slf4j.LoggerFactory;
 
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.Opcion;
+import co.icesi.troca.model.noticia.Noticia;
 import co.icesi.troca.model.tengo.Tengo;
 import co.icesi.troca.model.tengo.TipoTengo;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.constants.OpcionConstants;
 import co.icesi.troca.services.OpcionService;
 import co.icesi.troca.services.UsuarioService;
+import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.tengo.TengoService;
@@ -103,8 +105,18 @@ public class Login extends BaseBean implements Serializable {
 	@ManagedProperty(value="#{tengoService}")
 	private TengoService tengoService;
 	
+	@ManagedProperty(value="#{noticiaService}")
+	private NoticiaService noticiaService;
+	
 	private static final Logger LOGGER= LoggerFactory.getLogger(Login.class);
 	
+	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * noticiasPorUsuario
+	 */
+	private List<Noticia> noticiasPorUsuario;
 	
 	/**
 	 * 13/11/2013
@@ -206,13 +218,13 @@ public class Login extends BaseBean implements Serializable {
 		}
 		utemp.setPassword(md5Pass);
 		usuario = usuarioService.loggedIn(utemp);
-		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
-		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
-		
 		if (usuario == null) {
 			runJavascript("Usuario no existe");
 			return;
 		}
+		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+		noticiasPorUsuario=noticiaService.findNoticiasByUsuario(usuario);
 		goTo("/index.jsf");
 	}
 
@@ -425,5 +437,32 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void setVerNuevoProyecto2(boolean verNuevoProyecto2) {
 		this.verNuevoProyecto2 = verNuevoProyecto2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param noticiaService the noticiaService to set
+	 */
+	public void setNoticiaService(NoticiaService noticiaService) {
+		this.noticiaService = noticiaService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @return the noticiasPorUsuario
+	 */
+	public List<Noticia> getNoticiasPorUsuario() {
+		return noticiasPorUsuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param noticiasPorUsuario the noticiasPorUsuario to set
+	 */
+	public void setNoticiasPorUsuario(List<Noticia> noticiasPorUsuario) {
+		this.noticiasPorUsuario = noticiasPorUsuario;
 	}
 }

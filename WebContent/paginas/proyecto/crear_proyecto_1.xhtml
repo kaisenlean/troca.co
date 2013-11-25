@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <f:view xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
 
 	<!-- Registro -->
 	<div class="row gap">
@@ -19,61 +17,58 @@
 	<!-- Formulario -->
 	<div class="row big-gap red-box">
 		<div class="col-md-6 col-sm-6 hugely-padded-bot know-height">
-			<form role="registro" class="margined-left basic margined-top">
-				<div class="form-group">
-					<label for="proyecto-nombre" class="white">Título del
-						Proyecto</label> <input type="text" class="form-control"
-						id="proyecto-nombre" placeHolder="Dale un nombre a tu proyecto" />
-				</div>
-				<p class="white margined-top">
-					<strong>Descripción del Proyecto</strong>
-				</p>
-				<textarea class="form-control gap" rows="8"></textarea>
-				<p class="white margined-top">
-					<strong>Descripción Corta del proyecto </strong><small
-						class="white"> (´Máximo 140 caracteres)</small>
-				</p>
-				<textarea class="form-control gap" rows="2"></textarea>
-				<div class="form-group">
-					<label for="licencia-proyecto" class="white">¿En qué
-						categoría lo pondrías?</label> <select id="licencia-proyecto"
-						class="form-control">
-						<option value="A">Atribución</option>
-						<option value="ACI">Atribución Compartir Igual</option>
-						<option value="AsD">Atribución sin Derivadas</option>
-						<option value="AnC">Atribución no Comercial</option>
-						<option value="AnCCI">Atribución no Comercial Compartir
-							Igual</option>
-						<option value="AnCsD">Atribución no Comercial sin
-							Derivadas</option>
-					</select> <small class="white">Para mayor información sobre las
-						licencias: <a href="http://creativecommons.org/licenses/"
-						class="white white-link" target="_blank">entrar aquí</a>
-					</small>
-				</div>
-				<div class="form-group">
-					<label for="proyecto-pic" class="white">Foto del proyecto</label><small
-						class="white"> (Tamaños grandes - 1000px - y cuadrados
-						funcionan mejor)</small> <input type="file" id="proyecto-pic" />
-					<p class="help-block">Carga una foto de tu proyecto</p>
-				</div>
-				<div class="form-group">
-					<label for="proyecto-url" class="white">Video del Proyecto</label><small
-						class="white"> (Youtube)</small> <input type="url"
-						class="form-control" id="proyecto-url"
-						placeHolder="Copia la dirección del video" />
-				</div>
+			<!-- 			<h:form role="registro" styleClass="margined-left basic margined-top"> -->
+			<div class="form-group">
+				<label for="proyecto-nombre" class="white">Título del
+					Proyecto</label> <br />
+				<p:inputText id="proyecto-nombre" size="50"
+					value="#{beanProyecto.proyecto.nombre}"></p:inputText>
+			</div>
+			<p class="white margined-top">
+				<strong>Descripción del Proyecto</strong>
+			</p>
+			<p:inputTextarea rows="8" cols="50"
+				value="#{beanProyecto.proyecto.descripcionLarga}">
 
-				<button type="submit" class="btn btn-default right small-margin-top">Continuar</button>
+			</p:inputTextarea>
+			<p class="white margined-top">
+				<strong>Descripción Corta del proyecto </strong><small class="white">
+					(´Máximo 140 caracteres)</small>
+			</p>
+			<p:inputTextarea rows="2" cols="50"
+				value="#{beanProyecto.proyecto.descripcion}"></p:inputTextarea>
+			<div class="form-group">
+				<label for="licencia-proyecto" class="white">¿En qué
+					categoría lo pondrías?</label>
+				<h:selectOneMenu value="#{beanProyecto.categoriaProyecto}" styleClass="form-control" id="licencia-proyecto">
+					<f:selectItems value="#{itemsProyectoCategoria.items}"></f:selectItems>
+					<p:ajax event="change" process="@this"></p:ajax>
+				</h:selectOneMenu>
+				<small class="white">Para mayor información sobre las
+					licencias: <a href="http://creativecommons.org/licenses/"
+					class="white white-link" target="_blank">entrar aquí</a>
+				</small>
+			</div>
+			<div class="form-group">
+				<label for="proyecto-pic" class="white">Foto del proyecto</label><small
+					class="white"> (Tamaños grandes - 1000px - y cuadrados
+					funcionan mejor)</small> <input type="file" id="proyecto-pic" />
+				<p class="help-block">Carga una foto de tu proyecto</p>
+			</div>
+			<div class="form-group">
+				<label for="proyecto-url" class="white">Video del Proyecto</label><small
+					class="white"> (Youtube)</small> <input type="url"
+					class="form-control" id="proyecto-url"
+					placeHolder="Copia la dirección del video" />
+			</div>
 
 
 
-			</form>
-			<!-- Termina formulario-->
+
+			<!-- 			</h:form> -->
 
 		</div>
 		<div class="col-md-6 col-sm-6 hidden-xs img-reg"></div>
 	</div>
 
-
-	</f:view>
+</f:view>

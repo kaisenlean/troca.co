@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import co.icesi.troca.model.Categoria;
 import co.icesi.troca.model.usuario.Usuario;
@@ -111,6 +112,15 @@ public class Tengo implements Serializable {
 	@Temporal(TemporalType.DATE)
 	 @Column(name="fecha_registro")
 	private Date  fechaRegistro;
+	
+	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * seleccionado
+	 */
+	@Transient
+	private boolean seleccionado;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -246,7 +256,7 @@ public class Tengo implements Serializable {
 		return hash;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -357,6 +367,24 @@ public class Tengo implements Serializable {
 	@Override
 	public String toString() {
 		return "com.icesi.trocadero.data.entities.Tengo[ id=" + id + " ]";
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @return the seleccionado
+	 */
+	public boolean isSeleccionado() {
+		return seleccionado;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param seleccionado the seleccionado to set
+	 */
+	public void setSeleccionado(boolean seleccionado) {
+		this.seleccionado = seleccionado;
 	}
 
 }

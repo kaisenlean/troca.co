@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.usuario.Usuario;
 
 /**
@@ -37,22 +38,75 @@ public class Necesito implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * id
+	 */
 	@Id
 	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * nombre
+	 */
 	@Column
 	private String nombre;
 	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * descripcion
+	 */
 	@Column
 	private String descripcion;
 	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuario
+	 */
 	@ManyToOne
 	@JoinColumn(name="usuario",referencedColumnName="id")
 	private Usuario usuario;
 	
+	
+	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * proyecto
+	 */
+	@ManyToOne
+	@JoinColumn(name="proyecto",referencedColumnName="id")
+	private Proyecto proyecto;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * categoria
+	 */
+	@ManyToOne
+	@JoinColumn(name="categoria",referencedColumnName="id")
+	private CategoriaNecesito categoria;
+	
+	/**
+	 * 24/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * fechaCreacion
+	 */
 	@Column(name="fecha_creacion")
 	@Temporal(TemporalType.DATE)
 	private Date fechaCreacion;
@@ -149,6 +203,41 @@ public class Necesito implements Serializable{
 	}
 	
 	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @return the categoria
+	 */
+	public CategoriaNecesito getCategoria() {
+		return categoria;
+	}
 	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param categoria the categoria to set
+	 */
+	public void setCategoria(CategoriaNecesito categoria) {
+		this.categoria = categoria;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @return the proyecto
+	 */
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param proyecto the proyecto to set
+	 */
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
+	}
 
 }

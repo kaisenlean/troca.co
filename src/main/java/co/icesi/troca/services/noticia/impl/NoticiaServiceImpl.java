@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.icesi.troca.model.noticia.Noticia;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.noticia.NoticiaDao;
 import co.icesi.troca.services.impl.GenericServiceImpl;
@@ -62,6 +63,14 @@ public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> imp
 	@Override
 	public List<Noticia> findUltimasNoticias() {
 		return noticiaDao.findUltimasNoticias(MAX_RESULTS);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.noticia.NoticiaService#findNoticiasByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@Override
+	public List<Noticia> findNoticiasByUsuario(Usuario usuario) {
+		return noticiaDao.findNoticiasByUsuario(usuario);
 	}
 
 }

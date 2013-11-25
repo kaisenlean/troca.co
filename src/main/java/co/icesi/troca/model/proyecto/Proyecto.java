@@ -85,8 +85,9 @@ public class Proyecto implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * categoria
 	 */
-	@Column(name = "categoria")
-	private Integer categoria;
+	@ManyToOne
+	@JoinColumn(name = "categoria",referencedColumnName="id")
+	private ProyectoCategoria categoria;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -217,7 +218,7 @@ public class Proyecto implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getCategoria() {
+	public ProyectoCategoria getCategoria() {
 		return categoria;
 	}
 
@@ -226,7 +227,7 @@ public class Proyecto implements Serializable {
 	* @date 12/11/2013
 	* @param categoria
 	*/
-	public void setCategoria(Integer categoria) {
+	public void setCategoria(ProyectoCategoria categoria) {
 		this.categoria = categoria;
 	}
 

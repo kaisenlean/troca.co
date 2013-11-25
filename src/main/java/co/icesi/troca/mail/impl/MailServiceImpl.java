@@ -77,6 +77,7 @@ public class MailServiceImpl implements MailService ,Serializable{
 	/** wrapper de Spring sobre javax.mail */
 	private JavaMailSenderImpl mailSender;
 
+	
 	private  String basePath = new StrBuilder(System.getProperty(USER_DIR)
 			.toString()).append(PATH_RELATIVE).toString();
 
