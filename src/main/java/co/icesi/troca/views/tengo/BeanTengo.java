@@ -104,8 +104,8 @@ public class BeanTengo extends BaseBean implements Serializable {
 		tengo.setOwner(login.getUsuario());
 		tengo.setFechaRegistro(new Date());
 		tengoService.save(tengo);
-		runJavascript("pnlCon.hide();");
-
+		runJavascript("pnlCon.close();");
+		login.reloadTengosProyectos();
 	}
 	
 	/**
@@ -120,6 +120,7 @@ public class BeanTengo extends BaseBean implements Serializable {
 		tengo.setFechaRegistro(new Date());
 		tengoService.save(tengo);
 		tengo=new Tengo();
+		login.reloadTengosProyectos();
 		
 		
 	}

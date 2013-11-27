@@ -1,5 +1,7 @@
 package co.icesi.troca.services;
 
+import java.util.List;
+
 import co.icesi.troca.model.usuario.Usuario;
 /**
  * 
@@ -20,4 +22,15 @@ public interface UsuarioService  extends GenericService<Usuario, Integer>{
 	* @return {@link Usuario}
 	 */
 	public Usuario loggedIn(Usuario usuario);
+	
+	
+
+	/**
+	 * Método que Consulta Usuarios por nombre , apellido o email
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 27/11/2013
+	* @param param
+	* @return
+	 */
+	public List<Usuario> findUsuariosByParam(String param);
 }

@@ -7,7 +7,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +18,17 @@ import org.slf4j.LoggerFactory;
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.mail.login.LoginNotification;
 import co.icesi.troca.model.Departamento;
+import co.icesi.troca.model.Opcion;
 import co.icesi.troca.model.Pais;
 import co.icesi.troca.model.usuario.EstadoUsuarioEnum;
 import co.icesi.troca.model.usuario.Usuario;
+import co.icesi.troca.repositories.constants.OpcionConstants;
 import co.icesi.troca.services.CiudadService;
 import co.icesi.troca.services.DepartamentoService;
+import co.icesi.troca.services.OpcionService;
 import co.icesi.troca.services.PaisService;
 import co.icesi.troca.services.UsuarioService;
+import co.icesi.troca.services.seguridad.EncoderManager;
 /**
  * Bean que controla el registro de un usuario al sistema
 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -77,8 +84,21 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	private CiudadService ciudadService;
 
 	
+	/**
+	 * 25/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * loginNotification
+	 */
 	@ManagedProperty(value="#{loginNotification}")
 	private LoginNotification loginNotification;
+	
+	/**
+	 * 25/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * encoderManager
+	 */
+	@ManagedProperty(value="#{encoderManager}")
+	private EncoderManager encoderManager;
 	
 	/**
 	 * 22/10/2013
@@ -135,6 +155,18 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	 */
 	private Departamento departamento;
 
+	
+	
+
+	/**
+	 * 25/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * opcionService
+	 */
+	@ManagedProperty(value = "#{opcionService}")
+	private OpcionService opcionService;
+	
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
@@ -144,6 +176,31 @@ public class BeanRegistro extends BaseBean implements Serializable {
 
 		usuario = new Usuario();
 		itemPaises = paisService.getItmems();
+		captureContextPath();
+	}
+
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 */
+	private void captureContextPath() {
+		ExternalContext ctx = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		String ctxPath = null;
+		ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+
+		Opcion opcion = opcionService
+				.findById(OpcionConstants.KEY_CONTEXT_PATH);
+		if (opcion == null) {
+			opcion=new Opcion();
+			opcion.setKey(OpcionConstants.KEY_CONTEXT_PATH);
+			opcion.setValue(ctxPath);
+			opcionService.save(opcion);
+		} else {
+			opcion.setValue(ctxPath);
+			opcionService.save(opcion);
+		}
 	}
 
 	/**
@@ -152,9 +209,10 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	*/
 	public void guardarUsuario() {
 		usuario.setCiudad(ciudadService.findById(selCiudad));
-		usuario.setEstado(EstadoUsuarioEnum.INACTIVO);
+		usuario.setEstado(EstadoUsuarioEnum.ACTIVO);
+		usuario.setPassword(encoderManager.encodeMd5Hash(usuario.getPassword()));
 		try {
-		loginNotification.enviarMailAutenticacionCuenta(usuario);
+//		loginNotification.enviarMailAutenticacionCuenta(usuario);
 		usuarioService.save(usuario);
 		} catch (Exception e) {
 			LOGGER.error(e.toString());
@@ -430,5 +488,22 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		this.departamento = departamento;
 	}
 	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 25/11/2013
+	 * @param opcionService the opcionService to set
+	 */
+	public void setOpcionService(OpcionService opcionService) {
+		this.opcionService = opcionService;
+	}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 25/11/2013
+	 * @param encoderManager the encoderManager to set
+	 */
+	public void setEncoderManager(EncoderManager encoderManager) {
+		this.encoderManager = encoderManager;
+	}
 	
 }

@@ -18,8 +18,9 @@
 				class="btn btn-blue white-link margined-left blue-box">+</button>
 		</div>
 	</div>
-	<p:panel widgetVar="pnlCon" visible="false">
+	<p:panel widgetVar="pnlCon" visible="false" closable="true">
 	<ui:include src="/paginas/tengo/crear_tengo.xhtml"></ui:include>
+	
 	</p:panel>
 	<div class="row">
 		<c:forEach var="tengo" items="#{login.usuario.tengos}">

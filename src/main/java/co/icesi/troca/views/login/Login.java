@@ -229,6 +229,17 @@ public class Login extends BaseBean implements Serializable {
 	}
 
 	/**
+	 * Recargar proyectos y tengo
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 27/11/2013
+	 */
+	public void reloadTengosProyectos(){
+		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+	}
+	
+	
+	/**
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 22/07/2013

@@ -44,6 +44,12 @@ public class UsuarioDaoImplTest  {
 
 	
 
+	/**
+	 * 27/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * FILTER_PHRASE
+	 */
+	private static final String FILTER_PHRASE = "admi";
 	private static final String BIOGRAPHY_PRUEBA = "biography";
 	private static final String PASSWORD_PRUEBA = "666";
 	private static final String EMAIL_PRUEBA = "TROCA@TROCA.COM";
@@ -130,4 +136,21 @@ public class UsuarioDaoImplTest  {
 		assertNotNull(uTemp);
 		
 	}
+	
+	
+	/**
+	 * Test method for {@link UsuarioDaoImpl#findUsuariosByParam(String)}
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 27/11/2013
+	 */
+	@Test
+	public void findUsuariosByParam(){
+		
+		List<Usuario> lista= dao.findUsuariosByParam(FILTER_PHRASE);
+		assertNotNull(lista);
+	}
+	
+	
+	
+	
 }

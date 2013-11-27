@@ -427,6 +427,12 @@ p .small-screen{
 	text-align: center;
 }
 
+.help-text{
+	background-image: url("../img/black-opac.png");
+	padding: 15px;
+	max-width: 1000px;
+}
+
 /* positional classes */
 
 p.nav{

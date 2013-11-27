@@ -61,6 +61,6 @@ public void setNecesitoDao(NecesitoDao necesitoDao) {
  */
 @Override
 public List<Necesito> findUltimosNecesito() {
-	return necesitoDao.findUltimosNecesito(3);
+	return necesitoDao.findUltimosNecesito(2);
 }
 }

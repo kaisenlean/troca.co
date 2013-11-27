@@ -1,6 +1,7 @@
 package co.icesi.troca.services.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -66,6 +67,14 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
 	public Usuario loggedIn(Usuario usuario) {
 		return usuarioDAO.loggedIn(usuario);
 		
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.UsuarioService#findUsuariosByParam(java.lang.String)
+	 */
+	@Override
+	public List<Usuario> findUsuariosByParam(String param) {
+		return usuarioDAO.findUsuariosByParam(param);
 	}
 
 }
