@@ -7,12 +7,13 @@ package co.icesi.troca.model.usuario;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -37,7 +38,6 @@ public class UsuarioLink implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -47,13 +47,19 @@ public class UsuarioLink implements Serializable {
 	 */
 	@Column(name = "link")
 	private String link;
+	
+	
+	
+	@Column
+	private String nombre;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuario
 	 */
-	@Column(name = "usuario")
-	private Integer usuario;
+	@ManyToOne
+	@JoinColumn(name = "usuario",referencedColumnName="id")
+	private Usuario usuario;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -112,7 +118,7 @@ public class UsuarioLink implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -121,8 +127,26 @@ public class UsuarioLink implements Serializable {
 	* @date 12/11/2013
 	* @param usuario
 	*/
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	/* (non-Javadoc)

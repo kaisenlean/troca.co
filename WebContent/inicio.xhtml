@@ -14,9 +14,21 @@
 <h:body>
 	<h:form>
 		<h:outputText value="#{addBike.lista}"></h:outputText>
-		
+				<h:panelGrid columns="3">
+
+						<h:outputText value="Usuario" />
+						<p:autoComplete size="50" style="width:400px"
+							id="proveedorIngreso"
+							value="#{beanProyecto.autocompleteUsuario.query}"
+							completeMethod="#{beanProyecto.autocompleteUsuario.completarBusqueda}">
+							<p:ajax event="itemSelect" update="@all" process="@this"
+								listener="#{beanProyecto.autocompleteUsuario.seleccionar}">
+
+							</p:ajax>
+						</p:autoComplete>
+					</h:panelGrid>
 		<p:tabView >
-		<p:tab title="fuck"></p:tab>
+		<p:tab title="Tester Ṕage"></p:tab>
 		</p:tabView>
 	</h:form>
 </h:body>

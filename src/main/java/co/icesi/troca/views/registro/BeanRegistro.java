@@ -22,6 +22,7 @@ import co.icesi.troca.model.Opcion;
 import co.icesi.troca.model.Pais;
 import co.icesi.troca.model.usuario.EstadoUsuarioEnum;
 import co.icesi.troca.model.usuario.Usuario;
+import co.icesi.troca.model.usuario.UsuarioLink;
 import co.icesi.troca.repositories.constants.OpcionConstants;
 import co.icesi.troca.services.CiudadService;
 import co.icesi.troca.services.DepartamentoService;
@@ -29,6 +30,7 @@ import co.icesi.troca.services.OpcionService;
 import co.icesi.troca.services.PaisService;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.seguridad.EncoderManager;
+import co.icesi.troca.services.usuario.UsuarioLinkService;
 /**
  * Bean que controla el registro de un usuario al sistema
 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -100,6 +102,10 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	@ManagedProperty(value="#{encoderManager}")
 	private EncoderManager encoderManager;
 	
+	
+	@ManagedProperty(value="#{usuarioLinkService}")
+	private UsuarioLinkService usuarioLinkService;
+	
 	/**
 	 * 22/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -156,6 +162,63 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	private Departamento departamento;
 
 	
+	private int posLink;
+	
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink
+	 */
+	private UsuarioLink usuarioLink;
+	
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink2
+	 */
+	private UsuarioLink usuarioLink2;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink3
+	 */
+	private UsuarioLink usuarioLink3;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink4
+	 */
+	private UsuarioLink usuarioLink4;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink5
+	 */
+	private UsuarioLink usuarioLink5;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink6
+	 */
+	private UsuarioLink usuarioLink6;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink7
+	 */
+	private UsuarioLink usuarioLink7;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink8
+	 */
+	private UsuarioLink usuarioLink8;
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLink9
+	 */
+	private UsuarioLink usuarioLink9;
 	
 
 	/**
@@ -175,7 +238,17 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	public void init() {
 
 		usuario = new Usuario();
+		usuarioLink=new UsuarioLink();
+		usuarioLink2=new UsuarioLink();
+		usuarioLink3=new UsuarioLink();
+		usuarioLink4=new UsuarioLink();
+		usuarioLink5=new UsuarioLink();
+		usuarioLink6=new UsuarioLink();
+		usuarioLink7=new UsuarioLink();
+		usuarioLink8=new UsuarioLink();
+		usuarioLink9=new UsuarioLink();
 		itemPaises = paisService.getItmems();
+		posLink=0;
 		captureContextPath();
 	}
 
@@ -203,6 +276,21 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		}
 	}
 
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 28/11/2013
+	*/
+	public void goToRegistro2(){
+		
+		if (!usuario.getEmail().equals(usuario.getRepeatMail())) {
+			mensajeError("Email no coincide");
+			return;
+		}
+		goTo("/paginas/registro/registro_2.jsf");
+		
+	}
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
@@ -213,7 +301,47 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		usuario.setPassword(encoderManager.encodeMd5Hash(usuario.getPassword()));
 		try {
 //		loginNotification.enviarMailAutenticacionCuenta(usuario);
-		usuarioService.save(usuario);
+		usuario=usuarioService.save(usuario);
+		
+		/*guardamos los links*/
+		usuarioLink.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink);
+		
+		usuarioLink2.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink2);
+		
+
+		usuarioLink3.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink3);
+		
+
+		usuarioLink3.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink3);
+		
+
+		usuarioLink4.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink4);
+		
+
+		usuarioLink5.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink5);
+		
+
+		usuarioLink6.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink6);
+		
+
+		usuarioLink7.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink7);
+		
+
+		usuarioLink8.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink8);
+		
+
+		usuarioLink9.setUsuario(usuario);
+		usuarioLinkService.save(usuarioLink9);
+		
 		} catch (Exception e) {
 			LOGGER.error(e.toString());
 		}
@@ -279,6 +407,14 @@ public class BeanRegistro extends BaseBean implements Serializable {
 
 	}
 
+	public void addUsuarioLink(){
+		posLink++;
+		
+		goTo("/paginas/registro/registro_3.jsf");
+		
+	}
+	
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
@@ -504,6 +640,209 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	 */
 	public void setEncoderManager(EncoderManager encoderManager) {
 		this.encoderManager = encoderManager;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink
+	 */
+	public UsuarioLink getUsuarioLink() {
+		return usuarioLink;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink the usuarioLink to set
+	 */
+	public void setUsuarioLink(UsuarioLink usuarioLink) {
+		this.usuarioLink = usuarioLink;
+	}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLinkService the usuarioLinkService to set
+	 */
+	public void setUsuarioLinkService(UsuarioLinkService usuarioLinkService) {
+		this.usuarioLinkService = usuarioLinkService;
+	}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the posLink
+	 */
+	public int getPosLink() {
+		return posLink;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param posLink the posLink to set
+	 */
+	public void setPosLink(int posLink) {
+		this.posLink = posLink;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink2
+	 */
+	public UsuarioLink getUsuarioLink2() {
+		return usuarioLink2;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink2 the usuarioLink2 to set
+	 */
+	public void setUsuarioLink2(UsuarioLink usuarioLink2) {
+		this.usuarioLink2 = usuarioLink2;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink3
+	 */
+	public UsuarioLink getUsuarioLink3() {
+		return usuarioLink3;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink3 the usuarioLink3 to set
+	 */
+	public void setUsuarioLink3(UsuarioLink usuarioLink3) {
+		this.usuarioLink3 = usuarioLink3;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink4
+	 */
+	public UsuarioLink getUsuarioLink4() {
+		return usuarioLink4;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink4 the usuarioLink4 to set
+	 */
+	public void setUsuarioLink4(UsuarioLink usuarioLink4) {
+		this.usuarioLink4 = usuarioLink4;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink5
+	 */
+	public UsuarioLink getUsuarioLink5() {
+		return usuarioLink5;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink5 the usuarioLink5 to set
+	 */
+	public void setUsuarioLink5(UsuarioLink usuarioLink5) {
+		this.usuarioLink5 = usuarioLink5;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink6
+	 */
+	public UsuarioLink getUsuarioLink6() {
+		return usuarioLink6;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink6 the usuarioLink6 to set
+	 */
+	public void setUsuarioLink6(UsuarioLink usuarioLink6) {
+		this.usuarioLink6 = usuarioLink6;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink7
+	 */
+	public UsuarioLink getUsuarioLink7() {
+		return usuarioLink7;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink7 the usuarioLink7 to set
+	 */
+	public void setUsuarioLink7(UsuarioLink usuarioLink7) {
+		this.usuarioLink7 = usuarioLink7;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink8
+	 */
+	public UsuarioLink getUsuarioLink8() {
+		return usuarioLink8;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink8 the usuarioLink8 to set
+	 */
+	public void setUsuarioLink8(UsuarioLink usuarioLink8) {
+		this.usuarioLink8 = usuarioLink8;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLink9
+	 */
+	public UsuarioLink getUsuarioLink9() {
+		return usuarioLink9;
+	}
+
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLink9 the usuarioLink9 to set
+	 */
+	public void setUsuarioLink9(UsuarioLink usuarioLink9) {
+		this.usuarioLink9 = usuarioLink9;
 	}
 	
 }

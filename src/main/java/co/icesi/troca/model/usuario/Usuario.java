@@ -134,15 +134,29 @@ public class Usuario implements Serializable {
 	private String repeatMail;
 
 	
-//	@OneToMany(mappedBy="owner",cascade={CascadeType.ALL},fetch=FetchType.EAGER)
 	@Transient
 	private List<Tengo> tengos= new ArrayList<Tengo>();
 
 	
 	
 
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * proyectos
+	 */
 	@Transient
 	private List<Proyecto> proyectos;
+	
+	
+
+	/**
+	 * 28/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioLinks
+	 */
+	@Transient
+	private List<UsuarioLink> usuarioLinks=new ArrayList<UsuarioLink>();
 	
 	
 	/**
@@ -398,6 +412,25 @@ public class Usuario implements Serializable {
 	public void setProyectos(List<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @return the usuarioLinks
+	 */
+	public List<UsuarioLink> getUsuarioLinks() {
+		return usuarioLinks;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 * @param usuarioLinks the usuarioLinks to set
+	 */
+	public void setUsuarioLinks(List<UsuarioLink> usuarioLinks) {
+		this.usuarioLinks = usuarioLinks;
+	}
 	/** (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -431,7 +464,7 @@ public class Usuario implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return new StringBuilder(nombre==null?BLANK_SPACE:nombre).append(BLANK_SPACE).append(apellido==null?BLANK_SPACE:apellido).toString();
+		return new StringBuilder(nombre==null?BLANK_SPACE:nombre).append(BLANK_SPACE).append(apellido==null?BLANK_SPACE:apellido).append("[").append(id).append("]").toString();
 	}
 
 }

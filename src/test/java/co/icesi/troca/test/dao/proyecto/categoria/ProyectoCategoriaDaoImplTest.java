@@ -3,6 +3,8 @@
  */
 package co.icesi.troca.test.dao.proyecto.categoria;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -11,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import co.icesi.troca.model.proyecto.ProyectoCategoria;
 import co.icesi.troca.repositories.proyecto.ProyectoCategoriaDao;
 import co.icesi.troca.test.BaseUnit;
-
-import static org.junit.Assert.assertNotNull;
 /**
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
  * @project troca-co

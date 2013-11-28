@@ -10,7 +10,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.tengo.EstadoTengo;
@@ -28,15 +28,9 @@ import co.icesi.troca.views.login.Login;
  *
  */
 @ManagedBean
-@ViewScoped
-public class BeanTengo extends BaseBean implements Serializable {
+@SessionScoped
+public class EditarTengo extends BaseBean implements Serializable {
 
-	/**
-	 * 1/11/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULTS
-	 */
-	private static final int MAX_RESULTS = 2;
 
 	/**
 	 * 31/10/2013
@@ -52,17 +46,6 @@ public class BeanTengo extends BaseBean implements Serializable {
 	 */
 	@ManagedProperty(value="#{login}")
 	private Login login;
-	
-	
-	
-	
-	/**
-	 * 28/11/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * editarTengo
-	 */
-	@ManagedProperty(value="#{editarTengo}")
-	private EditarTengo editarTengo;
 	
 	/**
 	 * 12/11/2013
@@ -93,7 +76,6 @@ public class BeanTengo extends BaseBean implements Serializable {
 	@PostConstruct
 	public void init(){
 		tengo=new Tengo();
-		ultimosTengos=tengoService.findUltimosTengo(MAX_RESULTS);
 	}
 	
 	/**
@@ -115,8 +97,10 @@ public class BeanTengo extends BaseBean implements Serializable {
 		tengo.setOwner(login.getUsuario());
 		tengo.setFechaRegistro(new Date());
 		tengoService.save(tengo);
-		runJavascript("pnlCon.close();");
 		login.reloadTengosProyectos();
+		
+		goTo("/paginas/perfil/perfil.jsf");
+		
 	}
 	
 	/**
@@ -158,8 +142,6 @@ public class BeanTengo extends BaseBean implements Serializable {
 		
 		this.tengo=tengo;
 		this.tipoTengo=tengo.getTipo().name();
-		editarTengo.setTengo(tengo);
-		editarTengo.setTipoTengo(tengo.getTipo().name());
 		goTo("/paginas/tengo/edit.jsf");
 	}
 	
@@ -232,15 +214,6 @@ public class BeanTengo extends BaseBean implements Serializable {
 	 */
 	public void setUltimosTengos(List<Tengo> ultimosTengos) {
 		this.ultimosTengos = ultimosTengos;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 28/11/2013
-	 * @param editarTengo the editarTengo to set
-	 */
-	public void setEditarTengo(EditarTengo editarTengo) {
-		this.editarTengo = editarTengo;
 	}
 	
 }

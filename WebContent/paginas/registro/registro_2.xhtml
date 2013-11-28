@@ -22,19 +22,19 @@
 		<!-- Formulario -->
 		<div class="row big-gap">
 			<div class="col-md-6 col-sm-4 blue-box padded-bot know-height">
-				<form role="registro" class="margined-left basic margined-top">
+				<h:form role="registro" styleClass="margined-left basic margined-top">
 					<div class="form-group">
 						<label for="profile-pic" class="white">Foto de Perfil</label> <input
 							type="file" id="profile-pic" />
 						<p class="help-block">Carga una foto para tu perfil</p>
 					</div>
 					<p class="light-gray margined-top">Escribe tu biografía</p>
-					<h:inputTextarea  styleClass="form-control gap" rows="8"
+					<h:inputTextarea id="txtReg"  rows="8"
 						value="#{beanRegistro.usuario.biografia}"></h:inputTextarea>
-					<p:button process="@all" update="@all"
-						outcome="/paginas/registro/registro_3.jsf"
+					<h:commandButton 
+						action="/paginas/registro/registro_3.jsf"
 						styleClass="btn btn-default right margined-right"
-						value="Continuar"></p:button>
+						value="Continuar"></h:commandButton>
 					<small class="white visible-xs">Es importante que los demás
 						participantes conozcan algo de ti</small>
 
@@ -42,7 +42,7 @@
 
 
 
-				</form>
+				</h:form>
 				<!-- Termina formulario-->
 
 			</div>

@@ -125,17 +125,19 @@
 
 					<p:inputText styleClass="form-control" id="nombre"
 						placeholder="Ingresa tu nombre(s)"
-						value="#{beanRegistro.usuario.nombre}"></p:inputText>
+						value="#{beanRegistro.usuario.nombre}" required="true" requiredMessage="Por favor digita un nombre válido"></p:inputText>
 					<!-- 					<label for="nombre" class="white">Nombre(s)</label> <input -->
 					<!-- 						type="text" class="form-control" id="nombre" -->
 					<!-- 						placeHolder="Ingresa tu nombre(s)"/> -->
+					<p:message for="nombre"></p:message>
 				</div>
 				<div class="form-group">
 					<h:outputLabel value="Apellido(s)" styleClass="white" />
 
 					<p:inputText styleClass="form-control" id="apellidos"
 						placeholder="Ingresa tu Apellido(s)"
-						value="#{beanRegistro.usuario.apellido}"></p:inputText>
+						value="#{beanRegistro.usuario.apellido}" required="true" requiredMessage="Por favor digita un apellido válido"></p:inputText>
+						<p:message for="apellidos"></p:message>
 				</div>
 				<div class="form-group">
 
@@ -143,8 +145,8 @@
 					<small class="light-gray">- El correo no es público</small>
 					<p:inputText styleClass="form-control" id="emailRegistro"
 						placeholder="Ingresa tu Correo Electrónico"
-						value="#{beanRegistro.usuario.email}"></p:inputText>
-
+						value="#{beanRegistro.usuario.email}" required="true" requiredMessage="Por favor digita un email válido"></p:inputText>
+					<p:message for="emailRegistro"></p:message>
 				</div>
 				<div class="form-group">
 
@@ -153,42 +155,47 @@
 					<small class="light-gray">- El correo no es público</small>
 					<p:inputText styleClass="form-control" id="emailRegistroRep"
 						placeholder="Ingresa tu Correo Electrónico"
-						value="#{beanRegistro.usuario.repeatMail}"></p:inputText>
+						value="#{beanRegistro.usuario.repeatMail}" required="true" requiredMessage="Campo requerido"></p:inputText>
+						<p:message for="emailRegistroRep"></p:message>
 				</div>
 				<div class="form-group">
 					<h:outputLabel value="Contraseña" styleClass="white" />
 					<p:password styleClass="form-control" id="passwordReg"
-						placeholder="Ingresa tu password" value="#{beanRegistro.usuario.password}"></p:password>
+						placeholder="Ingresa tu password" required="true" requiredMessage="Digita una contraseña válida" value="#{beanRegistro.usuario.password}" ></p:password>
+				<p:message for="passwordReg"></p:message>
 				</div>
 				<div class="form-group">
 					<h:outputLabel value="Pais" styleClass="white" />
-					<h:selectOneMenu value="#{beanRegistro.selPais}"
+					<h:selectOneMenu id="selPaissl" required="true" requiredMessage="Por favor selecciona un pais" value="#{beanRegistro.selPais}"
 						styleClass="form-control">
 						<p:ajax event="change" update="deptos" partialSubmit="true"
 							listener="#{beanRegistro.cambioPais}"></p:ajax>
 						<f:selectItems value="#{beanRegistro.itemPaises}" />
 					</h:selectOneMenu>
+					<p:message for="selPaissl"></p:message>
 				</div>
 				<div class="form-group">
 					<h:outputLabel value="Departamento" styleClass="white" />
 					<h:selectOneMenu value="#{beanRegistro.selDepto}" id="deptos"
-						styleClass="form-control">
+						styleClass="form-control" required="true" requiredMessage="Por favor selecciona un departamento" >
 						<p:ajax event="change" update="ciudades" partialSubmit="true"
 							listener="#{beanRegistro.cambioDepto}"></p:ajax>
 						<f:selectItems value="#{beanRegistro.itemDeptos}" />
 					</h:selectOneMenu>
+					<p:message for="deptos"></p:message>
 				</div>
 				<div class="form-group">
 					<h:outputLabel value="Ciudad" styleClass="white" />
-					<h:selectOneMenu value="#{beanRegistro.selCiudad}" id="ciudades"
+					<h:selectOneMenu required="true" requiredMessage="Por favor selecciona una ciudad"  value="#{beanRegistro.selCiudad}" id="ciudades"
 						styleClass="form-control">
 						<p:ajax event="change" partialSubmit="true"
 							listener="#{beanRegistro.cambioCiudad}"></p:ajax>
 						<f:selectItems value="#{beanRegistro.itemCiudades}" />
 					</h:selectOneMenu>
+					<p:message for="ciudades"></p:message>
 
 				</div>
-				<p:commandButton ajax="false" action="/paginas/registro/registro_2.jsf"
+				<p:commandButton ajax="false"  actionListener="#{beanRegistro.goToRegistro2()}"
 					value="Continuar" process="@all" update="@all" styleClass="btn btn-default right margined-right"></p:commandButton>
 				<p class="white">
 					<small>Al continuar, asegura que acepta los <a href="#modal-terminos" data-toggle="modal"

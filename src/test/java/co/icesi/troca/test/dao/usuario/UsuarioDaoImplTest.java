@@ -152,5 +152,22 @@ public class UsuarioDaoImplTest  {
 	
 	
 	
+	/**
+	 * Test method for {@link UsuarioDaoImpl#getByNombreApellido(String, String)}
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 27/11/2013
+	 */
+	@Test
+	public void getByNombreApellido(){
+		Usuario usuario= saveTestUsuario();
+		
+		usuario=dao.getByNombreApellido(usuario.getNombre(), usuario.getApellido());
+		
+		assertNotNull(usuario);
+		
+		
+	}
+	
+	
 	
 }

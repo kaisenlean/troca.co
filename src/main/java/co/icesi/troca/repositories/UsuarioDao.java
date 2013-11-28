@@ -31,4 +31,14 @@ public interface UsuarioDao extends GenericRepository<Usuario, Integer> {
 	* @return
 	 */
 	public List<Usuario> findUsuariosByParam(String param);
+	
+	
+	/**
+	 * Método que consulta un usuario por nombres y apellidos
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 27/11/2013
+	* @param nameApellido
+	* @return
+	 */
+	public Usuario getByNombreApellido(String nombre,String apellido);
 }

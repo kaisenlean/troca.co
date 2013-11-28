@@ -54,9 +54,9 @@
 							<p:panel header="#{tengo.nombre}">
 								<p>
 									<h:outputText value="#{tengo.descripcion}" />
-										<p:selectBooleanCheckbox value="#{tengo.seleccionado}">
-										<p:ajax event="change" process="@this" ></p:ajax>
-										</p:selectBooleanCheckbox>
+									<p:selectBooleanCheckbox value="#{tengo.seleccionado}">
+										<p:ajax event="change" process="@this"></p:ajax>
+									</p:selectBooleanCheckbox>
 								</p>
 							</p:panel>
 						</c:forEach>
@@ -65,6 +65,17 @@
 					<a href="#modal-invitar-usuarios" data-toggle="modal"
 						class="white margined-top white-link add-tengos"><strong>Invitar
 							Usuarios</strong></a>
+
+					<h:panelGrid columns="3">
+
+						<h:outputText value="Usuario" />
+						<p:dataTable value="#{beanProyecto.usuarios}" rows="10" paginator="true"  var="usuar">
+						<p:column headerText="Usuario" filterBy="#{usuar}" filterMatchMode="contains">
+						<h:outputText value="#{usuar}" />
+						</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+
 
 					<h:commandButton value="Crear Proyecto"
 						styleClass="btn btn-default big-margin-top right"

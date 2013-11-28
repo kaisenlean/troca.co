@@ -3,7 +3,7 @@
  */
 package co.icesi.troca.test.dao.necesito;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
 import java.util.List;

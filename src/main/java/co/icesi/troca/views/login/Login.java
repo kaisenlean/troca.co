@@ -265,6 +265,30 @@ public class Login extends BaseBean implements Serializable {
 		}
 	}
 
+	
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/07/2013
+	 */
+	public void logen() {
+		ExternalContext ctx = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		String ctxPath = null;
+		ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+
+		try {
+
+			// Redirección de nuevo con el contexto de JSF,
+			// si se usa una HttpServletResponse fallará.
+			// Sin embargo, como ya está fuera del ciclo de vida
+			// de JSF se debe usar la ruta completa -_-U
+			ctx.redirect(ctxPath + "/");
+		} catch (IOException ex) {
+			mensaje("Error", ex.toString());
+		}
+	}
+	
 	/**
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

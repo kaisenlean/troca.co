@@ -1,74 +1,158 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-	<ui:composition template="./../../template/mainThm.xhtml">
+<ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
-	<!-- Registro -->
-	<div class="row gap">
-		<div class="col-md-12 blue">
-			<h1 class="margined-left">Registro</h1>
-			<span class="margined-left"><small class="black">(Parte
-					3 de 3 - Información Personal)</small></span>
+		<!-- Registro -->
+		<div class="row gap">
+			<div class="col-md-12 blue">
+				<h1 class="margined-left">Registro</h1>
+				<span class="margined-left"><small class="black">(Parte
+						3 de 3 - Información Personal)</small></span>
+			</div>
 		</div>
-	</div>
 
-	<!-- Formulario -->
-	<div class="row big-gap">
-		<div class="col-md-6 col-sm-4 blue-box padded-bot know-height">
-			<h:form role="registro" styleClass="margined-left basic margined-top">
-				<label for="links" class="white">Registra links personales o
-					de tu trabajo</label>
-				<input type="text" class="form-control links nombre-link"
-					placeholder="Nombre del link Ej: Facebook" />
-				<input type="text" class="form-control links last-link profile-link"
-					placeholder="Ingresa un link" />
+		<!-- Formulario -->
+		<div class="row big-gap">
+			<div class="col-md-6 col-sm-4 blue-box padded-bot know-height">
+				<h:form role="registro"
+					styleClass="margined-left basic margined-top">
+					<label for="links" class="white">Registra links personales
+						o de tu trabajo</label>
 
-				<button type="button" class="btn btn-default link-btn">+</button>
-				<br />
-				<br />
-				<p:commandButton value="Continuar" process="@all" update="@all"
-					actionListener="#{beanRegistro.guardarUsuario()}"
-					styleClass="btn btn-default right margined-right"></p:commandButton>
-				<small class="white visible-xs">Ayuda si los demás pueden
-					ver tu trabajo o conocer más sobre ti</small>
+					<h:inputText rendered="#{beanRegistro.posLink >= 0}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 0}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink.link}" />
+					<br
+						style="visibility: #{beanRegistro.posLink >= 1 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 1}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink2.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 1}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink2.link}" />
+
+					<br
+						style="visibility: #{beanRegistro.posLink >= 2 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 2}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink3.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 2}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink3.link}" />
+
+<br
+						style="visibility: #{beanRegistro.posLink >= 3 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 3}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink4.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 3}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink4.link}" />
+
+					<br
+						style="visibility: #{beanRegistro.posLink >= 4 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 4}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink5.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 4}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink5.link}" />
+
+					<br
+						style="visibility: #{beanRegistro.posLink >= 5 ?'hidden':'visible'}" />
+					<h:inputText styleClass="form-control links nombre-link"
+						rendered="#{beanRegistro.posLink >= 5}"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink6.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 5}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink6.link}" />
+
+					<br
+						style="visibility: #{beanRegistro.posLink >= 6 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 6}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink7.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 6}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink7.link}" />
+
+					<br
+						style="visibility: #{beanRegistro.posLink >= 7 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 7}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink8.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 7}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink8.link}" />
+
+					<br
+						style="visibility: #{beanRegistro.posLink >= 8 ?'hidden':'visible'}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 8}"
+						styleClass="form-control links nombre-link"
+						placeholder="Nombre del link Ej: Facebook"
+						value="#{beanRegistro.usuarioLink9.nombre}" />
+					<h:inputText rendered="#{beanRegistro.posLink >= 8}"
+						styleClass="form-control links last-link profile-link"
+						placeholder="Ingresa un link"
+						value="#{beanRegistro.usuarioLink9.link}" />
+
+
+					<p:commandButton process="@all" disabled="#{beanRegistro.posLink >=8}" update="@all" value="+"
+						actionListener="#{beanRegistro.addUsuarioLink()}"></p:commandButton>
+					<!-- 					styleClass="btn btn-default link-btn"></p:commandButton>						 -->
+					<br />
+					<br />
+					<p:commandButton value="Continuar" process="@all" update="@all"
+						actionListener="#{beanRegistro.guardarUsuario()}"
+						styleClass="btn btn-default right margined-right"></p:commandButton>
+					<small class="white visible-xs">Ayuda si los demás pueden
+						ver tu trabajo o conocer más sobre ti</small>
 
 
 
 
-			</h:form>
-			<!-- Termina formulario-->
+				</h:form>
+				<!-- Termina formulario-->
 
+			</div>
+			<div class="col-md-6 col-sm-8 hidden-xs img-reg">
+				<div class="help-text justify">
+					<p class="white margined-left">Ahora agrega los links de las
+						redes sociales con las que cuentas, esto ayudará a otros usuarios
+						a conocer más de ti, y también servirá para mejorar la
+						visibilización de los proyectos que propongas en Troca.cc y así
+						conseguir más trueques y colaboración.</p>
+
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6 col-sm-8 hidden-xs img-reg">
-			<div class="help-text justify">
-     			 <p class="white margined-left">Ahora agrega los links de las redes sociales con las que cuentas, esto ayudará a otros usuarios a conocer más de ti, y también servirá para mejorar la visibilización de los proyectos que propongas en Troca.cc y así conseguir más trueques y colaboración.
-				 </p>
-      
-    		</div>
-		</div>
-	</div>
 
 
-	<!-- Foot -->
-	<div class="row">
-		<div class="col-md-12 hard-gray-box">
-			<nav>
-			<ul class="nav nav-tabs centre nav-justified">
-				<li><a href="faq.html" class="white hidden-xs">Preguntas
-						Frecuentes</a></li>
-				<li><a href="#" class="white">Contacto</a></li>
-				<li><a href="politicas.html" class="white hidden-xs">Política
-						de Privacidad</a></li>
-				<li><a href="#" class="white">Blog</a></li>
-			</ul>
-			</nav>
-		</div>
-	</div>
-	
 	</ui:define>
-	</ui:composition>
+</ui:composition>
 </html>

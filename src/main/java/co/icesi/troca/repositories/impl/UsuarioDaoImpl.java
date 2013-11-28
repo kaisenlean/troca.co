@@ -71,4 +71,22 @@ public class UsuarioDaoImpl extends GenericJpaRepository<Usuario, Integer>
 		return findByCriteria(crit);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.UsuarioDao#getByNombreApellido(java.lang.String)
+	 */
+	@Override
+	public Usuario getByNombreApellido(String nombre,String apellido) {
+		Criterion crit = Restrictions.eq("nombre", nombre);
+		Criterion crit2 = Restrictions.eq("apellido", apellido);
+		List<Usuario> lista =findByCriteria(crit,crit2);
+		if (lista.size()>0) {
+			return lista.get(0);
+		}else{
+			return null;
+			
+		}
+	}
+	
+	
+
 }

@@ -3,6 +3,8 @@
  */
 package co.icesi.troca.test.dao.necesito.categoria;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -11,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import co.icesi.troca.model.necesito.CategoriaNecesito;
 import co.icesi.troca.repositories.necesito.CategoriaNecesitoDao;
 import co.icesi.troca.test.BaseUnit;
-
-import static org.junit.Assert.assertNotNull;
 
 /**
  * 

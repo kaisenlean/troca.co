@@ -17,11 +17,14 @@ import co.icesi.troca.model.necesito.Necesito;
 import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.proyecto.ProyectoTengoUsuario;
 import co.icesi.troca.model.tengo.Tengo;
+import co.icesi.troca.model.usuario.Usuario;
+import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.necesito.CategoriaNecesitoService;
 import co.icesi.troca.services.necesito.NecesitoService;
 import co.icesi.troca.services.proyecto.ProyectoCategoriaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.proyecto.ProyectoTengoUsuarioService;
+import co.icesi.troca.views.component.autocomplete.usuario.AutocompleteUsuario;
 import co.icesi.troca.views.login.Login;
 /**
 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -41,7 +44,22 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 27/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * autocompleteUsuario
+	 */
+	private AutocompleteUsuario autocompleteUsuario;
 	
+	
+	
+	
+	/**
+	 * 27/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarios
+	 */
+	private List<Usuario> usuarios=new ArrayList<Usuario>();
 	/**
 	 * 24/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -88,8 +106,23 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	
 	
 	
+	/**
+	 * 27/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuarioService
+	 */
+	@ManagedProperty(value="#{usuarioService}")
+	private UsuarioService usuarioService;
+	
+	
+	/**
+	 * 27/11/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * proyectoTengoUsuarioService
+	 */
 	@ManagedProperty(value="#{proyectoTengoUsuarioService}")
 	private ProyectoTengoUsuarioService proyectoTengoUsuarioService;
+	
 	
 	/**
 	 * 24/11/2013
@@ -137,7 +170,6 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 * descripcionNecesito
 	 */
 	private String descripcionNecesito;
-	
 	
 	
 	
@@ -206,6 +238,16 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	private void init() {
 		nombreNecesito="";
 		descripcionNecesito="";
+		usuarios=usuarioService.findAll();
+	autocompleteUsuario=new AutocompleteUsuario() {
+			
+
+
+			@Override
+			public UsuarioService getService() {
+				return usuarioService;
+			}
+		};
 	}
 
 
@@ -381,5 +423,49 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	public void setProyectoTengoUsuarioService(
 			ProyectoTengoUsuarioService proyectoTengoUsuarioService) {
 		this.proyectoTengoUsuarioService = proyectoTengoUsuarioService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 27/11/2013
+	 * @return the autocompleteUsuario
+	 */
+	public AutocompleteUsuario getAutocompleteUsuario() {
+		return autocompleteUsuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 27/11/2013
+	 * @param autocompleteUsuario the autocompleteUsuario to set
+	 */
+	public void setAutocompleteUsuario(AutocompleteUsuario autocompleteUsuario) {
+		this.autocompleteUsuario = autocompleteUsuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 27/11/2013
+	 * @param usuarioService the usuarioService to set
+	 */
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 27/11/2013
+	 * @return the usuarios
+	 */
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 27/11/2013
+	 * @param usuarios the usuarios to set
+	 */
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }
