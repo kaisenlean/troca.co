@@ -31,7 +31,7 @@
 		<p:commandButton value="Buscar"  actionListener="#{beanProyecto.filtrarUsuarios()}" process="@all" update="tabbb"></p:commandButton>
 		</h:panelGrid>
 		
-		<p:dataTable value="#{beanProyecto.usuariosTarget}" var="ut"  id="tabbb">
+		<p:dataTable value="#{beanProyecto.usuariosTarget}" var="ut" widgetVar="tabbb"  id="tabbb">
 		<p:column >
 		<p:commandLink
 			styleClass="black black-link" value="#{ut}" actionListener="#{beanProyecto.addUnadidos(ut)}" process="@all" update="@form"><img
@@ -40,7 +40,7 @@
 		
 		</p:dataTable>
 		Agregados
-		<p:dataTable value="#{beanProyecto.unadidos}" var="uad"  id="tablaRes">
+		<p:dataTable value="#{beanProyecto.unadidos}" var="uad"  widgetVar="tablaRes" id="tablaRes">
 		<p:column >
 			<a href="#" class="black
 			 black-link"><img
@@ -48,7 +48,7 @@
 		</p:column>
 		
 		<p:column >
-		<p:commandButton value="Eliminar" process="@this" update="tabbb" actionListener="#{beanProyecto.removeUsuariosAnadido(uad)}"></p:commandButton>
+		<p:commandButton value="Eliminar" process="@this" update="tablaRes" actionListener="#{beanProyecto.removeUsuariosAnadido(uad)}"></p:commandButton>
 		</p:column>
 		
 		</p:dataTable>

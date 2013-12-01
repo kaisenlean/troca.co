@@ -73,4 +73,12 @@ public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> imp
 		return noticiaDao.findNoticiasByUsuario(usuario);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.noticia.NoticiaService#findUltimasNoticias(int)
+	 */
+	@Override
+	public List<Noticia> findUltimasNoticias(int maxResults) {
+		return noticiaDao.findUltimasNoticias(maxResults);
+	}
+
 }

@@ -486,5 +486,10 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return new StringBuilder(nombre==null?BLANK_SPACE:nombre).append(BLANK_SPACE).append(apellido==null?BLANK_SPACE:apellido).append("[").append(id).append("]").toString();
 	}
+	
+	public String getNombreCompleto(){
+		return new StringBuilder(nombre==null?BLANK_SPACE:nombre).append(BLANK_SPACE).append(apellido==null?BLANK_SPACE:apellido).toString();
+		
+	}
 
 }

@@ -9,7 +9,7 @@
 
 <ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
-
+		<h:form>
 		<!-- Registro -->
 		<div class="row gap">
 			<div class="col-md-12 red">
@@ -21,23 +21,15 @@
 
 		<!-- Formulario -->
 		<div class="row big-gap red-box">
-		<h:form>
+
 			<div class="col-md-6 col-sm-6 hugely-padded-bot know-height">
 				<div id="registro2" class="margined-left basic margined-top">
-					<c:forEach items="#{beanProyecto.necesitosProyecto}" var="necs">
-						<h:panelGrid columns="2">
-							<h:inputText value="#{necs.nombre}" />
 
-							<h:commandLink action="#" value="X" />
-						</h:panelGrid>
-
-
-					</c:forEach>
-					<div class="form-group">
+					<div >
 						<label for="necesito" class="white">Qué necesita tu
 							proyecto ?</label>
 						<h:inputText styleClass="form-control necesito last-necesito"
-							value="#{beanProyecto.nombreNecesito}"></h:inputText>
+							value="#{beanProyecto.nombreNecesito}" id="nombreNecesito"></h:inputText>
 						<label for="categoria-necesito" class="white desc-last-necesito">¿Qué
 							es?</label>
 						<h:selectOneMenu value="#{beanProyecto.categoriaNecesito}"
@@ -51,16 +43,27 @@
 							<strong>Descripción del Necesito </strong><small class="white">(Máximo
 								140 caracteres)</small>
 						</p>
-						<h:inputTextarea styleClass="form-control gap desc-last-necesito"
+						<h:inputTextarea id="descNecesito" styleClass="form-control gap desc-last-necesito"
 							rows="2" value="#{beanProyecto.descripcionNecesito}"></h:inputTextarea>
 
 						<p:commandButton value="Agregar"
 							actionListener="#{beanProyecto.agregarNecesito()}"
-							styleClass="btn btn-default necesito-btn" process="@all" 
-							update="@all"></p:commandButton>
+							 process="@all" 
+							update="tablaNecesitos,nombreNecesito,descNecesito,@all"></p:commandButton>
 						<!-- 							update="@all" styleClass="btn btn-default necesito-btn"></p:commandButton> -->
-
-
+<br/>
+<br/>
+<p:dataTable id="tablaNecesitos" widgetVar="tablaNecesitos" value="#{beanProyecto.necesitosProyecto}" var="neces">
+<p:column  headerText="Necesito">
+	#{neces.nombre}
+</p:column>
+<p:column>
+<p:commandButton value="Eliminar" process="@this" update="tablaNecesitos" actionListener="#{beanProyecto.removeNecesito(neces)}"></p:commandButton>
+</p:column>
+</p:dataTable>
+		<br></br>
+		<br></br>
+		
 						<p:button value="Continuar" outcome="/paginas/proyecto/crear_proyecto_3.jsf"
 							 styleClass="btn btn-default" ></p:button>
 					</div>
@@ -68,7 +71,7 @@
 
 				</div>
 			</div>
-			</h:form>
+<!-- 			</h:form> -->
 			<div class="col-md-6 col-sm-6 hidden-xs img-reg">
 				<div class="help-text justify">
 					<h4 class="white margined-left">¿ Qué necesitas para tu
@@ -87,7 +90,7 @@
 			</div>
 		</div>
 
-
+</h:form>
 	</ui:define>
 </ui:composition>
 

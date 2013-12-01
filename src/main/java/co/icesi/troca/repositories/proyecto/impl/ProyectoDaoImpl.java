@@ -6,7 +6,10 @@ package co.icesi.troca.repositories.proyecto.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -45,6 +48,23 @@ public class ProyectoDaoImpl extends GenericJpaRepository<Proyecto, Integer> imp
 	public List<Proyecto> findProyectosByUsuario(Usuario usuario) {
 	Criterion criteria= Restrictions.eq(FIELD_OWNER, usuario);
 		return findByCriteria(criteria);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.proyecto.ProyectoDao#findUltimosProyectos(int)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Proyecto> findUltimosProyectos(int maxResults) {
+		Order order = Order.desc("fechaRegistro");
+		Session session = getEntityManager().unwrap(Session.class);
+
+		Criteria crit = session.createCriteria(getEntityClass());
+		crit.addOrder(order);
+		crit.setFirstResult(0);
+		crit.setMaxResults(maxResults);
+		
+		return crit.list();
 	}
 
 }

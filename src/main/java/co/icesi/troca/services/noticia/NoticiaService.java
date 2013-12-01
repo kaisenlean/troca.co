@@ -27,6 +27,16 @@ public interface NoticiaService extends GenericService<Noticia, Integer> {
 	public List<Noticia> findUltimasNoticias();
 	
 	
+	
+	/**
+	 * Metodo que consulta las ultimas noticas en orden descendente
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 31/10/2013
+	* @return
+	 */
+	public List<Noticia> findUltimasNoticias(int maxResults);
+	
+	
 	/**
 	 * Metodo que consulta las noticias creadas por un usuario
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

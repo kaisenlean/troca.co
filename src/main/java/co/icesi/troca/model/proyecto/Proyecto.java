@@ -6,6 +6,7 @@
 package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import co.icesi.troca.model.usuario.Usuario;
@@ -91,6 +94,14 @@ public class Proyecto implements Serializable {
 	private ProyectoCategoria categoria;
 
 	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * fechaRegistro
+	 */
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_creacion")
+	private Date  fechaRegistro;
 	
 	/**
 	 * 30/11/2013
@@ -316,6 +327,24 @@ public class Proyecto implements Serializable {
 	 */
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the fechaRegistro
+	 */
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param fechaRegistro the fechaRegistro to set
+	 */
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 }

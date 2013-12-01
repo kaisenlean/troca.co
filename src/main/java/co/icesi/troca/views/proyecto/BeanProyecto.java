@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -249,6 +250,10 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 *         eliminados
 	 */
 	private List<ProyectoUsuario> eliminados = new ArrayList<ProyectoUsuario>();
+	
+	
+	
+	
 
 	/**
 	 * 1/12/2013
@@ -324,7 +329,9 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		necesito.setCategoria(categoriaNecesitoService
 				.findById(categoriaNecesito));
 		necesitosProyecto.add(necesito);
-		init();
+		nombreNecesito="";
+		descripcionNecesito="";
+//		init();
 
 	}
 
@@ -337,6 +344,9 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		if (categoriaProyecto == 0) {
 			mensajeError("Selecciona una categoria valida para el proyecto");
 			return;
+		}
+		if (proyecto.getId()==null) {
+			proyecto.setFechaRegistro(new Date());
 		}
 
 		proyecto.setCategoria(proyectoCategoriaService
@@ -355,8 +365,12 @@ public class BeanProyecto extends BaseBean implements Serializable {
 			necesitoService.save(necesito);
 
 		}
+		
 		for (Necesito necesito : necesitoEliminados) {
+		if (necesito.getId()!=null) {
+			
 			necesitoService.delete(necesito);
+		}
 		}
 
 		for (Tengo tengo : login.getUsuario().getTengos()) {
@@ -522,7 +536,22 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		unadidos = new ArrayList<Usuario>();
 		creados = new ArrayList<ProyectoUsuario>();
 		eliminados = new ArrayList<ProyectoUsuario>();
+		necesitosProyecto=new ArrayList<Necesito>();
+		necesitoEliminados= new ArrayList<Necesito>();
 		edita = false;
+	}
+	
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param necesito
+	*/
+	public void removeNecesito(Necesito necesito){
+		necesitosProyecto.remove(necesito);
+		necesitoEliminados.add(necesito);
+		
 	}
 
 	/**

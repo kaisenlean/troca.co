@@ -13,16 +13,12 @@
 			<h2 class="margined-left">Tengos</h2>
 			<span class="margined-left" /><small><p:commandLink
 					styleClass="blue blue-link" value="Crear
-					nuevo"
-					onclick="pnlCon.show();"></p:commandLink></small>
-			<button type="button"
-				class="btn btn-blue white-link margined-left blue-box">+</button>
+					nuevo" process="@this" actionListener="#{beanTengo.goToCreate()}"></p:commandLink></small>
+			<p:commandButton  actionListener="#{beanTengo.goToCreate()}" process="@this"
+				 value="+"></p:commandButton>
 		</div>
 	</div>
-	<p:panel widgetVar="pnlCon"  visible="false" closable="true">
-		<ui:include src="/paginas/tengo/crear_tengo.xhtml"></ui:include>
-
-	</p:panel>
+	
 	<div class="row">
 		<c:forEach var="tengo" items="#{login.usuario.tengos}">
 
@@ -31,7 +27,7 @@
 					<h4 class="blue blue-link small-margin-left tengo-btn">
 						<h:outputLabel value="#{tengo.nombre}" />
 					</h4>
-					<img src="#{request.contextPath}/img/profile.jpg"
+					<img src="#{request.contextPath}/foto/tengo/#{tengo.foto eq null?'tengo.jpg':tengo.foto }"
 						class="img-responsive not" style="display: none" />
 					<div class="caption not">
 						<p>

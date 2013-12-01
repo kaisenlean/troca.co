@@ -51,4 +51,12 @@ public class ProyectoServiceImpl extends GenericServiceImpl<Proyecto, Integer> i
 		return proyectoDao.findProyectosByUsuario(usuario);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.proyecto.ProyectoService#findUltimosProyectos(int)
+	 */
+	@Override
+	public List<Proyecto> findUltimosProyectos(int maxResults) {
+		return proyectoDao.findUltimosProyectos(maxResults);
+	}
+
 }
