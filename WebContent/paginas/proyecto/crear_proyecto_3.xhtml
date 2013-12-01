@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+
+		<!-- Registro -->
+		<div class="row gap">
+			<div class="col-md-12 red">
+				<h2 class="margined-left">Crea un proyecto</h2>
+				<span class="margined-left" /><small>Parte 3 de 3 -
+					Descripción</small>
+			</div>
+		</div>
+
+		<!-- Formulario -->
+		<div class="row big-gap red-box">
+			<div class="col-md-6 col-sm-6 hugely-padded-bot know-height">
+				<div id="registro2" class="margined-left basic margined-top">
+					<c:forEach items="#{beanProyecto.necesitosProyecto}" var="necs">
+						<h:panelGrid columns="2">
+							<h:inputText value="#{necs.nombre}" />
+
+							<h:commandLink action="#" value="X" />
+						</h:panelGrid>
+
+
+					</c:forEach>
+					<div class="form-group">
+
+						<div class="clearfix margined-bot"></div>
+						<a href="#modal-agregar-tengos" data-toggle="modal"
+							class="white margined-top white-link add-tengos"><strong>Agregar
+								Tengos </strong></a>
+
+						<div class="clearfix margined-bot"></div>
+						<a href="#modal-invitar-usuarios" data-toggle="modal"
+							class="white margined-top white-link add-tengos"><strong>Invitar
+								Usuarios</strong></a>
+								
+								<p:dataTable id="tblExist" value="#{beanProyecto.creados}" var="usuat">
+								<p:column>
+								<h:graphicImage value="/foto/usuario/#{usuat.usuario.fotografia}" />
+								<h:outputText value="#{usuat.usuario}" />
+								</p:column>
+								<p:column>
+								<p:commandButton value="Eliminar" actionListener="#{beanProyecto.removerUsuarioProyecto(usuat)}" process="@this" update="tblExist"></p:commandButton>
+								</p:column>
+								</p:dataTable>
+
+
+
+
+						<p:commandButton value="Crear Proyecto"
+							styleClass="btn btn-default big-margin-top right"
+							process="@all" update="@all"
+							actionListener="#{beanProyecto.guardarProyecto()}"></p:commandButton>
+
+
+						<p:commandButton value="Cancelar"
+							styleClass="btn btn-default big-margin-top padded-bot margined-right right"
+							process="@all" update="@all" action="/paginas/perfil/perfil.jsf"></p:commandButton>
+					
+
+
+					</div>
+					<!-- Termina formulario-->
+
+
+	<!-- Modal Agregar Tengos -->
+					<div class="modal fade" id="modal-agregar-tengos" tabindex="-1"
+						role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+						<div class="modal-dialog">
+						<h:form>
+						
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true"></button>
+									<h4 class="modal-title blue">Agregar Tengos</h4>
+								</div>
+								<div class="modal-body">
+									<p>Escoge los tengos que quieras agregarle a este proyecto</p>
+
+
+									<c:forEach var="tengo" items="#{login.usuario.tengos}">
+										<p>
+											<h:panelGrid styleClass="checkbox" columns="2">
+												<p:selectBooleanCheckbox value="#{tengo.seleccionado}">
+													<p:ajax event="change" process="@this"></p:ajax>
+												</p:selectBooleanCheckbox>
+												<h:outputText value="#{tengo.nombre}" />
+
+											</h:panelGrid>
+										</p>
+									</c:forEach>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancelar</button>
+									<button type="button" data-dismiss="modal"
+										class="btn btn-blue white white-link">Enviar</button>
+								</div>
+							</div>
+							</h:form>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal Agregar Tengos -->
+					
+					
+				
+					<!-- Modal Invitar Usuarios -->
+					<div class="modal fade" id="modal-invitar-usuarios" tabindex="-1"
+						role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true"></button>
+									<h4 class="modal-title blue">Invitar otros usuarios</h4>
+								</div>
+								<ui:include src="/paginas/proyecto/autocompleteUsuario.xhtml"></ui:include>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cerrar</button>
+<!-- 									<button type="button" class="btn btn-blue white white-link">Enviar</button> -->
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal Invitar usuarios-->
+
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 hidden-xs img-reg">
+				<div class="help-text justify">
+					<h4 class="white margined-left">¿ Qué necesitas para tu
+						proyecto ?</h4>
+					<p class="white margined-left">Ahora se deben definir las cosas
+						que necesitas para llevar a cabo tu proyecto, los “necesito”,
+						asegurate de hacer una lista con todo lo que requieres para
+						culminar el proyecto, puede ser conocimientos, objetos o espacios.
+					</p>
+					<p class="white margined-left">También debes agregar los
+						“tengo” con los que cuentas, los cuales has agregado anteriormente
+						a tu perfil. Puedes invitar personas a tu proyecto para que den
+						algunos de sus “tengo” y colaboren con el proyecto.</p>
+
+				</div>
+			</div>
+		</div>
+
+
+	</ui:define>
+</ui:composition>
+
+</html>

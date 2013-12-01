@@ -142,5 +142,22 @@ public class BaseBean {
 			mensaje("Error", ex.toString());
 		}
 	}
+	
+	
+	   /**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 30/11/2013
+	* @param file
+	* @return
+	*/
+	public String detectarExtension(String file) {
+	        for (int i = file.length() - 1; i > 0; i--) {
+	            if (file.charAt(i) == '.') {
+	                return file.substring(i, file.length());
+	            }
+	        }
+	        return null;
+	    }
+
 
 }

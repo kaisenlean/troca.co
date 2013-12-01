@@ -12,7 +12,7 @@
 		<!-- Primera parte perfil-->
 		<div class="row gap">
 			<div class="col-md-2 col-sm-2 col-xs-4  pic">
-				<a href="#"><img src="#{request.contextPath}/img/profile.jpg"
+				<a href="#"><img src="#{request.contextPath}/foto/usuario/#{login.usuario.fotografia eq null ?'logo_header.png':login.usuario.fotografia }"
 					class="img-responsive margined-left gray-border" /></a>
 			</div>
 			<div class="col-md-10 col-sm-10 hidden-xs padded-top">

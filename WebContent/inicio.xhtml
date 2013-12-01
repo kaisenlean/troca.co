@@ -12,7 +12,12 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form enctype="multipart/form-data">
+	
+		<p:fileUpload  value="#{beanProyecto.file}" mode="simple"   ></p:fileUpload>
+							<br></br>
+							 <p:commandButton value="Submit" ajax="false" 
+                            actionListener="#{beanProyecto.uploadHandlerPhoto1()}"/>  
 		<h:outputText value="#{addBike.lista}"></h:outputText>
 				<h:panelGrid columns="3">
 

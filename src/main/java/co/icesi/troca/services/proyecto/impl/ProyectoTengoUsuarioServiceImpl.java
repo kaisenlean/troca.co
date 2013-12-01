@@ -4,11 +4,14 @@
 package co.icesi.troca.services.proyecto.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.proyecto.ProyectoTengoUsuario;
+import co.icesi.troca.model.tengo.Tengo;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.proyecto.ProyectoTengoUsuarioDao;
 import co.icesi.troca.services.impl.GenericServiceImpl;
@@ -41,6 +44,23 @@ public class ProyectoTengoUsuarioServiceImpl extends GenericServiceImpl<Proyecto
 	@Override
 	public GenericRepository<ProyectoTengoUsuario, Integer> getDao() {
 		return proyectoTengoUsuarioDao;
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.proyecto.ProyectoTengoUsuarioService#findTengosByProyecto(co.icesi.troca.model.proyecto.Proyecto)
+	 */
+	@Override
+	public List<ProyectoTengoUsuario> findTengosByProyecto(Proyecto proyecto) {
+		return proyectoTengoUsuarioDao.findTengosByProyecto(proyecto);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.proyecto.ProyectoTengoUsuarioService#getByTengoAndProyecto(co.icesi.troca.model.proyecto.Proyecto, co.icesi.troca.model.tengo.Tengo)
+	 */
+	@Override
+	public ProyectoTengoUsuario getByTengoAndProyecto(Proyecto proyecto,
+			Tengo tengo) {
+		return proyectoTengoUsuarioDao.getByTengoAndProyecto(proyecto, tengo);
 	}
 
 }

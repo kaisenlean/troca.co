@@ -225,6 +225,8 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	@Override
 	
 	public void delete(T entity) {
+//		Session session = getEntityManager().unwrap(Session.class);
+//		session.delete(entity);
 		getEntityManager().remove(getEntityManager().contains(entity) ? entity : getEntityManager().merge(entity));
 	}
 

@@ -8,10 +8,13 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import co.icesi.troca.model.necesito.Necesito;
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.repositories.impl.GenericJpaRepository;
 import co.icesi.troca.repositories.necesito.NecesitoDao;
 
@@ -47,6 +50,15 @@ public class NecesitoDaoImpl extends GenericJpaRepository<Necesito, Integer> imp
 		crit.setMaxResults(maxResults);
 		
 		return crit.list();
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.necesito.NecesitoDao#findNecesitoByProyecto(co.icesi.troca.model.proyecto.Proyecto)
+	 */
+	@Override
+	public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
+		Criterion criterion = Restrictions.eq("proyecto", proyecto);
+		return findByCriteria(criterion);
 	}
 
 }

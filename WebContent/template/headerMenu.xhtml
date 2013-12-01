@@ -38,7 +38,7 @@
 				<li><a href="#modal-registro" data-toggle="modal"
 					class="oneline log-omega"
 					style="visibility: #{login.usuario eq null?'visible':'hidden'}">#{msgMenu.labelIngresa}</a></li>
-				<li><a href="#" class="oneline log-alpha not" id="notif"><span
+				<li><a href="#" style="visibility: #{login.usuario eq null ? 'hidden':'visible'}" class="oneline log-alpha not" id="notif"><span
 						class="glyphicon glyphicon-envelope"></span></a> <!-- Notificaciones -->
 					<ul class="not" id="body-notif">
 
@@ -198,7 +198,7 @@
 						rendered="${login.usuario ne null ? true:false}">
 						#{login.usuario}
 					</h:outputLink></li>
-				<li><p:commandLink rendered="${login.usuario ne null ? true:false}" process="@this" actionListener="#{login.logOut()}" value="Logut" styleClass="oneline log-omega"></p:commandLink></li>
+				<li><p:commandLink rendered="${login.usuario ne null ? true:false}" process="@this" actionListener="#{login.logOut()}" value="Logout" styleClass="oneline log-omega"></p:commandLink></li>
 			</ul>
 
 

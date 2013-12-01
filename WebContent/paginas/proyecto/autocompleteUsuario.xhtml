@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+
+		<h:form>
+	<div class="modal-body">
+		<p>Invita otros usuarios como participantes de tu proyecto</p>
+		<p>Búsca por nombre de usuario o correo electrónico</p>
+		<!-- 			<p:autoComplete size="50" style="width:400px" id="proveedorIngreso" -->
+		<!-- 				value="#{beanProyecto.autocompleteUsuario.query}" -->
+		<!-- 				completeMethod="#{beanProyecto.autocompleteUsuario.completarBusqueda}"> -->
+		<!-- 				<p:ajax event="itemSelect" update="@all" process="@this" -->
+		<!-- 					listener="#{beanProyecto.autocompleteUsuario.seleccionar}"> -->
+
+		<!-- 				</p:ajax> -->
+		<!-- 			</p:autoComplete> -->
+		<h:panelGrid columns="2">
+		<p:inputText id="txtFiltroBusc" value="#{beanProyecto.queryFind}" />
+		<p:commandButton value="Buscar"  actionListener="#{beanProyecto.filtrarUsuarios()}" process="@all" update="tabbb"></p:commandButton>
+		</h:panelGrid>
+		
+		<p:dataTable value="#{beanProyecto.usuariosTarget}" var="ut"  id="tabbb">
+		<p:column >
+		<p:commandLink
+			styleClass="black black-link" value="#{ut}" actionListener="#{beanProyecto.addUnadidos(ut)}" process="@all" update="@form"><img
+					src="#{ust.fotografia}" /> "#{ut}"</p:commandLink>
+		</p:column>
+		
+		</p:dataTable>
+		Agregados
+		<p:dataTable value="#{beanProyecto.unadidos}" var="uad"  id="tablaRes">
+		<p:column >
+			<a href="#" class="black
+			 black-link"><img
+					src="#{uad.fotografia}" /> "#{uad}"</a>
+		</p:column>
+		
+		<p:column >
+		<p:commandButton value="Eliminar" process="@this" update="tabbb" actionListener="#{beanProyecto.removeUsuariosAnadido(uad)}"></p:commandButton>
+		</p:column>
+		
+		</p:dataTable>
+		
+	</div>
+		</h:form>
+</h:body>
+</html>

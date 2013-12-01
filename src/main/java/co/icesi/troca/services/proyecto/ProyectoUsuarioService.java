@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package co.icesi.troca.services.proyecto;
+
+import java.util.List;
+
+import co.icesi.troca.model.proyecto.Proyecto;
+import co.icesi.troca.model.proyecto.ProyectoUsuario;
+import co.icesi.troca.model.usuario.Usuario;
+import co.icesi.troca.services.GenericService;
+
+/**
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class ProyectoUsuarioService
+ * @date 1/12/2013
+ *
+ */
+public interface ProyectoUsuarioService extends GenericService<ProyectoUsuario, Integer> {
+
+	
+	/**
+	 * Método que consulta un registro de {@link ProyectoUsuario} por criterio de {@link Usuario} y {@link Proyecto}
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param usuario
+	* @param proyecto
+	* @return
+	*/
+	public ProyectoUsuario getByUsuarioAndProyecto(Usuario usuario,Proyecto proyecto);
+	
+	
+	
+	/**
+	 * Método que consulta los usuarios relacionados a un proyecto parametrizado
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param proyecto
+	* @return
+	*/
+	public List<ProyectoUsuario> findByProyecto(Proyecto proyecto);
+}

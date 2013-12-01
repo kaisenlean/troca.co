@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 function avanzar(){
 
@@ -14,53 +14,85 @@ function avanzar(){
 	pnlSegPass.show();
 }
 </script>
-<h:form>
+	<h:form>
 
 
-	<!-- Crear proyecto 2da parte-->
-	<div class="row gap">
-		<div class="col-md-12 red">
-			<h2 class="margined-left">Proyectos</h2>
-			<span class="margined-left" /><small><p:commandLink value="Crear Nuevo"
-				 process="@this" onclick="pnlProy.show();" styleClass="red red-link"></p:commandLink></small>
-			<p:commandButton value="+" 
-				type="button" onclick="pnlProy.show();"	process="@this" ></p:commandButton>
+		<!-- Crear proyecto 2da parte-->
+		<div class="row gap">
+			<div class="col-md-12 red">
+				<h2 class="margined-left">Proyectos</h2>
+				<span class="margined-left" /><small><p:commandLink
+						value="Crear Nuevo" process="@this"
+						actionListener="#{beanProyecto.goTo1()}" styleClass="red red-link"></p:commandLink></small>
+				<p:commandButton value="+" actionListener="#{beanProyecto.goTo1()}"
+					type="button" process="@this"></p:commandButton>
+			</div>
 		</div>
-	</div>
-
-<p:panel  widgetVar="pnlProy" id="pnlProy" visible="false" closable="true">
-<ui:include src="/paginas/proyecto/crear_proyecto_1.xhtml"></ui:include>
-<p:commandButton value="Continuar" process="@this"  update="@all" onclick="avanzar();" partialSubmit="true" type="button"></p:commandButton>
-</p:panel>
 
 
-<p:panel id="pnlSegPass" widgetVar="pnlSegPass" visible="false">
-<ui:include src="/paginas/proyecto/crear_proyecto_2.xhtml"></ui:include>
-</p:panel>
-	<!-- Listado de Proyectos -->
 
-	<div class="row">
-		<c:forEach var="proy" items="#{login.usuario.proyectos}">
+		<!-- Listado de Proyectos -->
+
+		<div class="row">
+			<c:forEach var="proy" items="#{login.usuario.proyectos}">
 
 
-			<div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 clearfix">
-				<div class="thumbnail red-border margined margined-bot">
-					<a href="#" class="red-link red"><h3
-							class="small-margin-left tengo-btn">#{proy.nombre}</h3></a> <img
-						src="img/profile.jpg" class="img-responsive" />
-					<div class="caption">
-						<p>#{proy.descripcion}</p>
-						<p>
-							<a href="#" class="btn btn-default small-margin-top">Editar</a> <a
-								href="#" class="btn btn-red small-margin-top">Ver más</a>
-						</p>
+				<div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 clearfix">
+					<div class="thumbnail red-border margined margined-bot">
+						<a href="#" class="red-link red"><h4
+								class="small-margin-left tengo-btn">#{proy.nombre}</h4></a> 
+								<h:graphicImage styleClass="img-responsive" url="/foto/proyecto/#{proy.image eq null? 'logo_header.png':proy.image}" />
+<!-- 								<img -->
+<!-- 							src="img/profile.jpg" class="img-responsive" /> -->
+						<div class="caption">
+							<p>#{proy.descripcion}</p>
+							<p>
+								<a href="#modal-eliminar-proyecto#{proy.id}" data-toggle="modal"
+									class="btn btn-red white white-link small-margin-top"><span
+									class="glyphicon glyphicon-trash"></span></a>
+									
+									 <p:commandLink
+									styleClass="btn btn-default black black-link small-margin-top" actionListener="#{beanProyecto.editarProyecto(proy)}" process="@this" update="@all"><span
+									class="glyphicon glyphicon-list-alt"></span></p:commandLink> 
+									
+									<p:commandLink
+									styleClass="btn btn-blue small-margin-top">Ver más</p:commandLink>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
 
-		</c:forEach>
+				<!-- Modal Eliminar Proyecto -->
+				<div class="modal fade" id="modal-eliminar-proyecto#{proy.id}" tabindex="-1"
+					role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title blue">Eliminar Proyecto</h4>
+							</div>
+							<div class="modal-body">
+								<p>¿Estás seguro de querer eliminar este Proyecto?</p>
 
-	</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Cancelar</button>
+									<h:commandButton styleClass="btn btn-red white white-link" value="Eliminar" actionListener="#{beanProyecto.eliminarProyecto(proy)}"></h:commandButton>
+<!-- 								<button type="button" class="btn btn-red white white-link">Eliminar</button> -->
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal Eliminar Proyecto -->
+			</c:forEach>
 
-</h:form>
+
+
+		</div>
+
+	</h:form>
 </f:view>

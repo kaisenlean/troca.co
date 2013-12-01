@@ -7,7 +7,7 @@
 
 	<ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
-	<h:form>
+	<h:form enctype="multipart/form-data">
 
 
 		<!-- Registro -->
@@ -22,10 +22,14 @@
 		<!-- Formulario -->
 		<div class="row big-gap">
 			<div class="col-md-6 col-sm-4 blue-box padded-bot know-height">
-				<h:form role="registro" styleClass="margined-left basic margined-top">
+				<div   class="margined-left basic margined-top">
 					<div class="form-group">
-						<label for="profile-pic" class="white">Foto de Perfil</label> <input
-							type="file" id="profile-pic" />
+						<label for="profile-pic" class="white">Foto de Perfil</label> 
+						
+						<p:fileUpload  value="#{beanRegistro.file}" mode="simple"   ></p:fileUpload>
+							<br></br>
+							 <p:commandButton  value="Submit" ajax="false" 
+                            actionListener="#{beanRegistro.uploadHandlerPhoto1()}"/> 
 						<p class="help-block">Carga una foto para tu perfil</p>
 					</div>
 					<p class="light-gray margined-top">Escribe tu biografía</p>
@@ -42,7 +46,7 @@
 
 
 
-				</h:form>
+				</div>
 				<!-- Termina formulario-->
 
 			</div>

@@ -1,76 +1,112 @@
-<f:view xmlns="http://www.w3.org/1999/xhtml"
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:p="http://primefaces.org/ui">
 
-	<!-- Registro -->
-	<div class="row gap">
-		<div class="col-md-12 red">
-			<h2 class="margined-left">Crea un proyecto</h2>
-			<span class="margined-left" /><small>Parte 1 de 2 -
-				Descripción</small>
+<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+<h:form enctype="multipart/form-data">
+		<!-- Registro -->
+		<div class="row gap">
+			<div class="col-md-12 red">
+				<h2 class="margined-left">Crea un proyecto</h2>
+				<span class="margined-left" /><small>Parte 1 de 3 -
+					Descripción</small>
+			</div>
 		</div>
-	</div>
 
-	<!-- Formulario -->
-	
+		<!-- Formulario -->
 
-	<div class="row big-gap red-box">
-		<div class="col-md-6 col-sm-6 hugely-padded-bot know-height">
-						<div id="registro" class="margined-left basic margined-top">
-			<div class="form-group">
-				<label for="proyecto-nombre" class="white">Título del
-					Proyecto</label> <br />
-				<p:inputText id="proyecto-nombre" size="50"
-					value="#{beanProyecto.proyecto.nombre}"></p:inputText>
+
+		<div class="row big-gap red-box">
+			<div class="col-md-6 col-sm-6 hugely-padded-bot know-height">
+				<div id="registro" class="margined-left basic margined-top">
+					<div class="form-group">
+						<label for="proyecto-nombre" class="white">Título del
+							Proyecto</label> <br />
+						<p:inputText id="proyecto-nombre" size="50"
+							value="#{beanProyecto.proyecto.nombre}"></p:inputText>
+					</div>
+					<p class="white margined-top">
+						<strong>Descripción del Proyecto</strong>
+					</p>
+					<p:inputTextarea rows="8" cols="50"
+						value="#{beanProyecto.proyecto.descripcionLarga}">
+
+					</p:inputTextarea>
+					<p class="white margined-top">
+						<strong>Descripción Corta del proyecto </strong><small
+							class="white"> (´Máximo 140 caracteres)</small>
+					</p>
+					<p:inputTextarea rows="2" cols="50"
+						value="#{beanProyecto.proyecto.descripcion}"></p:inputTextarea>
+					<div class="form-group">
+						<label for="licencia-proyecto" class="white">¿En qué
+							licencia lo pondrías?</label>
+						<h:selectOneMenu value="#{beanProyecto.categoriaProyecto}"
+							styleClass="form-control" id="licencia-proyecto">
+							<f:selectItems value="#{itemsProyectoCategoria.items}"></f:selectItems>
+							<p:ajax event="change" process="@this"></p:ajax>
+						</h:selectOneMenu>
+						<small class="white">Para mayor información sobre las
+							licencias: <a href="http://creativecommons.org/licenses/"
+							class="white white-link" target="_blank">entrar aquí</a>
+						</small>
+					</div>
+<!-- 					<div class="form-group"> -->
+					<div >
+						<label for="proyecto-pic" class="white">Foto del proyecto</label><small
+							class="white"> (Tamaños grandes - 1000px - y cuadrados
+							funcionan mejor)</small>
+														
+							<p:fileUpload  value="#{beanProyecto.file}" mode="simple"   ></p:fileUpload>
+							<br></br>
+							 <p:commandButton  value="Submit" ajax="false" 
+                            actionListener="#{beanProyecto.uploadHandlerPhoto1()}"/>  
+						
+<!-- 							 <input type="file" id="proyecto-pic" /> -->
+<!-- 						<p class="help-block">Carga una foto de tu proyecto</p> -->
+					</div>
+					<div class="form-group">
+						<label for="proyecto-url" class="white">Video del Proyecto</label><small
+							class="white"> (Youtube)</small> <input type="url"
+							class="form-control" id="proyecto-url"
+							placeHolder="Copia la dirección del video" />
+					</div>
+
+
+					<p:commandButton value="Continuar" process="@all" update="@all"
+						action="#{beanProyecto.goTo2()}" ></p:commandButton>
+
+				</div>
+
 			</div>
-			<p class="white margined-top">
-				<strong>Descripción del Proyecto</strong>
-			</p>
-			<p:inputTextarea rows="8" cols="50"
-				value="#{beanProyecto.proyecto.descripcionLarga}">
 
-			</p:inputTextarea>
-			<p class="white margined-top">
-				<strong>Descripción Corta del proyecto </strong><small class="white">
-					(´Máximo 140 caracteres)</small>
-			</p>
-			<p:inputTextarea rows="2" cols="50"
-				value="#{beanProyecto.proyecto.descripcion}"></p:inputTextarea>
-			<div class="form-group">
-				<label for="licencia-proyecto" class="white">¿En qué
-					categoría lo pondrías?</label>
-				<h:selectOneMenu value="#{beanProyecto.categoriaProyecto}" styleClass="form-control" id="licencia-proyecto">
-					<f:selectItems value="#{itemsProyectoCategoria.items}"></f:selectItems>
-					<p:ajax event="change" process="@this"></p:ajax>
-				</h:selectOneMenu>
-				<small class="white">Para mayor información sobre las
-					licencias: <a href="http://creativecommons.org/licenses/"
-					class="white white-link" target="_blank">entrar aquí</a>
-				</small>
+			<div class="col-md-6 col-sm-6 hidden-xs img-reg">
+				<div class="help-text justify">
+					<h4 class="white margined-left">Algunos consejos:</h4>
+					<p class="white margined-left">Nombra tu proyecto de manera
+						llamativa y usa palabras claves que se puedan encontrar con
+						facilidad</p>
+					<p class="white margined-left">
+						Recuerda la licencia de creative commons, lee más <a
+							class="white white-link"
+							href="http://creativecommons.org/licenses/">aquí</a>
+					</p>
+					<p class="white margined-left">Un video es la mejor manera de
+						describir tu proyecto. Recuerda incluir el quién, qué, por qué,
+						cómo, cuándo y dónde de tu proyecto. Debes cargarlo a youtube y
+						copiar la url en el formulario</p>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="proyecto-pic" class="white">Foto del proyecto</label><small
-					class="white"> (Tamaños grandes - 1000px - y cuadrados
-					funcionan mejor)</small> <input type="file" id="proyecto-pic" />
-				<p class="help-block">Carga una foto de tu proyecto</p>
-			</div>
-			<div class="form-group">
-				<label for="proyecto-url" class="white">Video del Proyecto</label><small
-					class="white"> (Youtube)</small> <input type="url"
-					class="form-control" id="proyecto-url"
-					placeHolder="Copia la dirección del video" />
-			</div>
-
-
-
-
-						</div>
 
 		</div>
-		<div class="col-md-6 col-sm-6 hidden-xs img-reg"></div>
-	</div>
 
-</f:view>
+
+
+</h:form>
+	</ui:define>
+</ui:composition>
+</html>

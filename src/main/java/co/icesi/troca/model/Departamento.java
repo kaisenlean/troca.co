@@ -53,6 +53,7 @@ public class Departamento implements Serializable {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "pais", referencedColumnName = "id")
+	
 	private Pais pais;
 
 	/**

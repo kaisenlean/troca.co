@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.icesi.troca.model.necesito.Necesito;
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.necesito.NecesitoDao;
 import co.icesi.troca.services.GenericService;
@@ -62,5 +63,14 @@ public void setNecesitoDao(NecesitoDao necesitoDao) {
 @Override
 public List<Necesito> findUltimosNecesito() {
 	return necesitoDao.findUltimosNecesito(2);
+}
+
+
+/** (non-Javadoc)
+ * @see co.icesi.troca.services.necesito.NecesitoService#findNecesitoByProyecto(co.icesi.troca.model.proyecto.Proyecto)
+ */
+@Override
+public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
+	return necesitoDao.findNecesitoByProyecto(proyecto);
 }
 }

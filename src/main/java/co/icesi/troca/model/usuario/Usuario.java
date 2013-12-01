@@ -139,6 +139,8 @@ public class Usuario implements Serializable {
 
 	
 	
+	@Transient
+	private String extension;
 
 	/**
 	 * 28/11/2013
@@ -456,6 +458,24 @@ public class Usuario implements Serializable {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the extension
+	 */
+	public String getExtension() {
+		return extension;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param extension the extension to set
+	 */
+	public void setExtension(String extension) {
+		this.extension = extension;
 	}
 
 	

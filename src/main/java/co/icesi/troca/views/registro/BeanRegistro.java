@@ -1,5 +1,9 @@
 package co.icesi.troca.views.registro;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 
+import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +36,8 @@ import co.icesi.troca.services.PaisService;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
+
+import com.sun.faces.context.ExternalContextImpl;
 /**
  * Bean que controla el registro de un usuario al sistema
 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -39,6 +46,20 @@ import co.icesi.troca.services.usuario.UsuarioLinkService;
 * @date 22/10/2013
 *
  */
+/**
+* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @project troca-co
+* @class BeanRegistro
+* @date 1/12/2013
+*
+*/
+/**
+* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+* @project troca-co
+* @class BeanRegistro
+* @date 1/12/2013
+*
+*/
 @ManagedBean
 @SessionScoped
 public class BeanRegistro extends BaseBean implements Serializable {
@@ -231,6 +252,22 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	
 	
 	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * file
+	 */
+	private UploadedFile file;
+	
+	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * in
+	 */
+	private InputStream in;
+	
+	
+	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
 	*/
@@ -252,6 +289,48 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		captureContextPath();
 	}
 
+	
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	*/
+	public void uploadHandlerPhoto1() {
+		try {
+			in = file.getInputstream();
+			usuario.setExtension(detectarExtension(file.getFileName()));
+		} catch (IOException e) {
+			mensajeError(e.toString());
+		}
+
+	}
+	
+	public void uploadPhotoFile() throws Exception {
+		ExternalContextImpl request;
+		request = (ExternalContextImpl) FacesContext.getCurrentInstance()
+				.getExternalContext();
+
+		String path = request.getRealPath("/foto/usuario/");
+		OutputStream out = new FileOutputStream(path + "/" + usuario.getId()
+				+ usuario.getExtension());
+		usuario.setFotografia( usuario.getId()
+				+ usuario.getExtension());
+		usuario=usuarioService.save(usuario);
+		if (in != null) {
+			int b = 0;
+			while (b != -1) {
+				b = in.read();
+				if (b != -1) {
+					out.write(b);
+
+				}
+
+			}
+		}
+
+	}
+	
 	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -301,8 +380,9 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		usuario.setPassword(encoderManager.encodeMd5Hash(usuario.getPassword()));
 		try {
 //		loginNotification.enviarMailAutenticacionCuenta(usuario);
+			String ext= usuario.getExtension();
 		usuario=usuarioService.save(usuario);
-		
+		usuario.setExtension(ext);
 		/*guardamos los links*/
 		usuarioLink.setUsuario(usuario);
 		usuarioLinkService.save(usuarioLink);
@@ -342,6 +422,10 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		usuarioLink9.setUsuario(usuario);
 		usuarioLinkService.save(usuarioLink9);
 		
+		
+		if (in!=null) {
+			uploadPhotoFile();
+		}
 		} catch (Exception e) {
 			LOGGER.error(e.toString());
 		}
@@ -845,4 +929,22 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		this.usuarioLink9 = usuarioLink9;
 	}
 	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the file
+	 */
+	public UploadedFile getFile() {
+		return file;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param file the file to set
+	 */
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
 }

@@ -7,13 +7,16 @@ package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -37,7 +40,6 @@ public class ProyectoUsuario implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -45,15 +47,17 @@ public class ProyectoUsuario implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * proyecto
 	 */
-	@Column(name = "proyecto")
-	private Integer proyecto;
+	@ManyToOne
+	@JoinColumn(name = "proyecto")
+	private Proyecto proyecto;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuario
 	 */
-	@Column(name = "usuario")
-	private Integer usuario;
+	@ManyToOne
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -94,7 +98,7 @@ public class ProyectoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getProyecto() {
+	public Proyecto getProyecto() {
 		return proyecto;
 	}
 
@@ -103,7 +107,7 @@ public class ProyectoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @param proyecto
 	*/
-	public void setProyecto(Integer proyecto) {
+	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
 
@@ -112,7 +116,7 @@ public class ProyectoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -121,7 +125,7 @@ public class ProyectoUsuario implements Serializable {
 	* @date 12/11/2013
 	* @param usuario
 	*/
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
