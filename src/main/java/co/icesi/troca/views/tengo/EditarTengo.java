@@ -3,6 +3,10 @@
  */
 package co.icesi.troca.views.tengo;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +15,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.model.UploadedFile;
+
+import com.sun.faces.context.ExternalContextImpl;
 
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.tengo.EstadoTengo;
@@ -86,6 +95,73 @@ public class EditarTengo extends BaseBean implements Serializable {
 	@ManagedProperty( value="#{tengoService}")
 	private TengoService tengoService;
 	
+	
+	
+	
+	
+	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * in
+	 */
+	private InputStream in;
+	
+	
+	
+	/**
+	 * 30/11/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         file
+	 */
+	private UploadedFile file;
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @throws Exception
+	*/
+	public void uploadPhotoFile() throws Exception {
+		ExternalContextImpl request;
+		request = (ExternalContextImpl) FacesContext.getCurrentInstance()
+				.getExternalContext();
+
+		String path = request.getRealPath("/foto/tengo/");
+		OutputStream out = new FileOutputStream(path + "/" + tengo.getId()
+				+ tengo.getExtension());
+
+		if (in != null) {
+			int b = 0;
+			while (b != -1) {
+				b = in.read();
+				if (b != -1) {
+					out.write(b);
+
+				}
+
+			}
+		}
+
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 30/11/2013
+	 * @param event
+	 */
+	public void uploadHandlerPhoto1() {
+		try {
+			in = file.getInputstream();
+			tengo.setExtension(detectarExtension(file.getFileName()));
+		} catch (IOException e) {
+			mensajeError(e.toString());
+		}
+
+	}
+	
+	
 	/**
 	 * 
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -96,7 +172,18 @@ public class EditarTengo extends BaseBean implements Serializable {
 		tengo.setEstado(EstadoTengo.ACTIVO);
 		tengo.setOwner(login.getUsuario());
 		tengo.setFechaRegistro(new Date());
-		tengoService.save(tengo);
+		String ext= tengo.getExtension();
+		tengo=tengoService.save(tengo);
+		tengo.setExtension(ext);
+		if (in!=null) {
+			try {
+				uploadPhotoFile();
+				tengo.setFoto(tengo.getId()+tengo.getExtension());
+				tengo=tengoService.save(tengo);
+			} catch (Exception e) {
+				mensajeError(e.toString());
+			}
+		}
 		login.reloadTengosProyectos();
 		
 		goTo("/paginas/perfil/perfil.jsf");
@@ -216,4 +303,21 @@ public class EditarTengo extends BaseBean implements Serializable {
 		this.ultimosTengos = ultimosTengos;
 	}
 	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the file
+	 */
+	public UploadedFile getFile() {
+		return file;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param file the file to set
+	 */
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
 }

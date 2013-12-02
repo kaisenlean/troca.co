@@ -1,51 +1,61 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-     >
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<ui:composition template="./../../template/mainThm.xhtml">
-	<ui:define name="content">
+	<script type="text/javascript">
+
+function avanzar(){
+
+	pnlProy.close();
+	pnlSegPass.show();
+}
+</script>
 	<h:form>
 
-<div class="row gap">
+
+		<!-- Crear proyecto 2da parte-->
+		<div class="row gap">
 			<div class="col-md-12 red">
-				<h2 class="margined-left">Ultimos proyectos</h2>
-			
+				<h2 class="margined-left">Proyectos</h2>
+				
 			</div>
 		</div>
-<div class="row">
 
 
-			<c:forEach var="proy" items="#{ultimosProyectos.proyectos}">
+
+		<!-- Listado de Proyectos -->
+
+		<div class="row">
+			<c:forEach var="proy" items="#{perfilDe.usuario.proyectos}">
 
 
 				<div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 clearfix">
 					<div class="thumbnail red-border margined margined-bot">
 						<a href="#" class="red-link red"><h4
 								class="small-margin-left tengo-btn">#{proy.nombre}</h4></a> 
-								<h:graphicImage styleClass="img-responsive" url="/foto/proyecto/#{proy.image eq null? 'logo_header.png':proy.image}" />
+								<h:graphicImage styleClass="img-responsive" url="/foto/proyecto/#{proy.image eq null? 'proyecto.jpg':proy.image}" />
 <!-- 								<img -->
 <!-- 							src="img/profile.jpg" class="img-responsive" /> -->
 						<div class="caption">
 							<p>#{proy.descripcion}</p>
 							<p>
-									<p:commandLink process="@this" actionListener="#{beanProyecto.verDetalleProyecto(proy)}"									
+									<p:commandLink process="@this" actionListener="#{beanProyecto.verDetalleProyecto2(proy)}"
 									styleClass="btn btn-blue small-margin-top">Ver más</p:commandLink>
 							</p>
 						</div>
 					</div>
 				</div>
 
+			
 			</c:forEach>
 
 
+
 		</div>
-		
+
 	</h:form>
-	</ui:define>
-</ui:composition>
-</html>
+</f:view>

@@ -26,12 +26,12 @@
 					<div class="col-md-3 col-lg-2 col-sm-4 col-xs-12 clearfix">
 						<div class="thumbnail light-border margined margined-bot cien">
 							<h4 class="gray gray-link small-margin-left tengo-btn">#{proy.titulo}</h4>
-							<img src="img/profile.jpg" class="img-responsive not"
+							<img src="#{request.contextPath}/foto/noticia/#{proy.fotografia eq null ?'noticia.png':proy.fotografia}" class="img-responsive not"
 								style="display: none" />
 							<div class="caption not">
 								<p>#{proy.noticia}</p>
 								<p>
-									<a href="#" class="btn btn-default small-margin-top">Ver</a>
+									<p:commandLink actionListener="#{beanNoticia.verDetalleNoticia(proy)}" styleClass="btn btn-default small-margin-top">Ver</p:commandLink>
 								</p>
 							</div>
 						</div>

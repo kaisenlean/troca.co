@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -66,6 +67,17 @@ public class TengoDaoImpl extends GenericJpaRepository<Tengo, Integer> implement
 		
 		return crit.list();
 		
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.tengo.TengoDao#findTengoByParam(java.lang.String)
+	 */
+	@Override
+	public List<Tengo> findTengoByParam(String param) {
+		
+		Criterion criterion= Restrictions.like("descripcion", param,MatchMode.ANYWHERE);
+		
+		return findByCriteria(criterion);
 	}
 
 }

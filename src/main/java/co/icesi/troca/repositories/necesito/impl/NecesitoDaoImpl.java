@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -58,6 +59,15 @@ public class NecesitoDaoImpl extends GenericJpaRepository<Necesito, Integer> imp
 	@Override
 	public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
 		Criterion criterion = Restrictions.eq("proyecto", proyecto);
+		return findByCriteria(criterion);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.necesito.NecesitoDao#findNecesitoByParam(java.lang.String)
+	 */
+	@Override
+	public List<Necesito> findNecesitoByParam(String param) {
+		Criterion criterion= Restrictions.like("nombre", param, MatchMode.ANYWHERE);
 		return findByCriteria(criterion);
 	}
 

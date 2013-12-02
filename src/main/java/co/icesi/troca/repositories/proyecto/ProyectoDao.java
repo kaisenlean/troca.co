@@ -37,4 +37,17 @@ public interface ProyectoDao extends GenericRepository<Proyecto, Integer> {
 	* @return
 	*/
 	public List<Proyecto> findUltimosProyectos(int maxResults);
+	
+	
+	
+	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param maxResults
+	* @return
+	*/
+	public List<Proyecto> findProyectosByParam(String param);
+	
 }

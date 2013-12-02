@@ -55,7 +55,7 @@ function avanzar(){
 									styleClass="btn btn-default black black-link small-margin-top" actionListener="#{beanProyecto.editarProyecto(proy)}" process="@this" update="@all"><span
 									class="glyphicon glyphicon-list-alt"></span></p:commandLink> 
 									
-									<p:commandLink
+									<p:commandLink process="@this" actionListener="#{beanProyecto.verDetalleProyecto(proy)}"
 									styleClass="btn btn-blue small-margin-top">Ver más</p:commandLink>
 							</p>
 						</div>

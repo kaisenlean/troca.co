@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/mainThm.xhtml">
+	<ui:define name="content">
+
+		<!-- Imagen banner -->
+		<ui:include src="/template/imagenBanner.xhtml"></ui:include>
+
+
+		<!-- Proyectos Destacados -->
+		<ui:include src="/template/proyectosDestacados.xhtml"></ui:include>
+
+		<!-- Títulos -->
+		<div class="row">
+			<!-- 		Ultimas noticias -->
+			<ui:include src="/template/ultimasNoticias.xhtml"></ui:include>
+
+			<!-- Ultimos tengos -->
+			<ui:include src="/template/ultimosTengo.xhtml"></ui:include>
+
+			<!-- Ultimos necesito -->
+			<ui:include src="/template/ultimosNecesito.xhtml"></ui:include>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

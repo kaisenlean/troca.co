@@ -36,4 +36,14 @@ public interface NecesitoDao extends GenericRepository<Necesito, Integer> {
 	*/
 	public List<Necesito> findNecesitoByProyecto(Proyecto proyecto);
 	
+	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 29/11/2013
+	* @param proyecto
+	* @return
+	*/
+	public List<Necesito> findNecesitoByParam(String param);
+	
 }

@@ -276,6 +276,10 @@ public class BeanProyecto extends BaseBean implements Serializable {
 
 	private boolean edita;
 
+	private List<ProyectoTengoUsuario> tengos;
+
+	private boolean perfilDe;
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 30/11/2013
@@ -424,6 +428,37 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		goTo("/paginas/perfil/perfil.jsf");
 	}
 
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param proyecto
+	*/
+	public void verDetalleProyecto(Proyecto proyecto){
+		this.proyecto=proyecto;
+		creados=proyectoUsuarioService.findByProyecto(proyecto);
+		necesitosProyecto=necesitoService.findNecesitoByProyecto(proyecto);
+		tengos=proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
+		perfilDe=false;
+		goTo("/paginas/proyecto/perfil_proyecto.jsf");
+	}
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param proyecto
+	*/
+	public void verDetalleProyecto2(Proyecto proyecto){
+		this.proyecto=proyecto;
+		creados=proyectoUsuarioService.findByProyecto(proyecto);
+		necesitosProyecto=necesitoService.findNecesitoByProyecto(proyecto);
+		tengos=proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
+		perfilDe=true;
+		goTo("/paginas/proyecto/perfil_proyecto.jsf");
+	}
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 1/12/2013
@@ -539,6 +574,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		necesitosProyecto=new ArrayList<Necesito>();
 		necesitoEliminados= new ArrayList<Necesito>();
 		edita = false;
+		perfilDe=false;
 	}
 	
 	
@@ -572,6 +608,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	public void goTo1() {
 		proyecto = new Proyecto();
+		init();
 		goTo("/paginas/proyecto/crear_proyecto_1.jsf");
 	}
 
@@ -1018,5 +1055,41 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	public void setNecesitoEliminados(List<Necesito> necesitoEliminados) {
 		this.necesitoEliminados = necesitoEliminados;
 	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the tengos
+	 */
+	public List<ProyectoTengoUsuario> getTengos() {
+		return tengos;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param tengos the tengos to set
+	 */
+	public void setTengos(List<ProyectoTengoUsuario> tengos) {
+		this.tengos = tengos;
+	}
 
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the perfilDe
+	 */
+	public boolean isPerfilDe() {
+		return perfilDe;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param perfilDe the perfilDe to set
+	 */
+	public void setPerfilDe(boolean perfilDe) {
+		this.perfilDe = perfilDe;
+	}
 }

@@ -204,12 +204,17 @@
 
 
 		</h:form>
-		<form class="navbar-form navbar-right" role="search">
-			<div class="form-group oneline">
-				<input type="text" class="form-control"
-					placeholder="#{msgMenu.labelBusqueda}" />
+		<h:form>
+		
+		
+		<div class="navbar-form navbar-right">
+			<div  class="form-group oneline">
+<!-- 				<h:panelGrid columns="2"> -->
+					<p:inputText size="20" value="#{beanBusqueda.query}" onkeypress="if (event.keyCode == 13) { btnBusq1.jq.click();  return false; }" ></p:inputText>
+						
+<!-- 				</h:panelGrid> -->
 			</div>
-		</form>
+		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#{request.contextPath}/que.jsf" class="oneline">#{msgMenu.labelQuienesSomos}</a></li>
 			<li class="divider-vertical hidden-xs hidden-sm"></li>
@@ -230,7 +235,8 @@
 				</ul></li>
 
 		</ul>
-
+		<p:commandButton style="visibility: hidden;" styleClass="width:2px;height:2px" process="@all" update="@all" id="btnBusq1" widgetVar="btnBusq1"  actionListener="#{beanBusqueda.ejecutarBusqueda()}" ></p:commandButton>
+</h:form>
 	</div>
 	<!-- /.navbar-collapse --> </nav> </header>
 </f:view>

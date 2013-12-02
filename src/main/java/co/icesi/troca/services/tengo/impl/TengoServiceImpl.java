@@ -67,4 +67,12 @@ public class TengoServiceImpl extends GenericServiceImpl<Tengo, Integer> impleme
 	public List<Tengo> findUltimosTengo(int maxResults) {
 		return tengoDao.findUltimosTengo(maxResults);
 	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.tengo.TengoService#findTengoByParam(java.lang.String)
+	 */
+	@Override
+	public List<Tengo> findTengoByParam(String param) {
+		return tengoDao.findTengoByParam(param);
+	}
 }

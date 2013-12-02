@@ -9,8 +9,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
+import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.noticia.Noticia;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.views.login.Login;
@@ -23,8 +24,8 @@ import co.icesi.troca.views.login.Login;
  *
  */
 @ManagedBean
-@ViewScoped
-public class BeanNoticia implements Serializable {
+@SessionScoped
+public class BeanNoticia extends BaseBean implements Serializable {
 
 	/**
 	 * 31/10/2013
@@ -48,6 +49,13 @@ public class BeanNoticia implements Serializable {
 	 */
 	private List<Noticia> ultimasNoticias ;
 	
+	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * ultimasNoticias2
+	 */
+	private List<Noticia> ultimasNoticias2 ;
 
 	
 	
@@ -57,6 +65,8 @@ public class BeanNoticia implements Serializable {
 	 * noticia
 	 */
 	private Noticia noticia;
+	
+	
 	
 	
 	
@@ -80,7 +90,19 @@ public class BeanNoticia implements Serializable {
 	public void init(){
 		noticia=new Noticia();
 		ultimasNoticias=noticiaService.findUltimasNoticias();
+		ultimasNoticias2=noticiaService.findUltimasNoticias(7);
 
+	}
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	*/
+	public void verDetalleNoticia(Noticia noticia){
+		this.noticia=noticia;
+		goTo("/paginas/noticia/vista_noticia.jsf");
+		
 	}
 	
 	/**
@@ -140,4 +162,21 @@ public class BeanNoticia implements Serializable {
 	}
 	
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the ultimasNoticias2
+	 */
+	public List<Noticia> getUltimasNoticias2() {
+		return ultimasNoticias2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param ultimasNoticias2 the ultimasNoticias2 to set
+	 */
+	public void setUltimasNoticias2(List<Noticia> ultimasNoticias2) {
+		this.ultimasNoticias2 = ultimasNoticias2;
+	}
 }

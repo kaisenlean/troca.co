@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+		<h:form enctype="multipart/form-data">
+
+
+			<!-- Nombre proyecto -->
+			<div class="row gap">
+				<div class="col-md-12 red">
+					<h2 class="margined-left">#{beanProyecto.proyecto.nombre}</h2>
+					<span class="margined-left"><small>por #{beanProyecto.proyecto.owner.nombreCompleto} - (espacio para botones de compartir en redes sociales)</small></span>
+				</div>
+			</div>
+			<!-- Perfil de proyecto -->
+			<div class="row gap with-vid">
+
+				<!-- Foto y descripción -->
+				<div class="col-md-6 col-lg-6 col-sm-6">
+					<h3 class="margined-left red">#{beanProyecto.proyecto.nombre}</h3>
+					<div class="margined">
+						<img src="#{request.contextPath}/foto/proyecto/#{beanProyecto.proyecto.image eq null ?'proyecto.jpg':beanProyecto.proyecto.image}" class="img-responsive" />
+					</div>
+					<br />
+					<p class="margined justify">#{beanProyecto.proyecto.descripcionLarga}</p>
+				</div>
+
+				<!-- Video del proyecto -->
+				<div class="col-md-6 col-lg-6 col-sm-6">
+					<h3 class="margined-left red">Video del proyecto</h3>
+					<div class="flex-video widescreen margined-right">
+
+						<iframe src="//www.youtube.com/embed/VQH8ZTgna3Q?rel=0"
+							frameborder="0" ></iframe>
+					</div>
+
+					<!-- Creador del proyecto -->
+					<h3 class="red">#{beanProyecto.proyecto.owner.nombreCompleto}</h3>
+					<div class="col-md-6 col-sm-6 col-lg-6">
+
+						<a href="#"><img src="#{request.contextPath}/foto/usuario/#{beanProyecto.proyecto.owner.fotografia}" class="img-responsive" /></a>
+
+
+					</div>
+					<div class="col-md-6 col-sm-6 col-lg-6">
+						<div class="margined">
+							<h4 class="red no-margin-top">Biografía</h4>
+							<p class="black justify">#{beanProyecto.proyecto.owner.biografia}</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Usuarios participantes -->
+
+			<div class="row big-gap with-vid">
+				<div class="col-md-4 col-lg-4 col-sm-4 light-gray-box">
+					<h3 class="black margined-left">Usuarios Participantes</h3>
+					<div class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
+					<c:forEach items="#{beanProyecto.creados}" var="upa">
+						<div class="thumbnail margined margined-bot white-box no-border">
+							<p:commandLink process="@this" actionListener="#{perfilDe.loadPerfil(upa.usuario)}"><img src="#{request.contextPath}/foto/usuario/#{upa.usuario.fotografia eq null ?'fotografia':upa.usuario.fotografia}" class="img-responsive" /></p:commandLink>
+							<div class="caption">
+								<p>
+									<strong><small>#{upa.usuario.nombreCompleto}</small></strong>
+								</p>
+							</div>
+						</div>
+					</c:forEach>
+						
+						</div>
+					</div>
+
+
+				
+
+				<!-- Necesitos del proyecto -->
+				<div class="col-md-4 col-lg-4 col-sm-4 red-box">
+					<h3 class="white margined-left">Este proyecto necesita</h3>
+
+					<div class="col-md-12 col-lg-6 col-sm-12">
+							<h:panelGrid columns="2" width="100%" cellpadding="20">
+					<c:forEach items="#{beanProyecto.necesitosProyecto}" var="np">
+						<div class="thumbnail no-border margined margined-bot cien">
+							<h4 class="white white-link small-margin-left tengo-btn">#{np.nombre}</h4>
+
+							<div class="caption not">
+								<p class="white justify">#{np.descripcion}</p>
+								<p>
+									<a href="#modal-necesito" data-toggle="modal"
+										class="necesito-trocar btn btn-white small-margin-top">Trocar</a>
+								</p>
+							</div>
+						</div>
+						
+					</c:forEach>
+						</h:panelGrid>
+					</div>
+
+					
+
+				</div>
+
+				<!-- Tengos del proyecto -->
+				<div class="col-md-4 col-sm-4 col-lg-4 blue-box">
+					<h3 class="white margined-left">A cambio, este proyecto tiene</h3>
+					<div class="col-md-12 col-sm-12 col-lg-6">
+					<h:panelGrid columns="2" width="100%" cellpadding="20">
+					
+				
+					<c:forEach items="#{beanProyecto.tengos}" var="tng">
+					<div class="thumbnail no-border margined margined-bot cien">
+							<h4 class="white white-link small-margin-left tengo-btn">#{tng.tengo.nombre}</h4>
+							<img src="img/profile.jpg" class="img-responsive not"
+								style="display: none" />
+							<div class="caption not">
+								<p>#{tng.tengo.descripcion}</p>
+								<p>
+									<a href="#modal-tengo" data-toggle="modal"
+										class="btn btn-white small-margin-top tengo-trocar">Trocar</a>
+								</p>
+							</div>
+						</div>
+					</c:forEach>
+							</h:panelGrid>
+						
+						
+
+						</div>
+					</div>
+
+					
+				</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

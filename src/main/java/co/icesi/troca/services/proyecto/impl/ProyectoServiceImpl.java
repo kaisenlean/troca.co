@@ -59,4 +59,12 @@ public class ProyectoServiceImpl extends GenericServiceImpl<Proyecto, Integer> i
 		return proyectoDao.findUltimosProyectos(maxResults);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.proyecto.ProyectoService#findProyectosByParam(java.lang.String)
+	 */
+	@Override
+	public List<Proyecto> findProyectosByParam(String param) {
+		return proyectoDao.findProyectosByParam(param);
+	}
+
 }

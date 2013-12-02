@@ -14,19 +14,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.model.UploadedFile;
 
-import com.sun.faces.context.ExternalContextImpl;
-
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.noticia.Noticia;
-import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.views.login.Login;
+
+import com.sun.faces.context.ExternalContextImpl;
 
 /**
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -39,6 +37,15 @@ import co.icesi.troca.views.login.Login;
 @ViewScoped
 public class NoticiasUsuario extends BaseBean implements Serializable {
 
+	
+	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * SEVEN
+	 */
+	private static final int SEVEN = 7;
+	private List<Noticia> ultimasNoticias;
 	/**
 	 * 1/12/2013
 	 * 
@@ -295,6 +302,7 @@ public class NoticiasUsuario extends BaseBean implements Serializable {
 				.findNoticiasByUsuario(login.getUsuario() != null ? login
 						.getUsuario() : null);
 		}
+		ultimasNoticias=noticiaService.findUltimasNoticias(SEVEN);
 	}
 
 	/**
@@ -316,4 +324,21 @@ public class NoticiasUsuario extends BaseBean implements Serializable {
 		this.file = file;
 	}
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the ultimasNoticias
+	 */
+	public List<Noticia> getUltimasNoticias() {
+		return ultimasNoticias;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param ultimasNoticias the ultimasNoticias to set
+	 */
+	public void setUltimasNoticias(List<Noticia> ultimasNoticias) {
+		this.ultimasNoticias = ultimasNoticias;
+	}
 }

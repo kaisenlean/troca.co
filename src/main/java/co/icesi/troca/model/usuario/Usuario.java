@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import co.icesi.troca.model.Ciudad;
+import co.icesi.troca.model.noticia.Noticia;
 import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.tengo.Tengo;
 
@@ -168,6 +169,17 @@ public class Usuario implements Serializable {
 	 */
 	@Transient
 	private List<Proyecto> proyectos;
+	
+	
+	
+	
+	/**
+	 * 2/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * noticias
+	 */
+	@Transient
+	private List<Noticia> noticias;
 	
 	
 
@@ -517,6 +529,25 @@ public class Usuario implements Serializable {
 	 */
 	public void setPasswordTemp(String passwordTemp) {
 		this.passwordTemp = passwordTemp;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the noticias
+	 */
+	public List<Noticia> getNoticias() {
+		return noticias;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param noticias the noticias to set
+	 */
+	public void setNoticias(List<Noticia> noticias) {
+		this.noticias = noticias;
 	}
 
 	

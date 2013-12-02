@@ -37,8 +37,9 @@
 							<p>
 								<a href="#modal-eliminar-noticia#{noti.id}" data-toggle="modal"
 									class="btn btn-red white white-link small-margin-top"><span
-									class="glyphicon glyphicon-trash"></span></a> <a href="#"
-									class="btn btn-default small-margin-top">Ver</a>
+									class="glyphicon glyphicon-trash"></span></a> 
+									<p:commandLink value="Ver" actionListener="#{beanNoticia.verDetalleNoticia(noti)}"
+									styleClass="btn btn-default small-margin-top"></p:commandLink>
 							</p>
 						</div>
 					</div>

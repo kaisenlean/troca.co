@@ -13,7 +13,7 @@
 			<h4>
 				<a href="#" class="margined-left blue blue-link">#{msgsNoticias.labelUltimas} <br />
 					<span class="margined-left"><strong>#{msgsNoticias.labelNoticias}</strong></span>
-				</a><a class="right margined-right blue blue-link" href="#">#{msgsNoticias.sigteValue}</a>
+				</a><a class="right margined-right blue blue-link" href="#{request.contextPath}/paginas/noticia/ultimasNoticias.jsf">#{msgsNoticias.sigteValue}</a>
 			</h4>
 		</p>
 
@@ -28,7 +28,7 @@
 							</h3></a>
 					</p>
 					<p class="white">#{notice.noticia}</p>
-					<a href="#" class="content-btn right">#{msgsNoticias.labelLeerMas}</a>
+					<p:commandLink styleClass="content-btn right" value="#{msgsNoticias.labelLeerMas}" process="@this" actionListener="#{beanNoticia.verDetalleNoticia(notice)}"></p:commandLink>
 				</div>
 			</div>
 		</c:forEach>

@@ -73,4 +73,13 @@ public List<Necesito> findUltimosNecesito() {
 public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
 	return necesitoDao.findNecesitoByProyecto(proyecto);
 }
+
+
+/** (non-Javadoc)
+ * @see co.icesi.troca.services.necesito.NecesitoService#findNecesitoByParam(java.lang.String)
+ */
+@Override
+public List<Necesito> findNecesitoByParam(String param) {
+	return necesitoDao.findNecesitoByParam(param);
+}
 }

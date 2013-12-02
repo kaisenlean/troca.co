@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="./../template/mainThm.xhtml">
+	<ui:define name="content">
+<h:form>
+
+
+		<div class="row gap">
+			<div class="col-md-12 gray">
+				<h2 class="margined-left">Resultados de la Búsqueda</h2>
+				<span class="margined-left"></span>
+			</div>
+		</div>
+
+		<!-- sistema de búsqueda -->
+
+		<div class="row big-gap">
+			<!-- Filtros -->
+			<div class="col-md-2 col-lg-2 col-sm-3">
+				<h3 class="margined-left gray">Filtros</h3>
+				<form role="search-filters" class="margined-left">
+					<div class="checkbox ">
+						<label> <input class="people-check" type="checkbox"
+							checked="true" value="" />
+							<h4>Personas</h4>
+						</label>
+					</div>
+					/
+					<div class="checkbox ">
+						<label> <input class="project-check" type="checkbox"
+							checked="true" value="" />
+							<h4>Proyectos</h4>
+						</label>
+					</div>
+					<div class="checkbox">
+						<label> <input class="tengo-check" type="checkbox"
+							checked="true" value="" />
+							<h4>Tengos</h4>
+						</label>
+					</div>
+					<div class="checkbox small-margin-left tengo-sub">
+						<label> <input type="checkbox" checked="true" value="" />
+							<p>Conocimiento</p>
+						</label>
+					</div>
+					<div class="checkbox small-margin-left tengo-sub">
+						<label> <input type="checkbox" checked="true" value="" />
+							<p>Objeto</p>
+						</label>
+					</div>
+					<div class="checkbox small-margin-left tengo-sub">
+						<label> <input type="checkbox" checked="true" value="" />
+							<p>Espacio</p>
+						</label>
+					</div>
+					<div class="checkbox">
+						<label> <input class="necesito-check" type="checkbox"
+							checked="true" value="" />
+							<h4>Necesitos</h4>
+						</label>
+					</div>
+					<div class="checkbox small-margin-left necesito-sub">
+						<label> <input type="checkbox" checked="true" value="" />
+							<p>Conocimiento</p>
+						</label>
+					</div>
+					<div class="checkbox small-margin-left necesito-sub">
+						<label> <input type="checkbox" checked="true" value="" />
+							<p>Objeto</p>
+						</label>
+					</div>
+					<div class="checkbox small-margin-left necesito-sub">
+						<label> <input type="checkbox" checked="true" value="" />
+							<p>Espacio</p>
+						</label>
+					</div>
+
+				</form>
+
+			</div>
+			<!-- Resultados de la búsqueda -->
+			<div class="col-md-10 col-lg-10 col-sm-9">
+
+				<div class="navbar-form" >
+					<div class="form-group oneline">
+						
+						<p:inputText value="#{beanBusqueda.query}" onkeypress="if (event.keyCode == 13) { btnBusq.jq.click();  return false; }" ></p:inputText>
+						<p:commandButton process="@all" update="@all" id="btnBusq" widgetVar="btnBusq" value="Buscar" actionListener="#{beanBusqueda.buscar()}" ></p:commandButton>
+					</div>
+
+				</div>
+				<ul class="pagination">
+					<li><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+				<div class="row people-search light-gray-box">
+					<div class="col-md-12">
+						<h3 class="black margined-left">Personas</h3>
+						<div class="row">
+							<c:forEach items="#{beanBusqueda.usuarios}" var="person">
+								<div class="col-md-3 col-sm-4 col-lg-2">
+									<div
+										class="thumbnail margined margined-bot white-box no-border">
+										<p:commandLink process="@this"
+											actionListener="#{perfilDe.loadPerfil(person)}">
+											<img
+												src="#{request.contextPath}/foto/usuario/#{person.fotografia eq null ? 'logo_header.png':person.fotografia}"
+												class="img-responsive" />
+										</p:commandLink>
+										<div class="caption">
+											<p>
+												<strong><small>#{person.nombreCompleto}</small></strong>
+											</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+
+
+
+						</div>
+
+
+					</div>
+				</div>
+
+
+				<div class="row project-search">
+					<div class="col-md-12">
+						<h3 class="black margined-left">Proyectos</h3>
+						<div class="row">
+							<c:forEach items="#{beanBusqueda.proyectos}" var="proyec">
+								<div class="col-md-3 col-sm-4 col-lg-2">
+									<div class="thumbnail red-border margined margined-bot cien">
+										<h3 class="black black-link small-margin-left tengo-btn">#{proyec.nombre}</h3>
+										<img src="#{request.contextPath}/foto/proyecto/#{proyec.image eq null?'proyecto.jpg':proyec.image}" class="img-responsive not"
+											style="display: none" />
+										<div class="caption not">
+											<p>#{proyec.descripcion}</p>
+											<p>
+												<p:commandLink
+													styleClass="btn btn-red small-margin-top white white-link" actionListener="#{beanProyecto.verDetalleProyecto2(proyec)}" process="@this">Ver
+													Proyecto</p:commandLink>
+											</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+
+
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row tengo-search blue-box">
+					<div class="col-md-12">
+						<h3 class="white margined-left">Tengos</h3>
+						<div class="row">
+						<c:forEach items="#{beanBusqueda.tengos}" var="teng">
+						
+						
+							<div class="col-md-3 col-sm-4 col-lg-2">
+								<div class="thumbnail no-border margined margined-bot cien">
+									<h3 class="white white-link small-margin-left tengo-btn">#{teng.nombre}</h3>
+									<img src="#{request.contextPath}/foto/tengo/#{teng.foto eq null?'tengo.jpg':teng.foto}" class="img-responsive not"
+										style="display: none" />
+									<div class="caption not">
+										<p>#{teng.descripcion}</p>
+										<p>
+											<p:commandLink process="@this" actionListener="#{perfilDe.loadPerfil(teng.owner)}" styleClass="btn btn-white small-margin-top" >Ver
+												Perfil</p:commandLink>
+										</p>
+									</div>
+								</div>
+							</div>
+							</c:forEach>
+
+							
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row necesito-search red-box">
+					<div class="col-md-12">
+						<h3 class="white margined-left">Necesitos</h3>
+						<div class="row">
+							<div class="col-md-3 col-sm-4 col-lg-2">
+								<div class="thumbnail no-border margined margined-bot cien">
+									<h3 class="white white-link small-margin-left tengo-btn">Necesito
+										1</h3>
+
+									<div class="caption not">
+										<p class="white justify">Cras justo odio, dapibus ac
+											facilisis in, egestas eget quam. Donec id elit non mi porta
+											gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+										<p>
+											<a href="#" class="btn btn-white small-margin-top">Ver
+												proyecto</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						
+						</div>
+
+					</div>
+				</div>
+				<ul class="pagination">
+					<li><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+
+</h:form>
+	</ui:define>
+</ui:composition>
+</html>

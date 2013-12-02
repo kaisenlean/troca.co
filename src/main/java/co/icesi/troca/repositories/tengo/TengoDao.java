@@ -37,4 +37,15 @@ public interface TengoDao extends GenericRepository<Tengo, Integer> {
 	 * @return
 	 */
 	public List<Tengo> findUltimosTengo(int maxResult);
+	
+	
+	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 29/11/2013
+	* @param proyecto
+	* @return
+	*/
+	public List<Tengo> findTengoByParam(String param);
 }

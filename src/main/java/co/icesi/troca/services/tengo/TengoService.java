@@ -35,4 +35,17 @@ public interface TengoService extends GenericService<Tengo, Integer>{
 	 */
 	public List<Tengo> findUltimosTengo(int maxResults);
 	
+	
+	
+	
+	
+	/**
+	 * 
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 29/11/2013
+	* @param proyecto
+	* @return
+	*/
+	public List<Tengo> findTengoByParam(String param);
+	
 }
