@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
@@ -12,13 +13,17 @@
 		<!-- Primera parte perfil-->
 		<div class="row gap">
 			<div class="col-md-2 col-sm-2 col-xs-4  pic">
-				<a href="#"><img src="#{request.contextPath}/foto/usuario/#{login.usuario.fotografia eq null ?'logo_header.png':login.usuario.fotografia }"
+				<a href="#"><img
+					src="#{request.contextPath}/foto/usuario/#{login.usuario.fotografia eq null ?'logo_header.png':login.usuario.fotografia }"
 					class="img-responsive margined-left gray-border" /></a>
 			</div>
 			<div class="col-md-10 col-sm-10 hidden-xs padded-top">
-				<h3 class="big-margin-left left">#{login.usuario}</h3>
-				<a href="#" class="black black-link"><small
-					class="left big-pad-top margined-left">Editar Perfil</small></a>
+				<h3 class="big-margin-left left">#{login.usuario.nombreCompleto}</h3>
+				<p:commandLink process="@this"
+					actionListener="#{beanRegistro.prepararEdicionUsuario(login.us)}"
+					styleClass="black black-link">
+					<small class="left big-pad-top margined-left">Editar Perfil</small>
+				</p:commandLink>
 				<div class="col-md-12 nav-profile">
 
 
@@ -91,12 +96,13 @@
 							<div class="tab-pane fade in active min-heighter" id="perfil">
 
 								<div class="row">
+						
 									<div class="col-md-5 col-lg-4 col-sm-5 hidden-xs bot-pad">
 										<h3 class="gray margined-left">Biografía</h3>
 										<p class="black margined justify">#{login.usuario.biografia}</p>
 									</div>
 									<div class="col-xs-12 visible-xs big-pad">
-										<h4 class="gray margined">Biografía</h4>
+										<h4 class="gray margined-left">Biografía</h4>
 										<p class="black margined justify">
 											<small>Pellentesque consequat metus in turpis
 												facilisis, in convallis dolor porttitor. Praesent in turpis
@@ -116,20 +122,42 @@
 												metus.</small>
 										</p>
 									</div>
+									
+									<div class="col-md-5 col-lg-3 col-sm-4 hidden-xs bot-pad red-box">
+              <h3 class=" white margined-left">Proyectos Activos</h3>
+              
+              		<c:forEach items="#{login.usuario.proyectos}" var="proyA">
+										<div class="profile-project margined-left">
+											<a href="#" class="white white-link"><h4>#{proyA.nombre}</h4></a>
+											<p class="white">#{proyA.descripcion}</p>
+										</div>
+									</c:forEach>
+             
+            </div>
+      
+            <div class="col-xs-12 visible-xs bot-pad red-box">
+              <h3 class=" white margined-left padded-top">Proyectos Activos</h3>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+              <div class="profile-project margined-left">
+                <a href="#" class="white white-link"><h4>Lorem Ipsum</h4></a>
+                <p class="white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum</p>
+              </div>
+            </div>
+									
 
 								</div>
 
-								<div
-									class="col-md-5 col-lg-3 col-sm-4 hidden-xs bot-pad red-box">
-									<h3 class=" white margined-left">Proyectos Activos</h3>
-
-								</div>
-
-								<div class="col-xs-12 visible-xs bot-pad red-box">
-									<h3 class=" white margined-left padded-top">Proyectos
-										Activos</h3>
-
-								</div>
 
 								<div class="col-lg-3 visible-lg padded-bot">
 									<h3 class="gray margined-left">Recomendaciones</h3>
@@ -240,7 +268,16 @@
 							<ui:include src="/paginas/proyecto/proyectos.xhtml"></ui:include>
 						</div>
 					</div>
+					
+					
+						<div class="tab-pane fade min-heighter" id="noticias">
+						<div class="row gap">
+							<ui:include src="/paginas/noticia/noticias.xhtml"></ui:include>
+						</div>
+					</div>
 				</div>
+				
+				
 
 				<!-- 				<p:tabView -->
 				<!-- 					styleClass="nav nav-tabs aligned-bot big-margin-left huge-margin-top"> -->

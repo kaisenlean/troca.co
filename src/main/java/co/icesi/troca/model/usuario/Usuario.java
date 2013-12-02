@@ -134,14 +134,33 @@ public class Usuario implements Serializable {
 	private String repeatMail;
 
 	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * tengos
+	 */
 	@Transient
 	private List<Tengo> tengos= new ArrayList<Tengo>();
 
 	
 	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * extension
+	 */
 	@Transient
 	private String extension;
 
+	
+
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * passwordTemp
+	 */
+	@Transient
+	private String passwordTemp;
 	/**
 	 * 28/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -433,6 +452,9 @@ public class Usuario implements Serializable {
 	public void setUsuarioLinks(List<UsuarioLink> usuarioLinks) {
 		this.usuarioLinks = usuarioLinks;
 	}
+	
+	
+	
 	/** (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -476,6 +498,25 @@ public class Usuario implements Serializable {
 	 */
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the passwordTemp
+	 */
+	public String getPasswordTemp() {
+		return passwordTemp;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param passwordTemp the passwordTemp to set
+	 */
+	public void setPasswordTemp(String passwordTemp) {
+		this.passwordTemp = passwordTemp;
 	}
 
 	

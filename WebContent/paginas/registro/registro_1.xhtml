@@ -161,7 +161,7 @@
 				<div class="form-group">
 					<h:outputLabel value="Contraseña" styleClass="white" />
 					<p:password styleClass="form-control" id="passwordReg"
-						placeholder="Ingresa tu password" required="true" requiredMessage="Digita una contraseña válida" value="#{beanRegistro.usuario.password}" ></p:password>
+						placeholder="Ingresa tu password" required="#{beanRegistro.usuario.id eq null ?true:false}" requiredMessage="Digita una contraseña válida" value="#{beanRegistro.usuario.password}" ></p:password>
 				<p:message for="passwordReg"></p:message>
 				</div>
 				<div class="form-group">

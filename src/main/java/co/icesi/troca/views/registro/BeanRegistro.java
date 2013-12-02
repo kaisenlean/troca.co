@@ -358,6 +358,37 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param usuario
+	*/
+	public void prepararEdicionUsuario(Usuario usuario){
+		this.usuario=usuario;
+		this.usuario.setRepeatMail(usuario.getEmail());
+		usuarioLink=usuario.getUsuarioLinks().get(0);
+		usuarioLink2=usuario.getUsuarioLinks().get(1);
+		usuarioLink3=usuario.getUsuarioLinks().get(2);
+		usuarioLink4=usuario.getUsuarioLinks().get(3);
+		usuarioLink5=usuario.getUsuarioLinks().get(4);
+		usuarioLink6=usuario.getUsuarioLinks().get(5);
+		usuarioLink7=usuario.getUsuarioLinks().get(6);
+		usuarioLink8=usuario.getUsuarioLinks().get(7);
+		usuarioLink9=usuario.getUsuarioLinks().get(8);
+		
+		posLink=9;
+		this.usuario.setPasswordTemp(usuario.getPassword());
+		selPais=usuario.getCiudad().getDepartamento().getPais().getId();
+		cambioPais();
+		selDepto=usuario.getCiudad().getDepartamento().getId();
+		cambioDepto();
+		selCiudad=usuario.getCiudad().getId();
+		cambioCiudad();
+		goTo("/paginas/registro/registro_1.jsf");
+		
+		
+	}
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 28/11/2013
 	*/
 	public void goToRegistro2(){
@@ -377,7 +408,11 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	public void guardarUsuario() {
 		usuario.setCiudad(ciudadService.findById(selCiudad));
 		usuario.setEstado(EstadoUsuarioEnum.ACTIVO);
+		if (usuario.getPassword().equals(null) || usuario.getPassword().equals("")) {
+			usuario.setPassword(usuario.getPasswordTemp());
+		}else{
 		usuario.setPassword(encoderManager.encodeMd5Hash(usuario.getPassword()));
+		}
 		try {
 //		loginNotification.enviarMailAutenticacionCuenta(usuario);
 			String ext= usuario.getExtension();

@@ -4,10 +4,12 @@
 package co.icesi.troca.services.usuario.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.model.usuario.UsuarioLink;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.usuario.UsuarioLinkDao;
@@ -41,6 +43,14 @@ public class UsuarioLinkServiceImpl extends GenericServiceImpl<UsuarioLink, Inte
 	@Override
 	public GenericRepository<UsuarioLink, Integer> getDao() {
 		return usuarioLinkDao;
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.usuario.UsuarioLinkService#getLinkByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@Override
+	public List<UsuarioLink> getLinkByUsuario(Usuario usuario) {
+		return usuarioLinkDao.getLinkByUsuario(usuario);
 	}
 
 }

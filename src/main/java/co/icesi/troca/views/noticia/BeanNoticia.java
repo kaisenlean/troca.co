@@ -48,8 +48,7 @@ public class BeanNoticia implements Serializable {
 	 */
 	private List<Noticia> ultimasNoticias ;
 	
-	
-	
+
 	
 	
 	/**
@@ -81,6 +80,7 @@ public class BeanNoticia implements Serializable {
 	public void init(){
 		noticia=new Noticia();
 		ultimasNoticias=noticiaService.findUltimasNoticias();
+
 	}
 	
 	/**

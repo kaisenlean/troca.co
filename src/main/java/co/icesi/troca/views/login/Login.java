@@ -31,6 +31,7 @@ import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.tengo.TengoService;
+import co.icesi.troca.services.usuario.UsuarioLinkService;
 
 /**
  * ManagedBean que controla los moovimiento y login del usuario
@@ -107,6 +108,9 @@ public class Login extends BaseBean implements Serializable {
 	
 	@ManagedProperty(value="#{noticiaService}")
 	private NoticiaService noticiaService;
+	
+	@ManagedProperty(value="#{usuarioLinkService}")
+	private UsuarioLinkService usuarioLinkService;
 	
 	private static final Logger LOGGER= LoggerFactory.getLogger(Login.class);
 	
@@ -224,6 +228,7 @@ public class Login extends BaseBean implements Serializable {
 		}
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
 		noticiasPorUsuario=noticiaService.findNoticiasByUsuario(usuario);
 		goTo("/index.jsf");
 	}
@@ -499,5 +504,14 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void setNoticiasPorUsuario(List<Noticia> noticiasPorUsuario) {
 		this.noticiasPorUsuario = noticiasPorUsuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param usuarioLinkService the usuarioLinkService to set
+	 */
+	public void setUsuarioLinkService(UsuarioLinkService usuarioLinkService) {
+		this.usuarioLinkService = usuarioLinkService;
 	}
 }

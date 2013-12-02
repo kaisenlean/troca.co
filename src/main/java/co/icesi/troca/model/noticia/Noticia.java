@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import co.icesi.troca.model.usuario.Usuario;
 
@@ -95,6 +96,15 @@ public class Noticia implements Serializable {
 	@JoinColumn(name="usuario",referencedColumnName="id")
 	private Usuario usuario;
 	
+	
+	
+	/**
+	 * 1/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * extension
+	 */
+	@Transient
+	private String extension;
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 12/11/2013
@@ -264,6 +274,25 @@ public class Noticia implements Serializable {
 	 */
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @return the extension
+	 */
+	public String getExtension() {
+		return extension;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param extension the extension to set
+	 */
+	public void setExtension(String extension) {
+		this.extension = extension;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

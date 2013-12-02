@@ -12,34 +12,64 @@
 		<div class="row gap">
 			<div class="col-md-12 gray">
 				<h2 class="margined-left">Noticias</h2>
-				<span class="margined-left" /><small><a  onclick="pnlNuevaNoticia.show();"
-					class="gray gray-link">Crear nueva</a></small>
-				<button type="button" onclick="pnlNuevaNoticia.show();" class="btn btn-default margined-left">+</button>
+				<span class="margined-left" /><small>
+				<p:commandLink process="@this" actionListener="#{noticiasUsuario.cargarNuevaNoticia()}" styleClass="gray gray-link" value="Crear nueva"></p:commandLink>
+				</small>
+				<p:commandButton process="@this" value="+" actionListener="#{noticiasUsuario.cargarNuevaNoticia()}"  
+					styleClass="btn btn-default margined-left"></p:commandButton>
 			</div>
 		</div>
 
-
-<p:panel visible="false" widgetVar="pnlNuevaNoticia" >
-	<ui:include src="/paginas/noticia/crear_noticia.xhtml"></ui:include>
-</p:panel>
 		<!-- Listado de Tengos -->
 
 		<div class="row">
-			<c:forEach var="noti" items="#{login.noticiasPorUsuario}">
-			<div class="col-md-3 col-lg-2 col-sm-4 col-xs-12 clearfix">
-				<div class="thumbnail light-border margined margined-bot cien">
-					<h3 class="gray gray-link small-margin-left tengo-btn">#{noti.titulo}</h3>
-					<img src="img/profile.jpg" class="img-responsive not"
-						style="display: none" />
-					<div class="caption not">
-						<p><h:outputText value="#{noti.noticia}" /></p>
-						<p>
-							<a href="#" class="btn btn-danger small-margin-top">Eliminar</a>
-							<a href="#" class="btn btn-default small-margin-top">Ver</a>
-						</p>
+			<c:forEach var="noti" items="#{noticiasUsuario.noticias}">
+
+				<div class="col-md-3 col-lg-2 col-sm-4 col-xs-12 clearfix">
+					<div class="thumbnail light-border margined margined-bot cien">
+						<h4 class="gray gray-link small-margin-left tengo-btn">#{noti.titulo}</h4>
+						<img src="#{request.contextPath}/foto/noticia/#{noti.fotografia eq null ?'noticia.png':noti.fotografia}" class="img-responsive not"
+							style="display: none" />
+						<div class="caption not">
+							<p>
+								<h:outputText value="#{noti.noticia}" />
+							</p>
+							<p>
+								<a href="#modal-eliminar-noticia#{noti.id}" data-toggle="modal"
+									class="btn btn-red white white-link small-margin-top"><span
+									class="glyphicon glyphicon-trash"></span></a> <a href="#"
+									class="btn btn-default small-margin-top">Ver</a>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
+
+				<!-- Modal Eliminar Noticia -->
+				<div class="modal fade" id="modal-eliminar-noticia#{noti.id}" tabindex="-1"
+					role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true"></button>
+								<h4 class="modal-title blue">Eliminar Noticia</h4>
+							</div>
+							<div class="modal-body">
+								<p>¿Estás seguro de querer eliminar esta Noticia?</p>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Cancelar</button>
+									<p:commandButton value="Eliminar" styleClass="btn btn-red white white-link" process="@this" update="@all" actionListener="#{noticiasUsuario.eliminarNoticia(noti)}"></p:commandButton>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal Eliminar Noticia -->
+
 			</c:forEach>
 
 
