@@ -7,13 +7,14 @@ package co.icesi.troca.model.trueque;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -37,7 +38,6 @@ public class TruequeMensaje implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -46,21 +46,21 @@ public class TruequeMensaje implements Serializable {
 	 * trueque
 	 */
 	@Column(name = "trueque")
-	private Integer trueque;
+	private Trueque trueque;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioEmisor
 	 */
 	@Column(name = "usuario_emisor")
-	private Integer usuarioEmisor;
+	private Usuario usuarioEmisor;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioReceptor
 	 */
 	@Column(name = "usuario_receptor")
-	private Integer usuarioReceptor;
+	private Usuario usuarioReceptor;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -108,7 +108,7 @@ public class TruequeMensaje implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getTrueque() {
+	public Trueque getTrueque() {
 		return trueque;
 	}
 
@@ -117,7 +117,7 @@ public class TruequeMensaje implements Serializable {
 	* @date 12/11/2013
 	* @param trueque
 	*/
-	public void setTrueque(Integer trueque) {
+	public void setTrueque(Trueque trueque) {
 		this.trueque = trueque;
 	}
 
@@ -126,7 +126,7 @@ public class TruequeMensaje implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuarioEmisor() {
+	public Usuario getUsuarioEmisor() {
 		return usuarioEmisor;
 	}
 
@@ -135,7 +135,7 @@ public class TruequeMensaje implements Serializable {
 	* @date 12/11/2013
 	* @param usuarioEmisor
 	*/
-	public void setUsuarioEmisor(Integer usuarioEmisor) {
+	public void setUsuarioEmisor(Usuario usuarioEmisor) {
 		this.usuarioEmisor = usuarioEmisor;
 	}
 
@@ -144,7 +144,7 @@ public class TruequeMensaje implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuarioReceptor() {
+	public Usuario getUsuarioReceptor() {
 		return usuarioReceptor;
 	}
 
@@ -153,7 +153,7 @@ public class TruequeMensaje implements Serializable {
 	* @date 12/11/2013
 	* @param usuarioReceptor
 	*/
-	public void setUsuarioReceptor(Integer usuarioReceptor) {
+	public void setUsuarioReceptor(Usuario usuarioReceptor) {
 		this.usuarioReceptor = usuarioReceptor;
 	}
 

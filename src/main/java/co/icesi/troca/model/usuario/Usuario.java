@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -562,6 +563,27 @@ public class Usuario implements Serializable {
 	public String getNombreCompleto(){
 		return new StringBuilder(nombre==null?BLANK_SPACE:nombre).append(BLANK_SPACE).append(apellido==null?BLANK_SPACE:apellido).toString();
 		
+	}
+	
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 2/12/2013
+	* @return
+	*/
+	public List<SelectItem> getTengosAsItems(){
+		List<SelectItem> items= new ArrayList<SelectItem>();
+		if (tengos!=null) {
+			if (!tengos.isEmpty()) {
+				for (Tengo tengo : tengos) {
+					items.add(new SelectItem(tengo.getId(), tengo.getNombre()));
+					
+				}
+			}
+		}
+		
+		return items;
 	}
 
 }

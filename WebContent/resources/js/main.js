@@ -4,6 +4,8 @@ $(document).ready(function(){
 	function regImgHeight(){
 	var height = $(".know-height").css("height");
 	$(".img-reg").css("height", parseInt(height));
+
+	$(".btn").removeClass("ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only");
 	
 
 	
@@ -38,7 +40,7 @@ $(window).resize(function(){
 
 	 $('#side').affix({
     offset: {
-      top: 20
+      top: 100
     , bottom: function () {
         return (this.bottom = $('footer').outerHeight(true))
       }

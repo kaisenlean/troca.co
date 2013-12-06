@@ -7,13 +7,18 @@ package co.icesi.troca.model.trueque;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -37,7 +42,6 @@ public class Trueque implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -45,22 +49,25 @@ public class Trueque implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioTrueque1
 	 */
-	@Column(name = "usuario_trueque_1")
-	private Integer usuarioTrueque1;
+	@ManyToOne
+	@JoinColumn(name = "usuario_trueque_1")
+	private Usuario usuarioTrueque1;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioTrueque2
 	 */
-	@Column(name = "usuario_trueque_2")
-	private Integer usuarioTrueque2;
+	@ManyToOne
+	 @JoinColumn(name = "usuario_trueque_2")
+	private Usuario usuarioTrueque2;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * estado
 	 */
 	@Column(name = "estado")
-	private String estado;
+	@Enumerated(EnumType.STRING)
+	private EstadoTruequeEnum estado;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -101,7 +108,7 @@ public class Trueque implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuarioTrueque1() {
+	public Usuario getUsuarioTrueque1() {
 		return usuarioTrueque1;
 	}
 
@@ -110,7 +117,7 @@ public class Trueque implements Serializable {
 	* @date 12/11/2013
 	* @param usuarioTrueque1
 	*/
-	public void setUsuarioTrueque1(Integer usuarioTrueque1) {
+	public void setUsuarioTrueque1(Usuario usuarioTrueque1) {
 		this.usuarioTrueque1 = usuarioTrueque1;
 	}
 
@@ -119,7 +126,7 @@ public class Trueque implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuarioTrueque2() {
+	public Usuario getUsuarioTrueque2() {
 		return usuarioTrueque2;
 	}
 
@@ -128,7 +135,7 @@ public class Trueque implements Serializable {
 	* @date 12/11/2013
 	* @param usuarioTrueque2
 	*/
-	public void setUsuarioTrueque2(Integer usuarioTrueque2) {
+	public void setUsuarioTrueque2(Usuario usuarioTrueque2) {
 		this.usuarioTrueque2 = usuarioTrueque2;
 	}
 
@@ -137,7 +144,7 @@ public class Trueque implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public String getEstado() {
+	public EstadoTruequeEnum getEstado() {
 		return estado;
 	}
 
@@ -146,7 +153,7 @@ public class Trueque implements Serializable {
 	* @date 12/11/2013
 	* @param estado
 	*/
-	public void setEstado(String estado) {
+	public void setEstado(EstadoTruequeEnum estado) {
 		this.estado = estado;
 	}
 

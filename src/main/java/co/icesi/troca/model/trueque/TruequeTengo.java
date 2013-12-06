@@ -13,7 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.tengo.Tengo;
 
 /**
  * 
@@ -45,15 +49,17 @@ public class TruequeTengo implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * tengo
 	 */
-	@Column(name = "tengo")
-	private Integer tengo;
+	@ManyToOne
+	@JoinColumn(name = "tengo")
+	private Tengo tengo;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * trueque
 	 */
-	@Column(name = "trueque")
-	private Integer trueque;
+	@ManyToOne
+	@JoinColumn(name = "trueque")
+	private Trueque trueque;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -94,7 +100,7 @@ public class TruequeTengo implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getTengo() {
+	public Tengo getTengo() {
 		return tengo;
 	}
 
@@ -103,7 +109,7 @@ public class TruequeTengo implements Serializable {
 	* @date 12/11/2013
 	* @param tengo
 	*/
-	public void setTengo(Integer tengo) {
+	public void setTengo(Tengo tengo) {
 		this.tengo = tengo;
 	}
 
@@ -112,7 +118,7 @@ public class TruequeTengo implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getTrueque() {
+	public Trueque getTrueque() {
 		return trueque;
 	}
 
@@ -121,7 +127,7 @@ public class TruequeTengo implements Serializable {
 	* @date 12/11/2013
 	* @param trueque
 	*/
-	public void setTrueque(Integer trueque) {
+	public void setTrueque(Trueque trueque) {
 		this.trueque = trueque;
 	}
 
