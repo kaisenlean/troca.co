@@ -31,6 +31,13 @@ public class VisitaBean extends BaseBean implements Serializable{
 	/**
 	 * 8/12/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MAX_RESULTS_2
+	 */
+	private static final int MAX_RESULTS_2 = 15;
+
+	/**
+	 * 8/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * MAX_RESULTS
 	 */
 	private static final int MAX_RESULTS = 4;
@@ -59,10 +66,15 @@ public class VisitaBean extends BaseBean implements Serializable{
 	private List<Proyecto> proyectos=new ArrayList<Proyecto>();
 	
 	
+	
+	private List<Proyecto> proyectos2=new ArrayList<Proyecto>();
+	
+	
 	@PostConstruct
 	public void init(){
 		try {
-			proyectos=proyectoVisitaService.findProyectosMasVisitados(MAX_RESULTS);
+			proyectos=proyectoVisitaService.findProyectosMasVisitados( MAX_RESULTS);
+			proyectos2=proyectoVisitaService.findProyectosMasVisitados(MAX_RESULTS_2);
 		} catch (BaseException e) {
 		mensajeError(e.toString());
 		}
@@ -93,6 +105,24 @@ public class VisitaBean extends BaseBean implements Serializable{
 	 */
 	public void setProyectos(List<Proyecto> proyectos) {
 		this.proyectos = proyectos;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @return the proyectos2
+	 */
+	public List<Proyecto> getProyectos2() {
+		return proyectos2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param proyectos2 the proyectos2 to set
+	 */
+	public void setProyectos2(List<Proyecto> proyectos2) {
+		this.proyectos2 = proyectos2;
 	}
 
 }

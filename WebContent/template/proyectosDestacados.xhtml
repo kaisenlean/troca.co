@@ -43,7 +43,7 @@
 					<h3>
 						<a href="#" class="margined-left blue blue-link">Proyectos
 							Destacados </a><a class="right margined-right blue blue-link"
-							href="#">>></a>
+							href="#{request.contextPath}/paginas/proyecto/destacados.jsf">>></a>
 					</h3>
 				</p>
 			</div>
@@ -61,7 +61,7 @@
 					<a href="#" class="blue-link blue"><h3>#{proyecto.nombre}</h3></a>
 				</p>
 				<p>#{proyecto.descripcion}</p>
-				<a href="#" class="home-btn right">Leer más ></a>
+				<p:commandLink process="@this" actionListener="#{beanProyecto.verDetalleProyecto2(proyecto)}" styleClass="home-btn right">Leer más ></p:commandLink>
 			</div>
 		</div>
 		

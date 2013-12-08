@@ -63,7 +63,7 @@ public class BeanRegistroVisita extends BaseBean implements Serializable {
 	public void guardarVisita(Proyecto proyecto){
 	ProyectoVisita visita=new ProyectoVisita();
 	visita.setProyecto(proyecto);
-	visita.setUsuario(login.getUsuario());
+	visita.setUsuario( login.getUsuario());
 	proyectoVisitaService.save(visita);
 	}
 	

@@ -13,7 +13,6 @@ import javax.faces.bean.SessionScoped;
 import co.icesi.troca.model.tengo.Tengo;
 import co.icesi.troca.model.trueque.EstadoTruequeEnum;
 import co.icesi.troca.model.trueque.Trueque;
-import co.icesi.troca.model.trueque.TruequeMensaje;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.views.login.Login;
 import co.icesi.troca.views.perfil.PerfilDe;

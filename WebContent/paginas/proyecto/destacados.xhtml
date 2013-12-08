@@ -1,0 +1,41 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+		<h:form enctype="multipart/form>">
+		
+		<div class="row gap">
+			<div class="col-md-12 red">
+				<h2 class="margined-left">Proyectos Destacados</h2>
+				<span class="margined-left" />
+			
+			</div>
+		</div>
+			<div class="row light-gray-box">
+	<c:forEach items="#{visitaBean.proyectos2}" var="proyecto">
+	
+	
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 clearfix">
+			<div class="featured centre">
+				<img src="#{request.contextPath}/foto/proyecto/#{proyecto.image eq null ?'proyecto.jpg':proyecto.image}" class="img-responsive" />
+				<p>
+					<a href="#" class="blue-link blue"><h3>#{proyecto.nombre}</h3></a>
+				</p>
+				<p>#{proyecto.descripcion}</p>
+				<p:commandLink process="@this" actionListener="#{beanProyecto.verDetalleProyecto2(proyecto)}" styleClass="home-btn right">Leer más ></p:commandLink>
+			</div>
+		</div>
+		
+		</c:forEach>
+	</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
