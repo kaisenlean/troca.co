@@ -182,5 +182,13 @@ public void setTextOtro(String textOtro) {
 	this.textOtro = textOtro;
 }
 
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 8/12/2013
+ * @param tengoService the tengoService to set
+ */
+public void setTengoService(TengoService tengoService) {
+	this.tengoService = tengoService;
+}
 
 }

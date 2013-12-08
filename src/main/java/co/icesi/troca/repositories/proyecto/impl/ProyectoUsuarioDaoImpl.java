@@ -39,7 +39,7 @@ public class ProyectoUsuarioDaoImpl  extends GenericJpaRepository<ProyectoUsuari
 	@Override
 	public ProyectoUsuario getByUsuarioAndProyecto(Usuario usuario,
 			Proyecto proyecto) {
-		Criterion ct1= Restrictions.conjunction().add(Restrictions.eq("usuario", usuario)).add(Restrictions.eq("usuario", usuario));
+		Criterion ct1= Restrictions.conjunction().add(Restrictions.eq("usuario", usuario)).add(Restrictions.eq("proyecto", proyecto));
 		
 		List<ProyectoUsuario> lista= findByCriteria(ct1);
 		if (lista.isEmpty()) {

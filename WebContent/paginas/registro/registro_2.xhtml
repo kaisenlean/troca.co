@@ -30,10 +30,11 @@
 							<br></br>
 							 <p:commandButton  value="Submit" ajax="false" 
                             actionListener="#{beanRegistro.uploadHandlerPhoto1()}"/> 
+                            <small>  -  Debes hacer click en Submit luego de escoger el archivo</small> 
 						<p class="help-block">Carga una foto para tu perfil</p>
 					</div>
 					<p class="light-gray margined-top">Escribe tu biografía</p>
-					<h:inputTextarea id="txtReg"  rows="8"
+					<h:inputTextarea styleClass="form-control gap" id="txtReg"  rows="8"
 						value="#{beanRegistro.usuario.biografia}"></h:inputTextarea>
 					<h:commandButton 
 						action="/paginas/registro/registro_3.jsf"

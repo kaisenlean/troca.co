@@ -4,6 +4,7 @@
 package co.icesi.troca.views.proyecto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,76 +13,86 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.exception.BaseException;
 import co.icesi.troca.model.proyecto.Proyecto;
-import co.icesi.troca.services.proyecto.ProyectoService;
+import co.icesi.troca.services.proyecto.ProyectoVisitaService;
 
 /**
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
  * @project troca-co
- * @class UltimosProyectos
- * @date 1/12/2013
+ * @class VisitaBean
+ * @date 8/12/2013
  *
  */
 @ManagedBean
 @RequestScoped
-public class UltimosProyectos extends BaseBean implements Serializable {
+public class VisitaBean extends BaseBean implements Serializable{
 
 	/**
-	 * 1/12/2013
+	 * 8/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MAX_RESULTS
+	 */
+	private static final int MAX_RESULTS = 4;
+
+	/**
+	 * 8/12/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
 	/**
-	 * 1/12/2013
+	 * 8/12/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * proyectoService
+	 * proyectoVisitaService
 	 */
-	@ManagedProperty(value="#{proyectoService}")
-	private ProyectoService proyectoService;  
-
-	
-	private List<Proyecto> proyectos;
+	@ManagedProperty(value="#{proyectoVisitaService}")
+	private ProyectoVisitaService proyectoVisitaService;
 	
 	
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	*/
+	 * 8/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * proyectos
+	 */
+	private List<Proyecto> proyectos=new ArrayList<Proyecto>();
+	
+	
 	@PostConstruct
 	public void init(){
-		proyectos=proyectoService.findUltimosProyectos(15);
-		
+		try {
+			proyectos=proyectoVisitaService.findProyectosMasVisitados(MAX_RESULTS);
+		} catch (BaseException e) {
+		mensajeError(e.toString());
+		}
 	}
-	
-	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 1/12/2013
-	 * @param proyectoService the proyectoService to set
+	 * @date 8/12/2013
+	 * @param proyectoVisitaService the proyectoVisitaService to set
 	 */
-	public void setProyectoService(ProyectoService proyectoService) {
-		this.proyectoService = proyectoService;
+	public void setProyectoVisitaService(
+			ProyectoVisitaService proyectoVisitaService) {
+		this.proyectoVisitaService = proyectoVisitaService;
 	}
+	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 1/12/2013
+	 * @date 8/12/2013
 	 * @return the proyectos
 	 */
 	public List<Proyecto> getProyectos() {
 		return proyectos;
 	}
 	
-	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 1/12/2013
+	 * @date 8/12/2013
 	 * @param proyectos the proyectos to set
 	 */
 	public void setProyectos(List<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
-	
+
 }

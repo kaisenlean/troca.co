@@ -50,6 +50,15 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	public T findById(PK id) {
 		return getDao().findById(id);
 	}
+	
+	
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.GenericRepository#findById(java.io.Serializable, java.lang.Class)
+	 */
+	@Override
+	public Object findById(PK id, Class<?> clazz) {
+		return getDao().findById(id, clazz);
+	}
 
 	/** (non-Javadoc)
 	 * @see co.icesi.troca.repositories.GenericRepository#findAll()

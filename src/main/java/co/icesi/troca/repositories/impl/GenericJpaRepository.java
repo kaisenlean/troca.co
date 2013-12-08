@@ -16,6 +16,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.repositories.GenericRepository;
 
 /**
@@ -47,7 +48,6 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	// ~ Constructors
 	// -----------------------------------------------------------
 
-	@SuppressWarnings("unchecked")
 	public GenericJpaRepository() {
 		this.persistentClass = (Class<T>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
@@ -109,6 +109,16 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	@Override
 	public T findById(final ID id) {
 		final T result = getEntityManager().find(persistentClass, id);
+		return result;
+	}
+	
+	
+	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
+	 */
+	@Override
+	public Object findById( ID id ,  Class<?>  class1) {
+		final Object result = getEntityManager().find(class1, id);
 		return result;
 	}
 

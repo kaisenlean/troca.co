@@ -43,9 +43,11 @@
 							<strong>Descripción del Necesito </strong><small class="white">(Máximo
 								140 caracteres)</small>
 						</p>
-						<h:inputTextarea id="descNecesito" styleClass="form-control gap desc-last-necesito"
-							rows="2" value="#{beanProyecto.descripcionNecesito}"></h:inputTextarea>
-
+						<p:inputTextarea counter="counter1" maxlength="140"
+						counterTemplate="{0} characters remaining." id="descNecesito" styleClass="form-control gap desc-last-necesito"
+							rows="2" value="#{beanProyecto.descripcionNecesito}"></p:inputTextarea>
+	<h:outputText id="counter1" />
+	<br/>
 						<p:commandButton value="Agregar"
 							actionListener="#{beanProyecto.agregarNecesito()}"
 							 process="@all" 

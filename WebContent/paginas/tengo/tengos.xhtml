@@ -40,9 +40,9 @@
 								class="btn btn-red white white-link small-margin-top"><span
 								class="glyphicon glyphicon-trash"></span></a> 
 								
-								<h:commandLink    actionListener="#{beanTengo.editarTengo(tengo)}"
+								<p:commandLink  process="@this"  actionListener="#{beanTengo.editarTengo(tengo)}"
 								styleClass="btn btn-default black black-link small-margin-top"><span
-								class="glyphicon glyphicon-list-alt"></span></h:commandLink>
+								class="glyphicon glyphicon-list-alt"></span></p:commandLink>
 								
 								 <a
 								href="#modal-tengo-perfil" data-toggle="modal"

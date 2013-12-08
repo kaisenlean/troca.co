@@ -226,6 +226,11 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	private InputStream in;
 
+	/**
+	 * 7/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * unadidos
+	 */
 	private List<Usuario> unadidos = new ArrayList<Usuario>();
 	/**
 	 * 1/12/2013
@@ -280,6 +285,10 @@ public class BeanProyecto extends BaseBean implements Serializable {
 
 	private boolean perfilDe;
 
+	
+	@ManagedProperty(value="#{beanRegistroVisita}")
+	private BeanRegistroVisita beanRegistroVisita;
+	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 30/11/2013
@@ -295,6 +304,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 
 	}
 
+	@SuppressWarnings("resource")
 	public void uploadPhotoFile() throws Exception {
 		ExternalContextImpl request;
 		request = (ExternalContextImpl) FacesContext.getCurrentInstance()
@@ -452,10 +462,12 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	*/
 	public void verDetalleProyecto2(Proyecto proyecto){
 		this.proyecto=proyecto;
+		
 		creados=proyectoUsuarioService.findByProyecto(proyecto);
 		necesitosProyecto=necesitoService.findNecesitoByProyecto(proyecto);
 		tengos=proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
 		perfilDe=true;
+		beanRegistroVisita.guardarVisita(proyecto);
 		goTo("/paginas/proyecto/perfil_proyecto.jsf");
 	}
 	
@@ -1091,5 +1103,14 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	public void setPerfilDe(boolean perfilDe) {
 		this.perfilDe = perfilDe;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param beanRegistroVisita the beanRegistroVisita to set
+	 */
+	public void setBeanRegistroVisita(BeanRegistroVisita beanRegistroVisita) {
+		this.beanRegistroVisita = beanRegistroVisita;
 	}
 }

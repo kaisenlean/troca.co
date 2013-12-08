@@ -36,6 +36,18 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 * @return the entity
 	 */
 	T findById(final ID id);
+	
+	
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 8/12/2013
+	* @param id
+	* @param clazz
+	* @return
+	*/
+	Object findById(final ID id ,  Class<?>  clazz) ;
 
 	/**
 	 * Load all entities

@@ -42,4 +42,6 @@ public class ProyectoCategoriaServiceImpl extends GenericServiceImpl<ProyectoCat
 		return proyectoDao;
 	}
 
+	
+
 }

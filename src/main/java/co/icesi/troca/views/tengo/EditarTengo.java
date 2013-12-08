@@ -61,7 +61,7 @@ public class EditarTengo extends BaseBean implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * tengo
 	 */
-	private Tengo tengo;
+	private Tengo tengo=new Tengo();
 	
 	/**
 	 * 12/11/2013

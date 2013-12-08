@@ -1,69 +1,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="./../../template/mainThm.xhtml">
+<ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
 
-<!-- Formulario -->
-<div class="row big-gap blue-box">
-  <div class="col-md-6 col-sm-6 blue-box hugely-padded-bot know-height">
-    <h:form  enctype="multipart/form-data"  styleClass="margined-left basic margined-top">
-    <div class="form-group">
-      <label for="tipo-tengo" class="white">¿Qué es lo que tienes?</label>
-      <h:selectOneMenu styleClass="form-control" id="tipo-tengo" value="#{beanTengo.tipoTengo}">
-      <p:ajax event="change" process="@this"></p:ajax>
-      	<f:selectItems value="#{login.itemsTipoTengo}"></f:selectItems>
-      </h:selectOneMenu>
-    
-      </div>
-      <div class="form-group">
-        <label for="tengo-nombre" class="white">Dale un Nombre</label>
-        <p:inputText   styleClass="form-control" id="tengo-nombre" value="#{beanTengo.tengo.nombre}"></p:inputText>
-       <p:watermark value=" Ej: Cámara Análoga" for="tengo-nombre"></p:watermark>
-      </div>
-      <p class="white margined-top">Escribe la descripción de lo que tienes <small class="white margined-top">(Máximo 140 caracteres)</small></p>
-  <h:inputTextarea styleClass="form-control gap" rows="3" value="#{beanTengo.tengo.descripcion}"></h:inputTextarea>
-  <div class="form-group">
-    <label for="tengo-pic" class="white">Foto de lo que tienes</label>
-   <p:fileUpload  value="#{beanTengo.file}" mode="simple"   ></p:fileUpload>
-							<br></br>
-							 <p:commandButton  value="Submit" ajax="false" 
-                            actionListener="#{beanTengo.uploadHandlerPhoto1()}"/> 
-    
-    <p class="help-block">Carga una foto de lo que tienes</p>
-  </div>
-      
-      <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar" process="@all" update="@all" actionListener="#{beanTengo.crearTengo()}"></p:commandButton>
-      <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar y crear otro" process="@all" partialSubmit="true" update="@form" actionListener="#{beanTengo.crearTengoYPrepararOtro()}"></p:commandButton>
-      
-      <button type="submit" class="btn btn-default right small-margin-right small-margin-top padded-bot hidden-xs">Cancelar</button>
-<!-- 	  <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar" process="@all" partialSubmit="true" update="@all" actionListener="#{beanTengo.crearTengo()}"></p:commandButton> -->
+		<!-- Formulario -->
+		<div class="row big-gap blue-box">
+			<div class="col-md-6 col-sm-6 blue-box hugely-padded-bot know-height">
+				<h:form enctype="multipart/form-data"
+					styleClass="margined-left basic margined-top">
+					<div class="form-group">
+						<label for="tipo-tengo" class="white">¿Qué es lo que
+							tienes?</label>
+						<h:selectOneMenu styleClass="form-control" id="tipo-tengo"
+							value="#{beanTengo.tipoTengo}">
+							<p:ajax event="change" process="@this"></p:ajax>
+							<f:selectItems value="#{login.itemsTipoTengo}"></f:selectItems>
+						</h:selectOneMenu>
 
-<!--       <button type="submit" class="btn btn-default right small-margin-right small-margin-top padded-bot visible-xs">Cancelar</button> -->
+					</div>
+					<div class="form-group">
+						<label for="tengo-nombre" class="white">Dale un Nombre</label>
+						<p:inputText styleClass="form-control" id="tengo-nombre"
+							value="#{beanTengo.tengo.nombre}"></p:inputText>
+						<p:watermark value=" Ej: Cámara Análoga" for="tengo-nombre"></p:watermark>
+					</div>
+					<p class="white margined-top">
+						Escribe la descripción de lo que tienes <small
+							class="white margined-top">(Máximo 140 caracteres)</small>
 
-       
-    </h:form><!-- Termina formulario-->
+					</p>
+					
+					<p:inputTextarea counter="counter1" maxlength="140"
+						counterTemplate="{0} characters remaining."
+						styleClass="form-control" rows="3"
+						value="#{beanTengo.tengo.descripcion}"></p:inputTextarea>
+					<h:outputText id="counter1" />
+					<div class="form-group">
+						<label for="tengo-pic" class="white">Foto de lo que tienes</label>
+						<p:fileUpload value="#{beanTengo.file}" mode="simple"></p:fileUpload>
+						<br></br>
 
-  </div>
-  <div class="col-md-6 col-sm-6 hidden-xs img-reg">
-    <div class="help-text justify">
-      <h4 class="white margined-left">¿ Qué tienes para intercambiar ?
-</h4>
-<p class="white margined-left">Crea y publica “tengo” que podrás intercambiar por tus futuros “necesito”, primero debes pensar con qué cosas cuentas y asegurarte de que estás dispuesto a intercambiarlas o entregarlas a algún proyecto.
+						<p:commandButton value="Submit" ajax="false"
+							actionListener="#{beanTengo.uploadHandlerPhoto1()}" />
+						<small> - Debes hacer click en Submit luego de escoger el
+							archivo</small>
+						<p class="help-block">Carga una foto de lo que tienes</p>
+					</div>
 
-</p>
-<p class="white margined-left">Define si es un conocimiento, objeto o espacio y dale un nombre para que lo puedan buscar. También se pueden agregar fotos, si es importante. 
+					<p:commandButton
+						styleClass="btn btn-default right small-margin-top hidden-xs "
+						value="Guardar" process="@all" update="@all"
+						actionListener="#{beanTengo.crearTengo()}"></p:commandButton>
+					<p:commandButton
+						styleClass="btn btn-default right small-margin-top hidden-xs "
+						value="Guardar y crear otro" process="@all" partialSubmit="true"
+						update="@form"
+						actionListener="#{beanTengo.crearTengoYPrepararOtro()}"></p:commandButton>
 
-</p>
-    </div>
-  </div>
-</div> 
+					<button type="submit"
+						class="btn btn-default right small-margin-right small-margin-top padded-bot hidden-xs">Cancelar</button>
+					<!-- 	  <p:commandButton styleClass="btn btn-default right small-margin-top hidden-xs " value="Guardar" process="@all" partialSubmit="true" update="@all" actionListener="#{beanTengo.crearTengo()}"></p:commandButton> -->
+
+					<!--       <button type="submit" class="btn btn-default right small-margin-right small-margin-top padded-bot visible-xs">Cancelar</button> -->
 
 
-    </ui:define>
+				</h:form>
+				<!-- Termina formulario-->
+
+			</div>
+			<div class="col-md-6 col-sm-6 hidden-xs img-reg">
+				<div class="help-text justify">
+					<h4 class="white margined-left">¿ Qué tienes para intercambiar
+						?</h4>
+					<p class="white margined-left">Crea y publica “tengo” que
+						podrás intercambiar por tus futuros “necesito”, primero debes
+						pensar con qué cosas cuentas y asegurarte de que estás dispuesto a
+						intercambiarlas o entregarlas a algún proyecto.</p>
+					<p class="white margined-left">Define si es un conocimiento,
+						objeto o espacio y dale un nombre para que lo puedan buscar.
+						También se pueden agregar fotos, si es importante.</p>
+				</div>
+			</div>
+		</div>
+
+
+	</ui:define>
 </ui:composition>
 </html>

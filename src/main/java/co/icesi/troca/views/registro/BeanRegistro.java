@@ -286,6 +286,8 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		usuarioLink9=new UsuarioLink();
 		itemPaises = paisService.getItmems();
 		posLink=0;
+		selPais=343;
+		cambioPais();
 		captureContextPath();
 	}
 
@@ -374,7 +376,7 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		usuarioLink8=usuario.getUsuarioLinks().get(7);
 		usuarioLink9=usuario.getUsuarioLinks().get(8);
 		
-		posLink=9;
+		posLink=4;
 		this.usuario.setPasswordTemp(usuario.getPassword());
 		selPais=usuario.getCiudad().getDepartamento().getPais().getId();
 		cambioPais();
@@ -437,26 +439,8 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		usuarioLink4.setUsuario(usuario);
 		usuarioLinkService.save(usuarioLink4);
 		
-
-		usuarioLink5.setUsuario(usuario);
-		usuarioLinkService.save(usuarioLink5);
 		
 
-		usuarioLink6.setUsuario(usuario);
-		usuarioLinkService.save(usuarioLink6);
-		
-
-		usuarioLink7.setUsuario(usuario);
-		usuarioLinkService.save(usuarioLink7);
-		
-
-		usuarioLink8.setUsuario(usuario);
-		usuarioLinkService.save(usuarioLink8);
-		
-
-		usuarioLink9.setUsuario(usuario);
-		usuarioLinkService.save(usuarioLink9);
-		
 		
 		if (in!=null) {
 			uploadPhotoFile();

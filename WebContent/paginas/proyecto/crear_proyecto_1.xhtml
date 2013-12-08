@@ -26,13 +26,13 @@
 					<div class="form-group">
 						<label for="proyecto-nombre" class="white">Título del
 							Proyecto</label> <br />
-						<p:inputText id="proyecto-nombre" size="50"
+						<p:inputText styleClass="form-control" id="proyecto-nombre" size="50"
 							value="#{beanProyecto.proyecto.nombre}"></p:inputText>
 					</div>
 					<p class="white margined-top">
 						<strong>Descripción del Proyecto</strong>
 					</p>
-					<p:inputTextarea rows="8" cols="50"
+					<p:inputTextarea styleClass="form-control" rows="8" cols="50"
 						value="#{beanProyecto.proyecto.descripcionLarga}">
 
 					</p:inputTextarea>
@@ -40,12 +40,14 @@
 						<strong>Descripción Corta del proyecto </strong><small
 							class="white"> (´Máximo 140 caracteres)</small>
 					</p>
-					<p:inputTextarea rows="2" cols="50"
+					<p:inputTextarea  counter="counter" maxlength="140"       
+    counterTemplate="{0} characters remaining." styleClass="form-control" rows="2" cols="50"
 						value="#{beanProyecto.proyecto.descripcion}"></p:inputTextarea>
+						<h:outputText id="counter" />
 					<div class="form-group">
 						<label for="licencia-proyecto" class="white">¿En qué
 							licencia lo pondrías?</label>
-						<h:selectOneMenu value="#{beanProyecto.categoriaProyecto}"
+						<h:selectOneMenu  value="#{beanProyecto.categoriaProyecto}"
 							styleClass="form-control" id="licencia-proyecto">
 							<f:selectItems value="#{itemsProyectoCategoria.items}"></f:selectItems>
 							<p:ajax event="change" process="@this"></p:ajax>
