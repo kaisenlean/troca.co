@@ -7,6 +7,8 @@ import java.util.List;
 
 import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.proyecto.ProyectoUsuario;
+import co.icesi.troca.model.trueque.TruequeMensaje;
+import co.icesi.troca.model.trueque.TruequeTengo;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.GenericService;
 
@@ -36,5 +38,26 @@ public interface NotificacionService  extends GenericService<Notificacion, Integ
 	* @param proyectoUsuario
 	 */
 	public void crearNotificacionAdicionProyecto(ProyectoUsuario proyectoUsuario);
+	
+	
+	
+	/**
+	 * Crea la notificacion de solicitud de trueque tengo
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param truequeTengo
+	 */
+	public void crearNotificacionSolicitudTrueque(TruequeTengo truequeTengo,String mensaje);
+	
+	
+	
+	
+	/**
+	 * Método que envia mensaje en un trueque activo
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 9/12/2013
+	* @param truequeMensaje
+	*/
+	public void enviarNotificacionMensajeTrueque(TruequeMensaje truequeMensaje);
 	
 }

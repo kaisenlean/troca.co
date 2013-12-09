@@ -6,6 +6,8 @@
 package co.icesi.troca.model.trueque;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import co.icesi.troca.model.usuario.Usuario;
 
@@ -68,6 +71,38 @@ public class Trueque implements Serializable {
 	@Column(name = "estado")
 	@Enumerated(EnumType.STRING)
 	private EstadoTruequeEnum estado;
+	
+	
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * estadoUsuario1
+	 */
+	@Column(name = "estado_usuario_1")
+	@Enumerated(EnumType.STRING)
+	private EstadoTruequeEnum estadoUsuario1;
+	
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * estadoUsuario2
+	 */
+	@Column(name = "estado_usuario_2")
+	@Enumerated(EnumType.STRING)
+	private EstadoTruequeEnum estadoUsuario2;
+	
+	
+	
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * mensajes
+	 */
+	@Transient
+	public List<TruequeMensaje> mensajes=new ArrayList<TruequeMensaje>();
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -157,6 +192,23 @@ public class Trueque implements Serializable {
 		this.estado = estado;
 	}
 
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the mensajes
+	 */
+	public List<TruequeMensaje> getMensajes() {
+		return mensajes;
+	}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param mensajes the mensajes to set
+	 */
+	public void setMensajes(List<TruequeMensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -172,8 +224,6 @@ public class Trueque implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
 		if (!(object instanceof Trueque)) {
 			return false;
 		}
@@ -191,6 +241,42 @@ public class Trueque implements Serializable {
 	@Override
 	public String toString() {
 		return "com.icesi.trocadero.data.entities.Trueque[ id=" + id + " ]";
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the estadoUsuario1
+	 */
+	public EstadoTruequeEnum getEstadoUsuario1() {
+		return estadoUsuario1;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the estadoUsuario2
+	 */
+	public EstadoTruequeEnum getEstadoUsuario2() {
+		return estadoUsuario2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param estadoUsuario1 the estadoUsuario1 to set
+	 */
+	public void setEstadoUsuario1(EstadoTruequeEnum estadoUsuario1) {
+		this.estadoUsuario1 = estadoUsuario1;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param estadoUsuario2 the estadoUsuario2 to set
+	 */
+	public void setEstadoUsuario2(EstadoTruequeEnum estadoUsuario2) {
+		this.estadoUsuario2 = estadoUsuario2;
 	}
 
 }

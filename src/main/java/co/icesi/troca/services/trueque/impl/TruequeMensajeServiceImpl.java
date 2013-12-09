@@ -4,10 +4,12 @@
 package co.icesi.troca.services.trueque.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.model.trueque.TruequeMensaje;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.trueque.TruequeMensajeDao;
@@ -41,6 +43,14 @@ public class TruequeMensajeServiceImpl extends GenericServiceImpl<TruequeMensaje
 	@Override
 	public GenericRepository<TruequeMensaje, Integer> getDao() {
 		return truequeMensajeDao;
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.trueque.TruequeMensajeService#findMensajesByTrueque(co.icesi.troca.model.trueque.Trueque)
+	 */
+	@Override
+	public List<TruequeMensaje> findMensajesByTrueque(Trueque trueque) {
+		return truequeMensajeDao.findMensajesByTrueque(trueque);
 	}
 
 }

@@ -4,11 +4,14 @@
 package co.icesi.troca.services.trueque.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.model.trueque.EstadoTruequeEnum;
 import co.icesi.troca.model.trueque.Trueque;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.trueque.TruequeDao;
 import co.icesi.troca.services.impl.GenericServiceImpl;
@@ -40,6 +43,14 @@ public class TruequeServiceImpl extends GenericServiceImpl<Trueque, Integer> imp
 	@Override
 	public GenericRepository<Trueque, Integer> getDao() {
 		return truequeDao;
+	}
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.trueque.TruequeService#findActivosByUsuarioAndEstado(co.icesi.troca.model.usuario.Usuario, co.icesi.troca.model.trueque.EstadoTruequeEnum)
+	 */
+	@Override
+	public List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,
+			EstadoTruequeEnum estado) {
+		return truequeDao.findActivosByUsuarioAndEstado(usuario, estado);
 	}
 
 }

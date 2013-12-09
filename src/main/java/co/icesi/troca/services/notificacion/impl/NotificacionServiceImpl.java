@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import co.icesi.troca.model.notificacion.Modulo;
 import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.proyecto.ProyectoUsuario;
+import co.icesi.troca.model.trueque.TruequeMensaje;
+import co.icesi.troca.model.trueque.TruequeTengo;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.notificacion.NotificacionDao;
@@ -82,6 +84,37 @@ public class NotificacionServiceImpl extends GenericServiceImpl<Notificacion, In
 		notificacion.setUsuario(proyectoUsuario.getUsuario());
 		notificacion.setMensaje(INVITACION_PROYECTO);
 		notificacionDao.save(notificacion);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.notificacion.NotificacionService#crearNotificacionSolicitudTrueque(co.icesi.troca.model.trueque.TruequeTengo)
+	 */
+	@Override
+	public void crearNotificacionSolicitudTrueque(TruequeTengo truequeTengo,String mensaje) {
+		Notificacion notificacion= new Notificacion();
+		notificacion.setCreador(truequeTengo.getTrueque().getUsuarioTrueque1());
+		notificacion.setFecha(new Date());
+		notificacion.setModulo(Modulo.TRUEQUE_TENGO);
+		notificacion.setReferenceId(truequeTengo.getId().toString());
+		notificacion.setUsuario(truequeTengo.getTrueque().getUsuarioTrueque2());
+		notificacion.setMensaje("Yo necesito "+truequeTengo.getTengo2().getNombre()+" A cambio te puedo ofrecer "+truequeTengo.getTengo().getNombre()+"\n"+mensaje);
+		notificacionDao.save(notificacion);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.notificacion.NotificacionService#enviarNotificacionMensajeTrueque(co.icesi.troca.model.trueque.TruequeMensaje)
+	 */
+	@Override
+	public void enviarNotificacionMensajeTrueque(TruequeMensaje truequeMensaje) {
+		Notificacion notificacion= new Notificacion();
+		notificacion.setCreador(truequeMensaje.getUsuarioEmisor());
+		notificacion.setFecha(new Date());
+		notificacion.setModulo(Modulo.MENSAJE_TRUEQUE);
+		notificacion.setReferenceId(truequeMensaje.getTrueque().getId().toString());
+		notificacion.setUsuario(truequeMensaje.getUsuarioReceptor());
+		notificacion.setMensaje("Nueva respuesta en tu trueque con "+truequeMensaje.getUsuarioEmisor().getNombreCompleto());
+		notificacionDao.save(notificacion);
+		
 	}
 
 }

@@ -14,41 +14,48 @@
 
 	<ui:include src="/template/headerMenu.xhtml"></ui:include>
 	<ui:include src="/includes/modalRegistro.xhtml"></ui:include>
-<!-- modal contacto -->
-<div class="modal fade" id="modal-contacto" tabindex="-1" role="dialog" aria-labelledby="Contacto" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title blue">Contáctanos</h4>
-        </div>
-        <div class="modal-body">
+	<!-- modal contacto -->
+	<div class="modal fade" id="modal-contacto" tabindex="-1" role="dialog"
+		aria-labelledby="Contacto" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title blue">Contáctanos</h4>
+				</div>
+				<div class="modal-body">
 
-      <form role="registro" class="margined-left basic margined-top">
-        <div class="form-group">
-        
-          <input type="email" class="form-control" id="mail-contacto" placeHolder="Correo Electrónico"/>
-        </div>
-        <div class="form-group">
-        
-         <input type="text" class="form-control" id="name-contacto" placeHolder="Nombre y Apellido"/>
-        </div>
+					<form role="registro" class="margined-left basic margined-top">
+						<div class="form-group">
 
-        <div class="form-group">
-        
-         <p class="gray margined-top">Escribe tu mensaje</p>
-        <textarea class="form-control gap" rows="5"></textarea>
-        </div>
-      </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-blue white white-link">Enviar</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal registro -->
-<p:messages showDetail="true" showSummary="true" severity="WARN"></p:messages>
+							<input type="email" class="form-control" id="mail-contacto"
+								placeHolder="Correo Electrónico" />
+						</div>
+						<div class="form-group">
+
+							<input type="text" class="form-control" id="name-contacto"
+								placeHolder="Nombre y Apellido" />
+						</div>
+
+						<div class="form-group">
+
+							<p class="gray margined-top">Escribe tu mensaje</p>
+							<textarea class="form-control gap" rows="5"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-blue white white-link">Enviar</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal registro -->
+	<p:messages autoUpdate="true" globalOnly="true" showDetail="true"></p:messages>
 	<ui:insert name="content">
 
 

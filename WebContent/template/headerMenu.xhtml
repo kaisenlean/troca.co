@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+        xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 	<f:loadBundle var="msgMenu"
 		basename="co.icesi.troca.i18n.messages_menu_header_es" />
@@ -41,156 +42,25 @@
 				<li><a href="#" style="visibility: #{login.usuario eq null ? 'hidden':'visible'}" class="oneline log-alpha not" id="notif"><span
 						class="glyphicon glyphicon-envelope"></span></a> <!-- Notificaciones -->
 					<ul class="not" id="body-notif">
-
-						<!-- formato notificación nuevo trueque -->
-						<a href="#" class="gray gray-link"><li>
+						<c:forEach var="notifi" items="#{beanNotificacion.lista}">
+						
+							<a href="#" class="gray gray-link"><li>
 								<div class="notif-content small-margin-top small-margin-right">
 									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
+										<img src="#{request.contextPath}/foto/usuario/#{notifi.creador.fotografia}" class="img-responsive" />
 									</div>
 									<div class="izq notif-caption">
 										<p>
-											Nueva propuesta de Trueque por <strong>"Nombre de
-												Usuario</strong>
+											#{notifi.mensajeCompleto}
 										</p>
 									</div>
 								</div>
 						</li>
 							<div class="clear"></div>
 							<li class="divisor clear"></li></a>
-						<!-- formato notificación nueva respuesta en trueque -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											Nueva respuesta en tu Trueque con <strong>"Nombre de
-												Usuario</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-						<!-- Formato notificación nueva propuesta de trueque en proyecto (para el creador) -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											Propuesta de trueque en <strong>"Nombre de Proyecto"</strong>
-											entre <strong>"Nombre de Usuario 1"</strong> y <strong>Nombre
-												de Usuario 2</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-						<!-- Formato de notificación por invitación a proyecto -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											<strong>"Nombre de Usuario</strong> te invita a su proyecto <strong>"Nombre
-												de Proyecto"</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-
-						<!-- Formato de notificación por eliminación de proyecto -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											Se ha eliminado el proyecto: <strong>"Nombre de
-												Proyecto"</strong> de <strong>"Nombre de Usuario Creador"</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-						<!-- Formato de notificación por cancelación de trueque -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											Cancelaron tu trueque con <strong>"Nombre de Usuario</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-						<!-- Formato de notificación por Finalización de trueque -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											Finalizaron tu trueque con <strong>"Nombre de
-												Usuario</strong>. Para que se finalice realmente, debes finalizarlo
-											también
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-						<!-- formato de notificación por comentario en noticia -->
-						<a href="#" class="gray gray-link"><li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											<strong>"Nombre de Usuario</strong> ha comentado en tu
-											noticia <strong>"Nombre de Noticia"</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
-						<!-- formato de notificación por respuesta en comentario en noticia -->
-						<a href="#" class="gray gray-link">
-							<li>
-								<div class="notif-content small-margin-top small-margin-right">
-									<div class="izq notif-pic">
-										<img src="img/comment.jpg" />
-									</div>
-									<div class="izq notif-caption">
-										<p>
-											<strong>"Nombre de Usuario</strong> ha respondido a tu
-											comentario en <strong>"Nombre de Noticia"</strong>
-										</p>
-									</div>
-								</div>
-						</li>
-							<div class="clear"></div>
-							<li class="divisor clear"></li>
-						</a>
-
+						
+						
+						</c:forEach>
 
 					</ul></li>
 				<li><h:outputLink styleClass="oneline"
@@ -238,5 +108,7 @@
 		<p:commandButton style="visibility: hidden;" styleClass="width:2px;height:2px" process="@all" update="@all" id="btnBusq1" widgetVar="btnBusq1"  actionListener="#{beanBusqueda.ejecutarBusqueda()}" ></p:commandButton>
 </h:form>
 	</div>
+
+	
 	<!-- /.navbar-collapse --> </nav> </header>
 </f:view>

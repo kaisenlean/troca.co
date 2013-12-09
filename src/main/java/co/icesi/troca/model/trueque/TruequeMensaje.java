@@ -6,13 +6,19 @@
 package co.icesi.troca.model.trueque;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import co.icesi.troca.model.usuario.Usuario;
 
@@ -45,21 +51,24 @@ public class TruequeMensaje implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * trueque
 	 */
-	@Column(name = "trueque")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "trueque")
 	private Trueque trueque;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioEmisor
 	 */
-	@Column(name = "usuario_emisor")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario_emisor")
 	private Usuario usuarioEmisor;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioReceptor
 	 */
-	@Column(name = "usuario_receptor")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario_receptor")
 	private Usuario usuarioReceptor;
 	/**
 	 * 12/11/2013
@@ -68,6 +77,17 @@ public class TruequeMensaje implements Serializable {
 	 */
 	@Column(name = "mensaje")
 	private String mensaje;
+	
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * fecha
+	 */
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha")
+	private Date fecha;
+	
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -173,6 +193,24 @@ public class TruequeMensaje implements Serializable {
 	*/
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	/* (non-Javadoc)

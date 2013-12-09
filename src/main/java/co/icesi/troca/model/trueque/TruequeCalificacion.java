@@ -7,13 +7,17 @@ package co.icesi.troca.model.trueque;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -37,7 +41,6 @@ public class TruequeCalificacion implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -52,8 +55,9 @@ public class TruequeCalificacion implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * trueque
 	 */
-	@Column(name = "trueque")
-	private Integer trueque;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "trueque")
+	private Trueque trueque;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -66,8 +70,23 @@ public class TruequeCalificacion implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuario
 	 */
-	@Column(name = "usuario")
-	private Integer usuario;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
+	
+	
+	
+	
+	
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * usuario
+	 */
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario_calificado")
+	private Usuario usuarioCalificado;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -126,7 +145,7 @@ public class TruequeCalificacion implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getTrueque() {
+	public Trueque getTrueque() {
 		return trueque;
 	}
 
@@ -135,7 +154,7 @@ public class TruequeCalificacion implements Serializable {
 	* @date 12/11/2013
 	* @param trueque
 	*/
-	public void setTrueque(Integer trueque) {
+	public void setTrueque(Trueque trueque) {
 		this.trueque = trueque;
 	}
 
@@ -162,7 +181,7 @@ public class TruequeCalificacion implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -171,7 +190,7 @@ public class TruequeCalificacion implements Serializable {
 	* @date 12/11/2013
 	* @param usuario
 	*/
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -190,8 +209,6 @@ public class TruequeCalificacion implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
 		if (!(object instanceof TruequeCalificacion)) {
 			return false;
 		}
@@ -211,5 +228,24 @@ public class TruequeCalificacion implements Serializable {
 		return "com.icesi.trocadero.data.entities.TruequeCalificacion[ id="
 				+ id + " ]";
 	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the usuarioCalificado
+	 */
+	public Usuario getUsuarioCalificado() {
+		return usuarioCalificado;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param usuarioCalificado the usuarioCalificado to set
+	 */
+	public void setUsuarioCalificado(Usuario usuarioCalificado) {
+		this.usuarioCalificado = usuarioCalificado;
+	}
+	
 
 }

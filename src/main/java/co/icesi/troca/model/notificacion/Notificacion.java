@@ -1,10 +1,12 @@
 package co.icesi.troca.model.notificacion;
 
 import co.icesi.troca.model.usuario.Usuario;
+
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
+
 import javax.persistence.*;
 
 /**
@@ -112,5 +114,29 @@ public class Notificacion implements Serializable {
 	 */
 	public void setReferenceId(String referenceId) {
 		this.referenceId = referenceId;
+	}
+	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 9/12/2013
+	* @return
+	*/
+	public String getMensajeCompleto(){
+		
+		if (modulo.equals(Modulo.PROYECTO)) {
+			return new StringBuilder(creador.getNombreCompleto()).append(" Te invita a su proyecto").toString();
+		}
+		
+		if (modulo.equals(Modulo.TRUEQUE_TENGO)) {
+			return new StringBuilder("Nueva propuesta de Trueque por ").append(creador.getNombreCompleto()).toString();
+		}
+		
+		if (modulo.equals(Modulo.MENSAJE_TRUEQUE)) {
+			return new StringBuilder("Nueva respuesta en tu trueque con ").append(creador.getNombreCompleto()).toString();
+		}
+		
+		
+		return "NO message";
 	}
 }

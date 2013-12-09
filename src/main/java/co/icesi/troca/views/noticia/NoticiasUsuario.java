@@ -142,6 +142,7 @@ public class NoticiasUsuario extends BaseBean implements Serializable {
 	* @date 1/12/2013
 	* @throws Exception
 	*/
+	@SuppressWarnings("resource")
 	public void uploadPhotoFile() throws Exception {
 		ExternalContextImpl request;
 		request = (ExternalContextImpl) FacesContext.getCurrentInstance()

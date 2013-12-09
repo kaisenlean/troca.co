@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
+		<h:form>
 	<!-- Listado de Tengos -->
 
 	<div class="row gap">
@@ -16,7 +16,8 @@
 	</div>
 
 	<div class="row">
-		<c:forEach var="tengo" items="#{perfilDe.usuario.tengos}">
+		<c:forEach var="tengo"  items="#{perfilDe.usuario.tengos}">
+
 
 			<div class="col-md-3 col-lg-2 col-sm-4 col-xs-12 clearfix">
 				<div class="thumbnail blue-border margined margined-bot cien">
@@ -30,13 +31,13 @@
 						<p>
 							<h:outputText value="#{tengo.descripcion}" />
 						</p>
-						<h:form>
+<!-- 						<h:form> -->
 							<p>
 								<a href="#modal-tengo-perfil#{tengo.id}" data-toggle="modal"
 									class="tengo-perfil btn btn-blue small-margin-top">Trocar</a>
 
 							</p>
-						</h:form>
+<!-- 						</h:form> -->
 					</div>
 				</div>
 			</div>
@@ -44,6 +45,7 @@
 			<div class="modal fade" id="modal-tengo-perfil#{tengo.id}"
 				tabindex="-1" role="dialog" aria-labelledby="Ingreso"
 				aria-hidden="true">
+		<h:form>
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -58,20 +60,12 @@
 							<div class="form-group">
 								<label for="tengo-perfil" class="black">Tus Tengo</label>
 								<h:selectOneMenu value="#{beanTrueque.idTengo}" styleClass="form-control">
-								<p:ajax event="change" process="@all" update="@all"></p:ajax>
+								<p:ajax event="change" process="@this" update="@all"></p:ajax>
 									<f:selectItems value="#{login.usuario.tengosAsItems}" 
 										></f:selectItems>
 										<f:selectItem itemLabel="Otro" itemValue="0"/>
 										
 								</h:selectOneMenu>
-<!-- 								<select id="tengo-perfil" > -->
-<!-- 									<option value="tengo1">tengo1</option> -->
-<!-- 									<option value="tengo2">tengo2</option> -->
-<!-- 									<option value="tengo3">tengo3</option> -->
-<!-- 									<option value="tengo4">tengo4</option> -->
-<!-- 									<option value="otro">Otro</option> -->
-<!-- 								</select> -->
-
 							</div>
 							<div class="form-group">
 								<label for="otro-perfil-tengo" class="black">Otro</label>
@@ -84,7 +78,7 @@
 
 							<p class="gray margined-top">Agrega un comentario personal a
 								la propuesta</p>
-							<h:inputTextarea value="#{beanTrueque.mensaje}"  styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+							<h:inputTextarea  value="#{beanTrueque.mensaje}"   styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
 						</div>
 
 
@@ -100,21 +94,20 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Cancelar</button>
-								<p:commandButton styleClass="btn btn-blue white white-link va" value="Enviar" process="@all" update="@all"></p:commandButton>
+								<h:commandButton   actionListener="#{beanTrueque.realizarTrueque(tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
 							
 						</div>
 					</div>
 					<!-- /.modal-content -->
 				</div>
+				</h:form>
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal trocar Tengo perfil -->
-
-		</c:forEach>
-
+</c:forEach>
 
 
 	</div>
-
+</h:form>
 
 </f:view>

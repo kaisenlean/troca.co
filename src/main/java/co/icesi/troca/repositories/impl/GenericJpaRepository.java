@@ -16,7 +16,6 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.repositories.GenericRepository;
 
 /**
@@ -175,7 +174,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 */
 	@Required
 	@PersistenceContext
-	public void setEntityManager(final EntityManager entityManager) {
+	public void setEntityManager( EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
 
@@ -246,6 +245,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	@Override
 
 	public T save(T entity) {
+
 		final T savedEntity = getEntityManager().merge(entity);
 		return savedEntity;
 	}

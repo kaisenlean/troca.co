@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+		<h:form>
+
+			<!-- 							<div class="col-md-8 col-sm-8 col-lg-6"> -->
+
+			<h4 class="margined-left gray gap">Trueque con
+				#{beanTruequeMensajeMensaje.trueque.usuarioTrueque2.nombreCompleto}</h4>
+
+			<div class="media margined">
+
+				<h:dataTable value="#{beanTruequeMensaje.trueque.mensajes}"
+					var="msj">
+					<h:column>
+						<a class="pull-left" href="#"> <img
+							style="width: 64px; height: 64px" class="media-object"
+							src="#{request.contextPath}/foto/usuario/#{msj.usuarioEmisor.fotografia eq null ?'logo_header.png':msj.usuarioEmisor.fotografia }"
+							alt="..." />
+						</a>
+						<div class="media-body">
+							<h4 class="media-heading">#{msj.usuarioEmisor.nombreCompleto}
+								dijo:</h4>
+							<p>#{msj.mensaje}</p>
+							<small>Escrito el <h:outputText value="#{msj.fecha}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+								</h:outputText>
+							</small>
+						</div>
+						<br />
+					</h:column>
+				</h:dataTable>
+
+
+			</div>
+			<h4 class="gray margined-left">Responder</h4>
+			<div class="margined gap">
+				<p:inputTextarea value="#{beanTruequeMensaje.respuesta}"
+					styleClass="form-control gap" rows="3"></p:inputTextarea>
+
+
+				<p:commandButton
+					actionListener="#{beanTruequeMensaje.enviarMensaje()}"
+					styleClass="btn btn-default right" value="Enviar" process="@all"
+					update="@all"></p:commandButton>
+				<br /> <br />
+			</div>
+
+			<button
+				style="visibility: #{beanTruequeMensaje.activoFinalizado?'visible':'hidden'}"
+				type="submit" data-toggle="modal" href="#modal-calificacion"
+				title="Finaliza el trueque solo cuando este se haya realizado satisfactoriamente"
+				id="finish-trueque" class="btn btn-blue right margined">Finalizar
+				Trueque</button>
+			<button type="button" class="btn btn-red right margined">Cancelar
+				Trueque</button>
+			<br />
+			<br />
+			<br />
+			<br />
+			<!-- 							</div> -->
+
+			<!-- Modal Calificación -->
+			<div class="modal fade" id="modal-calificacion" tabindex="-1"
+				role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title blue">Calificación</h4>
+						</div>
+						<div class="modal-body">
+							<p>Califica a la persona con la que trocaste, basándote en la
+								experiencia del intercambio y deja luego un comentario para que
+								los demás sepan cómo les fue</p>
+							<p:rating id="ratClif" required="true"
+								requiredMessage="Requerido"
+								value="#{beanTruequeMensaje.calificacion.puntajeVal}" stars="5"></p:rating>
+							<p:message for="ratClif"></p:message>
+							<div class="form-group">
+
+								<p class="gray margined-top">Deja un comentario que todos
+									podrán leer</p>
+								<p:inputTextarea styleClass="form-control gap" rows="5"
+									value="#{beanTruequeMensaje.calificacion.puntajeText}"></p:inputTextarea>
+							</div>
+
+
+
+						</div>
+
+
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancelar</button>
+							<h:commandButton 
+								actionListener="#{beanTruequeMensaje.finalizarTrueque()}"
+								styleClass="btn btn-blue" value="Enviar"></h:commandButton>
+							<!--           <button type="button" class="btn btn-blue white white-link va">Enviar</button> -->
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal calificacion -->
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

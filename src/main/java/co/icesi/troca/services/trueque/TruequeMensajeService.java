@@ -3,6 +3,9 @@
  */
 package co.icesi.troca.services.trueque;
 
+import java.util.List;
+
+import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.model.trueque.TruequeMensaje;
 import co.icesi.troca.services.GenericService;
 
@@ -16,4 +19,12 @@ import co.icesi.troca.services.GenericService;
 
 public interface TruequeMensajeService extends GenericService<TruequeMensaje, Integer> {
 
+	/**
+	 * Método que consulta los mensajes por un trueque en específico
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 9/12/2013
+	* @param trueque
+	* @return
+	*/
+	public List<TruequeMensaje> findMensajesByTrueque(Trueque trueque);
 }

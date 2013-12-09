@@ -52,6 +52,19 @@ public class TruequeTengo implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "tengo")
 	private Tengo tengo;
+	
+	
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * tengo2
+	 */
+	@ManyToOne
+	@JoinColumn(name = "tengo_2")
+	private Tengo tengo2;
+	/**
+	
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -129,6 +142,24 @@ public class TruequeTengo implements Serializable {
 	*/
 	public void setTrueque(Trueque trueque) {
 		this.trueque = trueque;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the tengo2
+	 */
+	public Tengo getTengo2() {
+		return tengo2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param tengo2 the tengo2 to set
+	 */
+	public void setTengo2(Tengo tengo2) {
+		this.tengo2 = tengo2;
 	}
 
 	/* (non-Javadoc)

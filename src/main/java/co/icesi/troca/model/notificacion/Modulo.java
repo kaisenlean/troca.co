@@ -11,5 +11,5 @@ package co.icesi.troca.model.notificacion;
  *
  */
 public enum Modulo {
-PROYECTO,TENGO,NECESITO,TRUEQUE
+PROYECTO,TENGO,NECESITO,TRUEQUE_TENGO,TRUEQUE_NECESITO,MENSAJE_TRUEQUE
 }

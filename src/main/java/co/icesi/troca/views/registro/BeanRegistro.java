@@ -308,6 +308,7 @@ public class BeanRegistro extends BaseBean implements Serializable {
 
 	}
 	
+	@SuppressWarnings("resource")
 	public void uploadPhotoFile() throws Exception {
 		ExternalContextImpl request;
 		request = (ExternalContextImpl) FacesContext.getCurrentInstance()

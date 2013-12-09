@@ -4,10 +4,15 @@
 package co.icesi.troca.repositories.trueque.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import co.icesi.troca.model.trueque.EstadoTruequeEnum;
 import co.icesi.troca.model.trueque.Trueque;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.impl.GenericJpaRepository;
 import co.icesi.troca.repositories.trueque.TruequeDao;
 
@@ -27,5 +32,20 @@ public class TruequeDaoImpl extends GenericJpaRepository<Trueque, Integer> imple
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.trueque.TruequeDao#findActivosByUsuarioAndEstado(co.icesi.troca.model.usuario.Usuario, co.icesi.troca.model.trueque.EstadoTruequeEnum)
+	 */
+	@Override
+	public List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,
+			EstadoTruequeEnum estado) {
+		
+		Criterion criterion=Restrictions.disjunction().add(Restrictions.eq("usuarioTrueque1", usuario)).add(Restrictions.eq("usuarioTrueque2", usuario));
+		
+		Criterion criterion2=Restrictions.eq("estado", estado);
+		
+		
+		return findByCriteria(criterion,criterion2);
+	}
 
 }
