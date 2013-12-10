@@ -5,6 +5,7 @@ package co.icesi.troca.services.notificacion;
 
 import java.util.List;
 
+import co.icesi.troca.model.noticia.NoticiaComentario;
 import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.proyecto.ProyectoUsuario;
 import co.icesi.troca.model.trueque.TruequeMensaje;
@@ -60,4 +61,26 @@ public interface NotificacionService  extends GenericService<Notificacion, Integ
 	*/
 	public void enviarNotificacionMensajeTrueque(TruequeMensaje truequeMensaje);
 	
+	
+	
+
+	
+	/**
+	 * Crea la notificacion de solicitud de trueque tengo
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param truequeTengo
+	 */
+	public void crearNotificacionSolicitudTruequeProyecto(TruequeTengo truequeTengo,String mensaje);
+
+	
+	
+	/**
+	 * Crea la notificacion de comentario en la noticia
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 1/12/2013
+	* @param truequeTengo
+	 */
+	public void crearNotificacionComentarioNoticia(NoticiaComentario comentario);
+
 }

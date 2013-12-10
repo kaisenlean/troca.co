@@ -44,7 +44,7 @@
 					<ul class="not" id="body-notif">
 						<c:forEach var="notifi" items="#{beanNotificacion.lista}">
 						
-							<a href="#" class="gray gray-link"><li>
+							<p:commandLink process="@this" actionListener="#{redirectNotificacion.loadUrl(notifi)}" styleClass="gray gray-link"><li>
 								<div class="notif-content small-margin-top small-margin-right">
 									<div class="izq notif-pic">
 										<img src="#{request.contextPath}/foto/usuario/#{notifi.creador.fotografia}" class="img-responsive" />
@@ -57,7 +57,7 @@
 								</div>
 						</li>
 							<div class="clear"></div>
-							<li class="divisor clear"></li></a>
+							<li class="divisor clear"></li></p:commandLink>
 						
 						
 						</c:forEach>

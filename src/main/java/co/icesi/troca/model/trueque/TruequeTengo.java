@@ -8,6 +8,7 @@ package co.icesi.troca.model.trueque;
 import java.io.Serializable;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import co.icesi.troca.model.necesito.Necesito;
 import co.icesi.troca.model.tengo.Tengo;
 
 /**
@@ -74,6 +76,9 @@ public class TruequeTengo implements Serializable {
 	@JoinColumn(name = "trueque")
 	private Trueque trueque;
 
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="necesito")
+	private Necesito necesito;
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 12/11/2013
@@ -160,6 +165,24 @@ public class TruequeTengo implements Serializable {
 	 */
 	public void setTengo2(Tengo tengo2) {
 		this.tengo2 = tengo2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the necesito
+	 */
+	public Necesito getNecesito() {
+		return necesito;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param necesito the necesito to set
+	 */
+	public void setNecesito(Necesito necesito) {
+		this.necesito = necesito;
 	}
 
 	/* (non-Javadoc)

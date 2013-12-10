@@ -6,14 +6,21 @@
 package co.icesi.troca.model.noticia;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -37,7 +44,6 @@ public class NoticiaComentario implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -45,15 +51,17 @@ public class NoticiaComentario implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * noticia
 	 */
-	@Column(name = "noticia")
-	private Integer noticia;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "noticia")
+	private Noticia noticia;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuario
 	 */
-	@Column(name = "usuario")
-	private Integer usuario;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -61,6 +69,15 @@ public class NoticiaComentario implements Serializable {
 	 */
 	@Column(name = "comentario")
 	private String comentario;
+	
+	/**
+	 * 9/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * fecha
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
+	private Date fecha;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -101,7 +118,7 @@ public class NoticiaComentario implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getNoticia() {
+	public Noticia getNoticia() {
 		return noticia;
 	}
 
@@ -110,7 +127,7 @@ public class NoticiaComentario implements Serializable {
 	* @date 12/11/2013
 	* @param noticia
 	*/
-	public void setNoticia(Integer noticia) {
+	public void setNoticia(Noticia noticia) {
 		this.noticia = noticia;
 	}
 
@@ -119,7 +136,7 @@ public class NoticiaComentario implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -128,7 +145,7 @@ public class NoticiaComentario implements Serializable {
 	* @date 12/11/2013
 	* @param usuario
 	*/
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -158,6 +175,24 @@ public class NoticiaComentario implements Serializable {
 		int hash = 0;
 		hash += (id != null ? id.hashCode() : 0);
 		return hash;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	/* (non-Javadoc)

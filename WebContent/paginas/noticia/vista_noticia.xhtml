@@ -47,12 +47,30 @@
 							<h2 class="gray margined-left">Comentarios</h2>
 							<h4 class="gray margined-left">Deja un comentario</h4>
 							<div class="margined gap">
-								<textarea class="form-control gap" rows="3"></textarea>
+								<p:inputTextarea styleClass="form-control gap" rows="3" value="#{beanNoticia.comentar}"></p:inputTextarea>
 
 
-								<button type="submit" class="btn btn-default right">Enviar</button>
+								<p:commandButton styleClass="btn btn-default right" value="Enviar" actionListener="#{beanNoticia.agregarComentario()}" process="@all" update="@all"></p:commandButton>
 								<br /> <br />
 							</div>
+
+							<ul class="media-list margined-left">
+
+								<c:forEach items="#{beanNoticia.comentarios}" var="come">
+									<li class="media"><a class="pull-left"> <img
+											class="media-object"
+											style="width: 64px;height: 64px"
+											src="#{request.contextPath}/foto/usuario/#{come.usuario.fotografia eq null ?'logo_header.png':come.usuario.fotografia}"
+											alt="..." />
+									</a>
+										<div class="media-body">
+											<h4 class="media-heading">#{come.usuario.nombreCompleto}</h4>
+											<p>#{come.comentario}</p>
+
+											<small><h:outputText value="#{come.fecha}" ><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></small>
+										</div></li>
+								</c:forEach>
+							</ul>
 
 
 
@@ -76,7 +94,11 @@
 
 							<c:forEach items="#{noticiasUsuario.ultimasNoticias}" var="nott">
 								<div class="margined margined-top">
-									<p:commandLink process="@this" actionListener="#{beanNoticia.verDetalleNoticia(nott)}" styleClass="black black-link-dos"><h4>#{nott.titulo}</h4></p:commandLink>
+									<p:commandLink process="@this"
+										actionListener="#{beanNoticia.verDetalleNoticia(nott)}"
+										styleClass="black black-link-dos">
+										<h4>#{nott.titulo}</h4>
+									</p:commandLink>
 									<p class="black">#{nott.noticia}</p>
 								</div>
 							</c:forEach>

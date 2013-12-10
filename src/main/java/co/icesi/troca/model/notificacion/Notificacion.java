@@ -136,6 +136,10 @@ public class Notificacion implements Serializable {
 			return new StringBuilder("Nueva respuesta en tu trueque con ").append(creador.getNombreCompleto()).toString();
 		}
 		
+		if (modulo.equals(Modulo.TRUEQUE_NECESITO)) {
+			return new StringBuilder("Nueva respuesta en tu trueque con ").append(creador.getNombreCompleto()).toString();
+		}
+		
 		
 		return "NO message";
 	}

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<body>
+
+     <!-- Tab Calificaciones -->
+
+          <div class="tab-pane fade min-heighter" id="calificaciones">
+<div class="row gap">
+  <div class="col-md-12 gray">
+    <h2 class="margined-left">Calificaciones</h2><span class="margined-left"/><small>Promedio: #{perfilDe.promedio}</small>
+  </div>
+</div>
+
+<!-- Listado de Proyectos -->
+
+<div class="row">
+
+
+  
+  <c:forEach items="#{perfilDe.calificaciones}" var="califa">
+  
+    <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 clearfix">
+
+    <div class="thumbnail gray-border-light margined margined-bot">
+    <p:rating value="#{califa.puntajeVal}" readonly="true"></p:rating>
+      
+      <div class="caption">
+        <p>#{califa.puntajeText}</p>
+        <p>Calificación por : <a href="#" class="black black-link">#{califa.usuarioRegistro.nombreCompleto}</a></p>
+      </div>
+    </div>
+  </div>
+      </c:forEach>
+
+
+
+  
+
+</div>
+
+
+          </div><!-- Fin Tab Calificaciones -->
+
+
+
+
+
+	</body>
+</f:view>

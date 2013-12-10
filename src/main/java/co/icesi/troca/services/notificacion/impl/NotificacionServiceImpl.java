@@ -4,12 +4,14 @@
 package co.icesi.troca.services.notificacion.impl;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.model.noticia.NoticiaComentario;
 import co.icesi.troca.model.notificacion.Modulo;
 import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.proyecto.ProyectoUsuario;
@@ -114,6 +116,39 @@ public class NotificacionServiceImpl extends GenericServiceImpl<Notificacion, In
 		notificacion.setUsuario(truequeMensaje.getUsuarioReceptor());
 		notificacion.setMensaje("Nueva respuesta en tu trueque con "+truequeMensaje.getUsuarioEmisor().getNombreCompleto());
 		notificacionDao.save(notificacion);
+		
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.notificacion.NotificacionService#crearNotificacionSolicitudTruequeProyecto(co.icesi.troca.model.trueque.TruequeTengo, java.lang.String)
+	 */
+	@Override
+	public void crearNotificacionSolicitudTruequeProyecto(
+			TruequeTengo truequeTengo, String mensaje) {
+		Notificacion notificacion= new Notificacion();
+		notificacion.setCreador(truequeTengo.getTrueque().getUsuarioTrueque1());
+		notificacion.setFecha(new Date());
+		notificacion.setModulo(Modulo.TRUEQUE_NECESITO);
+		notificacion.setReferenceId(truequeTengo.getId().toString());
+		notificacion.setUsuario(truequeTengo.getTrueque().getUsuarioTrueque2());
+		notificacion.setMensaje("Veo que necesitan "+truequeTengo.getNecesito().getNombre()+" Yo lo tengo y a cambio les pido "+truequeTengo.getTengo().getNombre()+"\n"+mensaje);
+		notificacionDao.save(notificacion);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.notificacion.NotificacionService#crearNotificacionComentarioNoticia(co.icesi.troca.model.trueque.TruequeTengo, java.lang.String)
+	 */
+	@Override
+	public void crearNotificacionComentarioNoticia(NoticiaComentario noticiaComentario) {
+		
+			Notificacion notificacion= new Notificacion();
+			notificacion.setCreador(noticiaComentario.getUsuario());
+			notificacion.setFecha(Calendar.getInstance().getTime());
+			notificacion.setModulo(Modulo.NOTICIA);
+			notificacion.setReferenceId(noticiaComentario.getId().toString());
+			notificacion.setUsuario(noticiaComentario.getNoticia().getUsuario());
+			notificacion.setMensaje(notificacion.getUsuario().getNombreCompleto()+" Há comentado en tu noticia");
+			notificacionDao.save(notificacion);
 		
 	}
 

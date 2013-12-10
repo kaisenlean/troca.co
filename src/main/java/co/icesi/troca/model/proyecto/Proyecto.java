@@ -112,6 +112,9 @@ public class Proyecto implements Serializable {
 	private String image;
 	
 	
+	@Column(name="link_video")
+	private String linkVideo;
+	
 	@Transient
 	private String extension;
 	
@@ -347,4 +350,21 @@ public class Proyecto implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the linkVideo
+	 */
+	public String getLinkVideo() {
+		return linkVideo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param linkVideo the linkVideo to set
+	 */
+	public void setLinkVideo(String linkVideo) {
+		this.linkVideo = linkVideo;
+	}
 }

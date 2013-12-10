@@ -73,9 +73,11 @@
 					</div>
 					<div class="form-group">
 						<label for="proyecto-url" class="white">Video del Proyecto</label><small
-							class="white"> (Youtube)</small> <input type="url"
-							class="form-control" id="proyecto-url"
-							placeHolder="Copia la dirección del video" />
+							class="white"> (Youtube)</small> 
+							<p:inputText 
+							styleClass="form-control" id="proyecto-url"
+							placeHolder="Copia la dirección del video" value="#{beanProyecto.proyecto.linkVideo}" />
+							<p:message for="proyecto-url"></p:message>
 					</div>
 
 

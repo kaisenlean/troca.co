@@ -7,12 +7,17 @@ package co.icesi.troca.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.icesi.troca.model.usuario.Usuario;
 
 /**
  * 
@@ -35,7 +40,7 @@ public class Calificacion implements Serializable {
 	 * id
 	 */
 	@Id
-	@Basic(optional = false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -50,24 +55,25 @@ public class Calificacion implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * puntajeVal
 	 */
-	@Lob
+	
 	@Column(name = "puntaje_val")
-	private String puntajeVal;
+	private Integer puntajeVal;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuario
 	 */
-	@Column(name = "usuario")
-	private Integer usuario;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
 	/**
 	 * 12/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * usuarioRegistro
 	 */
-	@Column(name = "usuario_registro")
-	private Integer usuarioRegistro;
-
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario_registro")
+	private Usuario usuarioRegistro;
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 12/11/2013
@@ -104,7 +110,6 @@ public class Calificacion implements Serializable {
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
 	* @return
 	*/
 	public String getPuntajeText() {
@@ -125,7 +130,7 @@ public class Calificacion implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public String getPuntajeVal() {
+	public Integer getPuntajeVal() {
 		return puntajeVal;
 	}
 
@@ -134,7 +139,7 @@ public class Calificacion implements Serializable {
 	* @date 12/11/2013
 	* @param puntajeVal
 	*/
-	public void setPuntajeVal(String puntajeVal) {
+	public void setPuntajeVal(Integer puntajeVal) {
 		this.puntajeVal = puntajeVal;
 	}
 
@@ -143,7 +148,7 @@ public class Calificacion implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -152,7 +157,7 @@ public class Calificacion implements Serializable {
 	* @date 12/11/2013
 	* @param usuario
 	*/
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -161,7 +166,7 @@ public class Calificacion implements Serializable {
 	* @date 12/11/2013
 	* @return
 	*/
-	public Integer getUsuarioRegistro() {
+	public Usuario getUsuarioRegistro() {
 		return usuarioRegistro;
 	}
 
@@ -170,7 +175,7 @@ public class Calificacion implements Serializable {
 	* @date 12/11/2013
 	* @param usuarioRegistro
 	*/
-	public void setUsuarioRegistro(Integer usuarioRegistro) {
+	public void setUsuarioRegistro(Usuario usuarioRegistro) {
 		this.usuarioRegistro = usuarioRegistro;
 	}
 

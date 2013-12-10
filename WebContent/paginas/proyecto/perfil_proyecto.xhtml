@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
@@ -15,7 +15,9 @@
 			<div class="row gap">
 				<div class="col-md-12 red">
 					<h2 class="margined-left">#{beanProyecto.proyecto.nombre}</h2>
-					<span class="margined-left"><small>por #{beanProyecto.proyecto.owner.nombreCompleto} - (espacio para botones de compartir en redes sociales)</small></span>
+					<span class="margined-left"><small>por
+							#{beanProyecto.proyecto.owner.nombreCompleto} - (espacio para
+							botones de compartir en redes sociales)</small></span>
 				</div>
 			</div>
 			<!-- Perfil de proyecto -->
@@ -25,7 +27,9 @@
 				<div class="col-md-6 col-lg-6 col-sm-6">
 					<h3 class="margined-left red">#{beanProyecto.proyecto.nombre}</h3>
 					<div class="margined">
-						<img src="#{request.contextPath}/foto/proyecto/#{beanProyecto.proyecto.image eq null ?'proyecto.jpg':beanProyecto.proyecto.image}" class="img-responsive" />
+						<img
+							src="#{request.contextPath}/foto/proyecto/#{beanProyecto.proyecto.image eq null ?'proyecto.jpg':beanProyecto.proyecto.image}"
+							class="img-responsive" />
 					</div>
 					<br />
 					<p class="margined justify">#{beanProyecto.proyecto.descripcionLarga}</p>
@@ -36,15 +40,17 @@
 					<h3 class="margined-left red">Video del proyecto</h3>
 					<div class="flex-video widescreen margined-right">
 
-						<iframe src="//www.youtube.com/embed/VQH8ZTgna3Q?rel=0"
-							frameborder="0" ></iframe>
+						<iframe src="//#{beanProyecto.proyecto.linkVideo eq null ?'www.youtube.com/embed/VQH8ZTgna3Q?rel=0':beanProyecto.proyecto.linkVideo }"
+							frameborder="0"></iframe>
 					</div>
 
 					<!-- Creador del proyecto -->
 					<h3 class="red">#{beanProyecto.proyecto.owner.nombreCompleto}</h3>
 					<div class="col-md-6 col-sm-6 col-lg-6">
 
-						<a href="#"><img src="#{request.contextPath}/foto/usuario/#{beanProyecto.proyecto.owner.fotografia}" class="img-responsive" /></a>
+						<a href="#"><img
+							src="#{request.contextPath}/foto/usuario/#{beanProyecto.proyecto.owner.fotografia}"
+							class="img-responsive" /></a>
 
 
 					</div>
@@ -64,47 +70,119 @@
 				<div class="col-md-4 col-lg-4 col-sm-4 light-gray-box">
 					<h3 class="black margined-left">Usuarios Participantes</h3>
 					<div class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
-					<c:forEach items="#{beanProyecto.creados}" var="upa">
-						<div class="thumbnail margined margined-bot white-box no-border">
-							<p:commandLink process="@this" actionListener="#{perfilDe.loadPerfil(upa.usuario)}"><img src="#{request.contextPath}/foto/usuario/#{upa.usuario.fotografia eq null ?'fotografia':upa.usuario.fotografia}" class="img-responsive" /></p:commandLink>
-							<div class="caption">
-								<p>
-									<strong><small>#{upa.usuario.nombreCompleto}</small></strong>
-								</p>
+						<c:forEach items="#{beanProyecto.creados}" var="upa">
+							<div class="thumbnail margined margined-bot white-box no-border">
+								<p:commandLink process="@this"
+									actionListener="#{perfilDe.loadPerfil(upa.usuario)}">
+									<img
+										src="#{request.contextPath}/foto/usuario/#{upa.usuario.fotografia eq null ?'fotografia':upa.usuario.fotografia}"
+										class="img-responsive" />
+								</p:commandLink>
+								<div class="caption">
+									<p>
+										<strong><small>#{upa.usuario.nombreCompleto}</small></strong>
+									</p>
+								</div>
 							</div>
-						</div>
-					</c:forEach>
-						
-						</div>
+							
+						</c:forEach>
+
 					</div>
+				</div>
 
 
-				
+
 
 				<!-- Necesitos del proyecto -->
 				<div class="col-md-4 col-lg-4 col-sm-4 red-box">
 					<h3 class="white margined-left">Este proyecto necesita</h3>
 
 					<div class="col-md-12 col-lg-6 col-sm-12">
-							<h:panelGrid columns="2" width="100%" cellpadding="20">
-					<c:forEach items="#{beanProyecto.necesitosProyecto}" var="np">
-						<div class="thumbnail no-border margined margined-bot cien">
-							<h4 class="white white-link small-margin-left tengo-btn">#{np.nombre}</h4>
+						<!-- 						<h:panelGrid columns="2" width="100%" cellpadding="20"> -->
+						<c:forEach items="#{beanProyecto.necesitosProyecto}" var="np">
+							<div class="thumbnail no-border margined margined-bot cien">
+								<h4 class="white white-link small-margin-left tengo-btn">#{np.nombre}</h4>
 
-							<div class="caption not">
-								<p class="white justify">#{np.descripcion}</p>
-								<p>
-									<a href="#modal-necesito" data-toggle="modal"
-										class="necesito-trocar btn btn-white small-margin-top">Trocar</a>
-								</p>
+								<div class="caption not">
+									<p class="white justify">#{np.descripcion}</p>
+									<p>
+										<a href="#modal-necesito#{np.id}" data-toggle="modal"
+											class="necesito-trocar btn btn-white small-margin-top">Trocar</a>
+									</p>
+								</div>
 							</div>
-						</div>
-						
-					</c:forEach>
-						</h:panelGrid>
+
+							<!-- Modal Trocar Necesito -->
+							<div class="modal fade" id="modal-necesito#{np.id}" tabindex="-1"
+								role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">&times;</button>
+											<h4 class="modal-title blue">Propuesta de Trueque</h4>
+										</div>
+										<div class="modal-body">
+											<h5>Elige tengo del proyecto por el que quieres trocar</h5>
+											<small>Si buscas algo que no está en la lista,
+												proponlo escogiendo la opción "otro"</small>
+
+											<div class="form-group">
+												<label for="tengo-proyecto" class="black">Tus Tengo</label>
+												<h:selectOneMenu id="tengo-proyecto"
+													value="#{beanTruequeProyecto.idTengo}" styleClass="form-control">
+													<p:ajax event="change" process="@this" update="@all"></p:ajax>
+													<f:selectItems value="#{login.usuario.tengosAsItems}"></f:selectItems>
+													<f:selectItem itemLabel="Otro" itemValue="0" />
+
+												</h:selectOneMenu>
+											</div>
+
+
+											<div class="form-group">
+												<label for="otro-proyecto" class="black">Otro</label>
+												<p:inputText styleClass="form-control"
+													id="otro-proyecto-tengo"
+													disabled="#{beanTruequeProyecto.idTengo eq 0?false:true}" />
+											</div>
+
+
+											<p class="gray margined-top">Agrega un comentario
+												personal a la propuesta</p>
+											<h:inputTextarea value="#{beanTruequeProyecto.mensaje}"
+												styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+										</div>
+
+
+										<button type="button"
+											class="btn btn-default margined-left preview-trueque-necesito">Previsualizar
+											mensaje</button>
+										<button type="button"
+											class="btn btn-default margined-left close-trueque-necesito">Cerrar</button>
+
+
+
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Cancelar</button>
+											<h:commandButton
+												actionListener="#{beanTruequeProyecto.realizarTruequeN(np)}"
+												styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+
+										</div>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal trocar Necesito -->
+
+						</c:forEach>
+						<!-- 						</h:panelGrid> -->
 					</div>
 
-					
+
 
 				</div>
 
@@ -112,32 +190,93 @@
 				<div class="col-md-4 col-sm-4 col-lg-4 blue-box">
 					<h3 class="white margined-left">A cambio, este proyecto tiene</h3>
 					<div class="col-md-12 col-sm-12 col-lg-6">
-					<h:panelGrid columns="2" width="100%" cellpadding="20">
-					
-				
-					<c:forEach items="#{beanProyecto.tengos}" var="tng">
-					<div class="thumbnail no-border margined margined-bot cien">
-							<h4 class="white white-link small-margin-left tengo-btn">#{tng.tengo.nombre}</h4>
-							<img src="img/profile.jpg" class="img-responsive not"
-								style="display: none" />
-							<div class="caption not">
-								<p>#{tng.tengo.descripcion}</p>
-								<p>
-									<a href="#modal-tengo" data-toggle="modal"
-										class="btn btn-white small-margin-top tengo-trocar">Trocar</a>
-								</p>
-							</div>
-						</div>
-					</c:forEach>
-							</h:panelGrid>
-						
-						
+						<!-- 						<h:panelGrid columns="2" width="100%" cellpadding="20"> -->
 
+
+						<c:forEach items="#{beanProyecto.tengos}" var="tng">
+							<div class="thumbnail no-border margined margined-bot cien">
+								<h4 class="white white-link small-margin-left tengo-btn">#{tng.tengo.nombre}</h4>
+								<img src="img/profile.jpg" class="img-responsive not"
+									style="display: none" />
+								<div class="caption not">
+									<p>#{tng.tengo.descripcion}</p>
+									<p>
+										<a href="#modal-tengo#{tng.id}" data-toggle="modal"
+											class="btn btn-white small-margin-top tengo-trocar">Trocar</a>
+									</p>
+								</div>
+							</div>
+ <div class="modal fade" id="modal-tengo#{tng.id}" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+    <div class="modal-dialog">
+
+<h:form>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title blue">Propuesta de Trueque</h4>
+						</div>
+						<div class="modal-body">
+							<h5>Elige uno de tus tengo</h5>
+							<small>Si quieres ofrecer algo que no esté en la lista,
+								proponlo escogiendo la opción "otro"</small>
+							<div class="form-group">
+								<label for="tengo-perfil" class="black">Tus Tengo</label>
+								<h:selectOneMenu value="#{beanTruequeProyecto.idTengo}" styleClass="form-control">
+								<p:ajax event="change" process="@this" update="@this"></p:ajax>
+									<f:selectItems value="#{login.usuario.tengosAsItems}" 
+										></f:selectItems>
+										<f:selectItem itemLabel="Otro" itemValue="0"/>
+										
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group">
+								<label for="otro-perfil-tengo" class="black">Otro</label>
+								 <p:inputText styleClass="form-control"
+									  disabled="#{beanTruequeProyecto.idTengo eq 0?false:true}"
+									 />
+							</div>
+
+
+
+							<p class="gray margined-top">Agrega un comentario personal a
+								la propuesta</p>
+							<h:inputTextarea  value="#{beanTruequeProyecto.mensaje}"   styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+						</div>
+
+
+						<button type="button"
+							class="btn btn-default margined-left preview-trueque-tengo-perfil">Previsualizar
+							mensaje</button>
+						<button type="button"
+							class="btn btn-default margined-left close-trueque-tengo">Cerrar</button>
+
+
+
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancelar</button>
+								<h:commandButton   actionListener="#{beanTruequeProyecto.realizarTrueque(tng.tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+							
 						</div>
 					</div>
-
-					
+					<!-- /.modal-content -->
 				</div>
+				</h:form>
+				</div>
+				</div>
+						</c:forEach>
+						<!-- 						</h:panelGrid> -->
+
+
+
+					</div>
+				</div>
+
+
+			</div>
 
 		</h:form>
 	</ui:define>

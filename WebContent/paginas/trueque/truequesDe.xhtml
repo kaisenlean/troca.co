@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<body>
+
+
+		<div class="tab-pane fade min-heighter" id="trueques">
+			<!-- Título-->
+			<div class="row">
+				<div class="col-md-12 gray">
+					<h2 class="margined-left">Trueques</h2>
+				</div>
+			</div>
+
+			<!-- Listado de Trueques -->
+
+			<div class="row">
+
+				<div class="col-md-4 col-sm-4 col-lg-3">
+					<ul class="nav nav-pills nav-stacked margined hidden-xs gap">
+						<li class="active text-center"><a href="#activos"
+							data-toggle="pill">Activos</a></li>
+						<li class="text-center"><a href="#finalizados"
+							data-toggle="pill">Finalizados</a></li>
+						<li class="text-center"><a href="#cancelados"
+							data-toggle="pill">Cancelados</a></li>
+						<li class="dropdown"><a class="dropdown-toggle text-center"
+							data-toggle="dropdown" href="#"> Guías para un trueque
+								exitoso<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<li class="text-center"><a href="#modal-guia-uno"
+									data-toggle="modal">Guía 1</a></li>
+								<li class="text-center"><a href="#modal-guia-dos"
+									data-toggle="modal">Guía 2</a></li>
+								<li class="text-center"><a href="#modal-guia-tres"
+									data-toggle="modal">Guía 3</a></li>
+							</ul></li>
+					</ul>
+
+					<ul class="nav nav-pills margined visible-xs gap">
+						<li class="active text-center"><a href="#activos"
+							data-toggle="pill"><small>Activos</small></a></li>
+						<li class="text-center"><a href="#finalizados"
+							data-toggle="pill"><small>Finalizados</small></a></li>
+						<li class="text-center"><a href="#cancelados"
+							data-toggle="pill"><small>Cancelados</small></a></li>
+						<li class="dropdown"><a class="dropdown-toggle text-center"
+							data-toggle="dropdown" href="#"> Guías para un trueque
+								exitoso<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<li class="text-center"><a href="#modal-guia-uno"
+									data-toggle="modal">Guía 1</a></li>
+								<li class="text-center"><a href="#modal-guia-dos"
+									data-toggle="modal">Guía 2</a></li>
+								<li class="text-center"><a href="#modal-guia-tres"
+									data-toggle="modal">Guía 3</a></li>
+							</ul></li>
+					</ul>
+
+				</div>
+
+				<div class="tab-content">
+					<!-- Nav Tabs -->
+
+					<!-- Tab Activos -->
+					<div class="tab-pane fade in active" id="activos">
+					
+						<div class="col-md-8 col-sm-8 col-lg-9">
+							<div class="row">
+								<c:forEach items="#{perfilDe.truequesActivos}" var="activ">
+
+									<div class="col-md-6 col-sm-6 col-lg-4">
+										<div class="thumbnail blue-border margined margined-bot">
+											<div class="media">
+												<a class="pull-left" href="#"> <img
+													style="width: 64px; height: 64px" class="media-object"
+													src="#{request.contextPath}/foto/usuario/#{activ.usuarioTrueque2.fotografia eq null ?'logo_header.png':activ.usuarioTrueque2.fotografia }"
+													alt="..." />
+												</a>
+												<div class="media-body">
+													<a class="blue blue-link"><h5
+															class="media-heading">
+															Trueque con <strong>#{activ.usuarioTrueque2.nombreCompleto
+																}</strong>
+														</h5></a>
+
+													
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+								</c:forEach>
+
+							</div>
+						</div>
+
+					</div>
+					<!-- Fin Tab Activos -->
+
+					<!-- Tab Finalizados -->
+
+					<div class="tab-pane fade" id="finalizados">
+
+						<div class="col-md-8 col-sm-8 col-lg-9">
+							<div class="row">
+								<c:forEach items="#{perfilDe.truequesFinalizados}" var="finali">
+
+									<div class="col-md-6 col-sm-6 col-lg-4">
+										<div class="thumbnail blue-border margined margined-bot">
+											<div class="media">
+												<a class="pull-left" href="#"> <img
+													style="width: 64px; height: 64px" class="media-object"
+													src="#{request.contextPath}/foto/usuario/#{finali.usuarioTrueque2.fotografia eq null ?'logo_header.png':finali.usuarioTrueque2.fotografia }"
+													alt="..." />
+												</a>
+												<div class="media-body">
+													<a href="#" class="blue blue-link"><h5
+															class="media-heading">
+															Trueque con <strong>#{finali.usuarioTrueque2.nombreCompleto
+																}</strong>
+														</h5></a>
+
+												
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+								</c:forEach>
+							</div>
+						</div>
+
+					</div>
+					<!-- Fin Tab Finalizados -->
+
+					<!-- Tab Cancelados -->
+
+					<div class="tab-pane fade" id="cancelados">
+
+						<div class="col-md-8 col-sm-8 col-lg-9">
+							<div class="row">
+								<c:forEach items="#{perfilDe.truequesCancelados}" var="canc">
+
+									<div class="col-md-6 col-sm-6 col-lg-4">
+										<div class="thumbnail blue-border margined margined-bot">
+											<div class="media">
+												<a class="pull-left" href="#"> <img
+													style="width: 64px; height: 64px" class="media-object"
+													src="#{request.contextPath}/foto/usuario/#{canc.usuarioTrueque2.fotografia eq null ?'logo_header.png':canc.usuarioTrueque2.fotografia }"
+													alt="..." />
+												</a>
+												<div class="media-body">
+													<a href="#" class="blue blue-link"><h5
+															class="media-heading">
+															Trueque con <strong>#{canc.usuarioTrueque2.nombreCompleto
+																}</strong>
+														</h5></a>
+
+											
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+								</c:forEach>
+							</div>
+						</div>
+
+					</div>
+					<!-- Fin Tab Cancelados -->
+
+				</div>
+				<!-- Fin Nav Tabs -->
+
+
+			</div>
+		</div>
+
+
+
+
+
+	</body>
+</f:view>

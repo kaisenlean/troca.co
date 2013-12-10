@@ -4,6 +4,7 @@
 package co.icesi.troca.views.trueque;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -12,10 +13,12 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.model.Calificacion;
 import co.icesi.troca.model.trueque.EstadoTruequeEnum;
 import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.model.trueque.TruequeCalificacion;
 import co.icesi.troca.model.trueque.TruequeMensaje;
+import co.icesi.troca.services.calificacion.CalificacionService;
 import co.icesi.troca.services.notificacion.NotificacionService;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.trueque.TruequeMensajeService;
@@ -73,6 +76,9 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	@ManagedProperty(value="#{truequeCalificacionService}")
 	private TruequeCalificacionService truequeCalificacionService;  
 	
+	@ManagedProperty(value="#{calificacionService}")
+	private CalificacionService calificacionService;
+	
 	private String respuesta;
 	
 	private boolean activoFinalizado;
@@ -110,7 +116,7 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	*/
 	public void enviarMensaje(){
 		TruequeMensaje truequeMensaje=new TruequeMensaje();
-		truequeMensaje.setFecha(new Date());
+		truequeMensaje.setFecha(Calendar.getInstance().getTime());
 		truequeMensaje.setMensaje(respuesta);
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
@@ -155,10 +161,18 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		calificacion.setTrueque(trueque);
 		
 		truequeCalificacionService.save(calificacion);
+		
+		Calificacion cal=new Calificacion();
+		cal.setPuntajeText(calificacion.getPuntajeText());
+		cal.setPuntajeVal(calificacion.getPuntajeVal());
+		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		cal.setUsuarioRegistro(login.getUsuario());
+		calificacionService.save(cal);
+		
 		calificacion=new TruequeCalificacion();
-		removeAttribute("trueque");
-		addAttribute("trueque", trueque);
-		init();
+		
+		trueque=truequeService.findById(trueque.getId());
+		this.trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
 		goTo("/paginas/trueque/mensajesTrueque.jsf");
 	}
 	
@@ -333,5 +347,12 @@ public void setCalificacion(TruequeCalificacion calificacion) {
 	this.calificacion = calificacion;
 }
 
-
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 9/12/2013
+ * @param calificacionService the calificacionService to set
+ */
+public void setCalificacionService(CalificacionService calificacionService) {
+	this.calificacionService = calificacionService;
+}
 }

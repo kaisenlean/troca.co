@@ -4,11 +4,13 @@
 package co.icesi.troca.services.calificacion.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.icesi.troca.model.Calificacion;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.GenericRepository;
 import co.icesi.troca.repositories.calificacion.CalificacionDao;
 import co.icesi.troca.services.calificacion.CalificacionService;
@@ -41,6 +43,14 @@ public class CalificacionServiceImpl  extends GenericServiceImpl<Calificacion, I
 	@Override
 	public GenericRepository<Calificacion, Integer> getDao() {
 		return calificacionDao;
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.calificacion.CalificacionService#findCalificacionByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@Override
+	public List<Calificacion> findCalificacionByUsuario(Usuario usuario) {
+		return calificacionDao.findCalificacionByUsuario(usuario);
 	}
 
 }

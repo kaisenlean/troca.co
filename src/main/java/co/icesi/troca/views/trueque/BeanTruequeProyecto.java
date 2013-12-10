@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.model.necesito.Necesito;
 import co.icesi.troca.model.tengo.Tengo;
 import co.icesi.troca.model.trueque.EstadoTruequeEnum;
 import co.icesi.troca.model.trueque.Trueque;
@@ -35,7 +36,7 @@ import co.icesi.troca.views.perfil.PerfilDe;
  */
 @ManagedBean
 @ViewScoped
-public class BeanTrueque extends BaseBean implements Serializable {
+public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 	/**
 	 * 2/12/2013
@@ -115,7 +116,7 @@ public class BeanTrueque extends BaseBean implements Serializable {
 		} else {
 			tenTemp = tengoService.findById(idTengo);
 			List<TruequeTengo> listTrueque = truequeTengoService
-					.findByTengoAndSolicitante(tengo, login.getUsuario());
+					.findByTengoAndSolicitante(tengo==null?tenTemp:tengo, login.getUsuario());
 			if (!listTrueque.isEmpty()) {
 				mensajeError(new StringBuilder("Ya tienes ")
 						.append(listTrueque.size())
@@ -141,6 +142,52 @@ public class BeanTrueque extends BaseBean implements Serializable {
 		truequeMensajeService.save(truequeMensaje);
 
 		notificacionService.crearNotificacionSolicitudTrueque(tt, mensaje);
+
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 */
+	public void realizarTruequeN(Necesito necesito) {
+		Tengo tenTemp = new Tengo();
+
+		trueque = new Trueque();
+		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
+		trueque.setUsuarioTrueque1(login.getUsuario());
+		trueque.setUsuarioTrueque2(perfilDe.getUsuario());
+
+		TruequeTengo tt = new TruequeTengo();
+
+		if (idTengo == 0) {
+
+			tenTemp.setNombre(textOtro);
+			tenTemp.setFechaRegistro(new Date());
+			tenTemp = tengoService.save(tenTemp);
+
+		} else {
+			tenTemp = tengoService.findById(idTengo);
+		
+		}
+		trueque.setEstadoUsuario1(EstadoTruequeEnum.ACTIVO);
+		trueque.setEstadoUsuario2(EstadoTruequeEnum.ACTIVO);
+		trueque = truequeService.save(trueque);
+
+		tt.setTengo(tenTemp);
+		tt.setTrueque(trueque);
+		tt.setNecesito(necesito);
+		tt = truequeTengoService.save(tt);
+
+		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		truequeMensaje.setMensaje(mensaje);
+		truequeMensaje.setTrueque(trueque);
+		truequeMensaje.setUsuarioEmisor(login.getUsuario());
+		truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
+		truequeMensaje.setFecha(new Date());
+		truequeMensajeService.save(truequeMensaje);
+
+		notificacionService.crearNotificacionSolicitudTruequeProyecto(tt, mensaje);
 
 	}
 
