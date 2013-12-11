@@ -41,6 +41,13 @@ import co.icesi.troca.views.login.Login;
 public class BeanTengo extends BaseBean implements Serializable {
 
 	/**
+	 * 11/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MAX_RESULTS_2
+	 */
+	private static final int MAX_RESULTS_2 = 15;
+
+	/**
 	 * 1/11/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * MAX_RESULTS
@@ -90,6 +97,13 @@ public class BeanTengo extends BaseBean implements Serializable {
 	 * ultimosTengos
 	 */
 	private List<Tengo> ultimosTengos;
+	
+	/**
+	 * 11/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * ultimosTengos2
+	 */
+	private List<Tengo> ultimosTengos2;
 
 	
 	
@@ -177,6 +191,7 @@ public class BeanTengo extends BaseBean implements Serializable {
 	public void init(){
 		tengo=new Tengo();
 		ultimosTengos=tengoService.findUltimosTengo(MAX_RESULTS);
+		ultimosTengos2=tengoService.findUltimosTengo(MAX_RESULTS_2);
 	}
 	
 	/**
@@ -369,5 +384,24 @@ public class BeanTengo extends BaseBean implements Serializable {
 	 */
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 11/12/2013
+	 * @return the ultimosTengos2
+	 */
+	public List<Tengo> getUltimosTengos2() {
+		return ultimosTengos2;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 11/12/2013
+	 * @param ultimosTengos2 the ultimosTengos2 to set
+	 */
+	public void setUltimosTengos2(List<Tengo> ultimosTengos2) {
+		this.ultimosTengos2 = ultimosTengos2;
 	}
 }

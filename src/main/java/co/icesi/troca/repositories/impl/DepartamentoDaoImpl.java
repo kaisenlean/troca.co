@@ -33,7 +33,7 @@ public class DepartamentoDaoImpl extends
 		return this
 				.getEntityManager()
 				.createQuery(
-						"SELECT d FROM Departamento d WHERE d.pais = :pais")
+						"SELECT d FROM Departamento d WHERE d.pais = :pais ORDER BY d.nombre ASC")
 				.setParameter("pais", pais).getResultList();
 	}
 

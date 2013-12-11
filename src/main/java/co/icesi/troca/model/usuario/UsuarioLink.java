@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 /**
  * 
@@ -46,6 +47,7 @@ public class UsuarioLink implements Serializable {
 	 * link
 	 */
 	@Column(name = "link")
+//	@Pattern(regexp="((https?|ftp|gopher|telnet|file):((//)|(\\\\\\\\))+[\\\\w\\\\d:#@%/;$()~_?\\\\+-=\\\\\\\\\\\\.&]*)" , message="URL no válido")
 	private String link;
 	
 	

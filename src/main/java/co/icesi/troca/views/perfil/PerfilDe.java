@@ -100,7 +100,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 				.findProyectosByUsuario(usuario));
 		this.usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		this.usuario.setNoticias(noticiaService.findNoticiasByUsuario(usuario));
-		
+		this.usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
 		truequesActivos=truequeService.findActivosByUsuarioAndEstado(usuario, EstadoTruequeEnum.ACTIVO);
 		truequesFinalizados=truequeService.findActivosByUsuarioAndEstado(usuario, EstadoTruequeEnum.FINALIZADO);
 		truequesCancelados=truequeService.findActivosByUsuarioAndEstado(usuario, EstadoTruequeEnum.CANCELADO);

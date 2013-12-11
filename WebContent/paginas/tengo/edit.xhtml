@@ -10,7 +10,7 @@
 		<!-- Formulario -->
 		<div class="row big-gap blue-box">
 			<div class="col-md-6 col-sm-6 blue-box hugely-padded-bot know-height">
-				<h:form  enctype="multipart/form-data"
+				<h:form  enctype="multipart/form-data" acceptcharset="ISO-8859-1"
 					styleClass="margined-left basic margined-top">
 					<div class="form-group">
 						<label for="tipo-tengo" class="white">¿Qué es lo que
@@ -37,6 +37,7 @@
 					<div class="form-group">
 						<label for="tengo-pic" class="white">Foto de lo que tienes</label>
 						   <p:fileUpload  value="#{editarTengo.file}" mode="simple"   ></p:fileUpload>
+							<small><h:outputText style="color:white" value="#{editarTengo.file eq null? 'Selecciona una foto':'Se há cargado tu foto con exito'}" /></small>
 							<br></br>
 							 <p:commandButton  value="Submit" ajax="false" 
                             actionListener="#{editarTengo.uploadHandlerPhoto1()}"/> 

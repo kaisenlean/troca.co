@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Pattern;
 
 import co.icesi.troca.model.usuario.Usuario;
 
@@ -111,7 +112,7 @@ public class Proyecto implements Serializable {
 	@Column(name = "image")
 	private String image;
 	
-	
+//	@Pattern(regexp="http://www\\.youtube\\.com\\/(.+)|https://www\\.youtube\\.com\\/(.+)",message="URL inválido")
 	@Column(name="link_video")
 	private String linkVideo;
 	

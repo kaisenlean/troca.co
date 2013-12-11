@@ -11,23 +11,24 @@
 		<!-- Formulario -->
 		<div class="row big-gap blue-box">
 			<div class="col-md-6 col-sm-6 blue-box hugely-padded-bot know-height">
-				<h:form enctype="multipart/form-data"
+				<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1"
 					styleClass="margined-left basic margined-top">
 					<div class="form-group">
 						<label for="tipo-tengo" class="white">¿Qué es lo que
 							tienes?</label>
-						<h:selectOneMenu styleClass="form-control" id="tipo-tengo"
+						<h:selectOneMenu required="true" requiredMessage="Campo requerido" styleClass="form-control" id="tipo-tengo"
 							value="#{beanTengo.tipoTengo}">
 							<p:ajax event="change" process="@this"></p:ajax>
 							<f:selectItems value="#{login.itemsTipoTengo}"></f:selectItems>
+							
 						</h:selectOneMenu>
-
+					<h:message for="tipo-tengo"/>
 					</div>
 					<div class="form-group">
 						<label for="tengo-nombre" class="white">Dale un Nombre</label>
 						<p:inputText styleClass="form-control" id="tengo-nombre"
-							value="#{beanTengo.tengo.nombre}"></p:inputText>
-						<p:watermark value=" Ej: Cámara Análoga" for="tengo-nombre"></p:watermark>
+							value="#{beanTengo.tengo.nombre}" required="true" requiredMessage="Campo requerído" placeholder=" Ej: Cámara Análoga"></p:inputText>
+						<p:message for="tengo-nombre"></p:message>
 					</div>
 					<p class="white margined-top">
 						Escribe la descripción de lo que tienes <small
@@ -35,14 +36,15 @@
 
 					</p>
 					
-					<p:inputTextarea counter="counter1" maxlength="140"
-						counterTemplate="{0} characters remaining."
+					<h:inputTextarea  maxlength="140"
+						
 						styleClass="form-control" rows="3"
-						value="#{beanTengo.tengo.descripcion}"></p:inputTextarea>
-					<h:outputText id="counter1" />
+						value="#{beanTengo.tengo.descripcion}"></h:inputTextarea>
+					<h:outputText id="counter" />
 					<div class="form-group">
 						<label for="tengo-pic" class="white">Foto de lo que tienes</label>
 						<p:fileUpload value="#{beanTengo.file}" mode="simple"></p:fileUpload>
+						<small><h:outputText style="color:white" value="#{beanTengo.file eq null? 'Selecciona una foto':'Se há cargado tu foto con exito'}" /></small>
 						<br></br>
 
 						<p:commandButton value="Submit" ajax="false"
@@ -53,10 +55,12 @@
 					</div>
 
 					<p:commandButton
+					ajax="false"
 						styleClass="btn btn-default right small-margin-top hidden-xs "
 						value="Guardar" process="@all" update="@all"
 						actionListener="#{beanTengo.crearTengo()}"></p:commandButton>
 					<p:commandButton
+					ajax="false"
 						styleClass="btn btn-default right small-margin-top hidden-xs "
 						value="Guardar y crear otro" process="@all" partialSubmit="true"
 						update="@form"

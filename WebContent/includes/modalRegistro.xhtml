@@ -25,15 +25,15 @@
 				<div class="modal-body">
 					
 						<div class="form-group">
-							#{msgs.placeHolderEmail}
-							<p:inputText value="#{login.user}" styleClass="form-control" id="maillog" />
-					
+							
+							<p:inputText required="true" requiredMessage="Ingresa tu email" type="email" placeholder="#{msgs.placeHolderEmail}" value="#{login.user}" styleClass="form-control" id="maillog" />
+							<p:message for="maillog"></p:message>
 						</div>
 						<div class="form-group">
 
-							#{msgs.placeHolderContrasena}
-							<h:inputSecret value="#{login.contrasena}" styleClass="form-control" id="passwordlog" />
 							
+							<h:inputSecret required="true" requiredMessage="Ingresa tu contraseña" value="#{login.contrasena}" placeholder="#{msgs.placeHolderContrasena}" styleClass="form-control" id="passwordlog" />
+							<p:message for="passwordlog"></p:message>
 						</div>
 					
 				</div>

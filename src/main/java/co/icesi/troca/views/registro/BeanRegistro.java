@@ -53,13 +53,6 @@ import com.sun.faces.context.ExternalContextImpl;
 * @date 1/12/2013
 *
 */
-/**
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class BeanRegistro
-* @date 1/12/2013
-*
-*/
 @ManagedBean
 @SessionScoped
 public class BeanRegistro extends BaseBean implements Serializable {
@@ -400,7 +393,20 @@ public class BeanRegistro extends BaseBean implements Serializable {
 			mensajeError("Email no coincide");
 			return;
 		}
-		goTo("/paginas/registro/registro_2.jsf");
+		
+		if (usuario.getId().equals(null)) {
+			if (usuarioService.findByEmail(usuario.getEmail()).equals(null)) {
+				goTo("/paginas/registro/registro_2.jsf");
+			}else{
+				
+				mensajeError("Este email ya está registrado");
+			}
+		}else{
+			goTo("/paginas/registro/registro_2.jsf");
+			
+		}
+		
+		
 		
 	}
 	

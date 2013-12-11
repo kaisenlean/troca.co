@@ -77,4 +77,12 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
 		return usuarioDAO.findUsuariosByParam(param);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.UsuarioService#findByEmail(java.lang.String)
+	 */
+	@Override
+	public Usuario findByEmail(String email) {
+		return usuarioDAO.findByEmail(email);
+	}
+
 }

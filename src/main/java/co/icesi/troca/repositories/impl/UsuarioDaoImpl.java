@@ -86,6 +86,20 @@ public class UsuarioDaoImpl extends GenericJpaRepository<Usuario, Integer>
 			
 		}
 	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.UsuarioDao#findByEmail(java.lang.String)
+	 */
+	@Override
+	public Usuario findByEmail(String email) {
+		Criterion criterion= Restrictions.eq("email", email);
+		List<Usuario> usuarios = findByCriteria(criterion);
+		if (usuarios.isEmpty()) {
+			return null;
+		}else{
+			return usuarios.get(0);
+		}
+	}
 	
 	
 

@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="./../../template/mainThm.xhtml">
+	<ui:define name="content">
+		<h:form>
+				<p>
+					<h4>
+						<a
+							href="#{request.contextPath}/paginas/necesito/ultimosNecesito.jsf"
+							class="margined-left blue blue-link">Últimos <br /> <span
+							class="margined-left"><strong>Necesíto</strong></span>
+						</a><a class="right margined-right blue blue-link"
+							href="#{request.contextPath}/paginas/necesito/ultimosNecesito.jsf">>></a>
+					</h4>
+				</p>
+
+				<c:forEach items="#{beanNecesito.listado2}" var="necesito">
+					<div class="col-md-12 col-lg-6 col-sm-6 red-box clearfix">
+						<div class="content centre">
+							<p>
+								<a href="#" class="white white-link"><h3>
+										<strong>#{necesito.nombre}</strong>
+									</h3></a>
+							</p>
+							<p class="white">#{necesito.descripcion}</p>
+							<p:commandLink styleClass="content-btn right" process="@this"
+								actionListener="#{beanProyecto.verDetalleProyecto2(necesito.proyecto)}">Leer más ></p:commandLink>
+						</div>
+					</div>
+
+
+				</c:forEach>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

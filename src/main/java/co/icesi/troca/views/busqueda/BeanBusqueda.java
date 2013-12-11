@@ -96,6 +96,7 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 		necesitos=necesitoService.findNecesitoByParam(query);
 		tengos=tengoService.findTengoByParam(query);
 		usuarios=usuarioService.findUsuariosByParam(query);
+		query="";
 		goTo("/paginas/busqueda.jsf");
 		
 		
@@ -111,6 +112,7 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 		necesitos=necesitoService.findNecesitoByParam(query);
 		tengos=tengoService.findTengoByParam(query);
 		usuarios=usuarioService.findUsuariosByParam(query);
+		query="";
 		
 		
 		

@@ -32,7 +32,7 @@
 							<li><a href="#tengos" data-toggle="tab">Tengos</a></li>
 							<li><a href="#proyectos" data-toggle="tab">Proyectos</a></li>
 							<li><a href="#noticias" data-toggle="tab">Noticias</a></li>
-							<li><a href="#trueques" data-toggle="tab">Trueques</a></li>
+							<!-- 							<li><a href="#trueques" data-toggle="tab">Trueques</a></li> -->
 							<li><a href="#calificaciones" data-toggle="tab">Calificaciones</a></li>
 
 						</ul>
@@ -47,7 +47,7 @@
 						<li><a href="#perfil" data-toggle="pill"><small>Perfil</small></a></li>
 						<li><a href="#tengos" data-toggle="pill"><small>Tengos</small></a></li>
 						<li><a href="#proyectos" data-toggle="pill"><small>Proyectos</small></a></li>
-						<li><a href="#trueques" data-toggle="pill"><small>Trueques</small></a></li>
+						<!-- 						<li><a href="#trueques" data-toggle="pill"><small>Trueques</small></a></li> -->
 						<li><a href="#calificaciones" data-toggle="pill"><small
 								class="no-margin no-padding">Calificaciones</small></a></li>
 					</ul>
@@ -110,106 +110,106 @@
 										</div>
 									</c:forEach>
 
-							
-
-						
 
 
-							</div>
 
 
-							<div class="col-lg-3 visible-lg padded-bot">
-								<h3 class="gray margined-left">Recomendaciones</h3>
 
-
-								<div class="clearfix"></div>
-
-							</div>
-
-							<div
-								class="col-md-2 col-lg-2 col-sm-2 hidden-xs bot-pad light-gray-box">
-								<h3 class="blue margined-left">Links</h3>
-								<ul class="no-padding margined-left">
-									<a href="#" class="white white-link"><h4>Facebook</h4></a>
-									<a href="#" class="white white-link"><h4>Blog</h4></a>
-									<a href="#" class="white white-link"><h4>Twitter</h4></a>
-									<a href="#" class="white white-link"><h4>Portafolio</h4></a>
-									<a href="#" class="white white-link"><h4>Flickr</h4></a>
-								</ul>
-							</div>
-							<div class="col-xs-12 visible-xs bot-pad light-gray-box">
-								<h4 class="blue margined-left padded-top">Links</h4>
-								<ul class="no-padding margined-left">
-									<a href="#" class="white white-link"><h5>Facebook</h5></a>
-									<a href="#" class="white white-link"><h5>Blog</h5></a>
-									<a href="#" class="white white-link"><h5>Twitter</h5></a>
-									<a href="#" class="white white-link"><h5>Portafolio</h5></a>
-									<a href="#" class="white white-link"><h5>Flickr</h5></a>
-								</ul>
-							</div>
-						</div>
-						<!-- Fin de segunda parte del perfil (sin recomendaciones) -->
-						<!-- Recomendaciones -->
-						<div class="row hidden-xs hidden-lg">
-							<div class="col-md-12 col-sm-12">
-								<h3 class="gray margined-left">Recomendaciones</h3>
-								<div class="col-md-8 col-sm-8">
-									<div class="col-md-2 col-sm-2">
-										<a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a> <a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a>
-									</div>
-									<div class="col-md-2 col-sm-2">
-										<a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a> <a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a>
-									</div>
-									<div class="col-md-2 col-sm-2">
-										<a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a> <a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a>
-									</div>
-									<div class="col-md-2 col-sm-2">
-										<a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a> <a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a>
-									</div>
-									<div class="col-md-2 col-sm-2">
-										<a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a> <a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a>
-									</div>
-									<div class="col-md-2 col-sm-2">
-										<a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a> <a href="#"><img
-											src="#{request.contextPath}/img/profile.jpg"
-											class="img-responsive small-margin-top pad" /></a>
-									</div>
 								</div>
-								<div class="col-md-4 col-sm-4">
-									<div class="padded marginede">
-										<p class="black margined margined-top">
-											Y otras xxxx personas han recomendado a <strong>"Nombre
-												de Usuario"</strong>
-										</p>
-										<button type="submit"
-											class="btn btn-default right margined-right">Recomendar</button>
-									</div>
+
+
+								<div class="col-lg-3 visible-lg padded-bot">
+									<h3 class="gray margined-left">Recomendaciones</h3>
+
+
+									<div class="clearfix"></div>
+
+								</div>
+
+								<div
+									class="col-md-2 col-lg-2 col-sm-2 hidden-xs bot-pad light-gray-box">
+									<h3 class="blue margined-left">Links</h3>
+									<ul class="no-padding margined-left">
+										<c:forEach items="#{perfilDe.usuario.usuarioLinks}" var="linkk">
+											<a
+												onclick="window.open('#{linkk.link}','mywindow','width=500,height=500')"
+												class="white white-link"><h4>#{linkk.nombre}</h4></a>
+										</c:forEach>
+									</ul>
+								</div>
+								<div class="col-xs-12 visible-xs bot-pad light-gray-box">
+									<h4 class="blue margined-left padded-top">Links</h4>
+									<ul class="no-padding margined-left">
+												<c:forEach items="#{perfilDe.usuario.usuarioLinks}" var="linkk">
+											<a
+												onclick="window.open('#{linkk.link}','mywindow','width=500,height=500')"
+												class="white white-link"><h4>#{linkk.nombre}</h4></a>
+										</c:forEach>
+									</ul>
 								</div>
 							</div>
+							<!-- Fin de segunda parte del perfil (sin recomendaciones) -->
+							<!-- Recomendaciones -->
+							<div class="row hidden-xs hidden-lg">
+								<div class="col-md-12 col-sm-12">
+									<h3 class="gray margined-left">Recomendaciones</h3>
+									<div class="col-md-8 col-sm-8">
+										<div class="col-md-2 col-sm-2">
+											<a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a> <a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a>
+										</div>
+										<div class="col-md-2 col-sm-2">
+											<a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a> <a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a>
+										</div>
+										<div class="col-md-2 col-sm-2">
+											<a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a> <a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a>
+										</div>
+										<div class="col-md-2 col-sm-2">
+											<a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a> <a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a>
+										</div>
+										<div class="col-md-2 col-sm-2">
+											<a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a> <a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a>
+										</div>
+										<div class="col-md-2 col-sm-2">
+											<a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a> <a href="#"><img
+												src="#{request.contextPath}/img/profile.jpg"
+												class="img-responsive small-margin-top pad" /></a>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4">
+										<div class="padded marginede">
+											<p class="black margined margined-top">
+												Y otras xxxx personas han recomendado a <strong>"Nombre
+													de Usuario"</strong>
+											</p>
+											<button type="submit"
+												class="btn btn-default right margined-right">Recomendar</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-</div>
 					</div>
 				</div>
 
@@ -234,13 +234,13 @@
 						<ui:include src="/paginas/noticia/noticiasDe.xhtml"></ui:include>
 					</div>
 				</div>
-				
-				
-				
-						<ui:include src="/paginas/trueque/truequesDe.xhtml"></ui:include>
-				
-				
-						<ui:include src="/paginas/calificacion/calificacionesDe.xhtml"></ui:include>
+
+
+
+				<ui:include src="/paginas/trueque/truequesDe.xhtml"></ui:include>
+
+
+				<ui:include src="/paginas/calificacion/calificacionesDe.xhtml"></ui:include>
 			</div>
 
 		</div>

@@ -41,4 +41,14 @@ public interface UsuarioDao extends GenericRepository<Usuario, Integer> {
 	* @return
 	 */
 	public Usuario getByNombreApellido(String nombre,String apellido);
+	
+	
+	/**
+	 * Método que consulta un usuario por email
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 11/12/2013
+	* @param email
+	* @return
+	*/
+	public Usuario findByEmail(String email);
 }

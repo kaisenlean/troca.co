@@ -17,6 +17,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.model.DualListModel;
 import org.primefaces.model.UploadedFile;
@@ -512,6 +513,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	public void filtrarUsuarios() {
 		usuariosTarget = usuarioService.findUsuariosByParam(queryFind);
+		usuariosTarget.remove(login.getUsuario());
 	}
 
 	/**
@@ -611,6 +613,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		if (!unadidos.contains(usuario)) {
 			unadidos.add(usuario);
 		}
+		
 
 	}
 
@@ -1112,5 +1115,15 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	public void setBeanRegistroVisita(BeanRegistroVisita beanRegistroVisita) {
 		this.beanRegistroVisita = beanRegistroVisita;
+	}
+	
+	
+	public List<SelectItem> getTengosAsItems(){
+		List<SelectItem> items= new ArrayList<SelectItem>();
+	for (ProyectoTengoUsuario tengo : tengos) {
+		items.add(new SelectItem(tengo.getTengo().getId(), tengo.getTengo().getNombre()));
+	}
+	
+	return items;
 	}
 }

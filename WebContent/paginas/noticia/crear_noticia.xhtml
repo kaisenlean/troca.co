@@ -8,7 +8,7 @@
 
 <ui:composition template="./../../template/mainThm.xhtml">
 	<ui:define name="content">
-		<h:form enctype="multipart/form-data">
+		<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1">
 		
 
 				<!-- Registro -->
@@ -27,7 +27,7 @@
 							<div class="form-group">
 								<label for="noticia-nombre" class="black">Título de la
 									Noticia</label> 
-									<p:inputText styleClass="form-control"
+									<p:inputText placeholder="Escribe el título de la noticia" styleClass="form-control"
 									id="noticia-nombre" required="true" value="#{noticiasUsuario.noticia.titulo}"
 									requiredMessage="Escribe el título de la noticia" />
 									<p:message for="noticia-nombre"></p:message>
@@ -42,7 +42,7 @@
 								<label for="noticia-url" class="black">Danos un link a
 									la noticia</label> 
 									<br/>
-									<p:inputText size="50" required="true" requiredMessage="Digita un link válido" value="#{noticiasUsuario.noticia.link}" id="noticia-url" />
+									<h:inputText styleClass="form-control" type="url"   placeholder="Copia el link de la noticia" size="50" value="#{noticiasUsuario.noticia.link}" id="noticia-url"  />
 									<p:message for="noticia-url"></p:message>
 							</div>
 							
@@ -52,6 +52,7 @@
 									noticia</label><small class="black"> (Si la tienes, si no, no
 									importa)</small> 
 									<p:fileUpload  value="#{noticiasUsuario.file}" mode="simple"   ></p:fileUpload>
+							<small><h:outputText style="color:white" value="#{noticiasUsuario.file eq null? 'Selecciona una foto':'Se há cargado tu foto con exito'}" /></small>
 							<br></br>
 							 <p:commandButton process="@this"  value="Submit" ajax="false" 
                             actionListener="#{noticiasUsuario.uploadHandlerPhoto1()}"/>
@@ -59,8 +60,8 @@
 							</div>
 							
 
-								<p:commandButton value="Enviar" styleClass="btn btn-default right small-margin-top hidden-xs " process="@all" update="@all" actionListener="#{noticiasUsuario.saveNoticia()}"></p:commandButton>
-								<p:commandButton value="Enviar y escribir otra" styleClass="btn btn-default right small-margin-top hidden-xs " process="@all" update="@all" actionListener="#{noticiasUsuario.guardarNoticia()}"></p:commandButton>
+								<p:commandButton value="Enviar" ajax="false" styleClass="btn btn-default right small-margin-top hidden-xs " process="@all" update="@all" actionListener="#{noticiasUsuario.saveNoticia()}"></p:commandButton>
+								<p:commandButton ajax="false" value="Enviar y escribir otra" styleClass="btn btn-default right small-margin-top hidden-xs " process="@all" update="@all" actionListener="#{noticiasUsuario.guardarNoticia()}"></p:commandButton>
 							
 							
 							

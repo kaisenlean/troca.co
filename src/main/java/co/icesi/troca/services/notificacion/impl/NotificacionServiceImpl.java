@@ -84,7 +84,7 @@ public class NotificacionServiceImpl extends GenericServiceImpl<Notificacion, In
 		notificacion.setModulo(Modulo.PROYECTO);
 		notificacion.setReferenceId(proyectoUsuario.getProyecto().getId().toString());
 		notificacion.setUsuario(proyectoUsuario.getUsuario());
-		notificacion.setMensaje(INVITACION_PROYECTO);
+		notificacion.setMensaje(INVITACION_PROYECTO+" "+proyectoUsuario.getProyecto().getNombre());
 		notificacionDao.save(notificacion);
 	}
 
@@ -99,7 +99,7 @@ public class NotificacionServiceImpl extends GenericServiceImpl<Notificacion, In
 		notificacion.setModulo(Modulo.TRUEQUE_TENGO);
 		notificacion.setReferenceId(truequeTengo.getId().toString());
 		notificacion.setUsuario(truequeTengo.getTrueque().getUsuarioTrueque2());
-		notificacion.setMensaje("Yo necesito "+truequeTengo.getTengo2().getNombre()+" A cambio te puedo ofrecer "+truequeTengo.getTengo().getNombre()+"\n"+mensaje);
+		notificacion.setMensaje("Yo necesito "+truequeTengo.getTengo2()==null?null:truequeTengo.getTengo2().getNombre()+" A cambio te puedo ofrecer "+truequeTengo.getTengo()==null?null:truequeTengo.getTengo().getNombre()+"\n"+mensaje);
 		notificacionDao.save(notificacion);
 	}
 

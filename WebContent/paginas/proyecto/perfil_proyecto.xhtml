@@ -128,11 +128,11 @@
 												proponlo escogiendo la opción "otro"</small>
 
 											<div class="form-group">
-												<label for="tengo-proyecto" class="black">Tus Tengo</label>
+												<label for="tengo-proyecto" class="black">Tengos del Proyecto</label>
 												<h:selectOneMenu id="tengo-proyecto"
-													value="#{beanTruequeProyecto.idTengo}" styleClass="form-control">
-													<p:ajax event="change" process="@this" update="@all"></p:ajax>
-													<f:selectItems value="#{login.usuario.tengosAsItems}"></f:selectItems>
+													value="#{beanTruequeProyecto.idTengo2}" styleClass="form-control">
+													<p:ajax event="change" process="@this" update="otro-proyecto-tengo#{np.id}"></p:ajax>
+													<f:selectItems value="#{beanProyecto.tengosAsItems}"></f:selectItems>
 													<f:selectItem itemLabel="Otro" itemValue="0" />
 
 												</h:selectOneMenu>
@@ -141,9 +141,9 @@
 
 											<div class="form-group">
 												<label for="otro-proyecto" class="black">Otro</label>
-												<p:inputText styleClass="form-control"
-													id="otro-proyecto-tengo"
-													disabled="#{beanTruequeProyecto.idTengo eq 0?false:true}" />
+												<h:inputText placeholder="Escribe lo que buscas" styleClass="form-control"
+													id="otro-proyecto-tengo#{np.id}"
+													readonly="#{beanTruequeProyecto.idTengo2 ne 0}" />
 											</div>
 
 
@@ -209,7 +209,7 @@
  <div class="modal fade" id="modal-tengo#{tng.id}" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
     <div class="modal-dialog">
 
-<h:form>
+<!-- <h:form> -->
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -224,7 +224,7 @@
 							<div class="form-group">
 								<label for="tengo-perfil" class="black">Tus Tengo</label>
 								<h:selectOneMenu value="#{beanTruequeProyecto.idTengo}" styleClass="form-control">
-								<p:ajax event="change" process="@this" update="@this"></p:ajax>
+								<p:ajax event="change" process="@this" update="tengo-pro-otre#{tng.id}"></p:ajax>
 									<f:selectItems value="#{login.usuario.tengosAsItems}" 
 										></f:selectItems>
 										<f:selectItem itemLabel="Otro" itemValue="0"/>
@@ -233,8 +233,8 @@
 							</div>
 							<div class="form-group">
 								<label for="otro-perfil-tengo" class="black">Otro</label>
-								 <p:inputText styleClass="form-control"
-									  disabled="#{beanTruequeProyecto.idTengo eq 0?false:true}"
+								 <h:inputText placeholder="Escribe lo que buscas" styleClass="form-control" id="tengo-pro-otre#{tng.id}"
+									  readonly="#{beanTruequeProyecto.idTengo ne 0}"
 									 />
 							</div>
 
@@ -264,7 +264,7 @@
 					</div>
 					<!-- /.modal-content -->
 				</div>
-				</h:form>
+<!-- 				</h:form> -->
 				</div>
 				</div>
 						</c:forEach>

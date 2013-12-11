@@ -14,6 +14,7 @@ import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.noticia.Noticia;
 import co.icesi.troca.model.notificacion.Modulo;
 import co.icesi.troca.model.notificacion.Notificacion;
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.noticia.comentario.NoticiaComentarioService;
@@ -21,6 +22,7 @@ import co.icesi.troca.services.notificacion.NotificacionService;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.views.login.Login;
 import co.icesi.troca.views.noticia.BeanNoticia;
+import co.icesi.troca.views.proyecto.BeanProyecto;
 import co.icesi.troca.views.trueque.BeanTrueque;
 
 /**
@@ -76,6 +78,9 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	@ManagedProperty(value="#{beanTrueque}")
 	private BeanTrueque beanTrueque;
 	
+	@ManagedProperty(value="#{beanProyecto}")
+	private BeanProyecto beanProyecto;
+	
 	
 	
 	
@@ -107,6 +112,13 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 		if (notificacion.getModulo().equals(Modulo.MENSAJE_TRUEQUE)) {
 			beanTrueque.verPnlTrueque((Trueque) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Trueque.class) );
 		}
+		
+		if (notificacion.getModulo().equals(Modulo.PROYECTO)) {
+			beanProyecto.verDetalleProyecto2((Proyecto) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Proyecto.class) );
+		}
+		
+		
+	
 	}
 	
 	
@@ -191,5 +203,22 @@ public void setNoticiaComentarioService(
  */
 public void setBeanTrueque(BeanTrueque beanTrueque) {
 	this.beanTrueque = beanTrueque;
+}
+
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 11/12/2013
+ * @return the beanProyecto
+ */
+public BeanProyecto getBeanProyecto() {
+	return beanProyecto;
+}
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 11/12/2013
+ * @param beanProyecto the beanProyecto to set
+ */
+public void setBeanProyecto(BeanProyecto beanProyecto) {
+	this.beanProyecto = beanProyecto;
 }
 }

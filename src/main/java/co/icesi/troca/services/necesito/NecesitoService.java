@@ -29,6 +29,16 @@ public interface NecesitoService extends GenericService<Necesito, Integer>{
 	
 	
 	/**
+	 * 
+	 * Metodo que consulta los ultimos necesitos registrados en el sistema con maximo de resultados
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 23/11/2013
+	* @return
+	 */
+	public List<Necesito> findUltimosNecesito(int maxResults);
+	
+	
+	/**
 	 * Método que consulta los necesitos por proyecto
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 29/11/2013
@@ -45,4 +55,6 @@ public interface NecesitoService extends GenericService<Necesito, Integer>{
 	* @return
 	*/
 	public List<Necesito> findNecesitoByParam(String param);
+	
+	
 }

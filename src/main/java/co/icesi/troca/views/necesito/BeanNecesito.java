@@ -46,6 +46,8 @@ public class BeanNecesito implements Serializable {
 	 * listado
 	 */
 	private List<Necesito> listado;
+	private List<Necesito> listado2;
+	
 	
 	
 	 /**
@@ -55,6 +57,7 @@ public class BeanNecesito implements Serializable {
 	@PostConstruct
 	 public void init(){
 		 listado=necesitoService.findUltimosNecesito();
+		 listado2=necesitoService.findUltimosNecesito(15);
 		 
 	 }
 	
@@ -76,6 +79,24 @@ public class BeanNecesito implements Serializable {
 	 */
 	public void setNecesitoService(NecesitoService necesitoService) {
 		this.necesitoService = necesitoService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 11/12/2013
+	 * @return the listado2
+	 */
+	public List<Necesito> getListado2() {
+		return listado2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 11/12/2013
+	 * @param listado2 the listado2 to set
+	 */
+	public void setListado2(List<Necesito> listado2) {
+		this.listado2 = listado2;
 	}
 
 }

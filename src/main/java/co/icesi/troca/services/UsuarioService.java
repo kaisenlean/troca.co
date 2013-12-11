@@ -33,4 +33,14 @@ public interface UsuarioService  extends GenericService<Usuario, Integer>{
 	* @return
 	 */
 	public List<Usuario> findUsuariosByParam(String param);
+	
+	
+	/**
+	 * Método que consulta un usuario por email
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 11/12/2013
+	* @param email
+	* @return
+	*/
+	public Usuario findByEmail(String email);
 }

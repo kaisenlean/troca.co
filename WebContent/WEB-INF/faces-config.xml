@@ -24,6 +24,11 @@
 		</resource-bundle>
 
 
+
+
 	</application>
+	<factory>
+		<render-kit-factory>org.omnifaces.renderkit.Html5RenderKitFactory</render-kit-factory>
+	</factory>
 
 </faces-config>

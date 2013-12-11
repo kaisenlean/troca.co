@@ -26,6 +26,7 @@ import co.icesi.troca.services.trueque.TruequeService;
 import co.icesi.troca.services.trueque.TruequeTengoService;
 import co.icesi.troca.views.login.Login;
 import co.icesi.troca.views.perfil.PerfilDe;
+import co.icesi.troca.views.proyecto.BeanProyecto;
 
 /**
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -47,6 +48,8 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idTengo;
+	
+	private int idTengo2;
 
 	private String mensaje;
 
@@ -80,6 +83,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	private List<Trueque> finalizados;
 
 	private List<Trueque> cancelados;
+	
+	@ManagedProperty("#{beanProyecto}")
+	private BeanProyecto beanProyecto;
 
 	@PostConstruct
 	public void init() {
@@ -103,7 +109,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
-		trueque.setUsuarioTrueque2(perfilDe.getUsuario());
+		trueque.setUsuarioTrueque2(beanProyecto.getProyecto().getOwner());
 
 		TruequeTengo tt = new TruequeTengo();
 
@@ -156,18 +162,18 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
-		trueque.setUsuarioTrueque2(perfilDe.getUsuario());
+		trueque.setUsuarioTrueque2(beanProyecto.getProyecto().getOwner());
 
 		TruequeTengo tt = new TruequeTengo();
 
-		if (idTengo == 0) {
+		if (idTengo2 == 0) {
 
 			tenTemp.setNombre(textOtro);
 			tenTemp.setFechaRegistro(new Date());
 			tenTemp = tengoService.save(tenTemp);
 
 		} else {
-			tenTemp = tengoService.findById(idTengo);
+			tenTemp = tengoService.findById(idTengo2);
 		
 		}
 		trueque.setEstadoUsuario1(EstadoTruequeEnum.ACTIVO);
@@ -424,5 +430,31 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	public void setCancelados(List<Trueque> cancelados) {
 		this.cancelados = cancelados;
 	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 10/12/2013
+	 * @param beanProyecto the beanProyecto to set
+	 */
+	public void setBeanProyecto(BeanProyecto beanProyecto) {
+		this.beanProyecto = beanProyecto;
+	}
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 10/12/2013
+	 * @return the idTengo2
+	 */
+	public int getIdTengo2() {
+		return idTengo2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 10/12/2013
+	 * @param idTengo2 the idTengo2 to set
+	 */
+	public void setIdTengo2(int idTengo2) {
+		this.idTengo2 = idTengo2;
+	}
 }

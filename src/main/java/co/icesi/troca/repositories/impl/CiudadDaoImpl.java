@@ -31,7 +31,7 @@ public class CiudadDaoImpl extends GenericJpaRepository<Ciudad, Integer>
 		return this
 				.getEntityManager()
 				.createQuery(
-						"SELECT c FROM Ciudad c WHERE  c.departamento = :departamento")
+						"SELECT c FROM Ciudad c WHERE  c.departamento = :departamento ORDER BY c.nombre ASC")
 				.setParameter("departamento", departamento).getResultList();
 	}
 

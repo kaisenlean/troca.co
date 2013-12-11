@@ -20,6 +20,13 @@
 
 	<dependencies>
 
+
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.6.3</version> <!-- Or 1.7-SNAPSHOT -->
+		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

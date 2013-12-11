@@ -112,7 +112,7 @@
 								<div class="col-md-3 col-sm-4 col-lg-2">
 									<div
 										class="thumbnail margined margined-bot white-box no-border">
-										<p:commandLink process="@this"
+										<p:commandLink process="@this" oncomplete="click();"
 											actionListener="#{perfilDe.loadPerfil(person)}">
 											<img
 												src="#{request.contextPath}/foto/usuario/#{person.fotografia eq null ? 'logo_header.png':person.fotografia}"
@@ -149,7 +149,7 @@
 										<div class="caption not">
 											<p>#{proyec.descripcion}</p>
 											<p>
-												<p:commandLink
+												<p:commandLink oncomplete="click();"
 													styleClass="btn btn-red small-margin-top white white-link" actionListener="#{beanProyecto.verDetalleProyecto2(proyec)}" process="@this">Ver
 													Proyecto</p:commandLink>
 											</p>
@@ -179,7 +179,7 @@
 									<div class="caption not">
 										<p>#{teng.descripcion}</p>
 										<p>
-											<p:commandLink process="@this" actionListener="#{perfilDe.loadPerfil(teng.owner)}" styleClass="btn btn-white small-margin-top" >Ver
+											<p:commandLink process="@this" oncomplete="click();" actionListener="#{perfilDe.loadPerfil(teng.owner)}" styleClass="btn btn-white small-margin-top" >Ver
 												Perfil</p:commandLink>
 										</p>
 									</div>
@@ -197,22 +197,21 @@
 					<div class="col-md-12">
 						<h3 class="white margined-left">Necesitos</h3>
 						<div class="row">
+								<c:forEach items="#{beanBusqueda.necesitos}" var="ncst">
 							<div class="col-md-3 col-sm-4 col-lg-2">
 								<div class="thumbnail no-border margined margined-bot cien">
-									<h3 class="white white-link small-margin-left tengo-btn">Necesito
-										1</h3>
+									<h3 class="white white-link small-margin-left tengo-btn">#{ncst.nombre}</h3>
 
 									<div class="caption not">
-										<p class="white justify">Cras justo odio, dapibus ac
-											facilisis in, egestas eget quam. Donec id elit non mi porta
-											gravida at eget metus. Nullam id dolor id nibh ultricies.</p>
+										<p class="white justify">#{ncst.descripcion}</p>
 										<p>
-											<a href="#" class="btn btn-white small-margin-top">Ver
-												proyecto</a>
+											<p:commandLink partialSubmit="true" oncomplete="click();" actionListener="#{beanProyecto.verDetalleProyecto2(ncst.proyecto)}" styleClass="btn btn-white small-margin-top">Ver
+												proyecto</p:commandLink>
 										</p>
 									</div>
 								</div>
 							</div>
+								</c:forEach>
 						
 						</div>
 

@@ -82,4 +82,13 @@ public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
 public List<Necesito> findNecesitoByParam(String param) {
 	return necesitoDao.findNecesitoByParam(param);
 }
+
+
+/** (non-Javadoc)
+ * @see co.icesi.troca.services.necesito.NecesitoService#findUltimosNecesito(int)
+ */
+@Override
+public List<Necesito> findUltimosNecesito(int maxResults) {
+	return necesitoDao.findUltimosNecesito(maxResults);
+}
 }

@@ -125,7 +125,7 @@ public class Notificacion implements Serializable {
 	public String getMensajeCompleto(){
 		
 		if (modulo.equals(Modulo.PROYECTO)) {
-			return new StringBuilder(creador.getNombreCompleto()).append(" Te invita a su proyecto").toString();
+			return new StringBuilder(creador.getNombreCompleto()).append(mensaje).toString();
 		}
 		
 		if (modulo.equals(Modulo.TRUEQUE_TENGO)) {

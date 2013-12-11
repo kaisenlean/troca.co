@@ -59,8 +59,8 @@
 								proponlo escogiendo la opción "otro"</small>
 							<div class="form-group">
 								<label for="tengo-perfil" class="black">Tus Tengo</label>
-								<h:selectOneMenu value="#{beanTruequeProyecto.idTengo}" styleClass="form-control">
-								<p:ajax event="change" process="@this" update="@all"></p:ajax>
+								<h:selectOneMenu value="#{beanTrueque.idTengo}" styleClass="form-control">
+								<p:ajax event="change" process="@this" update="otro-perfil-tengo"></p:ajax>
 									<f:selectItems value="#{login.usuario.tengosAsItems}" 
 										></f:selectItems>
 										<f:selectItem itemLabel="Otro" itemValue="0"/>
@@ -69,8 +69,8 @@
 							</div>
 							<div class="form-group">
 								<label for="otro-perfil-tengo" class="black">Otro</label>
-								 <p:inputText styleClass="form-control"
-									  disabled="#{beanTruequeProyecto.idTengo eq 0?false:true}"
+								 <h:inputText styleClass="form-control" id="otro-perfil-tengo" placeholder="Escribe lo que buscas" 
+									readonly="#{beanTrueque.idTengo eq 0}"
 									 />
 							</div>
 
@@ -78,7 +78,7 @@
 
 							<p class="gray margined-top">Agrega un comentario personal a
 								la propuesta</p>
-							<h:inputTextarea  value="#{beanTruequeProyecto.mensaje}"   styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+							<h:inputTextarea  value="#{beanTrueque.mensaje}"   styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
 						</div>
 
 
@@ -94,7 +94,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Cancelar</button>
-								<h:commandButton   actionListener="#{beanTruequeProyecto.realizarTrueque(tng)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+								<h:commandButton   actionListener="#{beanTrueque.realizarTrueque(tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
 							
 						</div>
 					</div>
