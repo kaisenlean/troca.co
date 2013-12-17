@@ -360,16 +360,14 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	public void prepararEdicionUsuario(Usuario usuario){
 		this.usuario=usuario;
 		this.usuario.setRepeatMail(usuario.getEmail());
+		if (!usuario.getUsuarioLinks().isEmpty()) {
+			
 		usuarioLink=usuario.getUsuarioLinks().get(0);
 		usuarioLink2=usuario.getUsuarioLinks().get(1);
 		usuarioLink3=usuario.getUsuarioLinks().get(2);
 		usuarioLink4=usuario.getUsuarioLinks().get(3);
-		usuarioLink5=usuario.getUsuarioLinks().get(4);
-		usuarioLink6=usuario.getUsuarioLinks().get(5);
-		usuarioLink7=usuario.getUsuarioLinks().get(6);
-		usuarioLink8=usuario.getUsuarioLinks().get(7);
-		usuarioLink9=usuario.getUsuarioLinks().get(8);
-		
+		}
+
 		posLink=4;
 		this.usuario.setPasswordTemp(usuario.getPassword());
 		selPais=usuario.getCiudad().getDepartamento().getPais().getId();
@@ -394,8 +392,8 @@ public class BeanRegistro extends BaseBean implements Serializable {
 			return;
 		}
 		
-		if (usuario.getId().equals(null)) {
-			if (usuarioService.findByEmail(usuario.getEmail()).equals(null)) {
+		if (usuario.getId()==(null)) {
+			if (usuarioService.findByEmail(usuario.getEmail())==(null)) {
 				goTo("/paginas/registro/registro_2.jsf");
 			}else{
 				

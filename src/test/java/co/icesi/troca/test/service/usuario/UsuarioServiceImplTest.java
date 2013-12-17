@@ -10,20 +10,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.impl.UsuarioServiceImpl;
+import co.icesi.troca.test.BaseUnit;
 
 /**
  * Unidad de tests de la clase {@link UsuarioServiceImpl}
@@ -34,15 +26,8 @@ import co.icesi.troca.services.impl.UsuarioServiceImpl;
  * @date 22/10/2013
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:WebContent/WEB-INF/applicationContext.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		DirtiesContextTestExecutionListener.class,
-		TransactionalTestExecutionListener.class,
-		TransactionalTestExecutionListener.class })
-@TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManager")
-@Transactional
-public class UsuarioServiceImplTest {
+
+public class UsuarioServiceImplTest extends BaseUnit {
 
 	private static final String BIOGRAPHY_PRUEBA = "biography";
 	private static final String PASSWORD_PRUEBA = "******";

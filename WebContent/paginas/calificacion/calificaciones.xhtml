@@ -24,14 +24,14 @@
   
   <c:forEach items="#{beanCalificacion.calificaciones}" var="califa">
   
-    <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 clearfix">
+    <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12 clearfix" >
 
     <div class="thumbnail gray-border-light margined margined-bot">
     <p:rating value="#{califa.puntajeVal}" readonly="true"></p:rating>
       
       <div class="caption">
         <p>#{califa.puntajeText}</p>
-        <p>Calificación por : <a href="#" class="black black-link">#{califa.usuarioRegistro.nombreCompleto}</a></p>
+        <p>Calificación por : <p:commandLink process="@this" styleClass="black black-link" actionListener="#{perfilDe.loadPerfil(califa.usuarioRegistro)}">#{califa.usuarioRegistro.nombreCompleto}</p:commandLink></p>
       </div>
     </div>
   </div>

@@ -48,7 +48,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idTengo;
-	
+
 	private int idTengo2;
 
 	private String mensaje;
@@ -83,7 +83,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	private List<Trueque> finalizados;
 
 	private List<Trueque> cancelados;
-	
+
 	@ManagedProperty("#{beanProyecto}")
 	private BeanProyecto beanProyecto;
 
@@ -103,9 +103,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
 	 */
-	public void realizarTrueque(Tengo tengo) {
+	public void realizarTrueque(Tengo tengo, int idTengo) {
 		Tengo tenTemp = new Tengo();
-
+		idTengo=this.idTengo;
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
@@ -122,7 +122,8 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		} else {
 			tenTemp = tengoService.findById(idTengo);
 			List<TruequeTengo> listTrueque = truequeTengoService
-					.findByTengoAndSolicitante(tengo==null?tenTemp:tengo, login.getUsuario());
+					.findByTengoAndSolicitante(tengo == null ? tenTemp : tengo,
+							login.getUsuario());
 			if (!listTrueque.isEmpty()) {
 				mensajeError(new StringBuilder("Ya tienes ")
 						.append(listTrueque.size())
@@ -140,6 +141,10 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		mensaje = new StringBuilder("!!Hola , veo que tienen ")
+				.append(tengo.getNombre())
+				.append(" Yo lo necesito y a cambio te ofrezco ")
+				.append(tenTemp.getNombre()).toString();
 		truequeMensaje.setMensaje(mensaje);
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
@@ -148,10 +153,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		truequeMensajeService.save(truequeMensaje);
 
 		notificacionService.crearNotificacionSolicitudTrueque(tt, mensaje);
-
+		mensaje = "";
 	}
-	
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
@@ -174,7 +178,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		} else {
 			tenTemp = tengoService.findById(idTengo2);
-		
+
 		}
 		trueque.setEstadoUsuario1(EstadoTruequeEnum.ACTIVO);
 		trueque.setEstadoUsuario2(EstadoTruequeEnum.ACTIVO);
@@ -186,6 +190,10 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		mensaje = new StringBuilder("!!Hola , veo que necesitan ")
+				.append(necesito.getNombre())
+				.append(" Yo lo tengo y a cambio les ofrezco ")
+				.append(tenTemp.getNombre()).toString();
 		truequeMensaje.setMensaje(mensaje);
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
@@ -193,8 +201,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		truequeMensaje.setFecha(new Date());
 		truequeMensajeService.save(truequeMensaje);
 
-		notificacionService.crearNotificacionSolicitudTruequeProyecto(tt, mensaje);
-
+		notificacionService.crearNotificacionSolicitudTruequeProyecto(tt,
+				mensaje);
+		mensaje = "";
 	}
 
 	/**
@@ -430,11 +439,12 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	public void setCancelados(List<Trueque> cancelados) {
 		this.cancelados = cancelados;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 10/12/2013
-	 * @param beanProyecto the beanProyecto to set
+	 * @param beanProyecto
+	 *            the beanProyecto to set
 	 */
 	public void setBeanProyecto(BeanProyecto beanProyecto) {
 		this.beanProyecto = beanProyecto;
@@ -448,11 +458,12 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	public int getIdTengo2() {
 		return idTengo2;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 10/12/2013
-	 * @param idTengo2 the idTengo2 to set
+	 * @param idTengo2
+	 *            the idTengo2 to set
 	 */
 	public void setIdTengo2(int idTengo2) {
 		this.idTengo2 = idTengo2;

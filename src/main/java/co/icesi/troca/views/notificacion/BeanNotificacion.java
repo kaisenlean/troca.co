@@ -67,7 +67,13 @@ public class BeanNotificacion extends BaseBean implements Serializable{
 	@PostConstruct
 	public void init(){
 		if (login.getUsuario()!=null) {
-			lista=notificacionService.findNotificacionesUsuario(login.getUsuario());
+			if (login.getUsuario().getId()!=null) {
+				
+				lista=notificacionService.findNotificacionesUsuario(login.getUsuario());
+			}else{
+				lista=new ArrayList<Notificacion>();
+				
+			}
 		}else{
 			lista=new ArrayList<Notificacion>();
 			

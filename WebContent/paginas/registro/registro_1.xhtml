@@ -125,7 +125,7 @@
 
 					<p:inputText styleClass="form-control" id="nombre"
 						placeholder="Ingresa tu nombre(s)"
-						value="#{beanRegistro.usuario.nombre}" required="true" requiredMessage="Por favor digita un nombre válido"></p:inputText>
+						value="#{beanRegistro.usuario.nombre}" readonly="#{beanRegistro.usuario.id ne null}" required="true" requiredMessage="Por favor digita un nombre válido"></p:inputText>
 					<!-- 					<label for="nombre" class="white">Nombre(s)</label> <input -->
 					<!-- 						type="text" class="form-control" id="nombre" -->
 					<!-- 						placeHolder="Ingresa tu nombre(s)"/> -->

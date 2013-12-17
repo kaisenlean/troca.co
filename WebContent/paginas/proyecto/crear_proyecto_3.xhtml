@@ -23,6 +23,7 @@
 		<div class="row big-gap red-box">
 			<div class="col-md-6 col-sm-6 hugely-padded-bot know-height">
 				<div id="registro2" class="margined-left basic margined-top">
+				<h:form>
 				
 					<div class="form-group">
 
@@ -38,7 +39,7 @@
 								
 								<p:dataTable id="tblExist" value="#{beanProyecto.creados}" var="usuat">
 								<p:column>
-								<h:graphicImage value="/foto/usuario/#{usuat.usuario.fotografia}" />
+<!-- 								<h:graphicImage value="/foto/usuario/#{usuat.usuario.fotografia}" /> -->
 								<h:outputText value="#{usuat.usuario}" />
 								</p:column>
 								<p:column>
@@ -57,11 +58,12 @@
 
 						<p:commandButton value="Cancelar"
 							styleClass="btn btn-default big-margin-top padded-bot margined-right right"
-							process="@all" update="@all" action="/paginas/perfil/perfil_2.jsf"></p:commandButton>
+							process="@this"  action="/paginas/perfil/perfil.jsf"></p:commandButton>
 					
 
 
 					</div>
+					</h:form>
 					<!-- Termina formulario-->
 
 

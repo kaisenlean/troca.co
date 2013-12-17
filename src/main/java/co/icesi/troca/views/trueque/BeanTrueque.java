@@ -4,6 +4,7 @@
 package co.icesi.troca.views.trueque;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -133,15 +134,18 @@ public class BeanTrueque extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		mensaje = new StringBuilder("!!Hola , veo que tienes " ).append( tengo.getNombre()).append(
+				" Yo lo necesito y a cambio te ofrezco ").append(
+				tenTemp.getNombre()).toString();
 		truequeMensaje.setMensaje(mensaje);
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
 		truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
-		truequeMensaje.setFecha(new Date());
+		truequeMensaje.setFecha(Calendar.getInstance().getTime());
 		truequeMensajeService.save(truequeMensaje);
 
 		notificacionService.crearNotificacionSolicitudTrueque(tt, mensaje);
-
+		mensaje = "";
 	}
 
 	/**

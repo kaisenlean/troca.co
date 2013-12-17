@@ -19,14 +19,14 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.model.UploadedFile;
 
-import com.sun.faces.context.ExternalContextImpl;
-
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.tengo.EstadoTengo;
 import co.icesi.troca.model.tengo.Tengo;
 import co.icesi.troca.model.tengo.TipoTengo;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.views.login.Login;
+
+import com.sun.faces.context.ExternalContextImpl;
 
 /**
  * Bean que controla el registro de los tengos del usuario

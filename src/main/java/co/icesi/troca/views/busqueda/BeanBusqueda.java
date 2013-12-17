@@ -19,6 +19,7 @@ import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.necesito.NecesitoService;
 import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.tengo.TengoService;
+import co.icesi.troca.views.login.Login;
 
 
 /**
@@ -50,6 +51,9 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 	
 	@ManagedProperty(value="#{necesitoService}")
 	private NecesitoService necesitoService;
+	
+	@ManagedProperty(value="#{login}")
+	private Login login;
 	
 	
 	/**
@@ -87,6 +91,14 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 	 */
 	private String query;
 	
+	
+	
+	/**
+	 * 17/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * quer2
+	 */
+	private String query2;
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 2/12/2013
@@ -96,6 +108,9 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 		necesitos=necesitoService.findNecesitoByParam(query);
 		tengos=tengoService.findTengoByParam(query);
 		usuarios=usuarioService.findUsuariosByParam(query);
+		if (!usuarios.isEmpty()) {
+			usuarios.remove(login.getUsuario());
+		}
 		query="";
 		goTo("/paginas/busqueda.jsf");
 		
@@ -108,11 +123,14 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 	* @date 2/12/2013
 	*/
 	public void buscar(){
-		proyectos=proyectoService.findProyectosByParam(query);
-		necesitos=necesitoService.findNecesitoByParam(query);
-		tengos=tengoService.findTengoByParam(query);
-		usuarios=usuarioService.findUsuariosByParam(query);
-		query="";
+		proyectos=proyectoService.findProyectosByParam(query2);
+		necesitos=necesitoService.findNecesitoByParam(query2);
+		tengos=tengoService.findTengoByParam(query2);
+		usuarios=usuarioService.findUsuariosByParam(query2);
+		if (!usuarios.isEmpty()) {
+			usuarios.remove(login.getUsuario());
+		}
+		query2="";
 		
 		
 		
@@ -248,7 +266,32 @@ public class BeanBusqueda  extends BaseBean implements Serializable{
 		this.necesitoService = necesitoService;
 	}
 
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 17/12/2013
+ * @param login the login to set
+ */
+public void setLogin(Login login) {
+	this.login = login;
+}
 
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 17/12/2013
+ * @return the query2
+ */
+public String getQuery2() {
+	return query2;
+}
+
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 17/12/2013
+ * @param query2 the query2 to set
+ */
+public void setQuery2(String query2) {
+	this.query2 = query2;
+}
 	
 	
 	

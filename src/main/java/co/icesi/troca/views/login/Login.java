@@ -144,6 +144,17 @@ public class Login extends BaseBean implements Serializable {
 
 	}
 	
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 17/12/2013
+	*/
+	public String goToRegistro1(){
+//		usuario=new Usuario();
+		return("/paginas/registro/registro_1.jsf");
+		
+	}
+	
 	/**
 	 * 
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

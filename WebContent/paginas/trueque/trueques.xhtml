@@ -78,16 +78,15 @@
 									<div class="col-md-6 col-sm-6 col-lg-4">
 										<div class="thumbnail blue-border margined margined-bot">
 											<div class="media">
-												<a class="pull-left" href="#"> <img
+												<p:commandLink styleClass="pull-left" actionListener="#{perfilDe.loadPerfil(activ.usuarioTrueque2 eq login.usuario ?activ.usuarioTrueque1:activ.usuarioTrueque1)}"> <img
 													style="width: 64px; height: 64px" class="media-object"
-													src="#{request.contextPath}/foto/usuario/#{activ.usuarioTrueque2.fotografia eq null ?'logo_header.png':activ.usuarioTrueque2.fotografia }"
+													src="#{request.contextPath}/foto/usuario/#{activ.usuarioTrueque2 eq login.usuario ?activ.usuarioTrueque1.fotografia eq null?'logo_header.png':activ.usuarioTrueque1.fotografia :activ.usuarioTrueque2.fotografia eq null?'logo_header.png':activ.usuarioTrueque2.fotografia }"
 													alt="..." />
-												</a>
+												</p:commandLink>
 												<div class="media-body">
 													<a class="blue blue-link"><h5
 															class="media-heading">
-															Trueque con <strong>#{activ.usuarioTrueque2.nombreCompleto
-																}</strong>
+															Trueque con <strong>#{activ.usuarioTrueque2 eq login.usuario ? activ.usuarioTrueque1.nombreCompleto:activ.usuarioTrueque2.nombreCompleto}</strong>
 														</h5></a>
 
 													<p:commandButton process="@this"  actionListener="#{beanTrueque.verPnlTrueque(activ)}" styleClass="btn btn-default right" value="Ver más">

@@ -21,11 +21,11 @@
 				<h:dataTable value="#{beanTruequeMensaje.trueque.mensajes}"
 					var="msj">
 					<h:column>
-						<a class="pull-left" href="#"> <img
+						<p:commandLink styleClass="pull-left" actionListener="#{perfilDe.loadPerfil(msj.usuarioEmisor)}"> <img
 							style="width: 64px; height: 64px" class="media-object"
 							src="#{request.contextPath}/foto/usuario/#{msj.usuarioEmisor.fotografia eq null ?'logo_header.png':msj.usuarioEmisor.fotografia }"
 							alt="..." />
-						</a>
+						</p:commandLink>
 						<div class="media-body">
 							<h4 class="media-heading">#{msj.usuarioEmisor.nombreCompleto}
 								dijo:</h4>
@@ -60,8 +60,7 @@
 				title="Finaliza el trueque solo cuando este se haya realizado satisfactoriamente"
 				id="finish-trueque" class="btn btn-blue right margined">Finalizar
 				Trueque</button>
-			<button type="button" class="btn btn-red right margined">Cancelar
-				Trueque</button>
+			<h:commandButton value="Cancelar Trueque" rendered="#{beanTruequeMensaje.activoCancelado}" actionListener="#{beanTruequeMensaje.cancelarTrueque()}"  styleClass="btn btn-red right margined"></h:commandButton>
 			<br />
 			<br />
 			<br />

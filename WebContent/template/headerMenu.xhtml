@@ -32,8 +32,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#{request.contextPath}/ayuda.jsf" class="oneline help oneline">#{msgMenu.labelAyuda}</a></li>
 				<li><p:commandLink
-						rendered="${login.usuario eq null ? true:false}" ajax="false"
-						process="@this" action="/paginas/registro/registro_1.jsf"
+						rendered="${login.usuario eq null ? true:false}" 
+						process="@this" update="@all" action="#{login.goToRegistro1()}"
 						styleClass="oneline log-alpha" value="#{msgMenu.labelRegistrate}"></p:commandLink></li>
 				<li class="hidden-xs  divider-log"></li>
 				<li><a href="#modal-registro" data-toggle="modal"
@@ -66,7 +66,7 @@
 				<li><h:outputLink styleClass="oneline"
 						value="#{request.contextPath}/paginas/perfil/perfil.jsf"
 						rendered="${login.usuario ne null ? true:false}">
-						#{login.usuario.nombreCompleto}
+						#{login.usuario.nombre}
 					</h:outputLink></li>
 				<li><p:commandLink rendered="${login.usuario ne null ? true:false}" process="@this" actionListener="#{login.logOut()}" value="Logout" styleClass="oneline log-omega"></p:commandLink></li>
 			</ul>

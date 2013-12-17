@@ -31,7 +31,7 @@
 							<h4>Personas</h4>
 						</label>
 					</div>
-					/
+					
 					<div class="checkbox ">
 						<label> <input class="project-check" type="checkbox"
 							checked="true" value="" />
@@ -90,7 +90,7 @@
 				<div class="navbar-form" >
 					<div class="form-group oneline">
 						
-						<p:inputText value="#{beanBusqueda.query}" onkeypress="if (event.keyCode == 13) { btnBusq.jq.click();  return false; }" ></p:inputText>
+						<p:inputText value="#{beanBusqueda.query2}" onkeypress="if (event.keyCode == 13) { btnBusq.jq.click();  return false; }" ></p:inputText>
 						<p:commandButton process="@all" update="@all" id="btnBusq" widgetVar="btnBusq" value="Buscar" actionListener="#{beanBusqueda.buscar()}" ></p:commandButton>
 					</div>
 

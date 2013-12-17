@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:WebContent/WEB-INF/applicationContext.xml" })
+@ContextConfiguration(locations = { "file:src/test/resources/applicationContextTest.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DirtiesContextTestExecutionListener.class,
 		TransactionalTestExecutionListener.class,

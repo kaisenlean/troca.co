@@ -5,7 +5,6 @@ package co.icesi.troca.views.trueque;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -82,19 +81,37 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	private String respuesta;
 	
 	private boolean activoFinalizado;
+	private boolean activoCancelado;
 	
 	
 	private TruequeCalificacion calificacion;
 	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 17/12/2013
+	*/
 	@PostConstruct
 	public void init(){
 		
 		trueque=(Trueque) getAttribute("trueque");
+		trueque=truequeService.findById(trueque.getId());
+		trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
 		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
-			activoFinalizado=!trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) ;
+			activoCancelado=!trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO);
+			if (!activoCancelado) {
+				activoFinalizado=false;
+			}else{
+				
+				activoFinalizado=!trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) ;
+			}
 		}else{
-			activoFinalizado=!trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO);
-			
+			activoCancelado=!trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO);
+			if (!activoCancelado) {
+				activoFinalizado=false;
+			}else{
+				
+				activoFinalizado=!trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO);
+			}
 		}
 		calificacion=new TruequeCalificacion();
 	}
@@ -129,7 +146,53 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	}
 	
 	
+	public void cancelarTrueque(){
+		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
+			trueque.setEstadoUsuario1(EstadoTruequeEnum.CANCELADO);
+			
+		}else{
+			trueque.setEstadoUsuario2(EstadoTruequeEnum.CANCELADO);
+			
+		}
+		
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.ACTIVO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
+		
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
+		
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.ACTIVO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
+		
+		trueque=truequeService.save(trueque);
+		
+		calificacion.setUsuario(login.getUsuario());
+		calificacion.setUsuarioCalificado(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		calificacion.setTrueque(trueque);
+		
+		truequeCalificacionService.save(calificacion);
+		
+		Calificacion cal=new Calificacion();
+		cal.setPuntajeText(calificacion.getPuntajeText());
+		cal.setPuntajeVal(calificacion.getPuntajeVal());
+		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		cal.setUsuarioRegistro(login.getUsuario());
+		calificacionService.save(cal);
+		
+		calificacion=new TruequeCalificacion();
+		
+		trueque=truequeService.findById(trueque.getId());
+		this.trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
+		goTo("/paginas/trueque/mensajesTrueque.jsf");
+	}
 
+	
 	public void finalizarTrueque(){
 		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
 			trueque.setEstadoUsuario1(EstadoTruequeEnum.FINALIZADO);
@@ -354,5 +417,23 @@ public void setCalificacion(TruequeCalificacion calificacion) {
  */
 public void setCalificacionService(CalificacionService calificacionService) {
 	this.calificacionService = calificacionService;
+}
+
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 17/12/2013
+ * @return the activoCancelado
+ */
+public boolean isActivoCancelado() {
+	return activoCancelado;
+}
+
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 17/12/2013
+ * @param activoCancelado the activoCancelado to set
+ */
+public void setActivoCancelado(boolean activoCancelado) {
+	this.activoCancelado = activoCancelado;
 }
 }

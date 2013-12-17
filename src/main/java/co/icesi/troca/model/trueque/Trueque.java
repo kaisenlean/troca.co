@@ -278,5 +278,13 @@ public class Trueque implements Serializable {
 	public void setEstadoUsuario2(EstadoTruequeEnum estadoUsuario2) {
 		this.estadoUsuario2 = estadoUsuario2;
 	}
+	
+	
+	public String getEstadoTruequeAsString(){
+		if (estado==null) {
+			return "";
+		}
+		return estado.name();
+	}
 
 }

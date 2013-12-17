@@ -24,6 +24,7 @@ import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.trueque.TruequeService;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
+import co.icesi.troca.views.login.Login;
 
 /**
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -68,54 +69,58 @@ public class PerfilDe extends BaseBean implements Serializable {
 	private List<Trueque> truequesActivos;
 	private List<Trueque> truequesFinalizados;
 	private List<Trueque> truequesCancelados;
-	
-	@ManagedProperty(value="#{calificacionService}")
+
+	@ManagedProperty(value = "#{calificacionService}")
 	private CalificacionService calificacionService;
-	
+	@ManagedProperty(value = "#{login}")
+	private Login login;
 
 	private Usuario usuario = new Usuario();
 
-	
 	private String promedio;
-	
-	
-	
 
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * calificaciones
+	 *         calificaciones
 	 */
-	private List<Calificacion> calificaciones= new ArrayList<Calificacion>();
-	
+	private List<Calificacion> calificaciones = new ArrayList<Calificacion>();
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
 	 * @param usuario
 	 */
 	public void loadPerfil(Usuario usuario) {
-
+		if (usuario.equals(login.getUsuario())) {
+			return;
+		}
 		this.usuario = usuario;
 		this.usuario.setProyectos(proyectoService
 				.findProyectosByUsuario(usuario));
 		this.usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		this.usuario.setNoticias(noticiaService.findNoticiasByUsuario(usuario));
-		this.usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
-		truequesActivos=truequeService.findActivosByUsuarioAndEstado(usuario, EstadoTruequeEnum.ACTIVO);
-		truequesFinalizados=truequeService.findActivosByUsuarioAndEstado(usuario, EstadoTruequeEnum.FINALIZADO);
-		truequesCancelados=truequeService.findActivosByUsuarioAndEstado(usuario, EstadoTruequeEnum.CANCELADO);
-		calificaciones=calificacionService.findCalificacionByUsuario(usuario);
-		
-		double promTemp=0.0;
+		this.usuario.setUsuarioLinks(usuarioLinkService
+				.getLinkByUsuario(usuario));
+		truequesActivos = truequeService.findActivosByUsuarioAndEstado(usuario,
+				EstadoTruequeEnum.ACTIVO);
+		truequesFinalizados = truequeService.findActivosByUsuarioAndEstado(
+				usuario, EstadoTruequeEnum.FINALIZADO);
+		truequesCancelados = truequeService.findActivosByUsuarioAndEstado(
+				usuario, EstadoTruequeEnum.CANCELADO);
+		calificaciones = calificacionService.findCalificacionByUsuario(usuario);
+
+		double promTemp = 0.0;
 		for (Calificacion cf : calificaciones) {
-		promTemp+=cf.getPuntajeVal().doubleValue();
+			promTemp += cf.getPuntajeVal().doubleValue();
 		}
 		if (!calificaciones.isEmpty()) {
-			
-		promTemp/=calificaciones.size();
+
+			promTemp /= calificaciones.size();
 		}
-		promedio=String.valueOf(promTemp);
-		
+		promedio = String.valueOf(promTemp);
+
 		goTo("/paginas/perfil/perfilDe.jsf");
 	}
 
@@ -127,7 +132,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 	public List<Trueque> getTruequesActivos() {
 		return truequesActivos;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
@@ -136,6 +141,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 	public List<Trueque> getTruequesCancelados() {
 		return truequesCancelados;
 	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
@@ -144,8 +150,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 	public List<Trueque> getTruequesFinalizados() {
 		return truequesFinalizados;
 	}
-	
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
@@ -288,11 +293,12 @@ public class PerfilDe extends BaseBean implements Serializable {
 	public void setTruequeService(TruequeService truequeService) {
 		this.truequeService = truequeService;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
-	 * @param calificacionService the calificacionService to set
+	 * @param calificacionService
+	 *            the calificacionService to set
 	 */
 	public void setCalificacionService(CalificacionService calificacionService) {
 		this.calificacionService = calificacionService;
@@ -306,7 +312,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 	public String getPromedio() {
 		return promedio;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
@@ -315,14 +321,24 @@ public class PerfilDe extends BaseBean implements Serializable {
 	public List<Calificacion> getCalificaciones() {
 		return calificaciones;
 	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
-	 * @param calificaciones the calificaciones to set
+	 * @param calificaciones
+	 *            the calificaciones to set
 	 */
 	public void setCalificaciones(List<Calificacion> calificaciones) {
 		this.calificaciones = calificaciones;
 	}
-	
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 17/12/2013
+	 * @param login
+	 *            the login to set
+	 */
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 }

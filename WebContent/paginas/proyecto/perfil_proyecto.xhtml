@@ -154,11 +154,11 @@
 										</div>
 
 
-										<button type="button"
-											class="btn btn-default margined-left preview-trueque-necesito">Previsualizar
-											mensaje</button>
-										<button type="button"
-											class="btn btn-default margined-left close-trueque-necesito">Cerrar</button>
+<!-- 										<button type="button" -->
+<!-- 											class="btn btn-default margined-left preview-trueque-necesito">Previsualizar -->
+<!-- 											mensaje</button> -->
+<!-- 										<button type="button" -->
+<!-- 											class="btn btn-default margined-left close-trueque-necesito">Cerrar</button> -->
 
 
 
@@ -209,7 +209,7 @@
  <div class="modal fade" id="modal-tengo#{tng.id}" tabindex="-1" role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
     <div class="modal-dialog">
 
-<!-- <h:form> -->
+
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -221,10 +221,11 @@
 							<h5>Elige uno de tus tengo</h5>
 							<small>Si quieres ofrecer algo que no esté en la lista,
 								proponlo escogiendo la opción "otro"</small>
+								<h:form>
 							<div class="form-group">
 								<label for="tengo-perfil" class="black">Tus Tengo</label>
 								<h:selectOneMenu value="#{beanTruequeProyecto.idTengo}" styleClass="form-control">
-								<p:ajax event="change" process="@this" update="tengo-pro-otre#{tng.id}"></p:ajax>
+								<p:ajax event="change" process="@this" update="tengo-pro-otreq#{tng.id}"></p:ajax>
 									<f:selectItems value="#{login.usuario.tengosAsItems}" 
 										></f:selectItems>
 										<f:selectItem itemLabel="Otro" itemValue="0"/>
@@ -233,10 +234,11 @@
 							</div>
 							<div class="form-group">
 								<label for="otro-perfil-tengo" class="black">Otro</label>
-								 <h:inputText placeholder="Escribe lo que buscas" styleClass="form-control" id="tengo-pro-otre#{tng.id}"
+								 <h:inputText placeholder="Escribe lo que buscas" styleClass="form-control" id="tengo-pro-otreq#{tng.id}"
 									  readonly="#{beanTruequeProyecto.idTengo ne 0}"
 									 />
 							</div>
+							</h:form>
 
 
 
@@ -246,11 +248,11 @@
 						</div>
 
 
-						<button type="button"
-							class="btn btn-default margined-left preview-trueque-tengo-perfil">Previsualizar
-							mensaje</button>
-						<button type="button"
-							class="btn btn-default margined-left close-trueque-tengo">Cerrar</button>
+<!-- 						<button type="button" -->
+<!-- 							class="btn btn-default margined-left preview-trueque-tengo-perfil">Previsualizar -->
+<!-- 							mensaje</button> -->
+<!-- 						<button type="button" -->
+<!-- 							class="btn btn-default margined-left close-trueque-tengo">Cerrar</button> -->
 
 
 
@@ -258,7 +260,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Cancelar</button>
-								<h:commandButton   actionListener="#{beanTruequeProyecto.realizarTrueque(tng.tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+								<h:commandButton   actionListener="#{beanTruequeProyecto.realizarTrueque(tng.tengo,idTengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
 							
 						</div>
 					</div>

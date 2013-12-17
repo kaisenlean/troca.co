@@ -84,7 +84,7 @@ public class TruequeMensaje implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * fecha
 	 */
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="fecha")
 	private Date fecha;
 	

@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-		<h:form>
+<!-- 		<h:form> -->
 	<!-- Listado de Tengos -->
 
 	<div class="row gap">
@@ -17,7 +17,6 @@
 
 	<div class="row">
 		<c:forEach var="tengo"  items="#{perfilDe.usuario.tengos}">
-
 
 			<div class="col-md-3 col-lg-2 col-sm-4 col-xs-12 clearfix">
 				<div class="thumbnail blue-border margined margined-bot cien">
@@ -42,10 +41,10 @@
 				</div>
 			</div>
 			<!-- Modal Trocar Tengo Perfil -->
+		
 			<div class="modal fade" id="modal-tengo-perfil#{tengo.id}"
 				tabindex="-1" role="dialog" aria-labelledby="Ingreso"
 				aria-hidden="true">
-		<h:form>
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -53,61 +52,67 @@
 								aria-hidden="true">&times;</button>
 							<h4 class="modal-title blue">Propuesta de Trueque</h4>
 						</div>
+						
 						<div class="modal-body">
 							<h5>Elige uno de tus tengo</h5>
 							<small>Si quieres ofrecer algo que no esté en la lista,
 								proponlo escogiendo la opción "otro"</small>
+								<h:form>	
 							<div class="form-group">
-								<label for="tengo-perfil" class="black">Tus Tengo</label>
-								<h:selectOneMenu value="#{beanTrueque.idTengo}" styleClass="form-control">
-								<p:ajax event="change" process="@this" update="otro-perfil-tengo"></p:ajax>
+								<label  class="black">Tus Tengo</label>
+								<h:selectOneMenu  value="#{beanTrueque.idTengo}" styleClass="form-control">
+								<p:ajax event="change" process="@this" update="txtOtro#{tengo.id}"></p:ajax>
 									<f:selectItems value="#{login.usuario.tengosAsItems}" 
 										></f:selectItems>
 										<f:selectItem itemLabel="Otro" itemValue="0"/>
 										
 								</h:selectOneMenu>
 							</div>
+						
 							<div class="form-group">
-								<label for="otro-perfil-tengo" class="black">Otro</label>
-								 <h:inputText styleClass="form-control" id="otro-perfil-tengo" placeholder="Escribe lo que buscas" 
-									readonly="#{beanTrueque.idTengo eq 0}"
+								<label  class="black">Otro</label>
+								 <p:inputText styleClass="form-control" placeholder="Escribe lo que buscas" id="txtOtro#{tengo.id}"
+									readonly="#{beanTrueque.idTengo ne 0}"
 									 />
 							</div>
 
-
+</h:form>
 
 							<p class="gray margined-top">Agrega un comentario personal a
 								la propuesta</p>
 							<h:inputTextarea  value="#{beanTrueque.mensaje}"   styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
 						</div>
+	
+
+<!-- 						<button type="button" -->
+<!-- 							class="btn btn-default margined-left preview-trueque-tengo-perfil">Previsualizar -->
+<!-- 							mensaje</button> -->
+<!-- 						<button type="button" -->
+<!-- 							class="btn btn-default margined-left close-trueque-tengo">Cerrar</button> -->
 
 
-						<button type="button"
-							class="btn btn-default margined-left preview-trueque-tengo-perfil">Previsualizar
-							mensaje</button>
-						<button type="button"
-							class="btn btn-default margined-left close-trueque-tengo">Cerrar</button>
 
-
-
-
+<h:form>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Cancelar</button>
-								<h:commandButton   actionListener="#{beanTrueque.realizarTrueque(tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+								
+								<h:commandButton  actionListener="#{beanTrueque.realizarTrueque(tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+								
 							
 						</div>
+						</h:form>
 					</div>
 					<!-- /.modal-content -->
 				</div>
-				</h:form>
 				<!-- /.modal-dialog -->
 			</div>
+			
 			<!-- /.modal trocar Tengo perfil -->
 </c:forEach>
 
 
 	</div>
-</h:form>
+<!-- </h:form> -->
 
 </f:view>
