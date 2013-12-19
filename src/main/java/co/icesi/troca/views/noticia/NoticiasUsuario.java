@@ -62,6 +62,10 @@ public class NoticiasUsuario extends BaseBean implements Serializable {
 	 */
 	@ManagedProperty(value = "#{noticiaService}")
 	private NoticiaService noticiaService;
+	
+	@ManagedProperty(value="#{beanNoticia}")
+	private BeanNoticia beanNoticia;
+	
 
 	/**
 	 * 24/11/2013
@@ -184,7 +188,9 @@ public class NoticiasUsuario extends BaseBean implements Serializable {
 				noticia=noticiaService.save(noticia);
 				noticia=new Noticia();
 				in=null;
+				beanNoticia.init();
 				init();
+				
 			} catch (Exception e) {
 				mensajeError(e.toString());
 			}
@@ -341,5 +347,25 @@ public class NoticiasUsuario extends BaseBean implements Serializable {
 	 */
 	public void setUltimasNoticias(List<Noticia> ultimasNoticias) {
 		this.ultimasNoticias = ultimasNoticias;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @return the beanNoticia
+	 */
+	public BeanNoticia getBeanNoticia() {
+		return beanNoticia;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @param beanNoticia the beanNoticia to set
+	 */
+	public void setBeanNoticia(BeanNoticia beanNoticia) {
+		this.beanNoticia = beanNoticia;
 	}
 }

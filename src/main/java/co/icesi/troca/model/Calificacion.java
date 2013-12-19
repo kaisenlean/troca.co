@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.model.usuario.Usuario;
 
 /**
@@ -74,6 +75,15 @@ public class Calificacion implements Serializable {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "usuario_registro")
 	private Usuario usuarioRegistro;
+	
+	/**
+	 * 19/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * trueque
+	 */
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="trueque")
+	private Trueque trueque;
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 12/11/2013
@@ -177,6 +187,26 @@ public class Calificacion implements Serializable {
 	*/
 	public void setUsuarioRegistro(Usuario usuarioRegistro) {
 		this.usuarioRegistro = usuarioRegistro;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @return the trueque
+	 */
+	public Trueque getTrueque() {
+		return trueque;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @param trueque the trueque to set
+	 */
+	public void setTrueque(Trueque trueque) {
+		this.trueque = trueque;
 	}
 
 	/* (non-Javadoc)

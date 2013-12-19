@@ -225,10 +225,10 @@ public class BeanTengo extends BaseBean implements Serializable {
 			} catch (Exception e) {
 				mensajeError(e.toString());
 			}
+			tengo.setFoto(tengo.getId()
+					+ tengo.getExtension());
+			tengo=tengoService.save(tengo);
 		}
-		tengo.setFoto(tengo.getId()
-				+ tengo.getExtension());
-		tengo=tengoService.save(tengo);
 		runJavascript("pnlCon.close();");
 		login.reloadTengosProyectos();
 		goTo("/paginas/perfil/perfil.jsf");
@@ -254,10 +254,10 @@ public class BeanTengo extends BaseBean implements Serializable {
 			} catch (Exception e) {
 				mensajeError(e.toString());
 			}
+			tengo.setFoto(tengo.getId()
+					+ tengo.getExtension());
+			tengo=tengoService.save(tengo);
 		}
-		tengo.setFoto(tengo.getId()
-				+ tengo.getExtension());
-		tengo=tengoService.save(tengo);
 		tengo=new Tengo();
 		login.reloadTengosProyectos();
 		

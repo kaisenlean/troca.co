@@ -40,5 +40,16 @@ public interface ProyectoUsuarioDao  extends GenericRepository<ProyectoUsuario, 
 	* @return
 	*/
 	public List<ProyectoUsuario> findByProyecto(Proyecto proyecto);
+	
+	
+	
+	/**
+	 * Método que extrae los proyectos por un usuario en especifico
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 19/12/2013
+	* @param usuario
+	* @return
+	*/
+	public List<Proyecto> findByUsuario(Usuario usuario);
 
 }

@@ -21,6 +21,7 @@ import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.calificacion.CalificacionService;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
+import co.icesi.troca.services.proyecto.ProyectoUsuarioService;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.trueque.TruequeService;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
@@ -70,6 +71,9 @@ public class PerfilDe extends BaseBean implements Serializable {
 	private List<Trueque> truequesFinalizados;
 	private List<Trueque> truequesCancelados;
 
+	@ManagedProperty(value="#{proyectoUsuarioService}")
+	private ProyectoUsuarioService proyectoUsuarioService;
+	
 	@ManagedProperty(value = "#{calificacionService}")
 	private CalificacionService calificacionService;
 	@ManagedProperty(value = "#{login}")
@@ -99,6 +103,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 		this.usuario = usuario;
 		this.usuario.setProyectos(proyectoService
 				.findProyectosByUsuario(usuario));
+		this.usuario.getProyectos().addAll(proyectoUsuarioService.findByUsuario(usuario));
 		this.usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		this.usuario.setNoticias(noticiaService.findNoticiasByUsuario(usuario));
 		this.usuario.setUsuarioLinks(usuarioLinkService
@@ -340,5 +345,14 @@ public class PerfilDe extends BaseBean implements Serializable {
 	 */
 	public void setLogin(Login login) {
 		this.login = login;
+	}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @param proyectoUsuarioService the proyectoUsuarioService to set
+	 */
+	public void setProyectoUsuarioService(
+			ProyectoUsuarioService proyectoUsuarioService) {
+		this.proyectoUsuarioService = proyectoUsuarioService;
 	}
 }

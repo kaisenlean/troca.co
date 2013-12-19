@@ -36,6 +36,7 @@ import co.icesi.troca.services.PaisService;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
+import co.icesi.troca.views.login.Login;
 
 import com.sun.faces.context.ExternalContextImpl;
 /**
@@ -260,6 +261,15 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	private InputStream in;
 	
 	
+	
+	/**
+	 * 18/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * login
+	 */
+	@ManagedProperty(value="#{login}")
+	private Login  login;
+	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
@@ -284,6 +294,32 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		captureContextPath();
 	}
 
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 17/12/2013
+	*/
+	public String goToRegistro1(){
+
+		usuario = new Usuario();
+		usuarioLink=new UsuarioLink();
+		usuarioLink2=new UsuarioLink();
+		usuarioLink3=new UsuarioLink();
+		usuarioLink4=new UsuarioLink();
+		usuarioLink5=new UsuarioLink();
+		usuarioLink6=new UsuarioLink();
+		usuarioLink7=new UsuarioLink();
+		usuarioLink8=new UsuarioLink();
+		usuarioLink9=new UsuarioLink();
+		itemPaises = paisService.getItmems();
+		posLink=0;
+		selPais=343;
+		cambioPais();
+		captureContextPath();
+		file=null;
+		
+		return("/paginas/registro/registro_1.jsf");
+		
+	}
 	
 	
 	
@@ -420,9 +456,17 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		}else{
 		usuario.setPassword(encoderManager.encodeMd5Hash(usuario.getPassword()));
 		}
+		boolean actualizarLogin=false;
 		try {
+			
 //		loginNotification.enviarMailAutenticacionCuenta(usuario);
 			String ext= usuario.getExtension();
+			if (usuario.getId()!=null) {
+				if (usuario.getId()!=0) {
+					
+				actualizarLogin=true;
+				}
+			}
 		usuario=usuarioService.save(usuario);
 		usuario.setExtension(ext);
 		/*guardamos los links*/
@@ -452,6 +496,10 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		}
 		} catch (Exception e) {
 			LOGGER.error(e.toString());
+		}
+		if (actualizarLogin) {
+			login.setUsuario(usuario);
+			login.cargarPropiedadesUsuario();
 		}
 		goTo("/index.jsf");
 
@@ -970,5 +1018,23 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	 */
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 18/12/2013
+	 * @return the login
+	 */
+	public Login getLogin() {
+		return login;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 18/12/2013
+	 * @param login the login to set
+	 */
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 }

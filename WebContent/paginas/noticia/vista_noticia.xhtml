@@ -26,7 +26,7 @@
 				<div class="col-md-8 col-sm-8 col-lg-5">
 					<div class="margined  border-bot">
 						<img
-							src="#{request.contextPath}/foto/noticia/#{beanNoticia.noticia.fotografia}"
+							src="#{request.contextPath}/foto/noticia/#{beanNoticia.noticia.fotografia eq null ?'noticia.png':beanNoticia.noticia.fotografia}"
 							class="img-responsive gap" />
 
 						<p class="justify visible-md visible-sm">#{beanNoticia.noticia.noticia}</p>

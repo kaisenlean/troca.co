@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 
 import co.icesi.troca.commons.BaseBean;
 import co.icesi.troca.model.noticia.Noticia;
+import co.icesi.troca.model.notificacion.EstadoNotificacion;
 import co.icesi.troca.model.notificacion.Modulo;
 import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.proyecto.Proyecto;
@@ -84,12 +85,14 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	
 	
 	
+	/**
+	 * 19/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * noticiaComentarioService
+	 */
 	@ManagedProperty(value="#{noticiaComentarioService}")
 	private NoticiaComentarioService noticiaComentarioService;
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 9/12/2013
-	*/
+
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -97,6 +100,10 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	* @param notificacion
 	*/
 	public void loadUrl(Notificacion notificacion){
+		
+		notificacion.setEstado(EstadoNotificacion.VISTA);
+		notificacionService.save(notificacion);
+		
 		if (notificacion.getModulo().equals(Modulo.TRUEQUE_TENGO)) {
 			beanTrueque.verPnlTrueque((Trueque) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Trueque.class) );
 		}
@@ -116,6 +123,19 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 		if (notificacion.getModulo().equals(Modulo.PROYECTO)) {
 			beanProyecto.verDetalleProyecto2((Proyecto) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Proyecto.class) );
 		}
+		if (notificacion.getModulo().equals(Modulo.FINALIZACION_TRUEQUE)) {
+			beanTrueque.verPnlTrueque((Trueque) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Trueque.class) );
+		}
+	
+		if (notificacion.getModulo().equals(Modulo.CANCELACION_TRUEQUE)) {
+			beanTrueque.verPnlTrueque((Trueque) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Trueque.class) );
+		}
+		
+
+		
+		
+		
+		
 		
 		
 	

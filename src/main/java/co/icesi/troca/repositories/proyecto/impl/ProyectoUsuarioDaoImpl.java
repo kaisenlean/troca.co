@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -57,6 +59,17 @@ public class ProyectoUsuarioDaoImpl  extends GenericJpaRepository<ProyectoUsuari
 		Criterion criterion= Restrictions.eq("proyecto", proyecto);
 		
 		return findByCriteria(criterion);
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.proyecto.ProyectoUsuarioDao#findByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Proyecto> findByUsuario(Usuario usuario) {
+		Query query=getEntityManager().createQuery("select p.proyecto from ProyectoUsuario p where p.usuario = :usuario");
+		query.setParameter("usuario", usuario);
+		return query.getResultList();
 	}
 
 }

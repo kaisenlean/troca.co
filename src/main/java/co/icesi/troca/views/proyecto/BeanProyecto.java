@@ -229,8 +229,9 @@ public class BeanProyecto extends BaseBean implements Serializable {
 
 	/**
 	 * 7/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * unadidos
+	 *         unadidos
 	 */
 	private List<Usuario> unadidos = new ArrayList<Usuario>();
 	/**
@@ -256,10 +257,6 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 *         eliminados
 	 */
 	private List<ProyectoUsuario> eliminados = new ArrayList<ProyectoUsuario>();
-	
-	
-	
-	
 
 	/**
 	 * 1/12/2013
@@ -286,10 +283,9 @@ public class BeanProyecto extends BaseBean implements Serializable {
 
 	private boolean perfilDe;
 
-	
-	@ManagedProperty(value="#{beanRegistroVisita}")
+	@ManagedProperty(value = "#{beanRegistroVisita}")
 	private BeanRegistroVisita beanRegistroVisita;
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 30/11/2013
@@ -344,9 +340,9 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		necesito.setCategoria(categoriaNecesitoService
 				.findById(categoriaNecesito));
 		necesitosProyecto.add(necesito);
-		nombreNecesito="";
-		descripcionNecesito="";
-//		init();
+		nombreNecesito = "";
+		descripcionNecesito = "";
+		// init();
 
 	}
 
@@ -360,14 +356,17 @@ public class BeanProyecto extends BaseBean implements Serializable {
 			mensajeError("Selecciona una categoria valida para el proyecto");
 			return;
 		}
-		if (proyecto.getId()==null) {
+		if (proyecto.getId() == null) {
 			proyecto.setFechaRegistro(new Date());
 		}
 
 		proyecto.setCategoria(proyectoCategoriaService
 				.findById(categoriaProyecto));
+		
+		if (proyecto.getOwner() == null) {
+			proyecto.setOwner(login.getUsuario());
 
-		proyecto.setOwner(login.getUsuario());
+		}
 
 		String ext = proyecto.getExtension();
 		proyecto = proyectoService.save(proyecto);
@@ -380,12 +379,12 @@ public class BeanProyecto extends BaseBean implements Serializable {
 			necesitoService.save(necesito);
 
 		}
-		
+
 		for (Necesito necesito : necesitoEliminados) {
-		if (necesito.getId()!=null) {
-			
-			necesitoService.delete(necesito);
-		}
+			if (necesito.getId() != null) {
+
+				necesitoService.delete(necesito);
+			}
 		}
 
 		for (Tengo tengo : login.getUsuario().getTengos()) {
@@ -429,7 +428,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 				pu = proyectoUsuarioService.save(pu);
 				notificacionService.crearNotificacionAdicionProyecto(pu);
 			}
-		
+
 		}
 		for (ProyectoUsuario pu : eliminados) {
 			proyectoUsuarioService.delete(pu);
@@ -439,56 +438,52 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		goTo("/paginas/perfil/perfil.jsf");
 	}
 
-	
-	
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	* @param proyecto
-	*/
-	public void verDetalleProyecto(Proyecto proyecto){
-		this.proyecto=proyecto;
-		creados=proyectoUsuarioService.findByProyecto(proyecto);
-		necesitosProyecto=necesitoService.findNecesitoByProyecto(proyecto);
-		tengos=proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
-		perfilDe=false;
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param proyecto
+	 */
+	public void verDetalleProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
+		creados = proyectoUsuarioService.findByProyecto(proyecto);
+		necesitosProyecto = necesitoService.findNecesitoByProyecto(proyecto);
+		tengos = proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
+		perfilDe = false;
 		goTo("/paginas/proyecto/perfil_proyecto.jsf");
 	}
-	
-	
+
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	* @param proyecto
-	*/
-	public void verDetalleProyecto2(Proyecto proyecto){
-		this.proyecto=proyecto;
-		
-		creados=proyectoUsuarioService.findByProyecto(proyecto);
-		necesitosProyecto=necesitoService.findNecesitoByProyecto(proyecto);
-		tengos=proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
-		perfilDe=true;
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param proyecto
+	 */
+	public void verDetalleProyecto2(Proyecto proyecto) {
+		this.proyecto = proyecto;
+
+		creados = proyectoUsuarioService.findByProyecto(proyecto);
+		necesitosProyecto = necesitoService.findNecesitoByProyecto(proyecto);
+		tengos = proyectoTengoUsuarioService.findTengosByProyecto(proyecto);
+		perfilDe = true;
 		beanRegistroVisita.guardarVisita(proyecto);
 		goTo("/paginas/proyecto/perfil_proyecto.jsf");
 	}
-	
+
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 */
 	public void removerUsuarioProyecto(ProyectoUsuario proyectoUsuario) {
 		eliminados.add(proyectoUsuario);
 		creados.remove(proyectoUsuario);
 	}
-	
-	
+
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	* @param usuario
-	*/
-	public void removeUsuariosAnadido(Usuario usuario){
-		
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param usuario
+	 */
+	public void removeUsuariosAnadido(Usuario usuario) {
+
 		unadidos.remove(usuario);
 	}
 
@@ -498,8 +493,15 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 * @param proyecto
 	 */
 	public void eliminarProyecto(Proyecto proyecto) {
+		if (login.getUsuario().equals(proyecto.getOwner())) {
 
-		proyectoService.delete(proyecto);
+			proyectoService.delete(proyecto);
+		} else {
+			ProyectoUsuario pu = proyectoUsuarioService
+					.getByUsuarioAndProyecto(login.getUsuario(), proyecto);
+			proyectoUsuarioService.delete(pu);
+
+		}
 		login.reloadTengosProyectos();
 
 		goTo("/paginas/perfil/perfil.jsf");
@@ -537,11 +539,16 @@ public class BeanProyecto extends BaseBean implements Serializable {
 			x++;
 
 		}
-		
+
 		necesitosProyecto = necesitoService.findNecesitoByProyecto(proyecto);
-		
-		creados= proyectoUsuarioService.findByProyecto(proyecto);
-		goTo("/paginas/proyecto/crear_proyecto_1.jsf");
+
+		creados = proyectoUsuarioService.findByProyecto(proyecto);
+		if (login.getUsuario().equals(proyecto.getOwner())) {
+
+			goTo("/paginas/proyecto/crear_proyecto_1.jsf");
+		} else {
+			goTo("/paginas/proyecto/crear_proyecto_3.jsf");
+		}
 	}
 
 	/**
@@ -550,7 +557,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	 */
 	@PostConstruct
 	private void init() {
-		in=null;
+		in = null;
 		nombreNecesito = "";
 		descripcionNecesito = "";
 		usuarios = usuarioService.findAll();
@@ -585,23 +592,21 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		unadidos = new ArrayList<Usuario>();
 		creados = new ArrayList<ProyectoUsuario>();
 		eliminados = new ArrayList<ProyectoUsuario>();
-		necesitosProyecto=new ArrayList<Necesito>();
-		necesitoEliminados= new ArrayList<Necesito>();
+		necesitosProyecto = new ArrayList<Necesito>();
+		necesitoEliminados = new ArrayList<Necesito>();
 		edita = false;
-		perfilDe=false;
+		perfilDe = false;
 	}
-	
-	
-	
+
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	* @param necesito
-	*/
-	public void removeNecesito(Necesito necesito){
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param necesito
+	 */
+	public void removeNecesito(Necesito necesito) {
 		necesitosProyecto.remove(necesito);
 		necesitoEliminados.add(necesito);
-		
+
 	}
 
 	/**
@@ -613,7 +618,6 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		if (!unadidos.contains(usuario)) {
 			unadidos.add(usuario);
 		}
-		
 
 	}
 
@@ -1070,7 +1074,7 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	public void setNecesitoEliminados(List<Necesito> necesitoEliminados) {
 		this.necesitoEliminados = necesitoEliminados;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
@@ -1079,17 +1083,17 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	public List<ProyectoTengoUsuario> getTengos() {
 		return tengos;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
-	 * @param tengos the tengos to set
+	 * @param tengos
+	 *            the tengos to set
 	 */
 	public void setTengos(List<ProyectoTengoUsuario> tengos) {
 		this.tengos = tengos;
 	}
 
-	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
@@ -1098,32 +1102,34 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	public boolean isPerfilDe() {
 		return perfilDe;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
-	 * @param perfilDe the perfilDe to set
+	 * @param perfilDe
+	 *            the perfilDe to set
 	 */
 	public void setPerfilDe(boolean perfilDe) {
 		this.perfilDe = perfilDe;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 8/12/2013
-	 * @param beanRegistroVisita the beanRegistroVisita to set
+	 * @param beanRegistroVisita
+	 *            the beanRegistroVisita to set
 	 */
 	public void setBeanRegistroVisita(BeanRegistroVisita beanRegistroVisita) {
 		this.beanRegistroVisita = beanRegistroVisita;
 	}
-	
-	
-	public List<SelectItem> getTengosAsItems(){
-		List<SelectItem> items= new ArrayList<SelectItem>();
-	for (ProyectoTengoUsuario tengo : tengos) {
-		items.add(new SelectItem(tengo.getTengo().getId(), tengo.getTengo().getNombre()));
-	}
-	
-	return items;
+
+	public List<SelectItem> getTengosAsItems() {
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		for (ProyectoTengoUsuario tengo : tengos) {
+			items.add(new SelectItem(tengo.getTengo().getId(), tengo.getTengo()
+					.getNombre()));
+		}
+
+		return items;
 	}
 }

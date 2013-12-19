@@ -58,6 +58,14 @@ public class Notificacion implements Serializable {
 	@JoinColumn(name="usuario")
 	private Usuario usuario;
 	
+	/**
+	 * 18/12/2013
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * estado
+	 */
+	@Enumerated(EnumType.STRING)
+	private EstadoNotificacion estado;
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -125,6 +133,23 @@ public class Notificacion implements Serializable {
 		this.referenceId = referenceId;
 	}
 	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 18/12/2013
+	 * @return the estado
+	 */
+	public EstadoNotificacion getEstado() {
+		return estado;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 18/12/2013
+	 * @param estado the estado to set
+	 */
+	public void setEstado(EstadoNotificacion estado) {
+		this.estado = estado;
+	}
 	
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -150,6 +175,10 @@ public class Notificacion implements Serializable {
 		}
 		
 		
-		return "NO message Detail";
+		
+		
+		
+		
+		return mensaje==null?"NO message Detail":mensaje;
 	}
 }

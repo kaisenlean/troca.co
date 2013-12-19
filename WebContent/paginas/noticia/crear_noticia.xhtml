@@ -52,7 +52,7 @@
 									noticia</label><small class="black"> (Si la tienes, si no, no
 									importa)</small> 
 									<p:fileUpload  value="#{noticiasUsuario.file}" mode="simple"   ></p:fileUpload>
-							<small><h:outputText style="color:white" value="#{noticiasUsuario.file eq null? 'Selecciona una foto':'Se há cargado tu foto con exito'}" /></small>
+							<small><h:outputText style="color:white" value="#{noticiasUsuario.file eq null? 'Selecciona una foto':'Se ha cargado tu foto con exito'}" /></small>
 							<br></br>
 							 <p:commandButton process="@this"  value="Submit" ajax="false" 
                             actionListener="#{noticiasUsuario.uploadHandlerPhoto1()}"/>

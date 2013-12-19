@@ -96,24 +96,41 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		trueque=(Trueque) getAttribute("trueque");
 		trueque=truequeService.findById(trueque.getId());
 		trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
-		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
-			activoCancelado=!trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO);
-			if (!activoCancelado) {
-				activoFinalizado=false;
-			}else{
-				
-				activoFinalizado=!trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) ;
+		
+		if (trueque.getEstado().equals(EstadoTruequeEnum.CANCELADO)) {
+		activoCancelado=true;
+		activoFinalizado=true;
+		calificacion=new TruequeCalificacion();
+		return;
+		}
+		
+		if (trueque.getEstado().equals(EstadoTruequeEnum.FINALIZADO)) {
+			activoCancelado=true;
+			activoFinalizado=true;
+			calificacion=new TruequeCalificacion();
+			return;
 			}
-		}else{
-			activoCancelado=!trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO);
-			if (!activoCancelado) {
-				activoFinalizado=false;
+		
+		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
+			activoFinalizado=trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO);
+			if (activoFinalizado) {
+			activoCancelado=true;	
 			}else{
-				
-				activoFinalizado=!trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO);
+			activoCancelado=trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO);
+			
+			}
+			
+		}else{
+			activoFinalizado=trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO);
+			if (activoFinalizado) {
+			activoCancelado=true;	
+			}else{
+			activoCancelado=trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO);
+			
 			}
 		}
 		calificacion=new TruequeCalificacion();
+		
 	}
 	
 	/**
@@ -172,23 +189,16 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		
 		trueque=truequeService.save(trueque);
 		
-		calificacion.setUsuario(login.getUsuario());
-		calificacion.setUsuarioCalificado(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
-		calificacion.setTrueque(trueque);
+	
 		
 		truequeCalificacionService.save(calificacion);
 		
-		Calificacion cal=new Calificacion();
-		cal.setPuntajeText(calificacion.getPuntajeText());
-		cal.setPuntajeVal(calificacion.getPuntajeVal());
-		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
-		cal.setUsuarioRegistro(login.getUsuario());
-		calificacionService.save(cal);
 		
-		calificacion=new TruequeCalificacion();
 		
 		trueque=truequeService.findById(trueque.getId());
 		this.trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
+		
+		notificacionService.crearNotificacionCancelarTrueque(trueque, login.getUsuario());
 		goTo("/paginas/trueque/mensajesTrueque.jsf");
 	}
 
@@ -230,13 +240,21 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		cal.setPuntajeVal(calificacion.getPuntajeVal());
 		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
 		cal.setUsuarioRegistro(login.getUsuario());
+		cal.setTrueque(trueque);
 		calificacionService.save(cal);
 		
 		calificacion=new TruequeCalificacion();
-		
+	
 		trueque=truequeService.findById(trueque.getId());
 		this.trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
+	
+		notificacionService.crearNotificacionFinalizarTrueque(trueque, login.getUsuario());
+		
+		
 		goTo("/paginas/trueque/mensajesTrueque.jsf");
+		
+		
+	
 	}
 	
 	/**

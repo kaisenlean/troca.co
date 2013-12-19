@@ -12,6 +12,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import co.icesi.troca.model.notificacion.EstadoNotificacion;
 import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.repositories.impl.GenericJpaRepository;
@@ -46,6 +47,7 @@ public class NotificacionDaoImpl extends GenericJpaRepository<Notificacion, Inte
 
 		Criteria crit = session.createCriteria(getEntityClass());
 		crit.add(Restrictions.eq("usuario", usuario));
+		crit.add(Restrictions.eq("estado", EstadoNotificacion.NO_VISTA));
 		crit.addOrder(order);
 		crit.setFirstResult(0);
 		crit.setMaxResults(maxResults);

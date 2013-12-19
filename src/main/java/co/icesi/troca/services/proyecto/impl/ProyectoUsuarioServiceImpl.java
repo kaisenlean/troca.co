@@ -62,4 +62,12 @@ public class ProyectoUsuarioServiceImpl extends GenericServiceImpl<ProyectoUsuar
 		return proyectoUsuarioDao.findByProyecto(proyecto);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.proyecto.ProyectoUsuarioService#findByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@Override
+	public List<Proyecto> findByUsuario(Usuario usuario) {
+		return proyectoUsuarioDao.findByUsuario(usuario);
+	}
+
 }

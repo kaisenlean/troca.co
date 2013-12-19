@@ -63,7 +63,7 @@
 							funcionan mejor)</small>
 														
 							<p:fileUpload  value="#{beanProyecto.file}" mode="simple"   ></p:fileUpload>
-							<small><h:outputText style="color:white" value="#{beanProyecto.file eq null? 'Selecciona una foto':'Se há cargado tu foto con exito'}" /></small>
+							<small><h:outputText style="color:white" value="#{beanProyecto.file eq null? 'Selecciona una foto':'Se ha cargado tu foto con exito'}" /></small>
 							<br></br>
 							 <p:commandButton  value="Submit" ajax="false" 
                             actionListener="#{beanProyecto.uploadHandlerPhoto1()}"/>  
@@ -74,6 +74,7 @@
 					<div class="form-group">
 						<label for="proyecto-url" class="white">Video del Proyecto</label><small
 							class="white"> (Youtube)</small> 
+							<p><small>La url debe comenzar siempre con "http://" Nos ayuda a que sea un link válido =) </small></p>
 							<h:inputText 
 							styleClass="form-control" id="proyecto-url"
 							

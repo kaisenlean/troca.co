@@ -32,19 +32,19 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#{request.contextPath}/ayuda.jsf" class="oneline help oneline">#{msgMenu.labelAyuda}</a></li>
 				<li><p:commandLink
-						rendered="${login.usuario eq null ? true:false}" 
-						process="@this" update="@all" action="#{login.goToRegistro1()}"
+						rendered="${login.usuario.id eq null ? true:false}" 
+						process="@this" ajax="false" action="#{beanRegistro.goToRegistro1()}"
 						styleClass="oneline log-alpha" value="#{msgMenu.labelRegistrate}"></p:commandLink></li>
 				<li class="hidden-xs  divider-log"></li>
 				<li><a href="#modal-registro" data-toggle="modal"
 					class="oneline log-omega"
-					style="visibility: #{login.usuario eq null?'visible':'hidden'}">#{msgMenu.labelIngresa}</a></li>
-				<li><a href="#" style="visibility: #{login.usuario eq null ? 'hidden':'visible'}" class="oneline log-alpha not" id="notif"><span
-						class="glyphicon glyphicon-envelope"></span></a> <!-- Notificaciones -->
+					style="visibility: #{login.usuario.id eq null?'visible':'hidden'}">#{msgMenu.labelIngresa}</a></li>
+				<li><a href="#" style="visibility: #{login.usuario.id eq null ? 'hidden':'visible'}" class="oneline log-alpha not" id="notif"><span
+						class="glyphicon glyphicon-envelope"></span>(#{beanNotificacion.lista.size()})</a> <!-- Notificaciones -->
 					<ul class="not" id="body-notif">
 						<c:forEach var="notifi" items="#{beanNotificacion.lista}">
 						
-							<p:commandLink process="@this" actionListener="#{redirectNotificacion.loadUrl(notifi)}" styleClass="gray gray-link"><li>
+							<p:commandLink process="@this" actionListener="#{redirectNotificacion.loadUrl(notifi)}" styleClass="red red-link"><li>
 								<div class="notif-content small-margin-top small-margin-right">
 									<div class="izq notif-pic">
 										<img src="#{request.contextPath}/foto/usuario/#{notifi.creador.fotografia}" class="img-responsive" />
@@ -65,10 +65,10 @@
 					</ul></li>
 				<li><h:outputLink styleClass="oneline"
 						value="#{request.contextPath}/paginas/perfil/perfil.jsf"
-						rendered="${login.usuario ne null ? true:false}">
+						rendered="${login.usuario.id ne null ? true:false}">
 						#{login.usuario.nombre}
 					</h:outputLink></li>
-				<li><p:commandLink rendered="${login.usuario ne null ? true:false}" process="@this" actionListener="#{login.logOut()}" value="Logout" styleClass="oneline log-omega"></p:commandLink></li>
+				<li><p:commandLink rendered="${login.usuario.id ne null ? true:false}" process="@this" actionListener="#{login.logOut()}" value="Logout" styleClass="oneline log-omega"></p:commandLink></li>
 			</ul>
 
 

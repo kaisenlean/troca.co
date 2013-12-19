@@ -55,12 +55,12 @@
 			</div>
 
 			<button
-				style="visibility: #{beanTruequeMensaje.activoFinalizado?'visible':'hidden'}"
+				style="visibility: #{!beanTruequeMensaje.activoFinalizado?'visible':'hidden'}"
 				type="submit" data-toggle="modal" href="#modal-calificacion"
 				title="Finaliza el trueque solo cuando este se haya realizado satisfactoriamente"
 				id="finish-trueque" class="btn btn-blue right margined">Finalizar
 				Trueque</button>
-			<h:commandButton value="Cancelar Trueque" rendered="#{beanTruequeMensaje.activoCancelado}" actionListener="#{beanTruequeMensaje.cancelarTrueque()}"  styleClass="btn btn-red right margined"></h:commandButton>
+			<h:commandButton  value="Cancelar Trueque" rendered="#{!beanTruequeMensaje.activoCancelado}" actionListener="#{beanTruequeMensaje.cancelarTrueque()}"  styleClass="btn btn-red right margined"></h:commandButton>
 			<br />
 			<br />
 			<br />

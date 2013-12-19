@@ -29,6 +29,7 @@ import co.icesi.troca.services.OpcionService;
 import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
+import co.icesi.troca.services.proyecto.ProyectoUsuarioService;
 import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
@@ -84,7 +85,7 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuario;
+	private Usuario usuario=new Usuario();
 	private String user;
 	private String contrasena;
 	private List<SelectItem> itemsTipoTengo = new ArrayList<SelectItem>();
@@ -111,6 +112,9 @@ public class Login extends BaseBean implements Serializable {
 	
 	@ManagedProperty(value="#{usuarioLinkService}")
 	private UsuarioLinkService usuarioLinkService;
+	
+	@ManagedProperty(value="#{proyectoUsuarioService}")
+	private ProyectoUsuarioService proyectoUsuarioService;
 	
 	private static final Logger LOGGER= LoggerFactory.getLogger(Login.class);
 	
@@ -145,15 +149,7 @@ public class Login extends BaseBean implements Serializable {
 	}
 	
 	
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 17/12/2013
-	*/
-	public String goToRegistro1(){
-//		usuario=new Usuario();
-		return("/paginas/registro/registro_1.jsf");
-		
-	}
+	
 	
 	/**
 	 * 
@@ -234,14 +230,27 @@ public class Login extends BaseBean implements Serializable {
 		utemp.setPassword(md5Pass);
 		usuario = usuarioService.loggedIn(utemp);
 		if (usuario == null) {
-			runJavascript("Usuario no existe");
+			mensajeError("Credenciales inválidas");
 			return;
 		}
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.getProyectos().addAll(proyectoUsuarioService.findByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
 		noticiasPorUsuario=noticiaService.findNoticiasByUsuario(usuario);
 		goTo("/index.jsf");
+	}
+	
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 18/12/2013
+	*/
+	public void cargarPropiedadesUsuario(){
+		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
+		noticiasPorUsuario=noticiaService.findNoticiasByUsuario(usuario);
+		
 	}
 
 	/**
@@ -251,6 +260,7 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void reloadTengosProyectos(){
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.getProyectos().addAll(proyectoUsuarioService.findByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 	}
 	
@@ -524,5 +534,15 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	public void setUsuarioLinkService(UsuarioLinkService usuarioLinkService) {
 		this.usuarioLinkService = usuarioLinkService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @param proyectoUsuarioService the proyectoUsuarioService to set
+	 */
+	public void setProyectoUsuarioService(
+			ProyectoUsuarioService proyectoUsuarioService) {
+		this.proyectoUsuarioService = proyectoUsuarioService;
 	}
 }

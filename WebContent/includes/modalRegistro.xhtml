@@ -22,6 +22,7 @@
 						aria-hidden="true"></button>
 					<h4 class="modal-title blue">#{msgs.labelLinkIngresa}</h4>
 				</div>
+					<p:messages id="msgLogin" showDetail="true" showSummary="true"></p:messages>
 				<div class="modal-body">
 					
 						<div class="form-group">
@@ -40,8 +41,9 @@
 				<div class="modal-footer">
 				
 					<button type="button" class="btn btn-default" data-dismiss="modal">#{msgs.btnCancelar}</button>
-					<p:commandButton  process="@this,maillog,passwordlog" update="@all" partialSubmit="true" styleClass="btn btn-blue white white-link "   actionListener="#{login.loggedIn()}"
+					<p:commandButton  process="@this,maillog,passwordlog" update="@all,msgLogin" partialSubmit="true" styleClass="btn btn-blue white white-link "   actionListener="#{login.loggedIn()}"
 						value="#{msgs.btnEntrar}"></p:commandButton>
+					
 				</div>
 <!-- 					</h:form> -->
 			</div>

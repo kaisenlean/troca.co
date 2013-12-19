@@ -33,7 +33,7 @@
 								Tengos </strong></a>
 
 						<div class="clearfix margined-bot"></div>
-						<a href="#modal-invitar-usuarios" data-toggle="modal"
+						<a style="visibility: #{beanProyecto.proyecto.owner eq login.usuario?'visible':'hidden'}" href="#modal-invitar-usuarios" data-toggle="modal"
 							class="white margined-top white-link add-tengos"><strong>Invitar
 								Usuarios</strong></a>
 								
@@ -43,7 +43,7 @@
 								<h:outputText value="#{usuat.usuario}" />
 								</p:column>
 								<p:column>
-								<p:commandButton value="Eliminar" actionListener="#{beanProyecto.removerUsuarioProyecto(usuat)}" process="@this" update="tblExist"></p:commandButton>
+								<p:commandButton disabled="#{login.usuario ne beanProyecto.proyecto.owner}" value="Eliminar" actionListener="#{beanProyecto.removerUsuarioProyecto(usuat)}" process="@this" update="tblExist"></p:commandButton>
 								</p:column>
 								</p:dataTable>
 

@@ -105,7 +105,7 @@
 
 									<c:forEach items="#{perfilDe.usuario.proyectos}" var="proyA">
 										<div class="profile-project margined-left">
-											<a href="#" class="white white-link"><h4>#{proyA.nombre}</h4></a>
+											<p:commandLink process="@this" actionListener="#{beanProyecto.verDetalleProyecto2(proyA)}" styleClass="white white-link"><h4>#{proyA.nombre}</h4></p:commandLink>
 											<p class="white">#{proyA.descripcion}</p>
 										</div>
 									</c:forEach>

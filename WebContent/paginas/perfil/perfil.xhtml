@@ -81,7 +81,7 @@
 						<h:panelGrid columns="1">
 							<c:forEach items="#{login.usuario.proyectos}" var="proyA">
 								<div class="profile-project margined-left">
-									<a href="#" class="white white-link"><h4>#{proyA.nombre}</h4></a>
+									<p:commandLink styleClass="white white-link" process="@this" actionListener="#{beanProyecto.verDetalleProyecto2(proyA)}"><h4>#{proyA.nombre}</h4></p:commandLink>
 									<p class="white">#{proyA.descripcion}</p>
 								</div>
 							</c:forEach>
