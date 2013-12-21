@@ -98,6 +98,7 @@ public class PerfilDe extends BaseBean implements Serializable {
 	 */
 	public void loadPerfil(Usuario usuario) {
 		if (usuario.equals(login.getUsuario())) {
+			goTo("/paginas/perfil/perfil.jsf");
 			return;
 		}
 		this.usuario = usuario;

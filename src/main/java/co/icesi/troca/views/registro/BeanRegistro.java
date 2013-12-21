@@ -424,7 +424,7 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	public void goToRegistro2(){
 		
 		if (!usuario.getEmail().equals(usuario.getRepeatMail())) {
-			mensajeError("Email no coincide");
+			error("Email no coincide");
 			return;
 		}
 		

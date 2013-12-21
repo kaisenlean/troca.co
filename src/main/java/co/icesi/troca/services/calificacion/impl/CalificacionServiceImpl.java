@@ -53,4 +53,13 @@ public class CalificacionServiceImpl  extends GenericServiceImpl<Calificacion, I
 		return calificacionDao.findCalificacionByUsuario(usuario);
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.calificacion.CalificacionService#findCalificacionByTruequeCanceladoByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@Override
+	public List<Calificacion> findCalificacionByTruequeCanceladoByUsuario(
+			Usuario usuario) {
+		return calificacionDao.findCalificacionByTruequeCanceladoByUsuario(usuario);
+	}
+
 }

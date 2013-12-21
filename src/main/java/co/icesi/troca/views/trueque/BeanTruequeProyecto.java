@@ -4,6 +4,7 @@
 package co.icesi.troca.views.trueque;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -110,7 +111,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
 		trueque.setUsuarioTrueque2(beanProyecto.getProyecto().getOwner());
-
+		trueque.setProyecto(beanProyecto.getProyecto());
 		TruequeTengo tt = new TruequeTengo();
 
 		if (idTengo == 0) {
@@ -141,6 +142,18 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		
+		
+		if (mensaje!=null) {
+			if (!mensaje.trim().equals("")) {
+				truequeMensaje.setMensaje(mensaje);
+				truequeMensaje.setTrueque(trueque);
+				truequeMensaje.setUsuarioEmisor(login.getUsuario());
+				truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
+				truequeMensaje.setFecha(Calendar.getInstance().getTime());
+				truequeMensajeService.save(truequeMensaje);
+			}
+		}
 		mensaje = new StringBuilder("!!Hola , veo que tienen ")
 				.append(tengo.getNombre())
 				.append(" Yo lo necesito y a cambio te ofrezco ")
@@ -167,7 +180,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
 		trueque.setUsuarioTrueque2(beanProyecto.getProyecto().getOwner());
-
+		trueque.setProyecto(beanProyecto.getProyecto());
 		TruequeTengo tt = new TruequeTengo();
 
 		if (idTengo2 == 0) {
@@ -190,6 +203,17 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		if (mensaje!=null) {
+			if (!mensaje.trim().equals("")) {
+				truequeMensaje.setMensaje(mensaje);
+				truequeMensaje.setTrueque(trueque);
+				truequeMensaje.setUsuarioEmisor(login.getUsuario());
+				truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
+				truequeMensaje.setFecha(Calendar.getInstance().getTime());
+				truequeMensajeService.save(truequeMensaje);
+			}
+		}
+		
 		mensaje = new StringBuilder("!!Hola , veo que necesitan ")
 				.append(necesito.getNombre())
 				.append(" Yo lo tengo y a cambio les ofrezco ")

@@ -293,7 +293,7 @@ public class Proyecto implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "com.icesi.trocadero.data.entities.Proyecto[ id=" + id + " ]";
+		return nombre;
 	}
 	
 	/**

@@ -57,7 +57,7 @@ public class ProyectoServiceImplTest extends BaseUnit {
 	
 	private static final String BIOGRAPHY_PRUEBA = "biography";
 	private static final String PASSWORD_PRUEBA = "666";
-	private static final String EMAIL_PRUEBA = "TROCA@TROCA.COM";
+	private static final String EMAIL_PRUEBA = "troca@troca.com";
 	private static final String APELLIDO_PRUEBA = "APELLIDO PRUEBA";
 	private static final String NOMBRE_PRUEBA = "NOMBRE PRUEBA";
 

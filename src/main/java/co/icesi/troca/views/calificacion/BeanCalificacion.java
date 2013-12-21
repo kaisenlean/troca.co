@@ -66,6 +66,7 @@ public class BeanCalificacion extends BaseBean implements Serializable {
 	@PostConstruct
 	public void init(){
 		calificaciones=calificacionService.findCalificacionByUsuario(login.getUsuario());
+		calificaciones.addAll(calificacionService.findCalificacionByTruequeCanceladoByUsuario(login.getUsuario()));
 		double promTemp=0.0;
 		for (Calificacion cf : calificaciones) {
 		promTemp+=cf.getPuntajeVal().doubleValue();

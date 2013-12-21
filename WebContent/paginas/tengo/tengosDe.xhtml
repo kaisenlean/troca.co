@@ -71,7 +71,7 @@
 						
 							<div class="form-group">
 								<label  class="black">Otro</label>
-								 <p:inputText styleClass="form-control" placeholder="Escribe lo que buscas" id="txtOtro#{tengo.id}"
+								 <p:inputText  styleClass="form-control" placeholder="Escribe lo que buscas" id="txtOtro#{tengo.id}"
 									readonly="#{beanTrueque.idTengo ne 0}"
 									 />
 							</div>
@@ -80,7 +80,9 @@
 
 							<p class="gray margined-top">Agrega un comentario personal a
 								la propuesta</p>
-							<h:inputTextarea  value="#{beanTrueque.mensaje}"   styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+							<p:inputTextarea  value="#{beanTrueque.mensajeTrueque}"   styleClass="form-control gap extra-tengo" rows="3" >
+							<p:ajax event="blur" partialSubmit="true" update="@all" ></p:ajax>
+							</p:inputTextarea>
 						</div>
 	
 
@@ -97,7 +99,7 @@
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Cancelar</button>
 								
-								<h:commandButton  actionListener="#{beanTrueque.realizarTrueque(tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
+								<p:commandButton ajax="false" actionListener="#{beanTrueque.realizarTrueque(tengo)}" styleClass="btn btn-blue white white-link va" value="Enviar" process="@all" update="@all"></p:commandButton>
 								
 							
 						</div>

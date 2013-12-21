@@ -5,7 +5,6 @@
 	xmlns:ht="http://omnifaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	jsf="http://xmlns.jcp.org/jsf"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="./../../template/mainThm.xhtml">
@@ -32,13 +31,15 @@
 						styleClass="form-control links nombre-link"
 						placeholder="Nombre del link Ej: Facebook"
 						value="#{beanRegistro.usuarioLink.nombre}" />
-					 
+	
 					<h:inputText rendered="#{beanRegistro.posLink >= 0}"
 						styleClass="form-control links last-link profile-link"
 						type="url"
+						id="proyecto-url"
+						pattern="https?://.+"
 						placeholder="Ingresa un link"
 						
-						value="#{beanRegistro.usuarioLink.link}" pattern="https?://.+">
+						value="#{beanRegistro.usuarioLink.link}" >
 						
 						</h:inputText>
 						
@@ -46,14 +47,16 @@
 						style="visibility: #{beanRegistro.posLink >= 1 ?'hidden':'visible'}" />
 					<h:inputText rendered="#{beanRegistro.posLink >= 1}"
 						styleClass="form-control links nombre-link"
+						
 						placeholder="Nombre del link Ej: Facebook"
 						value="#{beanRegistro.usuarioLink2.nombre}" />
 						 
 					<h:inputText rendered="#{beanRegistro.posLink >= 1}"
 						styleClass="form-control links last-link profile-link"
 						placeholder="Ingresa un link"
+						pattern="https?://.+"
 						type="url"
-						value="#{beanRegistro.usuarioLink2.link}"  pattern="https?://.+" />
+						value="#{beanRegistro.usuarioLink2.link}"  />
 
 					<br
 						style="visibility: #{beanRegistro.posLink >= 2 ?'hidden':'visible'}" />
@@ -65,7 +68,8 @@
 					<h:inputText type="url" rendered="#{beanRegistro.posLink >= 2}"
 						styleClass="form-control links last-link profile-link"
 						placeholder="Ingresa un link"
-						value="#{beanRegistro.usuarioLink3.link}"  pattern="https?://.+" />
+						 pattern="https?://.+"
+						value="#{beanRegistro.usuarioLink3.link}"   />
 
 <br
 						style="visibility: #{beanRegistro.posLink >= 3 ?'hidden':'visible'}" />
@@ -91,7 +95,7 @@
 					<h:inputText rendered="#{beanRegistro.posLink >= 4}"
 						styleClass="form-control links last-link profile-link"
 						placeholder="Ingresa un link"
-						 pattern="https?://.+"
+						  pattern="https?://.+"
 						 type="url"
 						value="#{beanRegistro.usuarioLink5.link}" />
 
@@ -133,6 +137,7 @@
 					<h:inputText rendered="#{beanRegistro.posLink >= 7}"
 						styleClass="form-control links last-link profile-link"
 						placeholder="Ingresa un link"
+						pattern="https?://.+"
 						value="#{beanRegistro.usuarioLink8.link}" />
 
 					<br
@@ -155,6 +160,7 @@
 					<br />
 					<p:commandButton value="Continuar" process="@all" update="@all"
 						actionListener="#{beanRegistro.guardarUsuario()}"
+						ajax="false"
 						styleClass="btn btn-default right margined-right"></p:commandButton>
 					<small class="white visible-xs">Ayuda si los demás pueden
 						ver tu trabajo o conocer más sobre ti</small>

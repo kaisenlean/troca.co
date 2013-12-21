@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -64,6 +63,21 @@ public class CalificacionDaoImpl extends GenericJpaRepository<Calificacion, Inte
 		Criteria criterion = session.createCriteria(getEntityClass());
 		criterion.createAlias(TRUEQUE_FIELD, TRUEQUE_FIELD);
 		 criterion.add(Restrictions.conjunction().add(Restrictions.eq(USUARIO_FIELD, usuario)).add(Restrictions.eq(TRUEQUE_ESTADO_FIELD, EstadoTruequeEnum.FINALIZADO)));
+		return criterion.list();
+	}
+
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.calificacion.CalificacionDao#findCalificacionByTruequeCanceladoByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Calificacion> findCalificacionByTruequeCanceladoByUsuario(
+			Usuario usuario) {
+		Session session = getEntityManager().unwrap(Session.class);
+
+		Criteria criterion = session.createCriteria(getEntityClass());
+		criterion.createAlias(TRUEQUE_FIELD, TRUEQUE_FIELD);
+		 criterion.add(Restrictions.conjunction().add(Restrictions.eq(USUARIO_FIELD, usuario)).add(Restrictions.eq(TRUEQUE_ESTADO_FIELD, EstadoTruequeEnum.CANCELADO)));
 		return criterion.list();
 	}
 

@@ -230,7 +230,7 @@ public class Login extends BaseBean implements Serializable {
 		utemp.setPassword(md5Pass);
 		usuario = usuarioService.loggedIn(utemp);
 		if (usuario == null) {
-			mensajeError("Credenciales inválidas");
+			error("Credenciales inválidas");
 			return;
 		}
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));

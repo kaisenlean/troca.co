@@ -48,6 +48,8 @@
 
 
 				<p:commandButton
+				
+				rendered="#{beanTruequeMensaje.activoEnviarMensaje}"
 					actionListener="#{beanTruequeMensaje.enviarMensaje()}"
 					styleClass="btn btn-default right" value="Enviar" process="@all"
 					update="@all"></p:commandButton>
@@ -60,7 +62,18 @@
 				title="Finaliza el trueque solo cuando este se haya realizado satisfactoriamente"
 				id="finish-trueque" class="btn btn-blue right margined">Finalizar
 				Trueque</button>
-			<h:commandButton  value="Cancelar Trueque" rendered="#{!beanTruequeMensaje.activoCancelado}" actionListener="#{beanTruequeMensaje.cancelarTrueque()}"  styleClass="btn btn-red right margined"></h:commandButton>
+				
+			<button
+				style="visibility: #{!beanTruequeMensaje.activoCancelado?'visible':'hidden'}"
+				type="button" data-toggle="modal" href="#modal-calificacion-cancelar"
+				class="btn btn-red right margined" title="Estás seguro de cancelar el trueque? Esto no se puede deshacer." id="cancel-trueque">Cancelar
+				Trueque</button>
+				
+				
+				
+				
+				
+<!-- 			<h:commandButton  value="Cancelar Trueque" rendered="#{!beanTruequeMensaje.activoCancelado}" actionListener="#{beanTruequeMensaje.cancelarTrueque()}"  styleClass="btn btn-red right margined"></h:commandButton> -->
 			<br />
 			<br />
 			<br />
@@ -115,6 +128,84 @@
 			<!-- /.modal calificacion -->
 
 
+
+
+		<!-- Modal Calificación -->
+			<div class="modal fade" id="modal-calificacion-cancelar" tabindex="-1"
+				role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title blue">Calificación</h4>
+						</div>
+						<div class="modal-body">
+							<p>Califica a la persona con la que trocaste, basándote en la
+								experiencia del intercambio y deja luego un comentario para que
+								los demás sepan cómo les fue</p>
+							<p:rating id="ratClif2" required="false"
+								requiredMessage="Requerido"
+								value="#{beanTruequeMensaje.calificacion.puntajeVal}" stars="5"></p:rating>
+							<p:message for="ratClif"></p:message>
+							<div class="form-group">
+
+								<p class="gray margined-top">Deja un comentario que todos
+									podrán leer</p>
+								<p:inputTextarea styleClass="form-control gap" rows="5"
+									value="#{beanTruequeMensaje.calificacion.puntajeText}"></p:inputTextarea>
+							</div>
+
+
+
+						</div>
+
+
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancelar</button>
+							<h:commandButton 
+								actionListener="#{beanTruequeMensaje.cancelarTrueque()}"
+								styleClass="btn btn-blue" value="Enviar"></h:commandButton>
+							<!--           <button type="button" class="btn btn-blue white white-link va">Enviar</button> -->
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal calificacion -->
+
+
+
+
+
+				<!-- Modal Eliminar Proyecto -->
+				<div class="modal fade" id="modal-cancelar-trueque" tabindex="-1"
+					role="dialog" aria-labelledby="Ingreso" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title blue">Cancelar Trueque</h4>
+							</div>
+							<div class="modal-body">
+								<p>¿Estás seguro de querer cancelar este Trueque?</p>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">No</button>
+								<button type="button" href="#modal-calificacion-cancelar" class="btn btn-red">Si</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal Eliminar Proyecto -->
 		</h:form>
 	</ui:define>
 </ui:composition>

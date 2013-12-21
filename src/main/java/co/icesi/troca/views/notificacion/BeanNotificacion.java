@@ -13,8 +13,11 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.model.notificacion.Modulo;
 import co.icesi.troca.model.notificacion.Notificacion;
+import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.services.notificacion.NotificacionService;
+import co.icesi.troca.services.trueque.TruequeService;
 import co.icesi.troca.views.login.Login;
 
 /**
@@ -44,6 +47,10 @@ public class BeanNotificacion extends BaseBean implements Serializable{
 	@ManagedProperty(value="#{notificacionService}")
 	private NotificacionService notificacionService;
 	
+	
+	
+	@ManagedProperty(value="#{truequeService}")
+	private TruequeService truequeService;
 	
 	/**
 	 * 9/12/2013
@@ -82,6 +89,23 @@ public class BeanNotificacion extends BaseBean implements Serializable{
 	}
 	
 	
+	public String mensajeComplementario(Notificacion notificacion){
+		
+		if (notificacion.getModulo().equals(Modulo.TRUEQUE_NECESITO) | notificacion.getModulo().equals(Modulo.TRUEQUE_TENGO)) {
+			try {
+				Trueque trueque= truequeService.findById(Integer.valueOf(notificacion.getReferenceId()));
+				if (trueque==null) {
+					return "";
+				}
+				return " en tu proyecto "+trueque.getProyecto();
+			} catch (Exception e) {
+				return "";
+			}
+		}
+		return"";}
+	
+	
+	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
@@ -118,6 +142,15 @@ public class BeanNotificacion extends BaseBean implements Serializable{
 	 */
 	public void setLogin(Login login) {
 		this.login = login;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 20/12/2013
+	 * @param truequeService the truequeService to set
+	 */
+	public void setTruequeService(TruequeService truequeService) {
+		this.truequeService = truequeService;
 	}
 
 }

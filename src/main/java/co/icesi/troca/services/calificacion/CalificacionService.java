@@ -26,4 +26,13 @@ public interface CalificacionService extends GenericService<Calificacion, Intege
 	* @return
 	*/
 	public List<Calificacion> findCalificacionByUsuario(Usuario usuario);
+	
+	/**
+	 * Método que busca las calificaciones de trueques cancelados en el sistema por un determinado usuario
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 9/12/2013
+	* @param usuario
+	* @return
+	*/
+	public List<Calificacion> findCalificacionByTruequeCanceladoByUsuario(Usuario usuario);
 }

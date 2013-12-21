@@ -132,7 +132,7 @@
 											<div class="form-group">
 												<label for="tengo-proyecto" class="black">Tengos del
 													Proyecto</label>
-												<h:selectOneMenu id="tengo-proyecto"
+												<h:selectOneMenu 
 													value="#{beanTruequeProyecto.idTengo2}"
 													styleClass="form-control">
 													<p:ajax event="change" process="@this"
@@ -145,7 +145,7 @@
 
 
 											<div class="form-group">
-												<label for="otro-proyecto" class="black">Otro</label>
+												<label  class="black">Otro</label>
 												<h:inputText placeholder="Escribe lo que buscas"
 													styleClass="form-control" id="otro-proyecto-tengo#{np.id}"
 													readonly="#{beanTruequeProyecto.idTengo2 ne 0}" />
@@ -154,8 +154,10 @@
 
 											<p class="gray margined-top">Agrega un comentario
 												personal a la propuesta</p>
-											<h:inputTextarea value="#{beanTruequeProyecto.mensaje}"
-												styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+											<p:inputTextarea value="#{beanTruequeProyecto.mensaje}"
+												styleClass="form-control gap extra-tengo" rows="3">
+													<p:ajax event="blur" partialSubmit="true" update="@all" ></p:ajax>
+												</p:inputTextarea>
 										</div>
 
 
@@ -251,8 +253,10 @@
 
 												<p class="gray margined-top">Agrega un comentario
 													personal a la propuesta</p>
-												<h:inputTextarea value="#{beanTruequeProyecto.mensaje}"
-													styleClass="form-control gap extra-tengo" rows="3"></h:inputTextarea>
+												<p:inputTextarea value="#{beanTruequeProyecto.mensaje}"
+													styleClass="form-control gap extra-tengo" rows="3">
+														<p:ajax event="blur" partialSubmit="true" update="@all" ></p:ajax>
+													</p:inputTextarea>
 											</div>
 
 

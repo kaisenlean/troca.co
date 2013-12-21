@@ -82,6 +82,7 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	
 	private boolean activoFinalizado;
 	private boolean activoCancelado;
+	private boolean activoEnviarMensaje;
 	
 	
 	private TruequeCalificacion calificacion;
@@ -96,10 +97,11 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		trueque=(Trueque) getAttribute("trueque");
 		trueque=truequeService.findById(trueque.getId());
 		trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
-		
+		activoEnviarMensaje=true;
 		if (trueque.getEstado().equals(EstadoTruequeEnum.CANCELADO)) {
 		activoCancelado=true;
 		activoFinalizado=true;
+		activoEnviarMensaje=false;
 		calificacion=new TruequeCalificacion();
 		return;
 		}
@@ -117,7 +119,7 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 			activoCancelado=true;	
 			}else{
 			activoCancelado=trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO);
-			
+			activoEnviarMensaje=false;
 			}
 			
 		}else{
@@ -126,7 +128,7 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 			activoCancelado=true;	
 			}else{
 			activoCancelado=trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO);
-			
+			activoEnviarMensaje=false;
 			}
 		}
 		calificacion=new TruequeCalificacion();
@@ -189,9 +191,25 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		
 		trueque=truequeService.save(trueque);
 		
-	
+		
+		calificacion.setUsuario(login.getUsuario());
+		calificacion.setUsuarioCalificado(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		calificacion.setTrueque(trueque);
 		
 		truequeCalificacionService.save(calificacion);
+		
+		Calificacion cal=new Calificacion();
+		cal.setPuntajeText(calificacion.getPuntajeText());
+		cal.setPuntajeVal(calificacion.getPuntajeVal());
+		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		cal.setUsuarioRegistro(login.getUsuario());
+		cal.setTrueque(trueque);
+		calificacionService.save(cal);
+		
+		calificacion=new TruequeCalificacion();
+	
+		
+
 		
 		
 		
@@ -453,5 +471,24 @@ public boolean isActivoCancelado() {
  */
 public void setActivoCancelado(boolean activoCancelado) {
 	this.activoCancelado = activoCancelado;
+}
+
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 21/12/2013
+ * @return the activoEnviarMensaje
+ */
+public boolean isActivoEnviarMensaje() {
+	return activoEnviarMensaje;
+}
+
+
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 21/12/2013
+ * @param activoEnviarMensaje the activoEnviarMensaje to set
+ */
+public void setActivoEnviarMensaje(boolean activoEnviarMensaje) {
+	this.activoEnviarMensaje = activoEnviarMensaje;
 }
 }

@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.usuario.Usuario;
 
 /**
@@ -93,8 +94,9 @@ public class Trueque implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EstadoTruequeEnum estadoUsuario2;
 	
-	
-	
+	@ManyToOne
+	@JoinColumn(name="proyecto")
+	private Proyecto proyecto;
 	
 	/**
 	 * 9/12/2013
@@ -277,6 +279,23 @@ public class Trueque implements Serializable {
 	 */
 	public void setEstadoUsuario2(EstadoTruequeEnum estadoUsuario2) {
 		this.estadoUsuario2 = estadoUsuario2;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 20/12/2013
+	 * @return the proyecto
+	 */
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+	 /**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 20/12/2013
+	 * @param proyecto the proyecto to set
+	 */
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
 	}
 	
 	

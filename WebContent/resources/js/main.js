@@ -12,6 +12,9 @@ $(document).ready(function(){
 	
 };
 
+
+
+
 /*funciones al cambiar el tamaño de la ventana de navegador*/
 $(window).resize(function(){
 		regImgHeight();
@@ -50,6 +53,7 @@ $(window).resize(function(){
 /* tooltips */
 
 $('#finish-trueque').tooltip({placement: "top"});
+$('#cancel-trueque').tooltip({placement: "top"});
 $("#one-star").tooltip({placement: "top"});
 $("#two-star").tooltip({placement: "top"});
 $("#three-star").tooltip({placement: "top"});

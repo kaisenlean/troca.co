@@ -48,7 +48,7 @@ public class BeanTrueque extends BaseBean implements Serializable {
 
 	private int idTengo;
 
-	private String mensaje;
+	private String mensajeTrueque;
 
 	private String textOtro;
 
@@ -134,18 +134,25 @@ public class BeanTrueque extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
-		mensaje = new StringBuilder("!!Hola , veo que tienes " ).append( tengo.getNombre()).append(
-				" Yo lo necesito y a cambio te ofrezco ").append(
-				tenTemp.getNombre()).toString();
-		truequeMensaje.setMensaje(mensaje);
+		if (mensajeTrueque!=null) {
+			if (!mensajeTrueque.trim().equals("")) {
+				truequeMensaje.setMensaje(mensajeTrueque);
+				truequeMensaje.setTrueque(trueque);
+				truequeMensaje.setUsuarioEmisor(login.getUsuario());
+				truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
+				truequeMensaje.setFecha(Calendar.getInstance().getTime());
+				truequeMensajeService.save(truequeMensaje);
+			}
+		}
+		truequeMensaje.setMensaje(new StringBuilder("!!Hola , veo que tienes " ).append( tengo.getNombre()).append(" Yo lo necesito y a cambio te ofrezco ").append(tenTemp.getNombre()).toString());
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
 		truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
 		truequeMensaje.setFecha(Calendar.getInstance().getTime());
 		truequeMensajeService.save(truequeMensaje);
 
-		notificacionService.crearNotificacionSolicitudTrueque(tt, mensaje);
-		mensaje = "";
+		notificacionService.crearNotificacionSolicitudTrueque(tt, mensajeTrueque);
+		mensajeTrueque = "";
 	}
 
 	/**
@@ -198,24 +205,23 @@ public class BeanTrueque extends BaseBean implements Serializable {
 		this.trueque = trueque;
 	}
 
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the mensaje
-	 */
-	public String getMensaje() {
-		return mensaje;
-	}
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 20/12/2013
+ * @return the mensajeTrueque
+ */
+public String getMensajeTrueque() {
+	return mensajeTrueque;
+}
 
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param mensaje
-	 *            the mensaje to set
-	 */
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
+/**
+ * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @date 20/12/2013
+ * @param mensajeTrueque the mensajeTrueque to set
+ */
+public void setMensajeTrueque(String mensajeTrueque) {
+	this.mensajeTrueque = mensajeTrueque;
+}
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
