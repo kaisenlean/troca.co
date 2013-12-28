@@ -21,7 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import co.icesi.troca.commons.BaseBean;
-import co.icesi.troca.mail.login.LoginNotification;
 import co.icesi.troca.model.Departamento;
 import co.icesi.troca.model.Opcion;
 import co.icesi.troca.model.Pais;
@@ -100,14 +99,6 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	@ManagedProperty(value = "#{ciudadService}")
 	private CiudadService ciudadService;
 
-	
-	/**
-	 * 25/11/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * loginNotification
-	 */
-	@ManagedProperty(value="#{loginNotification}")
-	private LoginNotification loginNotification;
 	
 	/**
 	 * 25/11/2013
@@ -451,7 +442,7 @@ public class BeanRegistro extends BaseBean implements Serializable {
 	public void guardarUsuario() {
 		usuario.setCiudad(ciudadService.findById(selCiudad));
 		usuario.setEstado(EstadoUsuarioEnum.ACTIVO);
-		if (usuario.getPassword().equals(null) || usuario.getPassword().equals("")) {
+		if (usuario.getPassword()==null || usuario.getPassword().equals("")) {
 			usuario.setPassword(usuario.getPasswordTemp());
 		}else{
 		usuario.setPassword(encoderManager.encodeMd5Hash(usuario.getPassword()));
@@ -459,7 +450,6 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		boolean actualizarLogin=false;
 		try {
 			
-//		loginNotification.enviarMailAutenticacionCuenta(usuario);
 			String ext= usuario.getExtension();
 			if (usuario.getId()!=null) {
 				if (usuario.getId()!=0) {
@@ -733,15 +723,7 @@ public class BeanRegistro extends BaseBean implements Serializable {
 		this.itemCiudades = itemCiudades;
 	}
 
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 6/11/2013
-	 * @param loginNotification the loginNotification to set
-	 */
-	public void setLoginNotification(LoginNotification loginNotification) {
-		this.loginNotification = loginNotification;
-	}
+
 	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

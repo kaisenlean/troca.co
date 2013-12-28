@@ -28,31 +28,31 @@ import co.icesi.troca.repositories.GenericRepository;
  * 
  * @version $LastChangedRevision: 257 $
  * 
- * @param <T>
+ * @param <TYPE>
  *            The persistent type
- * @param <ID>
+ * @param <PK>
  *            The primary key type
  */
 @Transactional
 @SuppressWarnings("unchecked")
-public class GenericJpaRepository<T, ID extends Serializable> implements
-		GenericRepository<T, ID> {
+public class GenericJpaRepository<TYPE, PK extends Serializable> implements
+		GenericRepository<TYPE, PK> {
 
 	// ~ Instance fields
 	// --------------------------------------------------------
 
-	private final Class<T> persistentClass;
+	private final Class<TYPE> persistentClass;
 	private EntityManager entityManager;
 
 	// ~ Constructors
 	// -----------------------------------------------------------
 
 	public GenericJpaRepository() {
-		this.persistentClass = (Class<T>) ((ParameterizedType) getClass()
+		this.persistentClass = (Class<TYPE>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
-	public GenericJpaRepository(final Class<T> persistentClass) {
+	public GenericJpaRepository(final Class<TYPE> persistentClass) {
 		super();
 		this.persistentClass = persistentClass;
 	}
@@ -72,7 +72,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#countByExample(java.lang.Object)
 	 */
 	@Override
-	public int countByExample(final T exampleInstance) {
+	public int countByExample(final TYPE exampleInstance) {
 		Session session = getEntityManager().unwrap(Session.class);
 		Criteria crit = session.createCriteria(getEntityClass());
 		crit.setProjection(Projections.rowCount());
@@ -85,7 +85,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#findAll()
 	 */
 	@Override
-	public List<T> findAll() {
+	public List<TYPE> findAll() {
 		return findByCriteria();
 	}
 
@@ -94,21 +94,19 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> findByExample(final T exampleInstance) {
+	public List<TYPE> findByExample(final TYPE exampleInstance) {
 
 		Session session = getEntityManager().unwrap(Session.class);
 		Criteria crit = session.createCriteria(getEntityClass());
-		final List<T> result = crit.list();
-		return result;
+		return crit.list();
 	}
 
 	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
 	 */
 	@Override
-	public T findById(final ID id) {
-		final T result = getEntityManager().find(persistentClass, id);
-		return result;
+	public TYPE findById(final PK id) {
+		return getEntityManager().find(persistentClass, id);
 	}
 	
 	
@@ -116,9 +114,9 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
 	 */
 	@Override
-	public Object findById( ID id ,  Class<?>  class1) {
-		final Object result = getEntityManager().find(class1, id);
-		return result;
+	public Object findById( PK id ,  Class<?>  class1) {
+		return getEntityManager().find(class1, id);
+		 
 	}
 
 	/**
@@ -127,7 +125,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 */
 	
 	@Override
-	public List<T> findByNamedQuery(final String name, Object... params) {
+	public List<TYPE> findByNamedQuery(final String name, Object... params) {
 		javax.persistence.Query query = getEntityManager().createNamedQuery(
 				name);
 
@@ -135,8 +133,8 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 			query.setParameter(i + 1, params[i]);
 		}
 
-		final List<T> resultado = (List<T>) query.getResultList();
-		return resultado;
+		return (List<TYPE>) query.getResultList();
+		 
 	}
 
 	/**
@@ -145,7 +143,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 */
 	
 	@Override
-	public List<T> findByNamedQueryAndNamedParams(final String name,
+	public List<TYPE> findByNamedQueryAndNamedParams(final String name,
 			final Map<String, ? extends Object> params) {
 		javax.persistence.Query query = getEntityManager().createNamedQuery(
 				name);
@@ -154,16 +152,14 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 				.entrySet()) {
 			query.setParameter(param.getKey(), param.getValue());
 		}
-
-		final List<T> resultado = (List<T>) query.getResultList();
-		return resultado;
+		return (List<TYPE>) query.getResultList();
 	}
 
 	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#getEntityClass()
 	 */
 	@Override
-	public Class<T> getEntityClass() {
+	public Class<TYPE> getEntityClass() {
 		return persistentClass;
 	}
 
@@ -185,15 +181,14 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	/**
 	 * Use this inside subclasses as a convenience method.
 	 */
-	protected List<T> findByCriteria(final Criterion... criterion) {
+	protected List<TYPE> findByCriteria(final Criterion... criterion) {
 		return findByCriteria(-1, -1, criterion);
 	}
 
 	/**
 	 * Use this inside subclasses as a convenience method.
 	 */
-	@SuppressWarnings("unchecked")
-	protected List<T> findByCriteria(final int firstResult,
+	protected List<TYPE> findByCriteria(final int firstResult,
 			final int maxResults, final Criterion... criterion) {
 		Session session = getEntityManager().unwrap(Session.class);
 
@@ -211,9 +206,8 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 			crit.setMaxResults(maxResults);
 		}
 
-		final List<T> resultado = crit.list();
+		return crit.list();
 
-		return resultado;
 	}
 
 	protected int countByCriteria(Criterion... criterion) {
@@ -233,9 +227,7 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 */
 	@Override
 	
-	public void delete(T entity) {
-//		Session session = getEntityManager().unwrap(Session.class);
-//		session.delete(entity);
+	public void delete(TYPE entity) {
 		getEntityManager().remove(getEntityManager().contains(entity) ? entity : getEntityManager().merge(entity));
 	}
 
@@ -244,10 +236,10 @@ public class GenericJpaRepository<T, ID extends Serializable> implements
 	 */
 	@Override
 
-	public T save(T entity) {
+	public TYPE save(TYPE entity) {
 
-		final T savedEntity = getEntityManager().merge(entity);
-		return savedEntity;
+		return getEntityManager().merge(entity);
+	
 	}
 
 	

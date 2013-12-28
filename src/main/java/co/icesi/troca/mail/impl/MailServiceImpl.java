@@ -18,7 +18,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.util.Assert;
-import org.springframework.web.servlet.view.velocity.VelocityConfig;
 
 import co.icesi.troca.mail.MailService;
 
@@ -88,9 +87,6 @@ public class MailServiceImpl implements MailService ,Serializable{
 	@Autowired
 	private VelocityEngine velocityEngine;
 
-	@Autowired
-	private VelocityConfig velocityConfig;
-	
 	
 	
 
@@ -162,9 +158,9 @@ public class MailServiceImpl implements MailService ,Serializable{
 			log.debug("isActive: " + active);
 		}
 		// el servicio esta activo?
-		if (!active)
+		if (!active){
 			return;
-
+		}
 		// plantilla para el envío de email
 		final MimeMessage message = mailSender.createMimeMessage();
 
@@ -217,9 +213,9 @@ public class MailServiceImpl implements MailService ,Serializable{
 			log.debug("isActive: " + active);
 		}
 		// el servicio esta activo?
-		if (!active)
+		if (!active){
 			return;
-
+		}
 		// plantilla para el envío de email
 		final MimeMessage message = mailSender.createMimeMessage();
 

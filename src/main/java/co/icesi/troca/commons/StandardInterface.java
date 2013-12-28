@@ -16,7 +16,6 @@ public interface StandardInterface<T> {
 	@PostConstruct
 	void init();
 
-	// public abstract AbstractFacade<T > getFacade();
 	void renderizarItem(T objeto, boolean showForm);
 
 	void eliminarItem(T objeto);

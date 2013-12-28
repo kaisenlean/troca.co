@@ -12,12 +12,12 @@ import java.util.Map;
  * 
  * @version $LastChangedRevision: 257 $
  * 
- * @param <T>
+ * @param <TYPE>
  *            the entity type
  * @param <ID>
  *            the primary key type
  */
-public interface GenericRepository<T, ID extends Serializable> {
+public interface GenericRepository<TYPE, PK extends Serializable> {
 	// ~ Methods
 	// ----------------------------------------------------------------
 
@@ -26,7 +26,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 * 
 	 * @return the class
 	 */
-	Class<T> getEntityClass();
+	Class<TYPE> getEntityClass();
 
 	/**
 	 * Find an entity by its primary key
@@ -35,7 +35,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 *            the primary key
 	 * @return the entity
 	 */
-	T findById(final ID id);
+	TYPE findById(final PK id);
 	
 	
 	
@@ -47,14 +47,14 @@ public interface GenericRepository<T, ID extends Serializable> {
 	* @param clazz
 	* @return
 	*/
-	Object findById(final ID id ,  Class<?>  clazz) ;
+	Object findById(final PK id ,  Class<?>  clazz) ;
 
 	/**
 	 * Load all entities
 	 * 
 	 * @return the list of entities
 	 */
-	List<T> findAll();
+	List<TYPE> findAll();
 
 	/**
 	 * Find entities based on an example
@@ -63,7 +63,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 *            the example
 	 * @return the list of entities
 	 */
-	List<T> findByExample(final T exampleInstance);
+	List<TYPE> findByExample(final TYPE exampleInstance);
 
 	/**
 	 * Find using a named query
@@ -75,7 +75,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 * 
 	 * @return the list of entities
 	 */
-	List<T> findByNamedQuery(final String queryName, Object... params);
+	List<TYPE> findByNamedQuery(final String queryName, Object... params);
 
 	/**
 	 * Find using a named query
@@ -87,7 +87,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 * 
 	 * @return the list of entities
 	 */
-	List<T> findByNamedQueryAndNamedParams(final String queryName,
+	List<TYPE> findByNamedQueryAndNamedParams(final String queryName,
 			final Map<String, ? extends Object> params);
 
 	/**
@@ -104,7 +104,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 *            the search criteria
 	 * @return the number of entities
 	 */
-	int countByExample(final T exampleInstance);
+	int countByExample(final TYPE exampleInstance);
 
 	/**
 	 * save an entity. This can be either a INSERT or UPDATE in the database
@@ -114,7 +114,7 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 * 
 	 * @return the saved entity
 	 */
-	T save(final T entity);
+	TYPE save(final TYPE entity);
 
 	/**
 	 * delete an entity from the database
@@ -122,6 +122,6 @@ public interface GenericRepository<T, ID extends Serializable> {
 	 * @param entity
 	 *            the entity to delete
 	 */
-	void delete(final T entity);
+	void delete(final TYPE entity);
 	
 }

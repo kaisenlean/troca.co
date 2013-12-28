@@ -18,10 +18,8 @@ import co.icesi.troca.model.notificacion.Notificacion;
 import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.services.noticia.NoticiaService;
-import co.icesi.troca.services.noticia.comentario.NoticiaComentarioService;
 import co.icesi.troca.services.notificacion.NotificacionService;
 import co.icesi.troca.services.tengo.TengoService;
-import co.icesi.troca.views.login.Login;
 import co.icesi.troca.views.noticia.BeanNoticia;
 import co.icesi.troca.views.proyecto.BeanProyecto;
 import co.icesi.troca.views.trueque.BeanTrueque;
@@ -55,13 +53,7 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	
 	@ManagedProperty(value="#{tengoService}")
 	private TengoService tengoService;
-	/**
-	 * 9/12/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * login
-	 */
-	@ManagedProperty(value="#{login}")
-	private Login login;
+	
 	
 	/**
 	 * 9/12/2013
@@ -71,7 +63,7 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	private List<Notificacion> lista;
 	
 	@ManagedProperty(value="#{beanNoticia}")
-	public BeanNoticia beanNoticia;
+	private BeanNoticia beanNoticia;
 	
 	@ManagedProperty(value="#{noticiaService}")
 	private NoticiaService noticiaService;
@@ -82,18 +74,6 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	@ManagedProperty(value="#{beanProyecto}")
 	private BeanProyecto beanProyecto;
 	
-	
-	
-	
-	/**
-	 * 19/12/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * noticiaComentarioService
-	 */
-	@ManagedProperty(value="#{noticiaComentarioService}")
-	private NoticiaComentarioService noticiaComentarioService;
-
-
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 9/12/2013
@@ -130,15 +110,7 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 		if (notificacion.getModulo().equals(Modulo.CANCELACION_TRUEQUE)) {
 			beanTrueque.verPnlTrueque((Trueque) tengoService.findById(Integer.valueOf(notificacion.getReferenceId()),Trueque.class) );
 		}
-		
 
-		
-		
-		
-		
-		
-		
-	
 	}
 	
 	
@@ -171,14 +143,6 @@ public class RedirectNotificacion extends BaseBean implements Serializable{
 	}
 	
 	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param login the login to set
-	 */
-	public void setLogin(Login login) {
-		this.login = login;
-	}
 	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -206,15 +170,6 @@ public void setNoticiaService(NoticiaService noticiaService) {
 	this.noticiaService = noticiaService;
 }
 
-/**
- * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
- * @date 9/12/2013
- * @param noticiaComentarioService the noticiaComentarioService to set
- */
-public void setNoticiaComentarioService(
-		NoticiaComentarioService noticiaComentarioService) {
-	this.noticiaComentarioService = noticiaComentarioService;
-}
 
 /**
  * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

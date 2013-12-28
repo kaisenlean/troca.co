@@ -27,8 +27,8 @@ public abstract class Autocompletar<T> extends BaseBean implements Autocompletab
 	 */
 	private static final long serialVersionUID = 1L;
 	protected T seleccionado;
-	protected String query;
-	protected org.apache.log4j.Logger logger= org.apache.log4j.Logger.getLogger(Autocompletar.class);
+	private String query;
+	private org.apache.log4j.Logger logger= org.apache.log4j.Logger.getLogger(Autocompletar.class);
 
 	/**
 	 * 
@@ -85,5 +85,23 @@ public abstract class Autocompletar<T> extends BaseBean implements Autocompletab
 		this.query = query;
 	}
 	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/12/2013
+	 * @return the logger
+	 */
+	public org.apache.log4j.Logger getLogger() {
+		return logger;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/12/2013
+	 * @param logger the logger to set
+	 */
+	public void setLogger(org.apache.log4j.Logger logger) {
+		this.logger = logger;
+	}
 	
 }

@@ -104,7 +104,7 @@ public class Trueque implements Serializable {
 	 * mensajes
 	 */
 	@Transient
-	public List<TruequeMensaje> mensajes=new ArrayList<TruequeMensaje>();
+	private List<TruequeMensaje> mensajes=new ArrayList<TruequeMensaje>();
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

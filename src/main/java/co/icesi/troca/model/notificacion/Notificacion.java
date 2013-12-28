@@ -158,6 +158,14 @@ public class Notificacion implements Serializable {
 	*/
 	public String getMensajeCompleto(){
 		
+		return extraerMensaje();
+	
+	}
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 23/12/2013
+	*/
+	private String extraerMensaje() {
 		if (modulo.equals(Modulo.PROYECTO)) {
 			return new StringBuilder(creador.getNombreCompleto()).append(mensaje).toString();
 		}
@@ -173,12 +181,6 @@ public class Notificacion implements Serializable {
 		if (modulo.equals(Modulo.TRUEQUE_NECESITO)) {
 			return new StringBuilder("Nueva  propuesta de Trueque por ").append(creador==null?"":creador.getNombreCompleto()).toString();
 		}
-		
-		
-		
-		
-		
-		
 		return mensaje==null?"NO message Detail":mensaje;
 	}
 }

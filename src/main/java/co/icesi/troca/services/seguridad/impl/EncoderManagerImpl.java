@@ -45,7 +45,7 @@ public class EncoderManagerImpl implements EncoderManager ,Serializable{
 	public String encodeMd5Hash(String input) {
 	String md5 = null;
 		
-		if(null == input) return null;
+		if(null == input){ return null;}
 		
 		try {
 			

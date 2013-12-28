@@ -12,6 +12,6 @@ import co.icesi.troca.repositories.GenericRepository;
 * @date 22/10/2013
 *
  */
-public interface GenericService<T , PK extends Serializable> extends GenericRepository<T, PK > {
+public interface GenericService<TYPE , PK extends Serializable> extends GenericRepository<TYPE, PK > {
 
 }

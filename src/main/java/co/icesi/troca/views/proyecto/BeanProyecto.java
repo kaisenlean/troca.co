@@ -335,7 +335,6 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		necesitosProyecto.add(necesito);
 		nombreNecesito = "";
 		descripcionNecesito = "";
-		// init();
 
 	}
 
@@ -365,43 +364,9 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		proyecto = proyectoService.save(proyecto);
 		proyecto.setExtension(ext);
 
-		for (Necesito necesito : necesitosProyecto) {
-			necesito.setProyecto(proyecto);
-			necesito.setUsuario(login.getUsuario());
+		procesarNecesitos();
 
-			necesitoService.save(necesito);
-
-		}
-
-		for (Necesito necesito : necesitoEliminados) {
-			if (necesito.getId() != null) {
-
-				necesitoService.delete(necesito);
-			}
-		}
-
-		for (Tengo tengo : login.getUsuario().getTengos()) {
-
-			ProyectoTengoUsuario ptu = proyectoTengoUsuarioService
-					.getByTengoAndProyecto(proyecto, tengo);
-
-			if (tengo.isSeleccionado()) {
-
-				if (ptu == null) {
-
-					ProyectoTengoUsuario tengoUsuario = new ProyectoTengoUsuario();
-					tengoUsuario.setProyecto(proyecto);
-					tengoUsuario.setTengo(tengo);
-					proyectoTengoUsuarioService.save(tengoUsuario);
-				}
-			} else {
-				if (ptu != null) {
-					proyectoTengoUsuarioService.delete(ptu);
-				}
-
-			}
-			tengo.setSeleccionado(false);
-		}
+		procesarTengos();
 		if (in != null) {
 			try {
 				uploadPhotoFile();
@@ -429,6 +394,56 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		login.reloadTengosProyectos();
 		init();
 		goTo("/paginas/perfil/perfil.jsf");
+	}
+
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 23/12/2013
+	*/
+	private void procesarTengos() {
+		for (Tengo tengo : login.getUsuario().getTengos()) {
+
+			ProyectoTengoUsuario ptu = proyectoTengoUsuarioService
+					.getByTengoAndProyecto(proyecto, tengo);
+
+			if (tengo.isSeleccionado()) {
+
+				if (ptu == null) {
+
+					ProyectoTengoUsuario tengoUsuario = new ProyectoTengoUsuario();
+					tengoUsuario.setProyecto(proyecto);
+					tengoUsuario.setTengo(tengo);
+					proyectoTengoUsuarioService.save(tengoUsuario);
+				}
+			} else {
+				if (ptu != null) {
+					proyectoTengoUsuarioService.delete(ptu);
+				}
+
+			}
+			tengo.setSeleccionado(false);
+		}
+	}
+
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 23/12/2013
+	*/
+	private void procesarNecesitos() {
+		for (Necesito necesito : necesitosProyecto) {
+			necesito.setProyecto(proyecto);
+			necesito.setUsuario(login.getUsuario());
+
+			necesitoService.save(necesito);
+
+		}
+
+		for (Necesito necesito : necesitoEliminados) {
+			if (necesito.getId() != null) {
+
+				necesitoService.delete(necesito);
+			}
+		}
 	}
 
 	/**

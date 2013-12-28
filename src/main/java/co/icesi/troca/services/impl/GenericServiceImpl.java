@@ -15,30 +15,30 @@ import co.icesi.troca.services.GenericService;
 * @date 22/10/2013
 *
  */
-public abstract class GenericServiceImpl<T, PK extends Serializable> implements
-		GenericService<T, PK> {
+public abstract class GenericServiceImpl<TYPE, PK extends Serializable> implements
+		GenericService<TYPE, PK> {
 
 	/**
 	 * 22/10/2013
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * persistentClass
 	 */
-	private Class<T> persistentClass;
+	private Class<TYPE> persistentClass;
 
 	/**
 	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	* @date 22/10/2013
 	* @return
 	*/
-	public abstract GenericRepository<T, PK> getDao();
+	public abstract GenericRepository<TYPE, PK> getDao();
 
 	/** (non-Javadoc)
 	 * @see co.icesi.troca.repositories.GenericRepository#getEntityClass()
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public Class<T> getEntityClass() {
-		this.persistentClass = (Class<T>) ((ParameterizedType) getClass()
+	public Class<TYPE> getEntityClass() {
+		this.persistentClass = (Class<TYPE>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 		return persistentClass;
 	}
@@ -47,7 +47,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#findById(java.io.Serializable)
 	 */
 	@Override
-	public T findById(PK id) {
+	public TYPE findById(PK id) {
 		return getDao().findById(id);
 	}
 	
@@ -64,7 +64,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#findAll()
 	 */
 	@Override
-	public List<T> findAll() {
+	public List<TYPE> findAll() {
 		return getDao().findAll();
 	}
 
@@ -72,7 +72,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#findByExample(java.lang.Object)
 	 */
 	@Override
-	public List<T> findByExample(T exampleInstance) {
+	public List<TYPE> findByExample(TYPE exampleInstance) {
 		return getDao().findByExample(exampleInstance);
 	}
 
@@ -80,7 +80,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#findByNamedQuery(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public List<T> findByNamedQuery(String queryName, Object... params) {
+	public List<TYPE> findByNamedQuery(String queryName, Object... params) {
 		return getDao().findByNamedQuery(queryName, params);
 	}
 
@@ -88,7 +88,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#findByNamedQueryAndNamedParams(java.lang.String, java.util.Map)
 	 */
 	@Override
-	public List<T> findByNamedQueryAndNamedParams(String queryName,
+	public List<TYPE> findByNamedQueryAndNamedParams(String queryName,
 			Map<String, ? extends Object> params) {
 		return getDao().findByNamedQueryAndNamedParams(queryName, params);
 	}
@@ -105,7 +105,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#countByExample(java.lang.Object)
 	 */
 	@Override
-	public int countByExample(T exampleInstance) {
+	public int countByExample(TYPE exampleInstance) {
 		return getDao().countByExample(exampleInstance);
 	}
 
@@ -113,7 +113,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#save(java.lang.Object)
 	 */
 	@Override
-	public T save(T entity) {
+	public TYPE save(TYPE entity) {
 		return getDao().save(entity);
 	}
 
@@ -121,7 +121,7 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements
 	 * @see co.icesi.troca.repositories.GenericRepository#delete(java.lang.Object)
 	 */
 	@Override
-	public void delete(T entity) {
+	public void delete(TYPE entity) {
 		getDao().delete(entity);
 	}
 

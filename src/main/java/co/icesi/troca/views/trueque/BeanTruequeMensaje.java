@@ -19,10 +19,8 @@ import co.icesi.troca.model.trueque.TruequeCalificacion;
 import co.icesi.troca.model.trueque.TruequeMensaje;
 import co.icesi.troca.services.calificacion.CalificacionService;
 import co.icesi.troca.services.notificacion.NotificacionService;
-import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.trueque.TruequeMensajeService;
 import co.icesi.troca.services.trueque.TruequeService;
-import co.icesi.troca.services.trueque.TruequeTengoService;
 import co.icesi.troca.services.trueque.calificacion.TruequeCalificacionService;
 import co.icesi.troca.views.login.Login;
 import co.icesi.troca.views.perfil.PerfilDe;
@@ -53,8 +51,6 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	@ManagedProperty(value="#{login}")
 	private Login login;
 	
-	@ManagedProperty(value="#{tengoService}")
-	private TengoService tengoService;
 	
 	@ManagedProperty(value="#{truequeMensajeService}")
 	private TruequeMensajeService truequeMensajeService;
@@ -64,9 +60,7 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	
 	@ManagedProperty(value="#{truequeService}")
 	private TruequeService truequeService;
-	
-	@ManagedProperty(value="#{truequeTengoService}")
-	private TruequeTengoService truequeTengoService;
+
 	
 	@ManagedProperty(value="#{notificacionService}")
 	private NotificacionService notificacionService;
@@ -166,6 +160,40 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 	
 	
 	public void cancelarTrueque(){
+		cambiarEstadoTruequeCancelar();
+		
+		trueque=truequeService.save(trueque);
+		
+		
+		calificacion.setUsuario(login.getUsuario());
+		calificacion.setUsuarioCalificado(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		calificacion.setTrueque(trueque);
+		
+		truequeCalificacionService.save(calificacion);
+		
+		Calificacion cal=new Calificacion();
+		cal.setPuntajeText(calificacion.getPuntajeText());
+		cal.setPuntajeVal(calificacion.getPuntajeVal());
+		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
+		cal.setUsuarioRegistro(login.getUsuario());
+		cal.setTrueque(trueque);
+		calificacionService.save(cal);
+		
+		calificacion=new TruequeCalificacion();
+	
+		
+		trueque=truequeService.findById(trueque.getId());
+		this.trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
+		
+		notificacionService.crearNotificacionCancelarTrueque(trueque, login.getUsuario());
+		goTo("/paginas/trueque/mensajesTrueque.jsf");
+	}
+
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 23/12/2013
+	*/
+	private void cambiarEstadoTruequeCancelar() {
 		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
 			trueque.setEstadoUsuario1(EstadoTruequeEnum.CANCELADO);
 			
@@ -188,62 +216,11 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.ACTIVO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
 			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
 		}
-		
-		trueque=truequeService.save(trueque);
-		
-		
-		calificacion.setUsuario(login.getUsuario());
-		calificacion.setUsuarioCalificado(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
-		calificacion.setTrueque(trueque);
-		
-		truequeCalificacionService.save(calificacion);
-		
-		Calificacion cal=new Calificacion();
-		cal.setPuntajeText(calificacion.getPuntajeText());
-		cal.setPuntajeVal(calificacion.getPuntajeVal());
-		cal.setUsuario(trueque.getUsuarioTrueque2().equals(login.getUsuario())?trueque.getUsuarioTrueque1():trueque.getUsuarioTrueque2());
-		cal.setUsuarioRegistro(login.getUsuario());
-		cal.setTrueque(trueque);
-		calificacionService.save(cal);
-		
-		calificacion=new TruequeCalificacion();
-	
-		
-
-		
-		
-		
-		trueque=truequeService.findById(trueque.getId());
-		this.trueque.setMensajes(truequeMensajeService.findMensajesByTrueque(trueque));
-		
-		notificacionService.crearNotificacionCancelarTrueque(trueque, login.getUsuario());
-		goTo("/paginas/trueque/mensajesTrueque.jsf");
 	}
 
 	
 	public void finalizarTrueque(){
-		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
-			trueque.setEstadoUsuario1(EstadoTruequeEnum.FINALIZADO);
-			
-		}else{
-			trueque.setEstadoUsuario2(EstadoTruequeEnum.FINALIZADO);
-			
-		}
-		
-		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO) ) {
-			trueque.setEstado(EstadoTruequeEnum.FINALIZADO);
-		}
-		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO) ) {
-			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
-		}
-		
-		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
-			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
-		}
-		
-		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
-			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
-		}
+		cambiarEstadoTrueque();
 		
 		trueque=truequeService.save(trueque);
 		
@@ -273,6 +250,35 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 		
 		
 	
+	}
+
+	/**
+	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	* @date 23/12/2013
+	*/
+	private void cambiarEstadoTrueque() {
+		if (login.getUsuario().equals(trueque.getUsuarioTrueque1())) {
+			trueque.setEstadoUsuario1(EstadoTruequeEnum.FINALIZADO);
+			
+		}else{
+			trueque.setEstadoUsuario2(EstadoTruequeEnum.FINALIZADO);
+			
+		}
+		
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.FINALIZADO);
+		}
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
+		
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
+		
+		if (trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO) && trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO) ) {
+			trueque.setEstado(EstadoTruequeEnum.CANCELADO);
+		}
 	}
 	
 	/**
@@ -330,15 +336,6 @@ public PerfilDe getPerfilDe() {
 
 
 
-/**
- * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
- * @date 8/12/2013
- * @param tengoService the tengoService to set
- */
-public void setTengoService(TengoService tengoService) {
-	this.tengoService = tengoService;
-}
-
 
 /**
  * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -359,14 +356,6 @@ public void setTruequeMensajeService(TruequeMensajeService truequeMensajeService
 }
 
 
-/**
- * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
- * @date 9/12/2013
- * @param truequeTengoService the truequeTengoService to set
- */
-public void setTruequeTengoService(TruequeTengoService truequeTengoService) {
-	this.truequeTengoService = truequeTengoService;
-}
 
 
 /**
