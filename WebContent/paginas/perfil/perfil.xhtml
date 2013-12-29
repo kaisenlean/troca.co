@@ -173,7 +173,7 @@
 						<h3 class="blue margined-left">Links</h3>
 						<ul class="no-padding margined-left">
 						<c:forEach items="#{login.usuario.usuarioLinks}" var="linkk">
-							<a onclick="window.open('#{linkk.link}','mywindow','width=500,height=500')"  class="white white-link"><h4>#{linkk.nombre}</h4></a>
+							<a onclick="window.open('#{linkk.link}','mywindow','width=500,height=500,target=_blank')"  class="white white-link"><h4>#{linkk.nombre}</h4></a>
 						</c:forEach>
 						</ul>
 					</div>

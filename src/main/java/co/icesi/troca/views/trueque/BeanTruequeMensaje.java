@@ -111,18 +111,18 @@ public class BeanTruequeMensaje extends BaseBean implements Serializable {
 			activoFinalizado=trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.FINALIZADO);
 			if (activoFinalizado) {
 			activoCancelado=true;	
+			activoEnviarMensaje=false;
 			}else{
 			activoCancelado=trueque.getEstadoUsuario1().equals(EstadoTruequeEnum.CANCELADO);
-			activoEnviarMensaje=false;
 			}
 			
 		}else{
 			activoFinalizado=trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.FINALIZADO);
 			if (activoFinalizado) {
 			activoCancelado=true;	
+			activoEnviarMensaje=false;
 			}else{
 			activoCancelado=trueque.getEstadoUsuario2().equals(EstadoTruequeEnum.CANCELADO);
-			activoEnviarMensaje=false;
 			}
 		}
 		calificacion=new TruequeCalificacion();

@@ -33,7 +33,7 @@
 								Tengos </strong></a>
 
 						<div class="clearfix margined-bot"></div>
-						<a style="visibility: #{beanProyecto.proyecto.owner eq login.usuario?'visible':'hidden'}" href="#modal-invitar-usuarios" data-toggle="modal"
+						<a style="visibility: #{beanProyecto.proyecto.owner eq login.usuario or beanProyecto.proyecto.id eq null?'visible':'hidden'}" href="#modal-invitar-usuarios" data-toggle="modal"
 							class="white margined-top white-link add-tengos"><strong>Invitar
 								Usuarios</strong></a>
 								

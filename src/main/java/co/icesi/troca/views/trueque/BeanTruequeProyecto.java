@@ -118,6 +118,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 			tenTemp.setNombre(textOtro);
 			tenTemp.setFechaRegistro(new Date());
+			tenTemp.setOwner(beanProyecto.getProyecto().getOwner());
 			tenTemp = tengoService.save(tenTemp);
 
 		} else {
@@ -134,6 +135,11 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		}
 		trueque.setEstadoUsuario1(EstadoTruequeEnum.ACTIVO);
 		trueque.setEstadoUsuario2(EstadoTruequeEnum.ACTIVO);
+
+		if (tenTemp.getOwner().equals(login.getUsuario())) {
+			mensajeError("No puedes trocar  con tus propios tengos");
+			return ;
+		}
 		trueque = truequeService.save(trueque);
 
 		tt.setTengo(tenTemp);
@@ -143,7 +149,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
 		
-		
+		/* Envio de mensajes por aparte
 		if (mensaje!=null) {
 			if (!mensaje.trim().equals("")) {
 				truequeMensaje.setMensaje(mensaje);
@@ -154,6 +160,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 				truequeMensajeService.save(truequeMensaje);
 			}
 		}
+		*/
 		mensaje = new StringBuilder("!!Hola , veo que tienen ")
 				.append(tengo.getNombre())
 				.append(" Yo lo necesito y a cambio te ofrezco ")
@@ -173,9 +180,8 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
 	 */
-	public void realizarTruequeN(Necesito necesito) {
+	public void realizarTruequeN(Necesito necesito,int idTengo2) {
 		Tengo tenTemp = new Tengo();
-
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
@@ -187,6 +193,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 			tenTemp.setNombre(textOtro);
 			tenTemp.setFechaRegistro(new Date());
+			tenTemp.setOwner(beanProyecto.getProyecto().getOwner());
 			tenTemp = tengoService.save(tenTemp);
 
 		} else {
@@ -195,6 +202,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		}
 		trueque.setEstadoUsuario1(EstadoTruequeEnum.ACTIVO);
 		trueque.setEstadoUsuario2(EstadoTruequeEnum.ACTIVO);
+		
 		trueque = truequeService.save(trueque);
 
 		tt.setTengo(tenTemp);
@@ -203,6 +211,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
+		/* Envio de mensajes por aparte
 		if (mensaje!=null) {
 			if (!mensaje.trim().equals("")) {
 				truequeMensaje.setMensaje(mensaje);
@@ -213,7 +222,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 				truequeMensajeService.save(truequeMensaje);
 			}
 		}
-		
+		*/
 		mensaje = new StringBuilder("!!Hola , veo que necesitan ")
 				.append(necesito.getNombre())
 				.append(" Yo lo tengo y a cambio les ofrezco ")

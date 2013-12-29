@@ -133,7 +133,7 @@
 												<label for="tengo-proyecto" class="black">Tengos del
 													Proyecto</label>
 												<h:selectOneMenu 
-													value="#{beanTruequeProyecto.idTengo2}"
+													value="#{np.idTengo}"
 													styleClass="form-control">
 													<p:ajax event="change" process="@this"
 														update="otro-proyecto-tengo#{np.id}"></p:ajax>
@@ -148,7 +148,7 @@
 												<label  class="black">Otro</label>
 												<h:inputText placeholder="Escribe lo que buscas"
 													styleClass="form-control" id="otro-proyecto-tengo#{np.id}"
-													readonly="#{beanTruequeProyecto.idTengo2 ne 0}" />
+													readonly="#{np.idTengo ne 0}" />
 											</div>
 
 
@@ -156,7 +156,7 @@
 												personal a la propuesta</p>
 											<p:inputTextarea value="#{beanTruequeProyecto.mensaje}"
 												styleClass="form-control gap extra-tengo" rows="3">
-													<p:ajax event="blur" partialSubmit="true" update="@all" ></p:ajax>
+													<p:ajax event="blur" partialSubmit="true" process="@this" ></p:ajax>
 												</p:inputTextarea>
 										</div>
 
@@ -173,8 +173,8 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default"
 												data-dismiss="modal">Cancelar</button>
-											<h:commandButton
-												actionListener="#{beanTruequeProyecto.realizarTruequeN(np)}"
+											<h:commandButton oncomplete="click();"
+												actionListener="#{beanTruequeProyecto.realizarTruequeN(np,np.idTengo)}"
 												styleClass="btn btn-blue white white-link va" value="Enviar"></h:commandButton>
 
 										</div>
@@ -255,7 +255,7 @@
 													personal a la propuesta</p>
 												<p:inputTextarea value="#{beanTruequeProyecto.mensaje}"
 													styleClass="form-control gap extra-tengo" rows="3">
-														<p:ajax event="blur" partialSubmit="true" update="@all" ></p:ajax>
+														<p:ajax event="blur" partialSubmit="true" process="@this" ></p:ajax>
 													</p:inputTextarea>
 											</div>
 
@@ -272,7 +272,7 @@
 											<div class="modal-footer">
 												<button type="button" class="btn btn-default"
 													data-dismiss="modal">Cancelar</button>
-												<h:commandButton
+												<h:commandButton oncomplete="click();"
 													actionListener="#{beanTruequeProyecto.realizarTrueque(tng.tengo,idTengo)}"
 													styleClass="btn btn-blue white white-link va"
 													value="Enviar"></h:commandButton>

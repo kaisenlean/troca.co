@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import co.icesi.troca.model.proyecto.Proyecto;
 import co.icesi.troca.model.usuario.Usuario;
@@ -88,8 +89,8 @@ public class Necesito implements Serializable{
 	
 	
 	
-	
-	
+	@Transient
+	private int idTengo;
 	
 	
 	
@@ -240,4 +241,21 @@ public class Necesito implements Serializable{
 		this.proyecto = proyecto;
 	}
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/12/2013
+	 * @return the idTengo
+	 */
+	public int getIdTengo() {
+		return idTengo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/12/2013
+	 * @param idTengo the idTengo to set
+	 */
+	public void setIdTengo(int idTengo) {
+		this.idTengo = idTengo;
+	}
 }
