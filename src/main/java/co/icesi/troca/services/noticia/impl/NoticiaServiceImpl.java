@@ -21,51 +21,32 @@ import co.icesi.troca.services.noticia.NoticiaService;
  * @project troca-co
  * @class NoticiaServiceImpl
  * @date 31/10/2013
- *
+ * 
  */
 @Service("noticiaService")
-public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> implements NoticiaService,Serializable {
+public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer>
+		implements NoticiaService, Serializable {
 
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 1/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULTS
+	 *         MAX_RESULTS
 	 */
 	private static final int MAX_RESULTS = 2;
 	@Autowired
 	private NoticiaDao noticiaDao;
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
-	 */
-	@Override
-	public GenericRepository<Noticia, Integer> getDao() {
-		return noticiaDao;
-	}
-	
+
 	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @param noticiaDao the noticiaDao to set
-	 */
-	public void setNoticiaDao(NoticiaDao noticiaDao) {
-		this.noticiaDao = noticiaDao;
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.noticia.NoticiaService#findUltimasNoticias()
-	 */
-	@Override
-	public List<Noticia> findUltimasNoticias() {
-		return noticiaDao.findUltimasNoticias(MAX_RESULTS);
-	}
-
-	/** (non-Javadoc)
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.noticia.NoticiaService#findNoticiasByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
@@ -73,12 +54,44 @@ public class NoticiaServiceImpl extends GenericServiceImpl<Noticia, Integer> imp
 		return noticiaDao.findNoticiasByUsuario(usuario);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.noticia.NoticiaService#findUltimasNoticias()
+	 */
+	@Override
+	public List<Noticia> findUltimasNoticias() {
+		return noticiaDao.findUltimasNoticias(MAX_RESULTS);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.noticia.NoticiaService#findUltimasNoticias(int)
 	 */
 	@Override
 	public List<Noticia> findUltimasNoticias(int maxResults) {
 		return noticiaDao.findUltimasNoticias(maxResults);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
+	@Override
+	public GenericRepository<Noticia, Integer> getDao() {
+		return noticiaDao;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param noticiaDao
+	 *            the noticiaDao to set
+	 */
+	public void setNoticiaDao(NoticiaDao noticiaDao) {
+		this.noticiaDao = noticiaDao;
 	}
 
 }

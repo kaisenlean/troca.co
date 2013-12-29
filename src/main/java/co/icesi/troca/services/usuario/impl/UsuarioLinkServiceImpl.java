@@ -21,23 +21,27 @@ import co.icesi.troca.services.usuario.UsuarioLinkService;
  * @project troca-co
  * @class UsuarioLinkServiceImpl
  * @date 28/11/2013
- *
+ * 
  */
 @Service("usuarioLinkService")
-public class UsuarioLinkServiceImpl extends GenericServiceImpl<UsuarioLink, Integer>implements UsuarioLinkService,Serializable {
+public class UsuarioLinkServiceImpl extends
+		GenericServiceImpl<UsuarioLink, Integer> implements UsuarioLinkService,
+		Serializable {
 
 	/**
 	 * 28/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Autowired
 	private UsuarioLinkDao usuarioLinkDao;
-	
-	/** (non-Javadoc)
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
@@ -45,7 +49,9 @@ public class UsuarioLinkServiceImpl extends GenericServiceImpl<UsuarioLink, Inte
 		return usuarioLinkDao;
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.usuario.UsuarioLinkService#getLinkByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override

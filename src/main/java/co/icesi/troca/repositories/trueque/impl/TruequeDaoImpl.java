@@ -21,31 +21,37 @@ import co.icesi.troca.repositories.trueque.TruequeDao;
  * @project troca-co
  * @class TruequeDaoImpl
  * @date 2/12/2013
- *
+ * 
  */
 @Repository("truequeDao")
-public class TruequeDaoImpl extends GenericJpaRepository<Trueque, Integer> implements TruequeDao , Serializable {
+public class TruequeDaoImpl extends GenericJpaRepository<Trueque, Integer>
+		implements TruequeDao, Serializable {
 
 	/**
 	 * 2/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.repositories.trueque.TruequeDao#findActivosByUsuarioAndEstado(co.icesi.troca.model.usuario.Usuario, co.icesi.troca.model.trueque.EstadoTruequeEnum)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.trueque.TruequeDao#findActivosByUsuarioAndEstado(co.icesi.troca.model.usuario.Usuario,
+	 *      co.icesi.troca.model.trueque.EstadoTruequeEnum)
 	 */
 	@Override
 	public List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,
 			EstadoTruequeEnum estado) {
-		
-		Criterion criterion=Restrictions.disjunction().add(Restrictions.eq("usuarioTrueque1", usuario)).add(Restrictions.eq("usuarioTrueque2", usuario));
-		
-		Criterion criterion2=Restrictions.eq("estado", estado);
-		
-		
-		return findByCriteria(criterion,criterion2);
+
+		Criterion criterion = Restrictions.disjunction()
+				.add(Restrictions.eq("usuarioTrueque1", usuario))
+				.add(Restrictions.eq("usuarioTrueque2", usuario));
+
+		Criterion criterion2 = Restrictions.eq("estado", estado);
+
+		return findByCriteria(criterion, criterion2);
 	}
 
 }

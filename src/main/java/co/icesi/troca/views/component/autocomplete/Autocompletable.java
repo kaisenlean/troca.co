@@ -19,7 +19,6 @@ public interface Autocompletable<T> {
 	 * @param query
 	 * @return
 	 */
-	abstract List<T> completarBusqueda(String query);
-
+	List<T> completarBusqueda(String query);
 
 }

@@ -19,6 +19,15 @@ import co.icesi.troca.repositories.GenericRepository;
 public interface TengoDao extends GenericRepository<Tengo, Integer> {
 
 	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/11/2013
+	 * @param proyecto
+	 * @return
+	 */
+	List<Tengo> findTengoByParam(String param);
+
+	/**
 	 * Metodo que consulta una lista de Tengos en base a un usuario en comun
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -26,7 +35,7 @@ public interface TengoDao extends GenericRepository<Tengo, Integer> {
 	 * @param usuario
 	 * @return
 	 */
-	public List<Tengo> findTengosByUsuario(Usuario usuario);
+	List<Tengo> findTengosByUsuario(Usuario usuario);
 
 	/**
 	 * Metodo que consulta los tengos mas recientes en la base de datos
@@ -36,16 +45,5 @@ public interface TengoDao extends GenericRepository<Tengo, Integer> {
 	 * @param maxResult
 	 * @return
 	 */
-	public List<Tengo> findUltimosTengo(int maxResult);
-	
-	
-	
-	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 29/11/2013
-	* @param proyecto
-	* @return
-	*/
-	public List<Tengo> findTengoByParam(String param);
+	List<Tengo> findUltimosTengo(int maxResult);
 }

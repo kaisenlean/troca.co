@@ -33,14 +33,16 @@ import co.icesi.troca.model.usuario.Usuario;
 public class NoticiaComentario implements Serializable {
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * id
+	 *         id
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,154 +50,60 @@ public class NoticiaComentario implements Serializable {
 	private Integer id;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * noticia
+	 *         noticia
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "noticia")
 	private Noticia noticia;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * usuario
+	 *         usuario
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario")
 	private Usuario usuario;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * comentario
+	 *         comentario
 	 */
 	@Column(name = "comentario")
 	private String comentario;
-	
+
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * fecha
+	 *         fecha
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date fecha;
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 */
 	public NoticiaComentario() {
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
 	public NoticiaComentario(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Noticia getNoticia() {
-		return noticia;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param noticia
-	*/
-	public void setNoticia(Noticia noticia) {
-		this.noticia = noticia;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param usuario
-	*/
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getComentario() {
-		return comentario;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param comentario
-	*/
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the fecha
-	 */
-	public Date getFecha() {
-		return fecha;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param fecha the fecha to set
-	 */
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -213,7 +121,112 @@ public class NoticiaComentario implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getComentario() {
+		return comentario;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Noticia getNoticia() {
+		return noticia;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param comentario
+	 */
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param fecha
+	 *            the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param noticia
+	 */
+	public void setNoticia(Noticia noticia) {
+		this.noticia = noticia;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param usuario
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

@@ -15,23 +15,28 @@ import co.icesi.troca.repositories.PaisDao;
 import co.icesi.troca.services.PaisService;
 
 @Service("paisService")
-public class PaisServiceImpl extends GenericServiceImpl<Pais, Integer> implements PaisService, Serializable {
+public class PaisServiceImpl extends GenericServiceImpl<Pais, Integer>
+		implements PaisService, Serializable {
 
 	/**
 	 * 22/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = -7342021171479215673L;
 	/**
 	 * 22/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * paisDao
+	 *         paisDao
 	 */
 	@Resource(name = "paisDao")
 	private PaisDao paisDao;
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#findAll()
 	 */
 	@Override
@@ -40,31 +45,25 @@ public class PaisServiceImpl extends GenericServiceImpl<Pais, Integer> implement
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 22/10/2013
-	* @return
-	*/
-	public PaisDao getPaisDao() {
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
+	@Override
+	public GenericRepository<Pais, Integer> getDao() {
 		return paisDao;
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 22/10/2013
-	* @param paisDao
-	*/
-	public void setPaisDao(PaisDao paisDao) {
-		this.paisDao = paisDao;
-	}
-
-	/** (non-Javadoc)
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.PaisService#getItmems()
 	 */
 	@Override
 	public List<SelectItem> getItmems() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		List<Pais> paises = paisDao.findAll();
-		items.add(new SelectItem(0,"- - SELECCIONA UNA PAIS - -"));
+		items.add(new SelectItem(0, "- - SELECCIONA UNA PAIS - -"));
 		for (Pais pais : paises) {
 			items.add(new SelectItem(pais.getId(), pais.getNombre()));
 		}
@@ -72,12 +71,22 @@ public class PaisServiceImpl extends GenericServiceImpl<Pais, Integer> implement
 		return items;
 	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 * @return
 	 */
-	@Override
-	public GenericRepository<Pais, Integer> getDao() {
+	public PaisDao getPaisDao() {
 		return paisDao;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 * @param paisDao
+	 */
+	public void setPaisDao(PaisDao paisDao) {
+		this.paisDao = paisDao;
 	}
 
 }

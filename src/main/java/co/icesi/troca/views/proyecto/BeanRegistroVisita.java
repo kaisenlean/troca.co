@@ -20,7 +20,7 @@ import co.icesi.troca.views.login.Login;
  * @project troca-co
  * @class BeanRegistroVisita
  * @date 8/12/2013
- *
+ * 
  */
 @ManagedBean
 @SessionScoped
@@ -28,61 +28,57 @@ public class BeanRegistroVisita extends BaseBean implements Serializable {
 
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * proyectoVisitaService
+	 *         proyectoVisitaService
 	 */
-	@ManagedProperty(value="#{proyectoVisitaService}")
+	@ManagedProperty(value = "#{proyectoVisitaService}")
 	private ProyectoVisitaService proyectoVisitaService;
 
-	
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * login
+	 *         login
 	 */
-	@ManagedProperty(value="#{login}")
+	@ManagedProperty(value = "#{login}")
 	private Login login;
-	
-	
-	
-	
-	
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 8/12/2013
-	* @param proyecto
-	*/
-	public void guardarVisita(Proyecto proyecto){
-	ProyectoVisita visita=new ProyectoVisita();
-	visita.setProyecto(proyecto);
-	visita.setUsuario( login.getUsuario());
-	proyectoVisitaService.save(visita);
-	}
-	
-	
-	
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 8/12/2013
-	 * @param login the login to set
+	 * @param proyecto
+	 */
+	public void guardarVisita(Proyecto proyecto) {
+		ProyectoVisita visita = new ProyectoVisita();
+		visita.setProyecto(proyecto);
+		visita.setUsuario(login.getUsuario());
+		proyectoVisitaService.save(visita);
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param login
+	 *            the login to set
 	 */
 	public void setLogin(Login login) {
 		this.login = login;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 8/12/2013
-	 * @param proyectoVisitaService the proyectoVisitaService to set
+	 * @param proyectoVisitaService
+	 *            the proyectoVisitaService to set
 	 */
 	public void setProyectoVisitaService(
 			ProyectoVisitaService proyectoVisitaService) {

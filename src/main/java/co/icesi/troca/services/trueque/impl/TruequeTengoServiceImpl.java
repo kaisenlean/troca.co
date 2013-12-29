@@ -22,34 +22,44 @@ import co.icesi.troca.services.trueque.TruequeTengoService;
  * @project troca-co
  * @class TruequeTengoServiceImpl
  * @date 2/12/2013
- *
+ * 
  */
 @Service("truequeTengoService")
-public class TruequeTengoServiceImpl extends GenericServiceImpl<TruequeTengo, Integer> implements TruequeTengoService,Serializable {
+public class TruequeTengoServiceImpl extends
+		GenericServiceImpl<TruequeTengo, Integer> implements
+		TruequeTengoService, Serializable {
 
 	/**
 	 * 2/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private TruequeTengoDao truequeTengoDao;
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
-	 */
-	@Override
-	public GenericRepository<TruequeTengo, Integer> getDao() {
-		return truequeTengoDao;
-	}
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.trueque.TruequeTengoService#findByTengoAndSolicitante(co.icesi.troca.model.tengo.Tengo, co.icesi.troca.model.usuario.Usuario)
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.trueque.TruequeTengoService#findByTengoAndSolicitante(co.icesi.troca.model.tengo.Tengo,
+	 *      co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
 	public List<TruequeTengo> findByTengoAndSolicitante(Tengo tengo,
 			Usuario usuario) {
 		return truequeTengoDao.findByTengoAndSolicitante(tengo, usuario);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
+	@Override
+	public GenericRepository<TruequeTengo, Integer> getDao() {
+		return truequeTengoDao;
 	}
 
 }

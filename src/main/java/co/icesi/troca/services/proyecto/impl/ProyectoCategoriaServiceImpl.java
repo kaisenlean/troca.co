@@ -16,32 +16,35 @@ import co.icesi.troca.services.proyecto.ProyectoCategoriaService;
 
 /**
  * 
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class ProyectoCategoriaServiceImpl
-* @date 24/11/2013
-*
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class ProyectoCategoriaServiceImpl
+ * @date 24/11/2013
+ * 
  */
 @Service("proyectoCategoriaService")
-public class ProyectoCategoriaServiceImpl extends GenericServiceImpl<ProyectoCategoria, Integer> implements ProyectoCategoriaService ,Serializable{
+public class ProyectoCategoriaServiceImpl extends
+		GenericServiceImpl<ProyectoCategoria, Integer> implements
+		ProyectoCategoriaService, Serializable {
 
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private ProyectoCategoriaDao proyectoDao;
-	
-	/** (non-Javadoc)
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
 	public GenericRepository<ProyectoCategoria, Integer> getDao() {
 		return proyectoDao;
 	}
-
-	
 
 }

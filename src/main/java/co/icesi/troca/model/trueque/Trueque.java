@@ -35,14 +35,16 @@ import co.icesi.troca.model.usuario.Usuario;
 public class Trueque implements Serializable {
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * id
+	 *         id
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,178 +52,84 @@ public class Trueque implements Serializable {
 	private Integer id;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * usuarioTrueque1
+	 *         usuarioTrueque1
 	 */
 	@ManyToOne
 	@JoinColumn(name = "usuario_trueque_1")
 	private Usuario usuarioTrueque1;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * usuarioTrueque2
+	 *         usuarioTrueque2
 	 */
 	@ManyToOne
-	 @JoinColumn(name = "usuario_trueque_2")
+	@JoinColumn(name = "usuario_trueque_2")
 	private Usuario usuarioTrueque2;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * estado
+	 *         estado
 	 */
 	@Column(name = "estado")
 	@Enumerated(EnumType.STRING)
 	private EstadoTruequeEnum estado;
-	
-	
-	
+
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * estadoUsuario1
+	 *         estadoUsuario1
 	 */
 	@Column(name = "estado_usuario_1")
 	@Enumerated(EnumType.STRING)
 	private EstadoTruequeEnum estadoUsuario1;
-	
-	
+
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * estadoUsuario2
+	 *         estadoUsuario2
 	 */
 	@Column(name = "estado_usuario_2")
 	@Enumerated(EnumType.STRING)
 	private EstadoTruequeEnum estadoUsuario2;
-	
+
 	@ManyToOne
-	@JoinColumn(name="proyecto")
+	@JoinColumn(name = "proyecto")
 	private Proyecto proyecto;
-	
-	/**
-	 * 9/12/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * mensajes
-	 */
-	@Transient
-	private List<TruequeMensaje> mensajes=new ArrayList<TruequeMensaje>();
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	*/
+	 * 9/12/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         mensajes
+	 */
+	@Transient
+	private List<TruequeMensaje> mensajes = new ArrayList<TruequeMensaje>();
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 */
 	public Trueque() {
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
 	public Trueque(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Usuario getUsuarioTrueque1() {
-		return usuarioTrueque1;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param usuarioTrueque1
-	*/
-	public void setUsuarioTrueque1(Usuario usuarioTrueque1) {
-		this.usuarioTrueque1 = usuarioTrueque1;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Usuario getUsuarioTrueque2() {
-		return usuarioTrueque2;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param usuarioTrueque2
-	*/
-	public void setUsuarioTrueque2(Usuario usuarioTrueque2) {
-		this.usuarioTrueque2 = usuarioTrueque2;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public EstadoTruequeEnum getEstado() {
-		return estado;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param estado
-	*/
-	public void setEstado(EstadoTruequeEnum estado) {
-		this.estado = estado;
-	}
-
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the mensajes
-	 */
-	public List<TruequeMensaje> getMensajes() {
-		return mensajes;
-	}
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param mensajes the mensajes to set
-	 */
-	public void setMensajes(List<TruequeMensaje> mensajes) {
-		this.mensajes = mensajes;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -237,14 +145,22 @@ public class Trueque implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
 	 */
-	@Override
-	public String toString() {
-		return "com.icesi.trocadero.data.entities.Trueque[ id=" + id + " ]";
+	public EstadoTruequeEnum getEstado() {
+		return estado;
 	}
-	
+
+	public String getEstadoTruequeAsString() {
+		if (estado == null) {
+			return "";
+		}
+		return estado.name();
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
@@ -253,7 +169,7 @@ public class Trueque implements Serializable {
 	public EstadoTruequeEnum getEstadoUsuario1() {
 		return estadoUsuario1;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
@@ -262,25 +178,25 @@ public class Trueque implements Serializable {
 	public EstadoTruequeEnum getEstadoUsuario2() {
 		return estadoUsuario2;
 	}
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Integer getId() {
+		return id;
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
-	 * @param estadoUsuario1 the estadoUsuario1 to set
+	 * @return the mensajes
 	 */
-	public void setEstadoUsuario1(EstadoTruequeEnum estadoUsuario1) {
-		this.estadoUsuario1 = estadoUsuario1;
+	public List<TruequeMensaje> getMensajes() {
+		return mensajes;
 	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param estadoUsuario2 the estadoUsuario2 to set
-	 */
-	public void setEstadoUsuario2(EstadoTruequeEnum estadoUsuario2) {
-		this.estadoUsuario2 = estadoUsuario2;
-	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 20/12/2013
@@ -289,21 +205,121 @@ public class Trueque implements Serializable {
 	public Proyecto getProyecto() {
 		return proyecto;
 	}
-	 /**
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Usuario getUsuarioTrueque1() {
+		return usuarioTrueque1;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Usuario getUsuarioTrueque2() {
+		return usuarioTrueque2;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param estado
+	 */
+	public void setEstado(EstadoTruequeEnum estado) {
+		this.estado = estado;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param estadoUsuario1
+	 *            the estadoUsuario1 to set
+	 */
+	public void setEstadoUsuario1(EstadoTruequeEnum estadoUsuario1) {
+		this.estadoUsuario1 = estadoUsuario1;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param estadoUsuario2
+	 *            the estadoUsuario2 to set
+	 */
+	public void setEstadoUsuario2(EstadoTruequeEnum estadoUsuario2) {
+		this.estadoUsuario2 = estadoUsuario2;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param mensajes
+	 *            the mensajes to set
+	 */
+	public void setMensajes(List<TruequeMensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+
+	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 20/12/2013
-	 * @param proyecto the proyecto to set
+	 * @param proyecto
+	 *            the proyecto to set
 	 */
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
 	}
-	
-	
-	public String getEstadoTruequeAsString(){
-		if (estado==null) {
-			return "";
-		}
-		return estado.name();
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param usuarioTrueque1
+	 */
+	public void setUsuarioTrueque1(Usuario usuarioTrueque1) {
+		this.usuarioTrueque1 = usuarioTrueque1;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param usuarioTrueque2
+	 */
+	public void setUsuarioTrueque2(Usuario usuarioTrueque2) {
+		this.usuarioTrueque2 = usuarioTrueque2;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "com.icesi.trocadero.data.entities.Trueque[ id=" + id + " ]";
 	}
 
 }

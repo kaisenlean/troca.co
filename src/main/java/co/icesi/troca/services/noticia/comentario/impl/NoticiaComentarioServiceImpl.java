@@ -21,34 +21,42 @@ import co.icesi.troca.services.noticia.comentario.NoticiaComentarioService;
  * @project troca-co
  * @class NoticiaComentarioServiceImpl
  * @date 9/12/2013
- *
+ * 
  */
 @Service("noticiaComentarioService")
-public class NoticiaComentarioServiceImpl extends GenericServiceImpl<NoticiaComentario, Integer>implements Serializable,NoticiaComentarioService {
+public class NoticiaComentarioServiceImpl extends
+		GenericServiceImpl<NoticiaComentario, Integer> implements Serializable,
+		NoticiaComentarioService {
 
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private NoticiaComentarioDao noticiaComentarioDao;
-	
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
-	 */
-	@Override
-	public GenericRepository<NoticiaComentario, Integer> getDao() {
-		return noticiaComentarioDao;
-	}
-	/** (non-Javadoc)
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.noticia.comentario.NoticiaComentarioService#findComentariosByNoticia(co.icesi.troca.model.noticia.Noticia)
 	 */
 	@Override
 	public List<NoticiaComentario> findComentariosByNoticia(Noticia noticia) {
 		return noticiaComentarioDao.findComentariosByNoticia(noticia);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
+	@Override
+	public GenericRepository<NoticiaComentario, Integer> getDao() {
+		return noticiaComentarioDao;
 	}
 
 }

@@ -21,31 +21,39 @@ import co.icesi.troca.services.impl.GenericServiceImpl;
  * @project troca-co
  * @class CalificacionServiceImpl
  * @date 9/12/2013
- *
+ * 
  */
 @Service("calificacionService")
-public class CalificacionServiceImpl  extends GenericServiceImpl<Calificacion, Integer> implements Serializable , CalificacionService{
+public class CalificacionServiceImpl extends
+		GenericServiceImpl<Calificacion, Integer> implements Serializable,
+		CalificacionService {
 
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Autowired
 	private CalificacionDao calificacionDao;
-	
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.calificacion.CalificacionService#findCalificacionByTruequeCanceladoByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
-	public GenericRepository<Calificacion, Integer> getDao() {
-		return calificacionDao;
+	public List<Calificacion> findCalificacionByTruequeCanceladoByUsuario(
+			Usuario usuario) {
+		return calificacionDao
+				.findCalificacionByTruequeCanceladoByUsuario(usuario);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.calificacion.CalificacionService#findCalificacionByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
@@ -53,13 +61,14 @@ public class CalificacionServiceImpl  extends GenericServiceImpl<Calificacion, I
 		return calificacionDao.findCalificacionByUsuario(usuario);
 	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.calificacion.CalificacionService#findCalificacionByTruequeCanceladoByUsuario(co.icesi.troca.model.usuario.Usuario)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
-	public List<Calificacion> findCalificacionByTruequeCanceladoByUsuario(
-			Usuario usuario) {
-		return calificacionDao.findCalificacionByTruequeCanceladoByUsuario(usuario);
+	public GenericRepository<Calificacion, Integer> getDao() {
+		return calificacionDao;
 	}
 
 }

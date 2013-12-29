@@ -24,34 +24,55 @@ import co.icesi.troca.repositories.proyecto.ProyectoDao;
  * @project troca-co
  * @class ProyectoDaoImpl
  * @date 7/11/2013
- *
+ * 
  */
 @Repository("proyectoDao")
-public class ProyectoDaoImpl extends GenericJpaRepository<Proyecto, Integer> implements ProyectoDao,Serializable {
+public class ProyectoDaoImpl extends GenericJpaRepository<Proyecto, Integer>
+		implements ProyectoDao, Serializable {
 
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * FIELD_OWNER
+	 *         FIELD_OWNER
 	 */
 	private static final String FIELD_OWNER = "owner";
 
-	/** (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.icesi.troca.repositories.proyecto.ProyectoDao#findProyectosByParam
+	 * (java.lang.String)
+	 */
+	@Override
+	public List<Proyecto> findProyectosByParam(String param) {
+		Criterion criterion = Restrictions.like("nombre", param,
+				MatchMode.ANYWHERE);
+		return findByCriteria(criterion);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.proyecto.ProyectoDao#findProyectosByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
 	public List<Proyecto> findProyectosByUsuario(Usuario usuario) {
-	Criterion criteria= Restrictions.eq(FIELD_OWNER, usuario);
+		Criterion criteria = Restrictions.eq(FIELD_OWNER, usuario);
 		return findByCriteria(criteria);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.proyecto.ProyectoDao#findUltimosProyectos(int)
 	 */
 	@SuppressWarnings("unchecked")
@@ -64,17 +85,8 @@ public class ProyectoDaoImpl extends GenericJpaRepository<Proyecto, Integer> imp
 		crit.addOrder(order);
 		crit.setFirstResult(0);
 		crit.setMaxResults(maxResults);
-		
-		return crit.list();
-	}
 
-	/* (non-Javadoc)
-	 * @see co.icesi.troca.repositories.proyecto.ProyectoDao#findProyectosByParam(java.lang.String)
-	 */
-	@Override
-	public List<Proyecto> findProyectosByParam(String param) {
-		Criterion criterion = Restrictions.like("nombre", param, MatchMode.ANYWHERE);
-		return findByCriteria(criterion);
+		return crit.list();
 	}
 
 }

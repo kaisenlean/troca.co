@@ -22,51 +22,45 @@ import co.icesi.troca.repositories.impl.GenericJpaRepository;
  * @project troca-co
  * @class CalificacionDaoImpl
  * @date 9/12/2013
- *
+ * 
  */
 @Repository("calificacionDao")
-public class CalificacionDaoImpl extends GenericJpaRepository<Calificacion, Integer> implements Serializable,CalificacionDao {
+public class CalificacionDaoImpl extends
+		GenericJpaRepository<Calificacion, Integer> implements Serializable,
+		CalificacionDao {
 
 	/**
 	 * 19/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * TRUEQUE_FIELD
+	 *         TRUEQUE_FIELD
 	 */
 	private static final String TRUEQUE_FIELD = "trueque";
 	/**
 	 * 19/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * TRUEQUE_ESTADO_FIELD
+	 *         TRUEQUE_ESTADO_FIELD
 	 */
 	private static final String TRUEQUE_ESTADO_FIELD = "trueque.estado";
 	/**
 	 * 19/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * USUARIO_FIELD
+	 *         USUARIO_FIELD
 	 */
 	private static final String USUARIO_FIELD = "usuario";
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.repositories.calificacion.CalificacionDao#findCalificacionByUsuario(co.icesi.troca.model.usuario.Usuario)
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Calificacion> findCalificacionByUsuario(Usuario usuario) {
-		Session session = getEntityManager().unwrap(Session.class);
-
-		Criteria criterion = session.createCriteria(getEntityClass());
-		criterion.createAlias(TRUEQUE_FIELD, TRUEQUE_FIELD);
-		 criterion.add(Restrictions.conjunction().add(Restrictions.eq(USUARIO_FIELD, usuario)).add(Restrictions.eq(TRUEQUE_ESTADO_FIELD, EstadoTruequeEnum.FINALIZADO)));
-		return criterion.list();
-	}
-
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.calificacion.CalificacionDao#findCalificacionByTruequeCanceladoByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@SuppressWarnings("unchecked")
@@ -77,7 +71,31 @@ public class CalificacionDaoImpl extends GenericJpaRepository<Calificacion, Inte
 
 		Criteria criterion = session.createCriteria(getEntityClass());
 		criterion.createAlias(TRUEQUE_FIELD, TRUEQUE_FIELD);
-		 criterion.add(Restrictions.conjunction().add(Restrictions.eq(USUARIO_FIELD, usuario)).add(Restrictions.eq(TRUEQUE_ESTADO_FIELD, EstadoTruequeEnum.CANCELADO)));
+		criterion.add(Restrictions
+				.conjunction()
+				.add(Restrictions.eq(USUARIO_FIELD, usuario))
+				.add(Restrictions.eq(TRUEQUE_ESTADO_FIELD,
+						EstadoTruequeEnum.CANCELADO)));
+		return criterion.list();
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.calificacion.CalificacionDao#findCalificacionByUsuario(co.icesi.troca.model.usuario.Usuario)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Calificacion> findCalificacionByUsuario(Usuario usuario) {
+		Session session = getEntityManager().unwrap(Session.class);
+
+		Criteria criterion = session.createCriteria(getEntityClass());
+		criterion.createAlias(TRUEQUE_FIELD, TRUEQUE_FIELD);
+		criterion.add(Restrictions
+				.conjunction()
+				.add(Restrictions.eq(USUARIO_FIELD, usuario))
+				.add(Restrictions.eq(TRUEQUE_ESTADO_FIELD,
+						EstadoTruequeEnum.FINALIZADO)));
 		return criterion.list();
 	}
 

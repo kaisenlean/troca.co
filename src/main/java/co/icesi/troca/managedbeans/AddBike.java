@@ -20,16 +20,18 @@ public class AddBike implements Serializable {
 
 	private static final long serialVersionUID = -2155913853431899821L;
 
-	// @ManagedProperty("#{bikeDataProvider}")
-	// private BikeDataProvider bikeDataProvider; // injected Spring defined
-	// service for bikes
-	//
-
 	@ManagedProperty("#{usuarioService}")
-	private UsuarioService usuarioService; // injected Spring defined service
-											// for bikes
+	private UsuarioService usuarioService;
 
 	private List<Usuario> lista;
+
+	public List<Usuario> getLista() {
+		return lista;
+	}
+
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
 
 	@PostConstruct
 	public void init() {
@@ -37,20 +39,12 @@ public class AddBike implements Serializable {
 
 	}
 
-	public void setUsuarioService(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
-	}
-
-	public UsuarioService getUsuarioService() {
-		return usuarioService;
-	}
-
-	public List<Usuario> getLista() {
-		return lista;
-	}
-
 	public void setLista(List<Usuario> lista) {
 		this.lista = lista;
+	}
+
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
 	}
 
 }

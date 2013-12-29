@@ -46,39 +46,27 @@ public class NecesitoServiceImplTest extends BaseUnit {
 	 *         NECESITO_NOMBRE
 	 */
 	private static final String NECESITO_NOMBRE = "necesito necesito";
-	
-	
-	
+
 	/**
 	 * 20/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * necesitoDao
+	 *         necesitoDao
 	 */
 	@Autowired
 	private NecesitoService necesitoService;
 
 	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 * Test method for {@link NecesitoServiceImpl#findUltimosNecesito()}
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/11/2013
 	 */
 	@Test
-	public void testFindAll() {
-		List<Necesito> lista = necesitoService.findAll();
+	public void findUltimosNecesito() {
+		List<Necesito> lista = necesitoService.findUltimosNecesito();
 		assertNotNull(lista);
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
-	 * .
-	 */
-	@Test
-	public void testFindById() {
-		Necesito necesito = testCreateNecesito();
-		Integer id = necesito.getId();
-
-		necesito = necesitoService.findById(id);
-		assertNotNull(necesito);
+		log.info(String.valueOf(lista.size()));
 
 	}
 
@@ -108,8 +96,32 @@ public class NecesitoServiceImplTest extends BaseUnit {
 		Integer id = necesito.getId();
 		necesitoService.delete(necesito);
 		necesito = necesitoService.findById(id);
-		
-		
+
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 */
+	@Test
+	public void testFindAll() {
+		List<Necesito> lista = necesitoService.findAll();
+		assertNotNull(lista);
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
+	 * .
+	 */
+	@Test
+	public void testFindById() {
+		Necesito necesito = testCreateNecesito();
+		Integer id = necesito.getId();
+
+		necesito = necesitoService.findById(id);
+		assertNotNull(necesito);
+
 	}
 
 	/**
@@ -122,20 +134,4 @@ public class NecesitoServiceImplTest extends BaseUnit {
 		Necesito necesito = testCreateNecesito();
 		assertNotNull(necesito.getId());
 	}
-
-	/**
-	 * Test method for {@link NecesitoServiceImpl#findUltimosNecesito()}
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 23/11/2013
-	 */
-	@Test
-	public void findUltimosNecesito(){
-		List<Necesito> lista= necesitoService.findUltimosNecesito();
-		assertNotNull(lista);
-		log.info(String.valueOf(lista.size()));
-		
-		
-	}
 }
-
-

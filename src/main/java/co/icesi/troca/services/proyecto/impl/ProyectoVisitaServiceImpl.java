@@ -23,22 +23,38 @@ import co.icesi.troca.services.proyecto.ProyectoVisitaService;
  * @project troca-co
  * @class ProyectoVisitaServiceImpl
  * @date 8/12/2013
- *
+ * 
  */
 @Service("proyectoVisitaService")
-public class ProyectoVisitaServiceImpl extends GenericServiceImpl<ProyectoVisita, Integer> implements Serializable,ProyectoVisitaService {
+public class ProyectoVisitaServiceImpl extends
+		GenericServiceImpl<ProyectoVisita, Integer> implements Serializable,
+		ProyectoVisitaService {
 
 	@Autowired
 	private ProyectoVisitaDao proyectoVisitaDao;
-	
+
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.proyecto.ProyectoVisitaService#findProyectosMasVisitados()
+	 */
+	@Override
+	public List<Proyecto> findProyectosMasVisitados(int maxResults)
+			throws BaseException {
+		return proyectoVisitaDao.findProyectosMasVisitados(maxResults);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
@@ -46,21 +62,16 @@ public class ProyectoVisitaServiceImpl extends GenericServiceImpl<ProyectoVisita
 		return proyectoVisitaDao;
 	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.proyecto.ProyectoVisitaService#registrarVisita(co.icesi.troca.model.proyecto.Proyecto, co.icesi.troca.model.usuario.Usuario)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.proyecto.ProyectoVisitaService#registrarVisita(co.icesi.troca.model.proyecto.Proyecto,
+	 *      co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
 	public void registrarVisita(Proyecto proyecto, Usuario usuario)
 			throws BaseException {
-		proyectoVisitaDao.registrarVisita(proyecto, usuario);		
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.proyecto.ProyectoVisitaService#findProyectosMasVisitados()
-	 */
-	@Override
-	public List<Proyecto> findProyectosMasVisitados(int maxResults) throws BaseException {
-		return proyectoVisitaDao.findProyectosMasVisitados(maxResults);
+		proyectoVisitaDao.registrarVisita(proyecto, usuario);
 	}
 
 }

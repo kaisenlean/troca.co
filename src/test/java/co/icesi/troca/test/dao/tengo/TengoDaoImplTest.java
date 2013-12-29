@@ -30,12 +30,13 @@ import co.icesi.troca.test.BaseUnit;
  * 
  */
 
-public class TengoDaoImplTest  extends BaseUnit{
+public class TengoDaoImplTest extends BaseUnit {
 
 	/**
 	 * 1/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULT_TENGOS
+	 *         MAX_RESULT_TENGOS
 	 */
 	private static final int MAX_RESULT_TENGOS = 2;
 	/**
@@ -64,53 +65,19 @@ public class TengoDaoImplTest  extends BaseUnit{
 	private static final String NOMBRE_PRUEBA = "NOMBRE PRUEBA";
 
 	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return
 	 */
-	@Test
-	public void testFindAll() {
-		List<Tengo> listado = tengoDao.findAll();
-		assertNotNull(listado);
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
-	 * .
-	 */
-	@Test
-	public void testFindById() {
-		Tengo tengo = createTengoTest();
-		int id = tengo.getId();
-
-		tengo = tengoDao.findById(id);
-		assertNotNull(tengo);
-
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#delete(java.lang.Object)}
-	 * .
-	 */
-	@Test
-	public void testDelete() {
-		Tengo tengo = createTengoTest();
-		tengoDao.delete(tengo);
-		tengo = tengoDao.findById(tengo.getId());
-		assertNull(tengo);
-
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#save(java.lang.Object)}
-	 * .
-	 */
-	@Test
-	public void testSave() {
-		Tengo tengo = createTengoTest();
-		assertNotNull(tengo.getId());
+	private Tengo createTengoTest() {
+		Usuario usuario = saveTestUsuario();
+		Tengo tengo = new Tengo();
+		tengo.setOwner(usuario);
+		tengo.setNombre(NOMBRE_TENGO);
+		tengo.setEstado(EstadoTengo.ACTIVO);
+		tengo.setDescripcion(DESCRIPCION_TENGO);
+		tengo = tengoDao.save(tengo);
+		return tengo;
 	}
 
 	/**
@@ -129,28 +96,14 @@ public class TengoDaoImplTest  extends BaseUnit{
 
 	/**
 	 * Test method for {@link TengoDaoImpl#findUltimosTengo(int)}
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/11/2013
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/11/2013
 	 */
 	@Test
-	public void findUltimosTengo(){
-		List<Tengo> listado= tengoDao.findUltimosTengo(MAX_RESULT_TENGOS);
+	public void findUltimosTengo() {
+		List<Tengo> listado = tengoDao.findUltimosTengo(MAX_RESULT_TENGOS);
 		assertNotNull(listado);
-	}
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @return
-	 */
-	private Tengo createTengoTest() {
-		Usuario usuario = saveTestUsuario();
-		Tengo tengo = new Tengo();
-		tengo.setOwner(usuario);
-		tengo.setNombre(NOMBRE_TENGO);
-		tengo.setEstado(EstadoTengo.ACTIVO);
-		tengo.setDescripcion(DESCRIPCION_TENGO);
-		tengo = tengoDao.save(tengo);
-		return tengo;
 	}
 
 	/**
@@ -188,6 +141,56 @@ public class TengoDaoImplTest  extends BaseUnit{
 	 */
 	public void setUsuarioDao(UsuarioDao usuarioDao) {
 		this.usuarioDao = usuarioDao;
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#delete(java.lang.Object)}
+	 * .
+	 */
+	@Test
+	public void testDelete() {
+		Tengo tengo = createTengoTest();
+		tengoDao.delete(tengo);
+		tengo = tengoDao.findById(tengo.getId());
+		assertNull(tengo);
+
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 */
+	@Test
+	public void testFindAll() {
+		List<Tengo> listado = tengoDao.findAll();
+		assertNotNull(listado);
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
+	 * .
+	 */
+	@Test
+	public void testFindById() {
+		Tengo tengo = createTengoTest();
+		int id = tengo.getId();
+
+		tengo = tengoDao.findById(id);
+		assertNotNull(tengo);
+
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#save(java.lang.Object)}
+	 * .
+	 */
+	@Test
+	public void testSave() {
+		Tengo tengo = createTengoTest();
+		assertNotNull(tengo.getId());
 	}
 
 }

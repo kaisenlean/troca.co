@@ -14,62 +14,45 @@ import co.icesi.troca.services.UsuarioService;
 
 /**
  * 
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class UsuarioServiceImpl
-* @date 22/10/2013
-*
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class UsuarioServiceImpl
+ * @date 22/10/2013
+ * 
  */
 @Service("usuarioService")
-public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> implements UsuarioService, Serializable {
+public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer>
+		implements UsuarioService, Serializable {
 
 	/**
 	 * 22/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = -7342021171479215673L;
 	/**
 	 * 22/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * usuarioDAO
+	 *         usuarioDAO
 	 */
 	@Resource(name = "usuarioDao")
 	private UsuarioDao usuarioDAO;
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 22/10/2013
-	* @return
-	*/
-	public UsuarioDao getUsuarioDAO() {
-		return usuarioDAO;
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.UsuarioService#findByEmail(java.lang.String)
+	 */
+	@Override
+	public Usuario findByEmail(String email) {
+		return usuarioDAO.findByEmail(email);
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 22/10/2013
-	* @param usuarioDAO
-	*/
-	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
-		this.usuarioDAO = usuarioDAO;
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
-	 */
-	@Override
-	public GenericRepository<Usuario, Integer> getDao() {
-		return usuarioDAO;
-	}
-
-	@Override
-	public Usuario loggedIn(Usuario usuario) {
-		return usuarioDAO.loggedIn(usuario);
-		
-	}
-
-	/** (non-Javadoc)
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.UsuarioService#findUsuariosByParam(java.lang.String)
 	 */
 	@Override
@@ -77,12 +60,38 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
 		return usuarioDAO.findUsuariosByParam(param);
 	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.UsuarioService#findByEmail(java.lang.String)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
-	public Usuario findByEmail(String email) {
-		return usuarioDAO.findByEmail(email);
+	public GenericRepository<Usuario, Integer> getDao() {
+		return usuarioDAO;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 * @return
+	 */
+	public UsuarioDao getUsuarioDAO() {
+		return usuarioDAO;
+	}
+
+	@Override
+	public Usuario loggedIn(Usuario usuario) {
+		return usuarioDAO.loggedIn(usuario);
+
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 * @param usuarioDAO
+	 */
+	public void setUsuarioDAO(UsuarioDao usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
 	}
 
 }

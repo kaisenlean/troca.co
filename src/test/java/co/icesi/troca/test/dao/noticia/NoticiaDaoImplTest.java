@@ -83,17 +83,6 @@ public class NoticiaDaoImplTest extends BaseUnit {
 	private NoticiaDao noticiaDao;
 
 	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
-	 */
-	@Test
-	public void testFindAll() {
-		List<Noticia> lista = noticiaDao.findAll();
-		assertNotNull(lista);
-
-	}
-
-	/**
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 31/10/2013
@@ -116,59 +105,21 @@ public class NoticiaDaoImplTest extends BaseUnit {
 
 		List<Noticia> noticias = noticiaDao.findNoticiasByFechas(
 				fechaInicio.getTime(), fechaFIn.getTime());
-		
+
 		assertNotNull(noticias);
 
 	}
 
 	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
-	 * .
-	 */
-	@Test
-	public void testFindById() {
-		Noticia noticia = saveTestNoticia();
-		Integer id = noticia.getId();
-		Noticia nTemp = noticiaDao.findById(id);
-		assertNotNull(nTemp);
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#delete(java.lang.Object)}
-	 * .
-	 */
-	@Test
-	public void testDelete() {
-		Noticia noticia = saveTestNoticia();
-		noticiaDao.delete(noticia);
-		noticia = noticiaDao.findById(noticia.getId());
-		assertNull(noticia);
-
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#save(java.lang.Object)}
-	 * .
-	 */
-	@Test
-	public void testSave() {
-		Noticia noticia = saveTestNoticia();
-		assertNotNull(noticia.getId());
-
-	}
-
-	/**
 	 * Test for method {@link NoticiaDaoImpl#findUltimasNoticias(int)}
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
 	 */
 	@Test
 	public void findUltimasNoticias() {
-	List<Noticia> ultimasNoticias = noticiaDao.findUltimasNoticias(2);
-	assertNotNull(ultimasNoticias);
+		List<Noticia> ultimasNoticias = noticiaDao.findUltimasNoticias(2);
+		assertNotNull(ultimasNoticias);
 	}
 
 	/**
@@ -195,5 +146,55 @@ public class NoticiaDaoImplTest extends BaseUnit {
 	 */
 	public void setNoticiaDao(NoticiaDao noticiaDao) {
 		this.noticiaDao = noticiaDao;
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#delete(java.lang.Object)}
+	 * .
+	 */
+	@Test
+	public void testDelete() {
+		Noticia noticia = saveTestNoticia();
+		noticiaDao.delete(noticia);
+		noticia = noticiaDao.findById(noticia.getId());
+		assertNull(noticia);
+
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 */
+	@Test
+	public void testFindAll() {
+		List<Noticia> lista = noticiaDao.findAll();
+		assertNotNull(lista);
+
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
+	 * .
+	 */
+	@Test
+	public void testFindById() {
+		Noticia noticia = saveTestNoticia();
+		Integer id = noticia.getId();
+		Noticia nTemp = noticiaDao.findById(id);
+		assertNotNull(nTemp);
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#save(java.lang.Object)}
+	 * .
+	 */
+	@Test
+	public void testSave() {
+		Noticia noticia = saveTestNoticia();
+		assertNotNull(noticia.getId());
+
 	}
 }

@@ -34,14 +34,16 @@ import co.icesi.troca.model.usuario.Usuario;
 public class Proyecto implements Serializable {
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * id
+	 *         id
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,227 +52,100 @@ public class Proyecto implements Serializable {
 	private Integer id;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * owner
+	 *         owner
 	 */
 	@ManyToOne
-	@JoinColumn(name = "owner",referencedColumnName="id")
+	@JoinColumn(name = "owner", referencedColumnName = "id")
 	private Usuario owner;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * nombre
+	 *         nombre
 	 */
 	@Column(name = "nombre")
 	private String nombre;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * descripcion
+	 *         descripcion
 	 */
 	@Column(name = "descripcion")
 	private String descripcion;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * descripcionLarga
+	 *         descripcionLarga
 	 */
 	@Column(name = "descripcion_larga")
 	private String descripcionLarga;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * licencia
+	 *         licencia
 	 */
 	@Column(name = "licencia")
 	private String licencia;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * categoria
+	 *         categoria
 	 */
 	@ManyToOne
-	@JoinColumn(name = "categoria",referencedColumnName="id")
+	@JoinColumn(name = "categoria", referencedColumnName = "id")
 	private ProyectoCategoria categoria;
 
-	
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * fechaRegistro
+	 *         fechaRegistro
 	 */
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_creacion")
-	private Date  fechaRegistro;
-	
+	@Column(name = "fecha_creacion")
+	private Date fechaRegistro;
+
 	/**
 	 * 30/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * image
+	 *         image
 	 */
 	@Column(name = "image")
 	private String image;
-	
-//	@Pattern(regexp="http://www\\.youtube\\.com\\/(.+)|https://www\\.youtube\\.com\\/(.+)",message="URL inválido")
-	@Column(name="link_video")
+
+	// @Pattern(regexp="http://www\\.youtube\\.com\\/(.+)|https://www\\.youtube\\.com\\/(.+)",message="URL inválido")
+	@Column(name = "link_video")
 	private String linkVideo;
-	
+
 	@Transient
 	private String extension;
-	
+
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 */
 	public Proyecto() {
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
 	public Proyecto(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Usuario getOwner() {
-		return owner;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param owner
-	*/
-	public void setOwner(Usuario owner) {
-		this.owner = owner;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param nombre
-	*/
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param descripcion
-	*/
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getDescripcionLarga() {
-		return descripcionLarga;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param descripcionLarga
-	*/
-	public void setDescripcionLarga(String descripcionLarga) {
-		this.descripcionLarga = descripcionLarga;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getLicencia() {
-		return licencia;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param licencia
-	*/
-	public void setLicencia(String licencia) {
-		this.licencia = licencia;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public ProyectoCategoria getCategoria() {
-		return categoria;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param categoria
-	*/
-	public void setCategoria(ProyectoCategoria categoria) {
-		this.categoria = categoria;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -288,32 +163,33 @@ public class Proyecto implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return nombre;
-	}
-	
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 30/11/2013
-	 * @return the image
+	 * @date 12/11/2013
+	 * @return
 	 */
-	public String getImage() {
-		return image;
+	public ProyectoCategoria getCategoria() {
+		return categoria;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 30/11/2013
-	 * @param image the image to set
+	 * @date 12/11/2013
+	 * @return
 	 */
-	public void setImage(String image) {
-		this.image = image;
+	public String getDescripcion() {
+		return descripcion;
 	}
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getDescripcionLarga() {
+		return descripcionLarga;
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 30/11/2013
@@ -322,16 +198,7 @@ public class Proyecto implements Serializable {
 	public String getExtension() {
 		return extension;
 	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 30/11/2013
-	 * @param extension the extension to set
-	 */
-	public void setExtension(String extension) {
-		this.extension = extension;
-	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 1/12/2013
@@ -340,14 +207,32 @@ public class Proyecto implements Serializable {
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 1/12/2013
-	 * @param fechaRegistro the fechaRegistro to set
+	 * @date 12/11/2013
+	 * @return
 	 */
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 30/11/2013
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getLicencia() {
+		return licencia;
 	}
 
 	/**
@@ -358,13 +243,147 @@ public class Proyecto implements Serializable {
 	public String getLinkVideo() {
 		return linkVideo;
 	}
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Usuario getOwner() {
+		return owner;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param categoria
+	 */
+	public void setCategoria(ProyectoCategoria categoria) {
+		this.categoria = categoria;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param descripcion
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param descripcionLarga
+	 */
+	public void setDescripcionLarga(String descripcionLarga) {
+		this.descripcionLarga = descripcionLarga;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 30/11/2013
+	 * @param extension
+	 *            the extension to set
+	 */
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param fechaRegistro
+	 *            the fechaRegistro to set
+	 */
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 30/11/2013
+	 * @param image
+	 *            the image to set
+	 */
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param licencia
+	 */
+	public void setLicencia(String licencia) {
+		this.licencia = licencia;
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
-	 * @param linkVideo the linkVideo to set
+	 * @param linkVideo
+	 *            the linkVideo to set
 	 */
 	public void setLinkVideo(String linkVideo) {
 		this.linkVideo = linkVideo;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param nombre
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param owner
+	 */
+	public void setOwner(Usuario owner) {
+		this.owner = owner;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return nombre;
 	}
 }

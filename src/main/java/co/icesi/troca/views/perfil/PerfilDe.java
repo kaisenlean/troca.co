@@ -71,9 +71,9 @@ public class PerfilDe extends BaseBean implements Serializable {
 	private List<Trueque> truequesFinalizados;
 	private List<Trueque> truequesCancelados;
 
-	@ManagedProperty(value="#{proyectoUsuarioService}")
+	@ManagedProperty(value = "#{proyectoUsuarioService}")
 	private ProyectoUsuarioService proyectoUsuarioService;
-	
+
 	@ManagedProperty(value = "#{calificacionService}")
 	private CalificacionService calificacionService;
 	@ManagedProperty(value = "#{login}")
@@ -93,41 +93,56 @@ public class PerfilDe extends BaseBean implements Serializable {
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param usuario
+	 * @date 9/12/2013
+	 * @return the calificaciones
 	 */
-	public void loadPerfil(Usuario usuario) {
-		if (usuario.equals(login.getUsuario())) {
-			goTo("/paginas/perfil/perfil.jsf");
-			return;
-		}
-		this.usuario = usuario;
-		this.usuario.setProyectos(proyectoService
-				.findProyectosByUsuario(usuario));
-		this.usuario.getProyectos().addAll(proyectoUsuarioService.findByUsuario(usuario));
-		this.usuario.setTengos(tengoService.findTengosByUsuario(usuario));
-		this.usuario.setNoticias(noticiaService.findNoticiasByUsuario(usuario));
-		this.usuario.setUsuarioLinks(usuarioLinkService
-				.getLinkByUsuario(usuario));
-		truequesActivos = truequeService.findActivosByUsuarioAndEstado(usuario,
-				EstadoTruequeEnum.ACTIVO);
-		truequesFinalizados = truequeService.findActivosByUsuarioAndEstado(
-				usuario, EstadoTruequeEnum.FINALIZADO);
-		truequesCancelados = truequeService.findActivosByUsuarioAndEstado(
-				usuario, EstadoTruequeEnum.CANCELADO);
-		calificaciones = calificacionService.findCalificacionByUsuario(usuario);
+	public List<Calificacion> getCalificaciones() {
+		return calificaciones;
+	}
 
-		double promTemp = 0.0;
-		for (Calificacion cf : calificaciones) {
-			promTemp += cf.getPuntajeVal().doubleValue();
-		}
-		if (!calificaciones.isEmpty()) {
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the noticiaService
+	 */
+	public NoticiaService getNoticiaService() {
+		return noticiaService;
+	}
 
-			promTemp /= calificaciones.size();
-		}
-		promedio = String.valueOf(promTemp);
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the opcionService
+	 */
+	public OpcionService getOpcionService() {
+		return opcionService;
+	}
 
-		goTo("/paginas/perfil/perfilDe.jsf");
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the promedio
+	 */
+	public String getPromedio() {
+		return promedio;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the proyectoService
+	 */
+	public ProyectoService getProyectoService() {
+		return proyectoService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the tengoService
+	 */
+	public TengoService getTengoService() {
+		return tengoService;
 	}
 
 	/**
@@ -160,6 +175,24 @@ public class PerfilDe extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the usuarioLinkService
+	 */
+	public UsuarioLinkService getUsuarioLinkService() {
+		return usuarioLinkService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
 	 * @return the usuarioService
 	 */
 	public UsuarioService getUsuarioService() {
@@ -169,77 +202,71 @@ public class PerfilDe extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
-	 * @param usuarioService
-	 *            the usuarioService to set
+	 * @param usuario
 	 */
-	public void setUsuarioService(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
+	public void loadPerfil(Usuario usuario) {
+		if (usuario.equals(login.getUsuario())) {
+			goTo("/paginas/perfil/perfil.jsf");
+			return;
+		}
+		this.usuario = usuario;
+		this.usuario.setProyectos(proyectoService
+				.findProyectosByUsuario(usuario));
+		this.usuario.getProyectos().addAll(
+				proyectoUsuarioService.findByUsuario(usuario));
+		this.usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+		this.usuario.setNoticias(noticiaService.findNoticiasByUsuario(usuario));
+		this.usuario.setUsuarioLinks(usuarioLinkService
+				.getLinkByUsuario(usuario));
+		truequesActivos = truequeService.findActivosByUsuarioAndEstado(usuario,
+				EstadoTruequeEnum.ACTIVO);
+		truequesFinalizados = truequeService.findActivosByUsuarioAndEstado(
+				usuario, EstadoTruequeEnum.FINALIZADO);
+		truequesCancelados = truequeService.findActivosByUsuarioAndEstado(
+				usuario, EstadoTruequeEnum.CANCELADO);
+		calificaciones = calificacionService.findCalificacionByUsuario(usuario);
+
+		double promTemp = 0.0;
+		for (Calificacion cf : calificaciones) {
+			promTemp += cf.getPuntajeVal().doubleValue();
+		}
+		if (!calificaciones.isEmpty()) {
+
+			promTemp /= calificaciones.size();
+		}
+		promedio = String.valueOf(promTemp);
+
+		goTo("/paginas/perfil/perfilDe.jsf");
 	}
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the opcionService
+	 * @date 9/12/2013
+	 * @param calificaciones
+	 *            the calificaciones to set
 	 */
-	public OpcionService getOpcionService() {
-		return opcionService;
+	public void setCalificaciones(List<Calificacion> calificaciones) {
+		this.calificaciones = calificaciones;
 	}
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param opcionService
-	 *            the opcionService to set
+	 * @date 9/12/2013
+	 * @param calificacionService
+	 *            the calificacionService to set
 	 */
-	public void setOpcionService(OpcionService opcionService) {
-		this.opcionService = opcionService;
+	public void setCalificacionService(CalificacionService calificacionService) {
+		this.calificacionService = calificacionService;
 	}
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the proyectoService
+	 * @date 17/12/2013
+	 * @param login
+	 *            the login to set
 	 */
-	public ProyectoService getProyectoService() {
-		return proyectoService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param proyectoService
-	 *            the proyectoService to set
-	 */
-	public void setProyectoService(ProyectoService proyectoService) {
-		this.proyectoService = proyectoService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the tengoService
-	 */
-	public TengoService getTengoService() {
-		return tengoService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param tengoService
-	 *            the tengoService to set
-	 */
-	public void setTengoService(TengoService tengoService) {
-		this.tengoService = tengoService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the noticiaService
-	 */
-	public NoticiaService getNoticiaService() {
-		return noticiaService;
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 	/**
@@ -255,10 +282,62 @@ public class PerfilDe extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
-	 * @return the usuarioLinkService
+	 * @param opcionService
+	 *            the opcionService to set
 	 */
-	public UsuarioLinkService getUsuarioLinkService() {
-		return usuarioLinkService;
+	public void setOpcionService(OpcionService opcionService) {
+		this.opcionService = opcionService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param proyectoService
+	 *            the proyectoService to set
+	 */
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @param proyectoUsuarioService
+	 *            the proyectoUsuarioService to set
+	 */
+	public void setProyectoUsuarioService(
+			ProyectoUsuarioService proyectoUsuarioService) {
+		this.proyectoUsuarioService = proyectoUsuarioService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param tengoService
+	 *            the tengoService to set
+	 */
+	public void setTengoService(TengoService tengoService) {
+		this.tengoService = tengoService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param truequeService
+	 *            the truequeService to set
+	 */
+	public void setTruequeService(TruequeService truequeService) {
+		this.truequeService = truequeService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param usuario
+	 *            the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	/**
@@ -274,86 +353,10 @@ public class PerfilDe extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
-	 * @return the usuario
+	 * @param usuarioService
+	 *            the usuarioService to set
 	 */
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param usuario
-	 *            the usuario to set
-	 */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param truequeService
-	 *            the truequeService to set
-	 */
-	public void setTruequeService(TruequeService truequeService) {
-		this.truequeService = truequeService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param calificacionService
-	 *            the calificacionService to set
-	 */
-	public void setCalificacionService(CalificacionService calificacionService) {
-		this.calificacionService = calificacionService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the promedio
-	 */
-	public String getPromedio() {
-		return promedio;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the calificaciones
-	 */
-	public List<Calificacion> getCalificaciones() {
-		return calificaciones;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param calificaciones
-	 *            the calificaciones to set
-	 */
-	public void setCalificaciones(List<Calificacion> calificaciones) {
-		this.calificaciones = calificaciones;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 17/12/2013
-	 * @param login
-	 *            the login to set
-	 */
-	public void setLogin(Login login) {
-		this.login = login;
-	}
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 19/12/2013
-	 * @param proyectoUsuarioService the proyectoUsuarioService to set
-	 */
-	public void setProyectoUsuarioService(
-			ProyectoUsuarioService proyectoUsuarioService) {
-		this.proyectoUsuarioService = proyectoUsuarioService;
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
 	}
 }

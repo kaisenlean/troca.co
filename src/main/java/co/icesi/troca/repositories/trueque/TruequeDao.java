@@ -15,18 +15,18 @@ import co.icesi.troca.repositories.GenericRepository;
  * @project troca-co
  * @class TruequeDao
  * @date 2/12/2013
- *
+ * 
  */
 public interface TruequeDao extends GenericRepository<Trueque, Integer> {
 
-	
-	
 	/**
-	 *Método que consulta los trueques activos de un usuario
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 9/12/2013
-	* @param usuario
-	* @return
-	*/
-	public List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,EstadoTruequeEnum estado);
+	 * Método que consulta los trueques activos de un usuario
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param usuario
+	 * @return
+	 */
+	List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,
+			EstadoTruequeEnum estado);
 }

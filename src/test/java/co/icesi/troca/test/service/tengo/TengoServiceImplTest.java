@@ -21,121 +21,97 @@ import co.icesi.troca.test.BaseUnit;
 
 /**
  * Test case de la clase {@link TengoServiceImpl}
+ * 
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
  * @project troca-co
  * @class {@link TengoServiceImpl}
  * @date 31/10/2013
- *
+ * 
  */
 
-public class TengoServiceImplTest extends BaseUnit{
-
+public class TengoServiceImplTest extends BaseUnit {
 
 	/**
 	 * 1/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULTS
+	 *         MAX_RESULTS
 	 */
 	private static final int MAX_RESULTS = 2;
 	/**
 	 * 31/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * DESCRIPCION_TENGO
+	 *         DESCRIPCION_TENGO
 	 */
 	private static final String DESCRIPCION_TENGO = "DESCRIPCION TENGO";
 	/**
 	 * 31/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * NOMBRE_TENGO
+	 *         NOMBRE_TENGO
 	 */
 	private static final String NOMBRE_TENGO = "TENGO 1";
 	@Autowired
 	private UsuarioService usuarioService;
 	@Autowired
 	private TengoService tengoService;
-	
 
 	private static final String BIOGRAPHY_PRUEBA = "biography";
 	private static final String PASSWORD_PRUEBA = "666";
 	private static final String EMAIL_PRUEBA = "TROCA@TROCA.COM";
 	private static final String APELLIDO_PRUEBA = "APELLIDO PRUEBA";
 	private static final String NOMBRE_PRUEBA = "NOMBRE PRUEBA";
-	
-	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
-	 */
-	@Test
-	public void testFindAll() {
-		List<Tengo> listado= tengoService.findAll();
-		assertNotNull(listado);
-	}
-
-	
-	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
-	 */
-	@Test
-	public void testFindById() {
-		Tengo tengo = createTengoTest();
-		int id= tengo.getId();
-		
-		tengo=tengoService.findById(id);
-		assertNotNull(tengo);
-		
-	}
 
 	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return
 	 */
-	@Test
-	public void testDelete() {
-	Tengo tengo = createTengoTest();
-	tengoService.delete(tengo);
-	tengo=tengoService.findById(tengo.getId());
-	assertNull(tengo);
-	
-	
-	}
-
-	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
-	 */
-	@Test
-	public void testSave() {
-	Tengo tengo= createTengoTest();
-	assertNotNull(tengo.getId());
-	}
-	
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
-	* @return
-	*/
 	private Tengo createTengoTest() {
-		Usuario usuario= saveTestUsuario();
-		Tengo  tengo= new Tengo();
+		Usuario usuario = saveTestUsuario();
+		Tengo tengo = new Tengo();
 		tengo.setOwner(usuario);
 		tengo.setNombre(NOMBRE_TENGO);
 		tengo.setEstado(EstadoTengo.ACTIVO);
 		tengo.setDescripcion(DESCRIPCION_TENGO);
-		tengo=tengoService.save(tengo);
+		tengo = tengoService.save(tengo);
 		return tengo;
 	}
 
 	/**
+	 * Test method for {@link TengoServiceImpl#findTengosByUsuario(Usuario)}
 	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 22/10/2013
-	* @return
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 */
+	@Test
+	public void findTengosByUsuario() {
+
+		Tengo tengo1 = createTengoTest();
+		List<Tengo> tengos = tengoService
+				.findTengosByUsuario(tengo1.getOwner());
+		assertNotNull(tengos);
+	}
+
+	/**
+	 * test form method {@link TengoServiceImpl#findUltimosTengo(int)}
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/11/2013
+	 */
+	@Test
+	public void findUltimosTengo() {
+		List<Tengo> tengos = tengoService.findUltimosTengo(MAX_RESULTS);
+		assertNotNull(tengos);
+
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 * @return
 	 */
 	private Usuario saveTestUsuario() {
 		Usuario usuario = new Usuario();
@@ -147,33 +123,56 @@ public class TengoServiceImplTest extends BaseUnit{
 		Usuario temp = usuarioService.save(usuario);
 		return temp;
 	}
-	
-	
+
 	/**
-	 * Test method for {@link TengoServiceImpl#findTengosByUsuario(Usuario)}
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 31/10/2013
 	 */
 	@Test
-	public void findTengosByUsuario() {
+	public void testDelete() {
+		Tengo tengo = createTengoTest();
+		tengoService.delete(tengo);
+		tengo = tengoService.findById(tengo.getId());
+		assertNull(tengo);
 
-		Tengo tengo1 = createTengoTest();
-		List<Tengo> tengos = tengoService.findTengosByUsuario(tengo1.getOwner());
-		assertNotNull(tengos);
 	}
-	
+
 	/**
-	 * test form method {@link TengoServiceImpl#findUltimosTengo(int)}
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/11/2013
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
 	 */
 	@Test
-	public void findUltimosTengo(){
-		List<Tengo> tengos= tengoService.findUltimosTengo(MAX_RESULTS);
-		assertNotNull(tengos);
-		
+	public void testFindAll() {
+		List<Tengo> listado = tengoService.findAll();
+		assertNotNull(listado);
 	}
-	
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 */
+	@Test
+	public void testFindById() {
+		Tengo tengo = createTengoTest();
+		int id = tengo.getId();
+
+		tengo = tengoService.findById(id);
+		assertNotNull(tengo);
+
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 */
+	@Test
+	public void testSave() {
+		Tengo tengo = createTengoTest();
+		assertNotNull(tengo.getId());
+	}
 
 }

@@ -24,14 +24,16 @@ import javax.persistence.Table;
 public class ProyectoTengo implements Serializable {
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * id
+	 *         id
 	 */
 	@Id
 	@Basic(optional = false)
@@ -39,125 +41,48 @@ public class ProyectoTengo implements Serializable {
 	private Integer id;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * nombre
+	 *         nombre
 	 */
 	@Column(name = "nombre")
 	private String nombre;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * proyecto
+	 *         proyecto
 	 */
 	@Column(name = "proyecto")
 	private Integer proyecto;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * descripcion
+	 *         descripcion
 	 */
 	@Column(name = "descripcion")
 	private String descripcion;
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 */
 	public ProyectoTengo() {
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
 	public ProyectoTengo(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param nombre
-	*/
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Integer getProyecto() {
-		return proyecto;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param proyecto
-	*/
-	public void setProyecto(Integer proyecto) {
-		this.proyecto = proyecto;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param descripcion
-	*/
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -175,7 +100,93 @@ public class ProyectoTengo implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Integer getProyecto() {
+		return proyecto;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param descripcion
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param nombre
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param proyecto
+	 */
+	public void setProyecto(Integer proyecto) {
+		this.proyecto = proyecto;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

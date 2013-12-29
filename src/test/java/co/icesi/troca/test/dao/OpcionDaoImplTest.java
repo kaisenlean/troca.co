@@ -50,6 +50,56 @@ public class OpcionDaoImplTest extends BaseUnit {
 	private OpcionDao opcionDao;
 
 	/**
+	 * Test method for {@link OpcionDaoImpl#getValueByKey(String)}
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 */
+	@Test
+	public void getValueByKey() {
+		Opcion opcion = saveOpcionTest();
+		try {
+
+			String value = opcionDao.getValueByKey(opcion.getKey());
+
+			assertNotNull(value);
+
+		} catch (Exception e) {
+			log.error(e.toString());
+		}
+
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @return
+	 */
+	private Opcion saveOpcionTest() {
+		Opcion opcion = new Opcion();
+		opcion.setKey(OPTION_KEY);
+		opcion.setValue(OPTION_VALUE);
+		opcion.setDescripcion(OPTION_DESCRIPCION);
+		return opcionDao.save(opcion);
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#delete(java.lang.Object)}
+	 * .
+	 */
+	@Test
+	public void testDelete() {
+		Opcion opcion = saveOpcionTest();
+		opcionDao.delete(opcion);
+
+		opcion = opcionDao.findById(opcion.getKey());
+
+		assertNull(opcion);
+
+	}
+
+	/**
 	 * Test method for
 	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
 	 */
@@ -73,22 +123,6 @@ public class OpcionDaoImplTest extends BaseUnit {
 
 	/**
 	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#delete(java.lang.Object)}
-	 * .
-	 */
-	@Test
-	public void testDelete() {
-		Opcion opcion = saveOpcionTest();
-		opcionDao.delete(opcion);
-
-		opcion = opcionDao.findById(opcion.getKey());
-
-		assertNull(opcion);
-
-	}
-
-	/**
-	 * Test method for
 	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#save(java.lang.Object)}
 	 * .
 	 */
@@ -96,40 +130,6 @@ public class OpcionDaoImplTest extends BaseUnit {
 	public void testSave() {
 		Opcion opcion = saveOpcionTest();
 		assertNotNull(opcion);
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 6/11/2013
-	 * @return
-	 */
-	private Opcion saveOpcionTest() {
-		Opcion opcion = new Opcion();
-		opcion.setKey(OPTION_KEY);
-		opcion.setValue(OPTION_VALUE);
-		opcion.setDescripcion(OPTION_DESCRIPCION);
-		return opcionDao.save(opcion);
-	}
-
-	/**
-	 * Test method for {@link OpcionDaoImpl#getValueByKey(String)}
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 6/11/2013
-	 */
-	@Test
-	public void getValueByKey() {
-		Opcion opcion = saveOpcionTest();
-		try {
-
-			String value = opcionDao.getValueByKey(opcion.getKey());
-
-			assertNotNull(value);
-			
-		} catch (Exception e) {
-			log.error(e.toString());
-		}
-
 	}
 
 }

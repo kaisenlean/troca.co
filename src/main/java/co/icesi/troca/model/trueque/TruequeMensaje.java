@@ -33,14 +33,16 @@ import co.icesi.troca.model.usuario.Usuario;
 public class TruequeMensaje implements Serializable {
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * id
+	 *         id
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,182 +50,69 @@ public class TruequeMensaje implements Serializable {
 	private Integer id;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * trueque
+	 *         trueque
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "trueque")
 	private Trueque trueque;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * usuarioEmisor
+	 *         usuarioEmisor
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_emisor")
 	private Usuario usuarioEmisor;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * usuarioReceptor
+	 *         usuarioReceptor
 	 */
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_receptor")
 	private Usuario usuarioReceptor;
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * mensaje
+	 *         mensaje
 	 */
 	@Column(name = "mensaje")
 	private String mensaje;
-	
-	
-	/**
-	 * 9/12/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * fecha
-	 */
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="fecha")
-	private Date fecha;
-	
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	*/
+	 * 9/12/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         fecha
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha")
+	private Date fecha;
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 */
 	public TruequeMensaje() {
 	}
 
 	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
 	public TruequeMensaje(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param id
-	*/
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Trueque getTrueque() {
-		return trueque;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param trueque
-	*/
-	public void setTrueque(Trueque trueque) {
-		this.trueque = trueque;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Usuario getUsuarioEmisor() {
-		return usuarioEmisor;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param usuarioEmisor
-	*/
-	public void setUsuarioEmisor(Usuario usuarioEmisor) {
-		this.usuarioEmisor = usuarioEmisor;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public Usuario getUsuarioReceptor() {
-		return usuarioReceptor;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param usuarioReceptor
-	*/
-	public void setUsuarioReceptor(Usuario usuarioReceptor) {
-		this.usuarioReceptor = usuarioReceptor;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @return
-	*/
-	public String getMensaje() {
-		return mensaje;
-	}
-
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 12/11/2013
-	* @param mensaje
-	*/
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the fecha
-	 */
-	public Date getFecha() {
-		return fecha;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param fecha the fecha to set
-	 */
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -241,7 +130,130 @@ public class TruequeMensaje implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Trueque getTrueque() {
+		return trueque;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Usuario getUsuarioEmisor() {
+		return usuarioEmisor;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return
+	 */
+	public Usuario getUsuarioReceptor() {
+		return usuarioReceptor;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param fecha
+	 *            the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param id
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param mensaje
+	 */
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param trueque
+	 */
+	public void setTrueque(Trueque trueque) {
+		this.trueque = trueque;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param usuarioEmisor
+	 */
+	public void setUsuarioEmisor(Usuario usuarioEmisor) {
+		this.usuarioEmisor = usuarioEmisor;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @param usuarioReceptor
+	 */
+	public void setUsuarioReceptor(Usuario usuarioReceptor) {
+		this.usuarioReceptor = usuarioReceptor;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

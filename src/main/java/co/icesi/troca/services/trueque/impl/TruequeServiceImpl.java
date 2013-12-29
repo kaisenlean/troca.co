@@ -22,35 +22,43 @@ import co.icesi.troca.services.trueque.TruequeService;
  * @project troca-co
  * @class TruequeServiceImpl
  * @date 2/12/2013
- *
+ * 
  */
 @Service("truequeService")
-public class TruequeServiceImpl extends GenericServiceImpl<Trueque, Integer> implements Serializable , TruequeService {
+public class TruequeServiceImpl extends GenericServiceImpl<Trueque, Integer>
+		implements Serializable, TruequeService {
 
 	/**
 	 * 2/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Autowired
 	private TruequeDao truequeDao;
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
-	 */
-	@Override
-	public GenericRepository<Trueque, Integer> getDao() {
-		return truequeDao;
-	}
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.trueque.TruequeService#findActivosByUsuarioAndEstado(co.icesi.troca.model.usuario.Usuario, co.icesi.troca.model.trueque.EstadoTruequeEnum)
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.trueque.TruequeService#findActivosByUsuarioAndEstado(co.icesi.troca.model.usuario.Usuario,
+	 *      co.icesi.troca.model.trueque.EstadoTruequeEnum)
 	 */
 	@Override
 	public List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,
 			EstadoTruequeEnum estado) {
 		return truequeDao.findActivosByUsuarioAndEstado(usuario, estado);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
+	@Override
+	public GenericRepository<Trueque, Integer> getDao() {
+		return truequeDao;
 	}
 
 }

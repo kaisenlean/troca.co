@@ -3,6 +3,7 @@
  */
 package co.icesi.troca.services;
 
+import co.icesi.troca.exception.BaseException;
 import co.icesi.troca.model.Opcion;
 
 /**
@@ -10,18 +11,17 @@ import co.icesi.troca.model.Opcion;
  * @project troca-co
  * @class OpcionService
  * @date 6/11/2013
- *
+ * 
  */
-public interface OpcionService  extends GenericService<Opcion,String>{
+public interface OpcionService extends GenericService<Opcion, String> {
 
 	/**
 	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 6/11/2013
-	* @param key
-	* @return
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @param key
+	 * @return
 	 */
-	public String getValueByKey(String key) throws Exception;
-	
-	
+	String getValueByKey(String key) throws BaseException;
+
 }

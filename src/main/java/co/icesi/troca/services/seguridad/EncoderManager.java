@@ -8,21 +8,18 @@ package co.icesi.troca.services.seguridad;
  * @project troca-co
  * @class EncoderManager
  * @date 5/11/2013
- *
+ * 
  */
 public interface EncoderManager {
 
-	
-	
 	/**
 	 * Convertir un String en MD5 Hash
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 5/11/2013
-	* @param input
-	* @return
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 5/11/2013
+	 * @param input
+	 * @return
 	 */
-	public String encodeMd5Hash(String input);
-	
-	
-	
+	String encodeMd5Hash(String input);
+
 }

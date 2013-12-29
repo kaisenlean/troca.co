@@ -18,56 +18,68 @@ import co.icesi.troca.views.component.autocomplete.Autocompletar;
  * @project troca-co
  * @class AutocompleteUsuario
  * @date 27/11/2013
- *
+ * 
  */
-public abstract class AutocompleteUsuario extends Autocompletar<Usuario>  {
+public abstract class AutocompleteUsuario extends Autocompletar<Usuario> {
 	/**
 	 * 27/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-	public abstract UsuarioService getService();
-	
-	/* (non-Javadoc)
-	 * @see co.icesi.troca.views.component.autocomplete.Autocompletar#completarBusqueda(java.lang.String)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.icesi.troca.views.component.autocomplete.Autocompletar#completarBusqueda
+	 * (java.lang.String)
 	 */
 	@Override
 	public List<Usuario> completarBusqueda(String query) {
 		return getService().findUsuariosByParam(query);
 	}
 
-	/* (non-Javadoc)
-	 * @see co.icesi.troca.views.component.autocomplete.Autocompletar#seleccionar(org.primefaces.event.SelectEvent)
+	public abstract UsuarioService getService();
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/06/2013
+	 * @param valor
+	 * @return
+	 */
+	private String obtenerId(String valor) {
+
+		String id = "";
+		Pattern p = Pattern.compile("\\d+");
+		Matcher m = p.matcher(valor);
+		while (m.find()) {
+			id += m.group();
+		}
+
+		return id;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 28/11/2013
+	 */
+	public void postSeleccionado() {
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.icesi.troca.views.component.autocomplete.Autocompletar#seleccionar
+	 * (org.primefaces.event.SelectEvent)
 	 */
 	@Override
 	public void seleccionar(SelectEvent evt) {
-		seleccionado = getService().findById(Integer.valueOf(obtenerId(evt.getObject().toString())));
+		seleccionado = getService().findById(
+				Integer.valueOf(obtenerId(evt.getObject().toString())));
 		postSeleccionado();
 	}
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 28/11/2013
-	*/
-	public void postSeleccionado() {
-		
-	}
-
-	/**
-     * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-     * @date 3/06/2013
-     * @param valor
-     * @return
-     */
-    private String obtenerId(String valor) {
-
-        String id = "";
-        Pattern p = Pattern.compile("\\d+");
-        Matcher m = p.matcher(valor);
-        while (m.find()) {
-            id += m.group();
-        }
-
-        return id;
-    }
 }

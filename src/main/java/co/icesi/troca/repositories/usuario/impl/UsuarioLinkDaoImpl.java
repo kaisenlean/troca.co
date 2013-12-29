@@ -20,30 +20,36 @@ import co.icesi.troca.repositories.usuario.UsuarioLinkDao;
  * @project troca-co
  * @class UsuarioLinkDaoImpl
  * @date 28/11/2013
- *
+ * 
  */
 @Repository("usuarioLinkDao")
-public class UsuarioLinkDaoImpl extends GenericJpaRepository<UsuarioLink, Integer> implements UsuarioLinkDao,Serializable {
+public class UsuarioLinkDaoImpl extends
+		GenericJpaRepository<UsuarioLink, Integer> implements UsuarioLinkDao,
+		Serializable {
 
 	/**
 	 * 28/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * USUARIO_FIELD
+	 *         USUARIO_FIELD
 	 */
 	private static final String USUARIO_FIELD = "usuario";
 	/**
 	 * 28/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.usuario.UsuarioLinkDao#getLinkByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
 	public List<UsuarioLink> getLinkByUsuario(Usuario usuario) {
-		Criterion crit= Restrictions.eq(USUARIO_FIELD, usuario);
+		Criterion crit = Restrictions.eq(USUARIO_FIELD, usuario);
 		return findByCriteria(crit);
 	}
 

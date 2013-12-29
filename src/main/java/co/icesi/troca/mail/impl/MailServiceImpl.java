@@ -31,19 +31,21 @@ import co.icesi.troca.mail.MailService;
  * 
  */
 @Service("mailService")
-public class MailServiceImpl implements MailService ,Serializable{
+public class MailServiceImpl implements MailService, Serializable {
 
 	/**
 	 * 23/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 5/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * VELOCITY_PATH
+	 *         VELOCITY_PATH
 	 */
 	private static final String VELOCITY_PATH = "velocity/";
 
@@ -71,48 +73,50 @@ public class MailServiceImpl implements MailService ,Serializable{
 	 */
 	private static final String USER_DIR = "user.dir";
 
-	private static final Log log = LogFactory.getLog(MailServiceImpl.class);
+	private Log logMailService = LogFactory.getLog(MailServiceImpl.class);
 
 	/** wrapper de Spring sobre javax.mail */
 	private JavaMailSenderImpl mailSender;
 
-	
-	private  String basePath = new StrBuilder(System.getProperty(USER_DIR)
+	private String basePath = new StrBuilder(System.getProperty(USER_DIR)
 			.toString()).append(PATH_RELATIVE).toString();
-
-	public void setMailSender(JavaMailSenderImpl mailSender) {
-		this.mailSender = mailSender;
-	}
 
 	@Autowired
 	private VelocityEngine velocityEngine;
 
-	
-	
-
 	/** correo electrónico del remitente */
 	private String from;
 
-	public void setFrom(String from) {
-		this.from = from;
+	/** flag para indicar si está activo el servicio */
+	private boolean active = true;
+
+	private static final File[] NO_ATTACHMENTS = null;
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 12/11/2013
+	 * @return the basePath
+	 */
+	public String getBasePath() {
+		return basePath;
 	}
 
 	public String getFrom() {
 		return from;
 	}
 
-	/** flag para indicar si está activo el servicio */
-	private boolean active = true;
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/12/2013
+	 * @return the logMailService
+	 */
+	public Log getLogMailService() {
+		return logMailService;
+	}
 
 	public boolean isActive() {
 		return active;
 	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	private static final File[] NO_ATTACHMENTS = null;
 
 	/**
 	 * envío de email
@@ -124,6 +128,7 @@ public class MailServiceImpl implements MailService ,Serializable{
 	 * @param text
 	 *            cuerpo del mensaje
 	 */
+	@Override
 	public void send(String to, String subject, String text) {
 		send(to, subject, text, NO_ATTACHMENTS);
 	}
@@ -140,6 +145,7 @@ public class MailServiceImpl implements MailService ,Serializable{
 	 * @param attachments
 	 *            ficheros que se anexarán al mensaje
 	 */
+	@Override
 	public void send(String to, String subject, String text,
 			File... attachments) {
 
@@ -149,16 +155,17 @@ public class MailServiceImpl implements MailService ,Serializable{
 		Assert.hasLength(text, "email 'text' needed");
 
 		// asegurando la trazabilidad
-		if (log.isDebugEnabled()) {
+		if (logMailService.isDebugEnabled()) {
 			final boolean usingPassword = !"".equals(mailSender.getPassword());
-			log.debug("Sending email to: '" + to + "' [through host: '"
-					+ mailSender.getHost() + ":" + mailSender.getPort()
-					+ "', username: '" + mailSender.getUsername()
-					+ "' usingPassword:" + usingPassword + "].");
-			log.debug("isActive: " + active);
+			logMailService.debug("Sending email to: '" + to
+					+ "' [through host: '" + mailSender.getHost() + ":"
+					+ mailSender.getPort() + "', username: '"
+					+ mailSender.getUsername() + "' usingPassword:"
+					+ usingPassword + "].");
+			logMailService.debug("isActive: " + active);
 		}
 		// el servicio esta activo?
-		if (!active){
+		if (!active) {
 			return;
 		}
 		// plantilla para el envío de email
@@ -181,8 +188,8 @@ public class MailServiceImpl implements MailService ,Serializable{
 					FileSystemResource file = new FileSystemResource(
 							attachments[i]);
 					helper.addAttachment(attachments[i].getName(), file);
-					if (log.isDebugEnabled()) {
-						log.debug("File '" + file + "' attached.");
+					if (logMailService.isDebugEnabled()) {
+						logMailService.debug("File '" + file + "' attached.");
 					}
 				}
 			}
@@ -190,73 +197,6 @@ public class MailServiceImpl implements MailService ,Serializable{
 		} catch (MessagingException e) {
 			new RuntimeException(e);
 		}
-
-		// el envío
-		this.mailSender.send(message);
-
-	}
-
-	public void send(String to, String subject, String template,
-			Map<String, Object> mapTemplate, File... attachments) {
-
-		// chequeo de parámetros
-		Assert.hasLength(to, "email 'to' needed");
-		Assert.hasLength(subject, "email 'subject' needed");
-
-		// asegurando la trazabilidad
-		if (log.isDebugEnabled()) {
-			final boolean usingPassword = !"".equals(mailSender.getPassword());
-			log.debug("Sending email to: '" + to + "' [through host: '"
-					+ mailSender.getHost() + ":" + mailSender.getPort()
-					+ "', username: '" + mailSender.getUsername()
-					+ "' usingPassword:" + usingPassword + "].");
-			log.debug("isActive: " + active);
-		}
-		// el servicio esta activo?
-		if (!active){
-			return;
-		}
-		// plantilla para el envío de email
-		final MimeMessage message = mailSender.createMimeMessage();
-
-		try {
-			// el flag a true indica que va a ser multipart
-			final MimeMessageHelper helper = new MimeMessageHelper(message,
-					true);
-
-			// settings de los parámetros del envío
-			helper.setTo(to);
-			helper.setSubject(subject);
-			helper.setFrom(getFrom());
-
-			// cargamos el path general en donde se encuentra el dir del archivo
-			// *.vm
-	
-			StrBuilder templateDir = new StrBuilder(VELOCITY_PATH);
-			templateDir.append(template);
-			templateDir.append(VELOCITY_EXTENSION);
-
-			String body = VelocityEngineUtils.mergeTemplateIntoString(
-					velocityEngine, templateDir.toString(), mapTemplate);
-			
-			message.setContent(body, "text/html");
-		
-			// adjuntando los ficheros
-			if (attachments != null) {
-				for (int i = 0; i < attachments.length; i++) {
-					FileSystemResource file = new FileSystemResource(
-							attachments[i]);
-					helper.addAttachment(attachments[i].getName(), file);
-					if (log.isDebugEnabled()) {
-						log.debug("File '" + file + "' attached.");
-					}
-				}
-			}
-
-		} catch (MessagingException e) {
-			new RuntimeException(e);
-		}
-
 
 		// el envío
 		this.mailSender.send(message);
@@ -275,23 +215,104 @@ public class MailServiceImpl implements MailService ,Serializable{
 		send(to, subject, template, hTemplateVariables, NO_ATTACHMENTS);
 
 	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 12/11/2013
-	 * @return the basePath
-	 */
-	public String getBasePath() {
-		return basePath;
+
+	public void send(String to, String subject, String template,
+			Map<String, Object> mapTemplate, File... attachments) {
+
+		// chequeo de parámetros
+		Assert.hasLength(to, "email 'to' needed");
+		Assert.hasLength(subject, "email 'subject' needed");
+
+		// asegurando la trazabilidad
+		if (logMailService.isDebugEnabled()) {
+			final boolean usingPassword = !"".equals(mailSender.getPassword());
+			logMailService.debug("Sending email to: '" + to
+					+ "' [through host: '" + mailSender.getHost() + ":"
+					+ mailSender.getPort() + "', username: '"
+					+ mailSender.getUsername() + "' usingPassword:"
+					+ usingPassword + "].");
+			logMailService.debug("isActive: " + active);
+		}
+		// el servicio esta activo?
+		if (!active) {
+			return;
+		}
+		// plantilla para el envío de email
+		final MimeMessage message = mailSender.createMimeMessage();
+
+		try {
+			// el flag a true indica que va a ser multipart
+			final MimeMessageHelper helper = new MimeMessageHelper(message,
+					true);
+
+			// settings de los parámetros del envío
+			helper.setTo(to);
+			helper.setSubject(subject);
+			helper.setFrom(getFrom());
+
+			// cargamos el path general en donde se encuentra el dir del archivo
+			// *.vm
+
+			StrBuilder templateDir = new StrBuilder(VELOCITY_PATH);
+			templateDir.append(template);
+			templateDir.append(VELOCITY_EXTENSION);
+
+			String body = VelocityEngineUtils.mergeTemplateIntoString(
+					velocityEngine, templateDir.toString(), mapTemplate);
+
+			message.setContent(body, "text/html");
+
+			// adjuntando los ficheros
+			if (attachments != null) {
+				for (int i = 0; i < attachments.length; i++) {
+					FileSystemResource file = new FileSystemResource(
+							attachments[i]);
+					helper.addAttachment(attachments[i].getName(), file);
+					if (logMailService.isDebugEnabled()) {
+						logMailService.debug("File '" + file + "' attached.");
+					}
+				}
+			}
+
+		} catch (MessagingException e) {
+			new RuntimeException(e);
+		}
+
+		// el envío
+		this.mailSender.send(message);
+
 	}
-	
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 12/11/2013
-	 * @param basePath the basePath to set
+	 * @param basePath
+	 *            the basePath to set
 	 */
 	public void setBasePath(String basePath) {
 		this.basePath = basePath;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/12/2013
+	 * @param logMailService
+	 *            the logMailService to set
+	 */
+	public void setLogMailService(Log logMailService) {
+		this.logMailService = logMailService;
+	}
+
+	public void setMailSender(JavaMailSenderImpl mailSender) {
+		this.mailSender = mailSender;
 	}
 
 }

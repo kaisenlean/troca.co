@@ -57,28 +57,26 @@ public class NecesitoDaoImplTest extends BaseUnit {
 	private NecesitoDao necesitoDao;
 
 	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 * Test Method for {@link NecesitoDaoImpl#findUltimosNecesito(int)}
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/11/2013
 	 */
 	@Test
-	public void testFindAll() {
-		List<Necesito> lista = necesitoDao.findAll();
+	public void findUltimosNecesito() {
+		List<Necesito> lista = necesitoDao.findUltimosNecesito(3);
 		assertNotNull(lista);
+		log.debug(String.valueOf(lista.size()));
 	}
 
 	/**
-	 * Test method for
-	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
-	 * .
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 20/11/2013
+	 * @param necesitoDao
+	 *            the necesitoDao to set
 	 */
-	@Test
-	public void testFindById() {
-		Necesito necesito = testCreateNecesito();
-		Integer id = necesito.getId();
-
-		necesito = necesitoDao.findById(id);
-		assertNotNull(necesito);
-
+	public void setNecesitoDao(NecesitoDao necesitoDao) {
+		this.necesitoDao = necesitoDao;
 	}
 
 	/**
@@ -112,6 +110,31 @@ public class NecesitoDaoImplTest extends BaseUnit {
 
 	/**
 	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 */
+	@Test
+	public void testFindAll() {
+		List<Necesito> lista = necesitoDao.findAll();
+		assertNotNull(lista);
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findById(java.io.Serializable)}
+	 * .
+	 */
+	@Test
+	public void testFindById() {
+		Necesito necesito = testCreateNecesito();
+		Integer id = necesito.getId();
+
+		necesito = necesitoDao.findById(id);
+		assertNotNull(necesito);
+
+	}
+
+	/**
+	 * Test method for
 	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#save(java.lang.Object)}
 	 * .
 	 */
@@ -119,28 +142,5 @@ public class NecesitoDaoImplTest extends BaseUnit {
 	public void testSave() {
 		Necesito necesito = testCreateNecesito();
 		assertNotNull(necesito.getId());
-	}
-
-	/**
-	 * Test Method for {@link NecesitoDaoImpl#findUltimosNecesito(int)}
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 23/11/2013
-	 */
-	@Test
-	public void findUltimosNecesito() {
-		List<Necesito> lista= necesitoDao.findUltimosNecesito(3);
-		assertNotNull(lista);
-		log.debug(String.valueOf(lista.size()));
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 20/11/2013
-	 * @param necesitoDao
-	 *            the necesitoDao to set
-	 */
-	public void setNecesitoDao(NecesitoDao necesitoDao) {
-		this.necesitoDao = necesitoDao;
 	}
 }

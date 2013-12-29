@@ -11,8 +11,9 @@ import co.icesi.troca.repositories.GenericRepository;
  * @project troca-co
  * @class TruequeCalificacionDao
  * @date 9/12/2013
- *
+ * 
  */
-public interface TruequeCalificacionDao extends GenericRepository<TruequeCalificacion, Integer> {
+public interface TruequeCalificacionDao extends
+		GenericRepository<TruequeCalificacion, Integer> {
 
 }

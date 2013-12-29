@@ -20,24 +20,29 @@ import co.icesi.troca.repositories.noticia.comentario.NoticiaComentarioDao;
  * @project troca-co
  * @class NoticiaComentarioImpl
  * @date 9/12/2013
- *
+ * 
  */
 @Repository("noticiaComentarioDao")
-public class NoticiaComentarioDaoImpl extends GenericJpaRepository<NoticiaComentario, Integer> implements Serializable, NoticiaComentarioDao {
+public class NoticiaComentarioDaoImpl extends
+		GenericJpaRepository<NoticiaComentario, Integer> implements
+		Serializable, NoticiaComentarioDao {
 
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.noticia.comentario.NoticiaComentarioDao#findComentariosByNoticia(co.icesi.troca.model.noticia.Noticia)
 	 */
 	@Override
 	public List<NoticiaComentario> findComentariosByNoticia(Noticia noticia) {
-		Criterion criterion=Restrictions.eq("noticia", noticia);
+		Criterion criterion = Restrictions.eq("noticia", noticia);
 		return findByCriteria(criterion);
 	}
 

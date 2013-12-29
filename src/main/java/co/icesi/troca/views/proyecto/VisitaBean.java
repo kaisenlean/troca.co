@@ -22,73 +22,55 @@ import co.icesi.troca.services.proyecto.ProyectoVisitaService;
  * @project troca-co
  * @class VisitaBean
  * @date 8/12/2013
- *
+ * 
  */
 @ManagedBean
 @RequestScoped
-public class VisitaBean extends BaseBean implements Serializable{
+public class VisitaBean extends BaseBean implements Serializable {
 
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULTS_2
+	 *         MAX_RESULTS_2
 	 */
 	private static final int MAX_RESULTS_2 = 15;
 
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULTS
+	 *         MAX_RESULTS
 	 */
 	private static final int MAX_RESULTS = 4;
 
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * proyectoVisitaService
+	 *         proyectoVisitaService
 	 */
-	@ManagedProperty(value="#{proyectoVisitaService}")
+	@ManagedProperty(value = "#{proyectoVisitaService}")
 	private ProyectoVisitaService proyectoVisitaService;
-	
-	
+
 	/**
 	 * 8/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * proyectos
+	 *         proyectos
 	 */
-	private List<Proyecto> proyectos=new ArrayList<Proyecto>();
-	
-	
-	
-	private List<Proyecto> proyectos2=new ArrayList<Proyecto>();
-	
-	
-	@PostConstruct
-	public void init(){
-		try {
-			proyectos=proyectoVisitaService.findProyectosMasVisitados( MAX_RESULTS);
-			proyectos2=proyectoVisitaService.findProyectosMasVisitados(MAX_RESULTS_2);
-		} catch (BaseException e) {
-		mensajeError(e.toString());
-		}
-	}
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 8/12/2013
-	 * @param proyectoVisitaService the proyectoVisitaService to set
-	 */
-	public void setProyectoVisitaService(
-			ProyectoVisitaService proyectoVisitaService) {
-		this.proyectoVisitaService = proyectoVisitaService;
-	}
-	
+	private List<Proyecto> proyectos = new ArrayList<Proyecto>();
+
+	private List<Proyecto> proyectos2 = new ArrayList<Proyecto>();
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 8/12/2013
@@ -97,16 +79,7 @@ public class VisitaBean extends BaseBean implements Serializable{
 	public List<Proyecto> getProyectos() {
 		return proyectos;
 	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 8/12/2013
-	 * @param proyectos the proyectos to set
-	 */
-	public void setProyectos(List<Proyecto> proyectos) {
-		this.proyectos = proyectos;
-	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 8/12/2013
@@ -115,14 +88,48 @@ public class VisitaBean extends BaseBean implements Serializable{
 	public List<Proyecto> getProyectos2() {
 		return proyectos2;
 	}
-	
+
+	@PostConstruct
+	public void init() {
+		try {
+			proyectos = proyectoVisitaService
+					.findProyectosMasVisitados(MAX_RESULTS);
+			proyectos2 = proyectoVisitaService
+					.findProyectosMasVisitados(MAX_RESULTS_2);
+		} catch (BaseException e) {
+			mensajeError(e.toString());
+		}
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 8/12/2013
-	 * @param proyectos2 the proyectos2 to set
+	 * @param proyectos
+	 *            the proyectos to set
+	 */
+	public void setProyectos(List<Proyecto> proyectos) {
+		this.proyectos = proyectos;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param proyectos2
+	 *            the proyectos2 to set
 	 */
 	public void setProyectos2(List<Proyecto> proyectos2) {
 		this.proyectos2 = proyectos2;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param proyectoVisitaService
+	 *            the proyectoVisitaService to set
+	 */
+	public void setProyectoVisitaService(
+			ProyectoVisitaService proyectoVisitaService) {
+		this.proyectoVisitaService = proyectoVisitaService;
 	}
 
 }

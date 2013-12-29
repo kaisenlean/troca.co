@@ -19,21 +19,26 @@ import co.icesi.troca.services.trueque.calificacion.TruequeCalificacionService;
  * @project troca-co
  * @class TruequeCalificacionServiceImpl
  * @date 9/12/2013
- *
+ * 
  */
 @Service("truequeCalificacionService")
-public class TruequeCalificacionServiceImpl  extends GenericServiceImpl<TruequeCalificacion, Integer> implements Serializable,TruequeCalificacionService{
+public class TruequeCalificacionServiceImpl extends
+		GenericServiceImpl<TruequeCalificacion, Integer> implements
+		Serializable, TruequeCalificacionService {
 
-	
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private TruequeCalificacionDao truequeCalificacionDao;
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override

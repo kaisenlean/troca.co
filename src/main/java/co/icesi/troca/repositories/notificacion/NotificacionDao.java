@@ -14,21 +14,20 @@ import co.icesi.troca.repositories.GenericRepository;
  * @project troca-co
  * @class NotificacionDao
  * @date 1/12/2013
- *
+ * 
  */
-public interface NotificacionDao extends GenericRepository<Notificacion, Integer> {
+public interface NotificacionDao extends
+		GenericRepository<Notificacion, Integer> {
 
-	
 	/**
 	 * Metodo que consulta las ultimas notificaciones enviadas a un usuario
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	* @param usuario
-	* @param maxResults
-	* @return
-	*/
-	public List<Notificacion> findNotificacionesUsuario(Usuario usuario , int maxResults);
-	
-	
-	
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param usuario
+	 * @param maxResults
+	 * @return
+	 */
+	List<Notificacion> findNotificacionesUsuario(Usuario usuario, int maxResults);
+
 }

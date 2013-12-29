@@ -21,21 +21,55 @@ import co.icesi.troca.services.tengo.TengoService;
  * @project troca-co
  * @class TengoServiceImpl
  * @date 31/10/2013
- *
+ * 
  */
 @Service("tengoService")
-public class TengoServiceImpl extends GenericServiceImpl<Tengo, Integer> implements TengoService,Serializable{
+public class TengoServiceImpl extends GenericServiceImpl<Tengo, Integer>
+		implements TengoService, Serializable {
 
 	/**
 	 * 31/10/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private TengoDao tengoDao;
-	
-	/** (non-Javadoc)
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.tengo.TengoService#findTengoByParam(java.lang.String)
+	 */
+	@Override
+	public List<Tengo> findTengoByParam(String param) {
+		return tengoDao.findTengoByParam(param);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.tengo.TengoService#findTengosByUsuario()
+	 */
+	@Override
+	public List<Tengo> findTengosByUsuario(Usuario usuario) {
+		return tengoDao.findTengosByUsuario(usuario);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.tengo.TengoService#findUltimosTengo(int)
+	 */
+	@Override
+	public List<Tengo> findUltimosTengo(int maxResults) {
+		return tengoDao.findUltimosTengo(maxResults);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
@@ -46,33 +80,10 @@ public class TengoServiceImpl extends GenericServiceImpl<Tengo, Integer> impleme
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 31/10/2013
-	 * @param tengoDao the tengoDao to set
+	 * @param tengoDao
+	 *            the tengoDao to set
 	 */
 	public void setTengoDao(TengoDao tengoDao) {
 		this.tengoDao = tengoDao;
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.tengo.TengoService#findTengosByUsuario()
-	 */
-	@Override
-	public List<Tengo> findTengosByUsuario(Usuario usuario) {
-		return tengoDao.findTengosByUsuario(usuario);
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.tengo.TengoService#findUltimosTengo(int)
-	 */
-	@Override
-	public List<Tengo> findUltimosTengo(int maxResults) {
-		return tengoDao.findUltimosTengo(maxResults);
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.tengo.TengoService#findTengoByParam(java.lang.String)
-	 */
-	@Override
-	public List<Tengo> findTengoByParam(String param) {
-		return tengoDao.findTengoByParam(param);
 	}
 }

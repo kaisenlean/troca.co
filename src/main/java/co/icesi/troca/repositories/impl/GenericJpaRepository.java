@@ -28,31 +28,31 @@ import co.icesi.troca.repositories.GenericRepository;
  * 
  * @version $LastChangedRevision: 257 $
  * 
- * @param <TYPE>
+ * @param <C>
  *            The persistent type
  * @param <PK>
  *            The primary key type
  */
 @Transactional
 @SuppressWarnings("unchecked")
-public class GenericJpaRepository<TYPE, PK extends Serializable> implements
-		GenericRepository<TYPE, PK> {
+public class GenericJpaRepository<C, PK extends Serializable> implements
+		GenericRepository<C, PK> {
 
 	// ~ Instance fields
 	// --------------------------------------------------------
 
-	private final Class<TYPE> persistentClass;
+	private final Class<C> persistentClass;
 	private EntityManager entityManager;
 
 	// ~ Constructors
 	// -----------------------------------------------------------
 
 	public GenericJpaRepository() {
-		this.persistentClass = (Class<TYPE>) ((ParameterizedType) getClass()
+		this.persistentClass = (Class<C>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
-	public GenericJpaRepository(final Class<TYPE> persistentClass) {
+	public GenericJpaRepository(final Class<C> persistentClass) {
 		super();
 		this.persistentClass = persistentClass;
 	}
@@ -68,11 +68,23 @@ public class GenericJpaRepository<TYPE, PK extends Serializable> implements
 		return countByCriteria();
 	}
 
+	protected int countByCriteria(Criterion... criterion) {
+		Session session = getEntityManager().unwrap(Session.class);
+		Criteria crit = session.createCriteria(getEntityClass());
+		crit.setProjection(Projections.rowCount());
+
+		for (final Criterion c : criterion) {
+			crit.add(c);
+		}
+
+		return (Integer) crit.list().get(0);
+	}
+
 	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#countByExample(java.lang.Object)
 	 */
 	@Override
-	public int countByExample(final TYPE exampleInstance) {
+	public int countByExample(final C exampleInstance) {
 		Session session = getEntityManager().unwrap(Session.class);
 		Criteria crit = session.createCriteria(getEntityClass());
 		crit.setProjection(Projections.rowCount());
@@ -82,113 +94,34 @@ public class GenericJpaRepository<TYPE, PK extends Serializable> implements
 	}
 
 	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#delete(java.lang.Object)
+	 */
+	@Override
+	public void delete(C entity) {
+		getEntityManager().remove(
+				getEntityManager().contains(entity) ? entity
+						: getEntityManager().merge(entity));
+	}
+
+	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#findAll()
 	 */
 	@Override
-	public List<TYPE> findAll() {
+	public List<C> findAll() {
 		return findByCriteria();
-	}
-
-	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByExample(java.lang.Object)
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<TYPE> findByExample(final TYPE exampleInstance) {
-
-		Session session = getEntityManager().unwrap(Session.class);
-		Criteria crit = session.createCriteria(getEntityClass());
-		return crit.list();
-	}
-
-	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
-	 */
-	@Override
-	public TYPE findById(final PK id) {
-		return getEntityManager().find(persistentClass, id);
-	}
-	
-	
-	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
-	 */
-	@Override
-	public Object findById( PK id ,  Class<?>  class1) {
-		return getEntityManager().find(class1, id);
-		 
-	}
-
-	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQuery(java.lang.String,
-	 *      java.lang.Object[])
-	 */
-	
-	@Override
-	public List<TYPE> findByNamedQuery(final String name, Object... params) {
-		javax.persistence.Query query = getEntityManager().createNamedQuery(
-				name);
-
-		for (int i = 0; i < params.length; i++) {
-			query.setParameter(i + 1, params[i]);
-		}
-
-		return (List<TYPE>) query.getResultList();
-		 
-	}
-
-	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQueryAndNamedParams(java.lang.String,
-	 *      java.util.Map)
-	 */
-	
-	@Override
-	public List<TYPE> findByNamedQueryAndNamedParams(final String name,
-			final Map<String, ? extends Object> params) {
-		javax.persistence.Query query = getEntityManager().createNamedQuery(
-				name);
-
-		for (final Map.Entry<String, ? extends Object> param : params
-				.entrySet()) {
-			query.setParameter(param.getKey(), param.getValue());
-		}
-		return (List<TYPE>) query.getResultList();
-	}
-
-	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#getEntityClass()
-	 */
-	@Override
-	public Class<TYPE> getEntityClass() {
-		return persistentClass;
-	}
-
-	/**
-	 * set the JPA entity manager to use.
-	 * 
-	 * @param entityManager
-	 */
-	@Required
-	@PersistenceContext
-	public void setEntityManager( EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
-	public EntityManager getEntityManager() {
-		return entityManager;
 	}
 
 	/**
 	 * Use this inside subclasses as a convenience method.
 	 */
-	protected List<TYPE> findByCriteria(final Criterion... criterion) {
+	protected List<C> findByCriteria(final Criterion... criterion) {
 		return findByCriteria(-1, -1, criterion);
 	}
 
 	/**
 	 * Use this inside subclasses as a convenience method.
 	 */
-	protected List<TYPE> findByCriteria(final int firstResult,
+	protected List<C> findByCriteria(final int firstResult,
 			final int maxResults, final Criterion... criterion) {
 		Session session = getEntityManager().unwrap(Session.class);
 
@@ -210,39 +143,101 @@ public class GenericJpaRepository<TYPE, PK extends Serializable> implements
 
 	}
 
-	protected int countByCriteria(Criterion... criterion) {
+	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByExample(java.lang.Object)
+	 */
+	@Override
+	public List<C> findByExample(final C exampleInstance) {
+
 		Session session = getEntityManager().unwrap(Session.class);
 		Criteria crit = session.createCriteria(getEntityClass());
-		crit.setProjection(Projections.rowCount());
-
-		for (final Criterion c : criterion) {
-			crit.add(c);
-		}
-
-		return (Integer) crit.list().get(0);
+		return crit.list();
 	}
 
 	/**
-	 * @see be.bzbit.framework.domain.repository.GenericRepository#delete(java.lang.Object)
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
 	 */
 	@Override
-	
-	public void delete(TYPE entity) {
-		getEntityManager().remove(getEntityManager().contains(entity) ? entity : getEntityManager().merge(entity));
+	public C findById(final PK id) {
+		return getEntityManager().find(persistentClass, id);
+	}
+
+	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findById(java.io.Serializable)
+	 */
+	@Override
+	public Object findById(PK id, Class<?> class1) {
+		return getEntityManager().find(class1, id);
+
+	}
+
+	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQuery(java.lang.String,
+	 *      java.lang.Object[])
+	 */
+
+	@Override
+	public List<C> findByNamedQuery(final String name, Object... params) {
+		javax.persistence.Query query = getEntityManager().createNamedQuery(
+				name);
+
+		for (int i = 0; i < params.length; i++) {
+			query.setParameter(i + 1, params[i]);
+		}
+
+		return query.getResultList();
+
+	}
+
+	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#findByNamedQueryAndNamedParams(java.lang.String,
+	 *      java.util.Map)
+	 */
+
+	@Override
+	public List<C> findByNamedQueryAndNamedParams(final String name,
+			final Map<String, ? extends Object> params) {
+		javax.persistence.Query query = getEntityManager().createNamedQuery(
+				name);
+
+		for (final Map.Entry<String, ? extends Object> param : params
+				.entrySet()) {
+			query.setParameter(param.getKey(), param.getValue());
+		}
+		return query.getResultList();
+	}
+
+	/**
+	 * @see be.bzbit.framework.domain.repository.GenericRepository#getEntityClass()
+	 */
+	@Override
+	public Class<C> getEntityClass() {
+		return persistentClass;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 	/**
 	 * @see be.bzbit.framework.domain.repository.GenericRepository#save(java.lang.Object)
 	 */
 	@Override
-
-	public TYPE save(TYPE entity) {
+	public C save(C entity) {
 
 		return getEntityManager().merge(entity);
-	
+
 	}
 
-	
-	
-	
+	/**
+	 * set the JPA entity manager to use.
+	 * 
+	 * @param entityManager
+	 */
+	@Required
+	@PersistenceContext
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
 }

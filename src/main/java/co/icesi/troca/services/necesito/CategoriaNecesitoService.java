@@ -8,12 +8,13 @@ import co.icesi.troca.services.GenericService;
 
 /**
  * 
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class CategoriaNecesitoService
-* @date 24/11/2013
-*
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class CategoriaNecesitoService
+ * @date 24/11/2013
+ * 
  */
-public interface CategoriaNecesitoService extends GenericService<CategoriaNecesito, Integer>{
+public interface CategoriaNecesitoService extends
+		GenericService<CategoriaNecesito, Integer> {
 
 }

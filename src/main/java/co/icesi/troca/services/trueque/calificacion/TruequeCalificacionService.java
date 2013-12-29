@@ -11,8 +11,9 @@ import co.icesi.troca.services.GenericService;
  * @project troca-co
  * @class TruequeCalificacionService
  * @date 9/12/2013
- *
+ * 
  */
-public interface TruequeCalificacionService extends GenericService<TruequeCalificacion, Integer> {
+public interface TruequeCalificacionService extends
+		GenericService<TruequeCalificacion, Integer> {
 
 }

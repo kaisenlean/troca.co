@@ -22,7 +22,7 @@ public interface MailService {
 	 * @param subject
 	 * @param text
 	 */
-	public void send(String to, String subject, String text);
+	void send(String to, String subject, String text);
 
 	/**
 	 * En viar un mail con archivos adjuntos
@@ -34,8 +34,7 @@ public interface MailService {
 	 * @param text
 	 * @param attachments
 	 */
-	public void send(String to, String subject, String text,
-			File... attachments);
+	void send(String to, String subject, String text, File... attachments);
 
 	/**
 	 * Enviar un mail simple con una plantilla de velocity
@@ -47,9 +46,7 @@ public interface MailService {
 	 * @param template
 	 * @param hTemplateVariables
 	 */
-	public void send(String to, String subject, String template,
+	void send(String to, String subject, String template,
 			Map<String, Object> hTemplateVariables);
-
-	
 
 }

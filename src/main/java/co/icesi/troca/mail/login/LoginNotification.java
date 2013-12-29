@@ -3,6 +3,7 @@
  */
 package co.icesi.troca.mail.login;
 
+import co.icesi.troca.exception.BaseException;
 import co.icesi.troca.model.usuario.Usuario;
 
 /**
@@ -21,8 +22,6 @@ public interface LoginNotification {
 	 * @date 3/11/2013
 	 * @param usuario
 	 */
-	public void enviarMailAutenticacionCuenta(Usuario usuario) throws Exception;
+	void enviarMailAutenticacionCuenta(Usuario usuario) throws BaseException;
 
-	
-	
 }

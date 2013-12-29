@@ -16,29 +16,28 @@ import co.icesi.troca.test.BaseUnit;
 
 /**
  * 
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class CategoriaNecesitoServiceImplTest
-* @date 24/11/2013
-*
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class CategoriaNecesitoServiceImplTest
+ * @date 24/11/2013
+ * 
  */
-public class CategoriaNecesitoServiceImplTest extends BaseUnit{
+public class CategoriaNecesitoServiceImplTest extends BaseUnit {
 
 	/**
 	 * 24/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * categoriaNecesitoService
+	 *         categoriaNecesitoService
 	 */
 	@Autowired
 	private CategoriaNecesitoService categoriaNecesitoService;
-	
-	
-	
+
 	@Test
-	public void testFindAll(){
-		
-		List<CategoriaNecesito> lista= categoriaNecesitoService.findAll();
+	public void testFindAll() {
+
+		List<CategoriaNecesito> lista = categoriaNecesitoService.findAll();
 		assertNotNull(lista);
-		
+
 	}
 }

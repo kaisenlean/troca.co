@@ -16,29 +16,28 @@ import co.icesi.troca.test.BaseUnit;
 
 /**
  * 
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class CategoriaNecesitoDaoImplTest
-* @date 24/11/2013
-*
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class CategoriaNecesitoDaoImplTest
+ * @date 24/11/2013
+ * 
  */
-public class CategoriaNecesitoDaoImplTest extends BaseUnit{
+public class CategoriaNecesitoDaoImplTest extends BaseUnit {
 
 	/**
 	 * 24/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * categoriaNecesitoDao
+	 *         categoriaNecesitoDao
 	 */
 	@Autowired
 	private CategoriaNecesitoDao categoriaNecesitoDao;
-	
-	
-	
+
 	@Test
-	public void testFindAll(){
-		
-		List<CategoriaNecesito> lista= categoriaNecesitoDao.findAll();
+	public void testFindAll() {
+
+		List<CategoriaNecesito> lista = categoriaNecesitoDao.findAll();
 		assertNotNull(lista);
-		
+
 	}
 }

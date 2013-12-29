@@ -20,7 +20,7 @@ import co.icesi.troca.services.noticia.NoticiaService;
  * @project troca-co
  * @class UltimasNoticias
  * @date 1/12/2013
- *
+ * 
  */
 @ManagedBean
 @RequestScoped
@@ -28,54 +28,36 @@ public class UltimasNoticias extends BaseBean implements Serializable {
 
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MAX_RESULTS
+	 *         MAX_RESULTS
 	 */
 	private static final int MAX_RESULTS = 15;
 
+	/**
+	 * 1/12/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         noticiaService
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	
-	/**
-	 * 1/12/2013
-	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * noticiaService
-	 */
-	@ManagedProperty(value="#{noticiaService}")
+	@ManagedProperty(value = "#{noticiaService}")
 	private NoticiaService noticiaService;
-	
+
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * noticias
+	 *         noticias
 	 */
 	private List<Noticia> noticias;
-	
-	
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	*/
-	@PostConstruct
-	public void init(){
-		
-		noticias=noticiaService.findUltimasNoticias(MAX_RESULTS);
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 1/12/2013
-	 * @param noticiaService the noticiaService to set
-	 */
-	public void setNoticiaService(NoticiaService noticiaService) {
-		this.noticiaService = noticiaService;
-	}
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -85,13 +67,34 @@ public class UltimasNoticias extends BaseBean implements Serializable {
 	public List<Noticia> getNoticias() {
 		return noticias;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 1/12/2013
-	 * @param noticias the noticias to set
+	 */
+	@PostConstruct
+	public void init() {
+
+		noticias = noticiaService.findUltimasNoticias(MAX_RESULTS);
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param noticias
+	 *            the noticias to set
 	 */
 	public void setNoticias(List<Noticia> noticias) {
 		this.noticias = noticias;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param noticiaService
+	 *            the noticiaService to set
+	 */
+	public void setNoticiaService(NoticiaService noticiaService) {
+		this.noticiaService = noticiaService;
 	}
 }

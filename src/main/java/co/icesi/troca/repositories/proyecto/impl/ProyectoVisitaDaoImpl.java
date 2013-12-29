@@ -31,12 +31,51 @@ public class ProyectoVisitaDaoImpl extends
 		ProyectoVisitaDao {
 
 	/**
+	 * 29/12/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         FOUR
+	 */
+	private static final int FOURTH = 4;
+	/**
+	 * 29/12/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         ZERO
+	 */
+	private static final int ZERO = 0;
+	/**
 	 * 8/12/2013
 	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.proyecto.ProyectoVisitaDao#findProyectosMasVisitados()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Proyecto> findProyectosMasVisitados(int maxResults)
+			throws BaseException {
+		List<Proyecto> proyectos = new ArrayList<Proyecto>();
+		Query query = getEntityManager()
+				.createNativeQuery(
+						new StringBuilder(
+								"SELECT DISTINCT   pv.proyecto AS proyecto  FROM proyecto_visita  AS pv  ORDER BY  (SELECT COUNT(p.usuario) FROM proyecto_visita p WHERE p.proyecto = pv.proyecto)  DESC LIMIT ")
+								.append(maxResults == ZERO ? FOURTH
+										: maxResults).toString());
+		List<Integer> result = query.getResultList();
+		for (Integer p : result) {
+			Proyecto pTemp = (Proyecto) (findById(p, Proyecto.class));
+			proyectos.add(pTemp);
+		}
+		return proyectos;
+
+	}
 
 	/**
 	 * (non-Javadoc)
@@ -53,25 +92,4 @@ public class ProyectoVisitaDaoImpl extends
 		save(visita);
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see co.icesi.troca.repositories.proyecto.ProyectoVisitaDao#findProyectosMasVisitados()
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Proyecto> findProyectosMasVisitados(int maxResults) throws BaseException {
-		List<Proyecto> proyectos=new ArrayList<Proyecto>();
-	Query query= getEntityManager().createNativeQuery(new StringBuilder(
-				"SELECT DISTINCT   pv.proyecto AS proyecto  FROM proyecto_visita  AS pv  ORDER BY  (SELECT COUNT(p.usuario) FROM proyecto_visita p WHERE p.proyecto = pv.proyecto)  DESC LIMIT ").append(maxResults==0?4:maxResults).toString()
-				);
-	List<Integer> result=query.getResultList();
-	for (Integer p : result) {
-		Proyecto pTemp=(Proyecto)(findById(p, Proyecto.class));
-		proyectos.add(pTemp);
-	}
-	return proyectos;
-
-}
-	
 }

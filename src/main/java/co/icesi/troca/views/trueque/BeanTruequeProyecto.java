@@ -4,7 +4,6 @@
 package co.icesi.troca.views.trueque;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -88,6 +87,96 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	@ManagedProperty("#{beanProyecto}")
 	private BeanProyecto beanProyecto;
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the activos
+	 */
+	public List<Trueque> getActivos() {
+		return activos;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the cancelados
+	 */
+	public List<Trueque> getCancelados() {
+		return cancelados;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @return the finalizados
+	 */
+	public List<Trueque> getFinalizados() {
+		return finalizados;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the idTengo
+	 */
+	public int getIdTengo() {
+		return idTengo;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 10/12/2013
+	 * @return the idTengo2
+	 */
+	public int getIdTengo2() {
+		return idTengo2;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the login
+	 */
+	public Login getLogin() {
+		return login;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the mensaje
+	 */
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the perfilDe
+	 */
+	public PerfilDe getPerfilDe() {
+		return perfilDe;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the textOtro
+	 */
+	public String getTextOtro() {
+		return textOtro;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @return the trueque
+	 */
+	public Trueque getTrueque() {
+		return trueque;
+	}
+
 	@PostConstruct
 	public void init() {
 
@@ -106,7 +195,6 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 */
 	public void realizarTrueque(Tengo tengo, int idTengo) {
 		Tengo tenTemp = new Tengo();
-		idTengo=this.idTengo;
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
@@ -138,7 +226,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		if (tenTemp.getOwner().equals(login.getUsuario())) {
 			mensajeError("No puedes trocar  con tus propios tengos");
-			return ;
+			return;
 		}
 		trueque = truequeService.save(trueque);
 
@@ -148,19 +236,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
-		
-		/* Envio de mensajes por aparte
-		if (mensaje!=null) {
-			if (!mensaje.trim().equals("")) {
-				truequeMensaje.setMensaje(mensaje);
-				truequeMensaje.setTrueque(trueque);
-				truequeMensaje.setUsuarioEmisor(login.getUsuario());
-				truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
-				truequeMensaje.setFecha(Calendar.getInstance().getTime());
-				truequeMensajeService.save(truequeMensaje);
-			}
-		}
-		*/
+
 		mensaje = new StringBuilder("!!Hola , veo que tienen ")
 				.append(tengo.getNombre())
 				.append(" Yo lo necesito y a cambio te ofrezco ")
@@ -180,7 +256,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
 	 */
-	public void realizarTruequeN(Necesito necesito,int idTengo2) {
+	public void realizarTruequeN(Necesito necesito, int idTengo2) {
 		Tengo tenTemp = new Tengo();
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
@@ -202,7 +278,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		}
 		trueque.setEstadoUsuario1(EstadoTruequeEnum.ACTIVO);
 		trueque.setEstadoUsuario2(EstadoTruequeEnum.ACTIVO);
-		
+
 		trueque = truequeService.save(trueque);
 
 		tt.setTengo(tenTemp);
@@ -211,18 +287,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
-		/* Envio de mensajes por aparte
-		if (mensaje!=null) {
-			if (!mensaje.trim().equals("")) {
-				truequeMensaje.setMensaje(mensaje);
-				truequeMensaje.setTrueque(trueque);
-				truequeMensaje.setUsuarioEmisor(login.getUsuario());
-				truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
-				truequeMensaje.setFecha(Calendar.getInstance().getTime());
-				truequeMensajeService.save(truequeMensaje);
-			}
-		}
-		*/
+
 		mensaje = new StringBuilder("!!Hola , veo que necesitan ")
 				.append(necesito.getNombre())
 				.append(" Yo lo tengo y a cambio les ofrezco ")
@@ -242,22 +307,41 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
+	 * @param activos
+	 *            the activos to set
 	 */
-	public void verPnlTrueque(Trueque trueque) {
-		this.trueque = trueque;
-		this.trueque.setMensajes(truequeMensajeService
-				.findMensajesByTrueque(trueque));
-		addAttribute("trueque", this.trueque);
-		goTo("/paginas/trueque/mensajesTrueque.jsf");
+	public void setActivos(List<Trueque> activos) {
+		this.activos = activos;
 	}
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the idTengo
+	 * @date 10/12/2013
+	 * @param beanProyecto
+	 *            the beanProyecto to set
 	 */
-	public int getIdTengo() {
-		return idTengo;
+	public void setBeanProyecto(BeanProyecto beanProyecto) {
+		this.beanProyecto = beanProyecto;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param cancelados
+	 *            the cancelados to set
+	 */
+	public void setCancelados(List<Trueque> cancelados) {
+		this.cancelados = cancelados;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param finalizados
+	 *            the finalizados to set
+	 */
+	public void setFinalizados(List<Trueque> finalizados) {
+		this.finalizados = finalizados;
 	}
 
 	/**
@@ -272,49 +356,12 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the trueque
+	 * @date 10/12/2013
+	 * @param idTengo2
+	 *            the idTengo2 to set
 	 */
-	public Trueque getTrueque() {
-		return trueque;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param trueque
-	 *            the trueque to set
-	 */
-	public void setTrueque(Trueque trueque) {
-		this.trueque = trueque;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the mensaje
-	 */
-	public String getMensaje() {
-		return mensaje;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param mensaje
-	 *            the mensaje to set
-	 */
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the login
-	 */
-	public Login getLogin() {
-		return login;
+	public void setIdTengo2(int idTengo2) {
+		this.idTengo2 = idTengo2;
 	}
 
 	/**
@@ -330,39 +377,31 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/12/2013
+	 * @param mensaje
+	 *            the mensaje to set
+	 */
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param notificacionService
+	 *            the notificacionService to set
+	 */
+	public void setNotificacionService(NotificacionService notificacionService) {
+		this.notificacionService = notificacionService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
 	 * @param perfilDe
 	 *            the perfilDe to set
 	 */
 	public void setPerfilDe(PerfilDe perfilDe) {
 		this.perfilDe = perfilDe;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the perfilDe
-	 */
-	public PerfilDe getPerfilDe() {
-		return perfilDe;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @return the textOtro
-	 */
-	public String getTextOtro() {
-		return textOtro;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 2/12/2013
-	 * @param textOtro
-	 *            the textOtro to set
-	 */
-	public void setTextOtro(String textOtro) {
-		this.textOtro = textOtro;
 	}
 
 	/**
@@ -377,12 +416,22 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 8/12/2013
-	 * @param truequeService
-	 *            the truequeService to set
+	 * @date 2/12/2013
+	 * @param textOtro
+	 *            the textOtro to set
 	 */
-	public void setTruequeService(TruequeService truequeService) {
-		this.truequeService = truequeService;
+	public void setTextOtro(String textOtro) {
+		this.textOtro = textOtro;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/12/2013
+	 * @param trueque
+	 *            the trueque to set
+	 */
+	public void setTrueque(Trueque trueque) {
+		this.trueque = trueque;
 	}
 
 	/**
@@ -398,6 +447,16 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param truequeService
+	 *            the truequeService to set
+	 */
+	public void setTruequeService(TruequeService truequeService) {
+		this.truequeService = truequeService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
 	 * @param truequeTengoService
 	 *            the truequeTengoService to set
@@ -409,96 +468,12 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 9/12/2013
-	 * @param notificacionService
-	 *            the notificacionService to set
 	 */
-	public void setNotificacionService(NotificacionService notificacionService) {
-		this.notificacionService = notificacionService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the activos
-	 */
-	public List<Trueque> getActivos() {
-		return activos;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param activos
-	 *            the activos to set
-	 */
-	public void setActivos(List<Trueque> activos) {
-		this.activos = activos;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the finalizados
-	 */
-	public List<Trueque> getFinalizados() {
-		return finalizados;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param finalizados
-	 *            the finalizados to set
-	 */
-	public void setFinalizados(List<Trueque> finalizados) {
-		this.finalizados = finalizados;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @return the cancelados
-	 */
-	public List<Trueque> getCancelados() {
-		return cancelados;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 9/12/2013
-	 * @param cancelados
-	 *            the cancelados to set
-	 */
-	public void setCancelados(List<Trueque> cancelados) {
-		this.cancelados = cancelados;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 10/12/2013
-	 * @param beanProyecto
-	 *            the beanProyecto to set
-	 */
-	public void setBeanProyecto(BeanProyecto beanProyecto) {
-		this.beanProyecto = beanProyecto;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 10/12/2013
-	 * @return the idTengo2
-	 */
-	public int getIdTengo2() {
-		return idTengo2;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 10/12/2013
-	 * @param idTengo2
-	 *            the idTengo2 to set
-	 */
-	public void setIdTengo2(int idTengo2) {
-		this.idTengo2 = idTengo2;
+	public void verPnlTrueque(Trueque trueque) {
+		this.trueque = trueque;
+		this.trueque.setMensajes(truequeMensajeService
+				.findMensajesByTrueque(trueque));
+		addAttribute("trueque", this.trueque);
+		goTo("/paginas/trueque/mensajesTrueque.jsf");
 	}
 }

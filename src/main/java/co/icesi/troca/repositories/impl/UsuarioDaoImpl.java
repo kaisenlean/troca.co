@@ -36,6 +36,55 @@ public class UsuarioDaoImpl extends GenericJpaRepository<Usuario, Integer>
 	/**
 	 * (non-Javadoc)
 	 * 
+	 * @see co.icesi.troca.repositories.UsuarioDao#findByEmail(java.lang.String)
+	 */
+	@Override
+	public Usuario findByEmail(String email) {
+		Criterion criterion = Restrictions.eq("email", email);
+		List<Usuario> usuarios = findByCriteria(criterion);
+		if (usuarios.isEmpty()) {
+			return null;
+		} else {
+			return usuarios.get(0);
+		}
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.UsuarioDao#findUsuariosByParam(java.lang.String)
+	 */
+	@Override
+	public List<Usuario> findUsuariosByParam(String param) {
+
+		Criterion crit = Restrictions.disjunction()
+				.add(Restrictions.like("nombre", param, MatchMode.ANYWHERE))
+				.add(Restrictions.like("apellido", param, MatchMode.ANYWHERE))
+				.add(Restrictions.like("email", param, MatchMode.ANYWHERE));
+		return findByCriteria(crit);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.UsuarioDao#getByNombreApellido(java.lang.String)
+	 */
+	@Override
+	public Usuario getByNombreApellido(String nombre, String apellido) {
+		Criterion crit = Restrictions.eq("nombre", nombre);
+		Criterion crit2 = Restrictions.eq("apellido", apellido);
+		List<Usuario> lista = findByCriteria(crit, crit2);
+		if (lista.size() > 0) {
+			return lista.get(0);
+		} else {
+			return null;
+
+		}
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.UsuarioDao#loggedIn(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
@@ -55,52 +104,5 @@ public class UsuarioDaoImpl extends GenericJpaRepository<Usuario, Integer>
 
 		}
 	}
-
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see co.icesi.troca.repositories.UsuarioDao#findUsuariosByParam(java.lang.String)
-	 */
-	@Override
-	public List<Usuario> findUsuariosByParam(String param) {
-
-	Criterion crit=	Restrictions.disjunction()
-				.add(Restrictions.like("nombre", param, MatchMode.ANYWHERE))
-				.add(Restrictions.like("apellido", param, MatchMode.ANYWHERE))
-				.add(Restrictions.like("email", param, MatchMode.ANYWHERE));
-		return findByCriteria(crit);
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.repositories.UsuarioDao#getByNombreApellido(java.lang.String)
-	 */
-	@Override
-	public Usuario getByNombreApellido(String nombre,String apellido) {
-		Criterion crit = Restrictions.eq("nombre", nombre);
-		Criterion crit2 = Restrictions.eq("apellido", apellido);
-		List<Usuario> lista =findByCriteria(crit,crit2);
-		if (lista.size()>0) {
-			return lista.get(0);
-		}else{
-			return null;
-			
-		}
-	}
-
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.repositories.UsuarioDao#findByEmail(java.lang.String)
-	 */
-	@Override
-	public Usuario findByEmail(String email) {
-		Criterion criterion= Restrictions.eq("email", email);
-		List<Usuario> usuarios = findByCriteria(criterion);
-		if (usuarios.isEmpty()) {
-			return null;
-		}else{
-			return usuarios.get(0);
-		}
-	}
-	
-	
 
 }

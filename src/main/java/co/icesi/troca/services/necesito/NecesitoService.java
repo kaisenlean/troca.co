@@ -14,47 +14,48 @@ import co.icesi.troca.services.GenericService;
  * @project troca-co
  * @class NecesitoService
  * @date 17/11/2013
- *
+ * 
  */
-public interface NecesitoService extends GenericService<Necesito, Integer>{
+public interface NecesitoService extends GenericService<Necesito, Integer> {
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/11/2013
+	 * @param proyecto
+	 * @return
+	 */
+	 List<Necesito> findNecesitoByParam(String param);
+
+	/**
+	 * Método que consulta los necesitos por proyecto
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/11/2013
+	 * @param proyecto
+	 * @return
+	 */
+	 List<Necesito> findNecesitoByProyecto(Proyecto proyecto);
 
 	/**
 	 * 
 	 * Metodo que consulta los ultimos necesitos registrados en el sistema
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 23/11/2013
-	* @return
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/11/2013
+	 * @return
 	 */
-	public List<Necesito> findUltimosNecesito();
-	
-	
+	 List<Necesito> findUltimosNecesito();
+
 	/**
 	 * 
-	 * Metodo que consulta los ultimos necesitos registrados en el sistema con maximo de resultados
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 23/11/2013
-	* @return
-	 */
-	public List<Necesito> findUltimosNecesito(int maxResults);
-	
-	
-	/**
-	 * Método que consulta los necesitos por proyecto
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 29/11/2013
-	* @param proyecto
-	* @return
-	*/
-	public List<Necesito> findNecesitoByProyecto(Proyecto proyecto);
-	
-	/**
+	 * Metodo que consulta los ultimos necesitos registrados en el sistema con
+	 * maximo de resultados
 	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 29/11/2013
-	* @param proyecto
-	* @return
-	*/
-	public List<Necesito> findNecesitoByParam(String param);
-	
-	
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/11/2013
+	 * @return
+	 */
+	 List<Necesito> findUltimosNecesito(int maxResults);
+
 }

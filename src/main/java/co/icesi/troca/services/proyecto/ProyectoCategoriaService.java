@@ -11,8 +11,9 @@ import co.icesi.troca.services.GenericService;
  * @project troca-co
  * @class ProyectoService
  * @date 7/11/2013
- *
+ * 
  */
-public interface ProyectoCategoriaService extends GenericService<ProyectoCategoria, Integer> {
+public interface ProyectoCategoriaService extends
+		GenericService<ProyectoCategoria, Integer> {
 
 }

@@ -20,51 +20,39 @@ import co.icesi.troca.services.proyecto.ProyectoService;
  * @project troca-co
  * @class UltimosProyectos
  * @date 1/12/2013
- *
+ * 
  */
 @ManagedBean
 @RequestScoped
 public class UltimosProyectos extends BaseBean implements Serializable {
 
 	/**
-	 * 1/12/2013
+	 * 29/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         MAX_SIZE
+	 */
+	private static final int MAX_SIZE = 15;
+
+	/**
+	 * 1/12/2013
+	 * 
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * proyectoService
+	 *         proyectoService
 	 */
-	@ManagedProperty(value="#{proyectoService}")
-	private ProyectoService proyectoService;  
+	@ManagedProperty(value = "#{proyectoService}")
+	private ProyectoService proyectoService;
 
-	
 	private List<Proyecto> proyectos;
-	
-	
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 1/12/2013
-	*/
-	@PostConstruct
-	public void init(){
-		proyectos=proyectoService.findUltimosProyectos(15);
-		
-	}
-	
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 1/12/2013
-	 * @param proyectoService the proyectoService to set
-	 */
-	public void setProyectoService(ProyectoService proyectoService) {
-		this.proyectoService = proyectoService;
-	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 1/12/2013
@@ -73,15 +61,35 @@ public class UltimosProyectos extends BaseBean implements Serializable {
 	public List<Proyecto> getProyectos() {
 		return proyectos;
 	}
-	
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 1/12/2013
-	 * @param proyectos the proyectos to set
+	 */
+	@PostConstruct
+	public void init() {
+		proyectos = proyectoService.findUltimosProyectos(MAX_SIZE);
+
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param proyectos
+	 *            the proyectos to set
 	 */
 	public void setProyectos(List<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 1/12/2013
+	 * @param proyectoService
+	 *            the proyectoService to set
+	 */
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
+	}
+
 }

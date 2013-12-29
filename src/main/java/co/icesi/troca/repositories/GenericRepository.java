@@ -12,83 +12,14 @@ import java.util.Map;
  * 
  * @version $LastChangedRevision: 257 $
  * 
- * @param <TYPE>
+ * @param <C>
  *            the entity type
  * @param <ID>
  *            the primary key type
  */
-public interface GenericRepository<TYPE, PK extends Serializable> {
+public interface GenericRepository<C, PK extends Serializable> {
 	// ~ Methods
 	// ----------------------------------------------------------------
-
-	/**
-	 * Get the Class of the entity
-	 * 
-	 * @return the class
-	 */
-	Class<TYPE> getEntityClass();
-
-	/**
-	 * Find an entity by its primary key
-	 * 
-	 * @param id
-	 *            the primary key
-	 * @return the entity
-	 */
-	TYPE findById(final PK id);
-	
-	
-	
-	
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 8/12/2013
-	* @param id
-	* @param clazz
-	* @return
-	*/
-	Object findById(final PK id ,  Class<?>  clazz) ;
-
-	/**
-	 * Load all entities
-	 * 
-	 * @return the list of entities
-	 */
-	List<TYPE> findAll();
-
-	/**
-	 * Find entities based on an example
-	 * 
-	 * @param exampleInstance
-	 *            the example
-	 * @return the list of entities
-	 */
-	List<TYPE> findByExample(final TYPE exampleInstance);
-
-	/**
-	 * Find using a named query
-	 * 
-	 * @param queryName
-	 *            the name of the query
-	 * @param params
-	 *            the query parameters
-	 * 
-	 * @return the list of entities
-	 */
-	List<TYPE> findByNamedQuery(final String queryName, Object... params);
-
-	/**
-	 * Find using a named query
-	 * 
-	 * @param queryName
-	 *            the name of the query
-	 * @param params
-	 *            the query parameters
-	 * 
-	 * @return the list of entities
-	 */
-	List<TYPE> findByNamedQueryAndNamedParams(final String queryName,
-			final Map<String, ? extends Object> params);
 
 	/**
 	 * Count all entities
@@ -104,7 +35,81 @@ public interface GenericRepository<TYPE, PK extends Serializable> {
 	 *            the search criteria
 	 * @return the number of entities
 	 */
-	int countByExample(final TYPE exampleInstance);
+	int countByExample(final C exampleInstance);
+
+	/**
+	 * delete an entity from the database
+	 * 
+	 * @param entity
+	 *            the entity to delete
+	 */
+	void delete(final C entity);
+
+	/**
+	 * Load all entities
+	 * 
+	 * @return the list of entities
+	 */
+	List<C> findAll();
+
+	/**
+	 * Find entities based on an example
+	 * 
+	 * @param exampleInstance
+	 *            the example
+	 * @return the list of entities
+	 */
+	List<C> findByExample(final C exampleInstance);
+
+	/**
+	 * Find an entity by its primary key
+	 * 
+	 * @param id
+	 *            the primary key
+	 * @return the entity
+	 */
+	C findById(final PK id);
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 8/12/2013
+	 * @param id
+	 * @param clazz
+	 * @return
+	 */
+	Object findById(final PK id, Class<?> clazz);
+
+	/**
+	 * Find using a named query
+	 * 
+	 * @param queryName
+	 *            the name of the query
+	 * @param params
+	 *            the query parameters
+	 * 
+	 * @return the list of entities
+	 */
+	List<C> findByNamedQuery(final String queryName, Object... params);
+
+	/**
+	 * Find using a named query
+	 * 
+	 * @param queryName
+	 *            the name of the query
+	 * @param params
+	 *            the query parameters
+	 * 
+	 * @return the list of entities
+	 */
+	List<C> findByNamedQueryAndNamedParams(final String queryName,
+			final Map<String, ? extends Object> params);
+
+	/**
+	 * Get the Class of the entity
+	 * 
+	 * @return the class
+	 */
+	Class<C> getEntityClass();
 
 	/**
 	 * save an entity. This can be either a INSERT or UPDATE in the database
@@ -114,14 +119,6 @@ public interface GenericRepository<TYPE, PK extends Serializable> {
 	 * 
 	 * @return the saved entity
 	 */
-	TYPE save(final TYPE entity);
+	C save(final C entity);
 
-	/**
-	 * delete an entity from the database
-	 * 
-	 * @param entity
-	 *            the entity to delete
-	 */
-	void delete(final TYPE entity);
-	
 }

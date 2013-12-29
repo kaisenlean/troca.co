@@ -21,16 +21,15 @@ import co.icesi.troca.test.BaseUnit;
  * @project troca-co
  * @class UsuarioLinkDaoImplTest
  * @date 28/11/2013
- *
+ * 
  */
 public class UsuarioLinkDaoImplTest extends BaseUnit {
 
-	
-
 	/**
 	 * 27/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * FILTER_PHRASE
+	 *         FILTER_PHRASE
 	 */
 	private static final String BIOGRAPHY_PRUEBA = "biography";
 	private static final String PASSWORD_PRUEBA = "666";
@@ -39,35 +38,22 @@ public class UsuarioLinkDaoImplTest extends BaseUnit {
 	private static final String NOMBRE_PRUEBA = "NOMBRE PRUEBA";
 	@Autowired
 	private UsuarioLinkDao usuarioLinkDao;
-	
+
 	@Autowired
 	private UsuarioDao usuarioDao;
-	
-	/**
-	 * Test method for {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
-	 */
+
 	@Test
-	public void testFindAll() {
-	List<UsuarioLink> lista = usuarioLinkDao.findAll();
-	assertNotNull(lista);
-	
-	}
-	
-	@Test
-	public void getLinkByUsuario(){
-		List<UsuarioLink> lista= usuarioLinkDao.getLinkByUsuario(saveTestUsuario());
+	public void getLinkByUsuario() {
+		List<UsuarioLink> lista = usuarioLinkDao
+				.getLinkByUsuario(saveTestUsuario());
 		assertNotNull(lista);
 	}
 
-	
-	
-	
-
 	/**
 	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 22/10/2013
-	* @return
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 * @return
 	 */
 	private Usuario saveTestUsuario() {
 		Usuario usuario = new Usuario();
@@ -78,5 +64,16 @@ public class UsuarioLinkDaoImplTest extends BaseUnit {
 		usuario.setBiografia(BIOGRAPHY_PRUEBA);
 		Usuario temp = usuarioDao.save(usuario);
 		return temp;
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.repositories.impl.GenericJpaRepository#findAll()}.
+	 */
+	@Test
+	public void testFindAll() {
+		List<UsuarioLink> lista = usuarioLinkDao.findAll();
+		assertNotNull(lista);
+
 	}
 }

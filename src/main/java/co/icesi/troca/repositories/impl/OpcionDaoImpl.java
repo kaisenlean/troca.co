@@ -11,6 +11,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.exception.BaseException;
 import co.icesi.troca.model.Opcion;
 import co.icesi.troca.repositories.OpcionDao;
 
@@ -19,35 +20,40 @@ import co.icesi.troca.repositories.OpcionDao;
  * @project troca-co
  * @class OpcionDaoImpl
  * @date 6/11/2013
- *
+ * 
  */
 @Service("opcionDao")
-public class OpcionDaoImpl extends GenericJpaRepository<Opcion, String>  implements OpcionDao,Serializable{
+public class OpcionDaoImpl extends GenericJpaRepository<Opcion, String>
+		implements OpcionDao, Serializable {
 
 	/**
 	 * 6/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * KEY_FIELD
+	 *         KEY_FIELD
 	 */
 	private static final String KEY_FIELD = "key";
 	/**
 	 * 6/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.OpcionDao#getValueByKey(java.lang.String)
 	 */
 	@Override
-	public String getValueByKey(String value) throws Exception{
+	public String getValueByKey(String value) throws BaseException {
 		Criterion criterio = Restrictions.eq(KEY_FIELD, value);
 		List<Opcion> lista = findByCriteria(criterio);
 		if (lista.isEmpty()) {
 			return null;
-		}else{
-		return	lista.get(BigDecimal.ZERO.intValue()).getValue();
+		} else {
+			return lista.get(BigDecimal.ZERO.intValue()).getValue();
 		}
 	}
 

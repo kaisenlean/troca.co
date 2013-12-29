@@ -22,42 +22,49 @@ import co.icesi.troca.test.BaseUnit;
  * 
  */
 
-public class MailServiceImplTest  extends BaseUnit{
+public class MailServiceImplTest extends BaseUnit {
 
 	/**
 	 * 3/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * LOGO_PNG
+	 *         LOGO_PNG
 	 */
 	private static final String LOGO_PNG = "/logo.png";
 	/**
 	 * 3/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * USER_DIR
+	 *         USER_DIR
 	 */
 	private static final String USER_DIR = "user.dir";
 	/**
 	 * 3/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * FILE_LOGO
+	 *         FILE_LOGO
 	 */
-	private static final File FILE_LOGO = new File(new StringBuilder(System.getProperty(USER_DIR).toString()).append(LOGO_PNG).toString());
+	private static final File FILE_LOGO = new File(new StringBuilder(System
+			.getProperty(USER_DIR).toString()).append(LOGO_PNG).toString());
 	/**
 	 * 3/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * CONTENT_MAIL_TEST
+	 *         CONTENT_MAIL_TEST
 	 */
 	private static final String CONTENT_MAIL_TEST = "Prueba del envío de correo electrónico.";
 	/**
 	 * 3/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * TITLE_MAIL_TEST
+	 *         TITLE_MAIL_TEST
 	 */
 	private static final String TITLE_MAIL_TEST = "Test de envío de email.";
 	/**
 	 * 3/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * GMAIL_DIR
+	 *         GMAIL_DIR
 	 */
 	private static final String GMAIL_DIR = "elmerdiazlazo@gmail.com";
 	@Autowired
@@ -72,9 +79,8 @@ public class MailServiceImplTest  extends BaseUnit{
 	public void testSend() {
 		try {
 			assertNotNull(GMAIL_DIR);
-			service.send(GMAIL_DIR, TITLE_MAIL_TEST,
-					CONTENT_MAIL_TEST);
-			
+			service.send(GMAIL_DIR, TITLE_MAIL_TEST, CONTENT_MAIL_TEST);
+
 		} catch (Exception e) {
 			fail(e.toString());
 		}
@@ -87,14 +93,13 @@ public class MailServiceImplTest  extends BaseUnit{
 	 */
 	@Test
 	public void testSendFileArray() {
-	
+
 		try {
-			service.send(GMAIL_DIR, TITLE_MAIL_TEST,
-					CONTENT_MAIL_TEST,FILE_LOGO);
+			service.send(GMAIL_DIR, TITLE_MAIL_TEST, CONTENT_MAIL_TEST,
+					FILE_LOGO);
 		} catch (Exception e) {
 			fail(e.toString());
 		}
 	}
-	
 
 }

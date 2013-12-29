@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.icesi.troca.exception.BaseException;
 import co.icesi.troca.mail.login.LoginNotification;
 import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.registro.VerificationMailService;
@@ -23,9 +24,7 @@ import co.icesi.troca.services.seguridad.EncoderManager;
 @Service("verificacionMailService")
 public class VerificacionMailServiceImpl implements VerificationMailService {
 
-	
-	
-	private  Logger LOGGER = LoggerFactory
+	private Logger logVerificacionMail = LoggerFactory
 			.getLogger(VerificacionMailServiceImpl.class);
 	/**
 	 * 6/11/2013
@@ -51,28 +50,17 @@ public class VerificacionMailServiceImpl implements VerificationMailService {
 	/**
 	 * (non-Javadoc)
 	 * 
-	 * @see co.icesi.troca.services.registro.VerificationMailService#verificarMailUsuario(java.lang.String)
-	 */
-	@Override
-	public boolean verificarMailUsuario(String mailKey) throws Exception {
-
-		return false;
-	}
-
-	/**
-	 * (non-Javadoc)
-	 * 
 	 * @see co.icesi.troca.services.registro.VerificationMailService#crearClaveVerificacion(java.lang.String)
 	 */
 	@Override
-	public String crearClaveVerificacion(Usuario usuario) throws Exception {
+	public String crearClaveVerificacion(Usuario usuario) throws BaseException {
 
 		if (usuario == null) {
-			throw new Exception(USUARIO_ES_NULO_MSG);
+			throw new BaseException(USUARIO_ES_NULO_MSG);
 		}
 
 		if (usuario.getEmail() == null | usuario.getEmail().isEmpty()) {
-			throw new Exception(EMAIL_INVALIDO_MSG);
+			throw new BaseException(EMAIL_INVALIDO_MSG);
 		}
 
 		return encoderManager.encodeMd5Hash(usuario.getEmail());
@@ -84,30 +72,59 @@ public class VerificacionMailServiceImpl implements VerificationMailService {
 	 * @see co.icesi.troca.services.registro.VerificationMailService#enviarMailVerificacion(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
-	public void enviarMailVerificacion(Usuario usuario) throws Exception {
-
+	public void enviarMailVerificacion(Usuario usuario) throws BaseException {
 
 		String hashKey = crearClaveVerificacion(usuario);
 		usuario.setClaveVerificacion(hashKey);
 		loginNotification.enviarMailAutenticacionCuenta(usuario);
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 12/11/2013
 	 * @return the lOGGER
 	 */
 	public Logger getLogger() {
-		return LOGGER;
+		return logVerificacionMail;
 	}
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/12/2013
+	 * @return the logVerificacionMail
+	 */
+	public Logger getLogVerificacionMail() {
+		return logVerificacionMail;
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 12/11/2013
-	 * @param lOGGER the lOGGER to set
+	 * @param lOGGER
+	 *            the lOGGER to set
 	 */
 	public void setLogger(Logger logger) {
-		LOGGER = logger;
+		logVerificacionMail = logger;
 	}
 
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/12/2013
+	 * @param logVerificacionMail
+	 *            the logVerificacionMail to set
+	 */
+	public void setLogVerificacionMail(Logger logVerificacionMail) {
+		this.logVerificacionMail = logVerificacionMail;
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.registro.VerificationMailService#verificarMailUsuario(java.lang.String)
+	 */
+	@Override
+	public boolean verificarMailUsuario(String mailKey) throws BaseException {
+
+		return false;
+	}
 }

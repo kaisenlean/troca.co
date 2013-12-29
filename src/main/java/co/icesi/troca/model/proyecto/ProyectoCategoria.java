@@ -19,12 +19,13 @@ import javax.persistence.Id;
  * 
  */
 @Entity(name = "proyecto_categoria")
-public class ProyectoCategoria  implements Serializable{
+public class ProyectoCategoria implements Serializable {
 
 	/**
 	 * 24/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 

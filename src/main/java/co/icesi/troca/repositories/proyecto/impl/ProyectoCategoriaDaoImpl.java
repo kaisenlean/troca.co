@@ -16,15 +16,18 @@ import co.icesi.troca.repositories.proyecto.ProyectoCategoriaDao;
  * @project troca-co
  * @class ProyectoDaoImpl
  * @date 7/11/2013
- *
+ * 
  */
 @Repository("proyectoCategoriaDao")
-public class ProyectoCategoriaDaoImpl extends GenericJpaRepository<ProyectoCategoria, Integer> implements ProyectoCategoriaDao,Serializable {
+public class ProyectoCategoriaDaoImpl extends
+		GenericJpaRepository<ProyectoCategoria, Integer> implements
+		ProyectoCategoriaDao, Serializable {
 
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 

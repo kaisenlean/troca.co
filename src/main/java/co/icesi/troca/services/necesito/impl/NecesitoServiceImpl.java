@@ -22,23 +22,67 @@ import co.icesi.troca.services.necesito.NecesitoService;
  * @project troca-co
  * @class NecesitoServiceImpl
  * @date 17/11/2013
- *
+ * 
  */
 @Service("necesitoService")
-public class NecesitoServiceImpl extends GenericServiceImpl<Necesito, Integer> implements Serializable,GenericService<Necesito, Integer>,NecesitoService{
+public class NecesitoServiceImpl extends GenericServiceImpl<Necesito, Integer>
+		implements Serializable, GenericService<Necesito, Integer>,
+		NecesitoService {
 
 	/**
 	 * 17/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Autowired
 	private NecesitoDao necesitoDao;
-	
-	/** (non-Javadoc)
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.necesito.NecesitoService#findNecesitoByParam(java.lang.String)
+	 */
+	@Override
+	public List<Necesito> findNecesitoByParam(String param) {
+		return necesitoDao.findNecesitoByParam(param);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.necesito.NecesitoService#findNecesitoByProyecto(co.icesi.troca.model.proyecto.Proyecto)
+	 */
+	@Override
+	public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
+		return necesitoDao.findNecesitoByProyecto(proyecto);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.necesito.NecesitoService#findUltimosNecesito()
+	 */
+	@Override
+	public List<Necesito> findUltimosNecesito() {
+		return necesitoDao.findUltimosNecesito(2);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.necesito.NecesitoService#findUltimosNecesito(int)
+	 */
+	@Override
+	public List<Necesito> findUltimosNecesito(int maxResults) {
+		return necesitoDao.findUltimosNecesito(maxResults);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
@@ -46,49 +90,13 @@ public class NecesitoServiceImpl extends GenericServiceImpl<Necesito, Integer> i
 		return necesitoDao;
 	}
 
-	
-/**
- * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
- * @date 20/11/2013
- * @param necesitoDao the necesitoDao to set
- */
-public void setNecesitoDao(NecesitoDao necesitoDao) {
-	this.necesitoDao = necesitoDao;
-}
-
-
-/** (non-Javadoc)
- * @see co.icesi.troca.services.necesito.NecesitoService#findUltimosNecesito()
- */
-@Override
-public List<Necesito> findUltimosNecesito() {
-	return necesitoDao.findUltimosNecesito(2);
-}
-
-
-/** (non-Javadoc)
- * @see co.icesi.troca.services.necesito.NecesitoService#findNecesitoByProyecto(co.icesi.troca.model.proyecto.Proyecto)
- */
-@Override
-public List<Necesito> findNecesitoByProyecto(Proyecto proyecto) {
-	return necesitoDao.findNecesitoByProyecto(proyecto);
-}
-
-
-/** (non-Javadoc)
- * @see co.icesi.troca.services.necesito.NecesitoService#findNecesitoByParam(java.lang.String)
- */
-@Override
-public List<Necesito> findNecesitoByParam(String param) {
-	return necesitoDao.findNecesitoByParam(param);
-}
-
-
-/** (non-Javadoc)
- * @see co.icesi.troca.services.necesito.NecesitoService#findUltimosNecesito(int)
- */
-@Override
-public List<Necesito> findUltimosNecesito(int maxResults) {
-	return necesitoDao.findUltimosNecesito(maxResults);
-}
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 20/11/2013
+	 * @param necesitoDao
+	 *            the necesitoDao to set
+	 */
+	public void setNecesitoDao(NecesitoDao necesitoDao) {
+		this.necesitoDao = necesitoDao;
+	}
 }

@@ -44,20 +44,21 @@ import co.icesi.troca.services.usuario.UsuarioLinkService;
  * 
  */
 /**
-* @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-* @project troca-co
-* @class Login
-* @date 13/11/2013
-*
-*/
+ * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+ * @project troca-co
+ * @class Login
+ * @date 13/11/2013
+ * 
+ */
 @ManagedBean
 @SessionScoped
 public class Login extends BaseBean implements Serializable {
 
 	/**
 	 * 12/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * MSG_ERROR_MD5_HASH
+	 *         MSG_ERROR_MD5_HASH
 	 */
 	private static final String MSG_ERROR_MD5_HASH = "MD5 Hash inválido";
 
@@ -85,94 +86,61 @@ public class Login extends BaseBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuario=new Usuario();
+	private Usuario usuario = new Usuario();
 	private String user;
 	private String contrasena;
 	private List<SelectItem> itemsTipoTengo = new ArrayList<SelectItem>();
 
 	private Tengo tengo;
 
-	@ManagedProperty(value="#{encoderManager}")
+	@ManagedProperty(value = "#{encoderManager}")
 	private EncoderManager encoderManager;
-	
+
 	@ManagedProperty(value = "#{usuarioService}")
 	private UsuarioService usuarioService;
 
 	@ManagedProperty(value = "#{opcionService}")
 	private OpcionService opcionService;
-	
-	@ManagedProperty(value="#{proyectoService}")
+
+	@ManagedProperty(value = "#{proyectoService}")
 	private ProyectoService proyectoService;
-	
-	@ManagedProperty(value="#{tengoService}")
+
+	@ManagedProperty(value = "#{tengoService}")
 	private TengoService tengoService;
-	
-	@ManagedProperty(value="#{noticiaService}")
+
+	@ManagedProperty(value = "#{noticiaService}")
 	private NoticiaService noticiaService;
-	
-	@ManagedProperty(value="#{usuarioLinkService}")
+
+	@ManagedProperty(value = "#{usuarioLinkService}")
 	private UsuarioLinkService usuarioLinkService;
-	
-	@ManagedProperty(value="#{proyectoUsuarioService}")
+
+	@ManagedProperty(value = "#{proyectoUsuarioService}")
 	private ProyectoUsuarioService proyectoUsuarioService;
-	
-	private static final Logger LOGGER= LoggerFactory.getLogger(Login.class);
-	
-	
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(Login.class);
+
 	/**
 	 * 24/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * noticiasPorUsuario
+	 *         noticiasPorUsuario
 	 */
 	private List<Noticia> noticiasPorUsuario;
-	
+
 	/**
 	 * 13/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * verNuevoProyecto1
+	 *         verNuevoProyecto1
 	 */
-	private boolean verNuevoProyecto1=false;
+	private boolean verNuevoProyecto1 = false;
 	/**
 	 * 13/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * verNuevoProyecto2
+	 *         verNuevoProyecto2
 	 */
-	private boolean verNuevoProyecto2=false;
-	
-
-	@PostConstruct
-	public void init() {
-		cargarItemTipoTengo();
-		tengo = new Tengo();
-		captureContextPath();
-
-	}
-	
-	
-	
-	
-	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 13/11/2013
-	 */
-	public void verNuevoProyectoVista1(){
-		
-		verNuevoProyecto1=true;
-		verNuevoProyecto2=false;
-	}
-
-	
-	/**
-	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 13/11/2013
-	 */
-	public void verNuevoProyectoVista2(){
-		verNuevoProyecto1=false;
-		verNuevoProyecto2=false;
-		
-	}
+	private boolean verNuevoProyecto2 = false;
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -187,7 +155,7 @@ public class Login extends BaseBean implements Serializable {
 		Opcion opcion = opcionService
 				.findById(OpcionConstants.KEY_CONTEXT_PATH);
 		if (opcion == null) {
-			opcion=new Opcion();
+			opcion = new Opcion();
 			opcion.setKey(OpcionConstants.KEY_CONTEXT_PATH);
 			opcion.setValue(ctxPath);
 			opcionService.save(opcion);
@@ -211,9 +179,125 @@ public class Login extends BaseBean implements Serializable {
 		}
 
 	}
-	
-	
-	
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 18/12/2013
+	 */
+	public void cargarPropiedadesUsuario() {
+		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
+		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
+		noticiasPorUsuario = noticiaService.findNoticiasByUsuario(usuario);
+
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return
+	 */
+	public String getContrasena() {
+		return contrasena;
+
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the itemsTipoTengo
+	 */
+	public List<SelectItem> getItemsTipoTengo() {
+		return itemsTipoTengo;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @return the noticiasPorUsuario
+	 */
+	public List<Noticia> getNoticiasPorUsuario() {
+		return noticiasPorUsuario;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return the tengo
+	 */
+	public Tengo getTengo() {
+		return tengo;
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return
+	 */
+	public String getUser() {
+		return user;
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @return
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	@PostConstruct
+	public void init() {
+		cargarItemTipoTengo();
+		tengo = new Tengo();
+		captureContextPath();
+
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @return the verNuevoProyecto1
+	 */
+	public boolean isVerNuevoProyecto1() {
+		return verNuevoProyecto1;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @return the verNuevoProyecto2
+	 */
+	public boolean isVerNuevoProyecto2() {
+		return verNuevoProyecto2;
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/07/2013
+	 */
+	public void logen() {
+		ExternalContext ctx = FacesContext.getCurrentInstance()
+				.getExternalContext();
+		String ctxPath = null;
+		ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+
+		try {
+
+			// Redirección de nuevo con el contexto de JSF,
+			// si se usa una HttpServletResponse fallará.
+			// Sin embargo, como ya está fuera del ciclo de vida
+			// de JSF se debe usar la ruta completa -_-U
+			ctx.redirect(ctxPath + "/");
+		} catch (IOException ex) {
+			mensaje("Error", ex.toString());
+		}
+	}
 
 	/**
 	 * 
@@ -223,8 +307,8 @@ public class Login extends BaseBean implements Serializable {
 	public void loggedIn() {
 		Usuario utemp = new Usuario();
 		utemp.setEmail(user);
-		String md5Pass= encoderManager.encodeMd5Hash(contrasena);
-		if (md5Pass==null) {
+		String md5Pass = encoderManager.encodeMd5Hash(contrasena);
+		if (md5Pass == null) {
 			LOGGER.error(MSG_ERROR_MD5_HASH);
 		}
 		utemp.setPassword(md5Pass);
@@ -234,37 +318,14 @@ public class Login extends BaseBean implements Serializable {
 			return;
 		}
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
-		usuario.getProyectos().addAll(proyectoUsuarioService.findByUsuario(usuario));
+		usuario.getProyectos().addAll(
+				proyectoUsuarioService.findByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
-		noticiasPorUsuario=noticiaService.findNoticiasByUsuario(usuario);
+		noticiasPorUsuario = noticiaService.findNoticiasByUsuario(usuario);
 		goTo("/index.jsf");
 	}
-	
-	/**
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 18/12/2013
-	*/
-	public void cargarPropiedadesUsuario(){
-		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
-		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
-		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
-		noticiasPorUsuario=noticiaService.findNoticiasByUsuario(usuario);
-		
-	}
 
-	/**
-	 * Recargar proyectos y tengo
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 27/11/2013
-	 */
-	public void reloadTengosProyectos(){
-		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
-		usuario.getProyectos().addAll(proyectoUsuarioService.findByUsuario(usuario));
-		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
-	}
-	
-	
 	/**
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -291,89 +352,17 @@ public class Login extends BaseBean implements Serializable {
 		}
 	}
 
-	
 	/**
+	 * Recargar proyectos y tengo
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 22/07/2013
+	 * @date 27/11/2013
 	 */
-	public void logen() {
-		ExternalContext ctx = FacesContext.getCurrentInstance()
-				.getExternalContext();
-		String ctxPath = null;
-		ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
-
-		try {
-
-			// Redirección de nuevo con el contexto de JSF,
-			// si se usa una HttpServletResponse fallará.
-			// Sin embargo, como ya está fuera del ciclo de vida
-			// de JSF se debe usar la ruta completa -_-U
-			ctx.redirect(ctxPath + "/");
-		} catch (IOException ex) {
-			mensaje("Error", ex.toString());
-		}
-	}
-	
-	/**
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @param usuarioService
-	 */
-	public void setUsuarioService(UsuarioService usuarioService) {
-		this.usuarioService = usuarioService;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 6/11/2013
-	 * @param opcionService
-	 *            the opcionService to set
-	 */
-	public void setOpcionService(OpcionService opcionService) {
-		this.opcionService = opcionService;
-	}
-
-	/**
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @return
-	 */
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	/**
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @param usuario
-	 */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	/**
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @return
-	 */
-	public String getUser() {
-		return user;
-	}
-
-	/**
-	 * 
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @return
-	 */
-	public String getContrasena() {
-		return contrasena;
-
+	public void reloadTengosProyectos() {
+		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
+		usuario.getProyectos().addAll(
+				proyectoUsuarioService.findByUsuario(usuario));
+		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 	}
 
 	/**
@@ -388,21 +377,12 @@ public class Login extends BaseBean implements Serializable {
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @param user
-	 *            the user to set
+	 * @date 12/11/2013
+	 * @param encoderManager
+	 *            the encoderManager to set
 	 */
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @return the itemsTipoTengo
-	 */
-	public List<SelectItem> getItemsTipoTengo() {
-		return itemsTipoTengo;
+	public void setEncoderManager(EncoderManager encoderManager) {
+		this.encoderManager = encoderManager;
 	}
 
 	/**
@@ -417,11 +397,53 @@ public class Login extends BaseBean implements Serializable {
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 31/10/2013
-	 * @return the tengo
+	 * @date 24/11/2013
+	 * @param noticiaService
+	 *            the noticiaService to set
 	 */
-	public Tengo getTengo() {
-		return tengo;
+	public void setNoticiaService(NoticiaService noticiaService) {
+		this.noticiaService = noticiaService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 24/11/2013
+	 * @param noticiasPorUsuario
+	 *            the noticiasPorUsuario to set
+	 */
+	public void setNoticiasPorUsuario(List<Noticia> noticiasPorUsuario) {
+		this.noticiasPorUsuario = noticiasPorUsuario;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 6/11/2013
+	 * @param opcionService
+	 *            the opcionService to set
+	 */
+	public void setOpcionService(OpcionService opcionService) {
+		this.opcionService = opcionService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/11/2013
+	 * @param proyectoService
+	 *            the proyectoService to set
+	 */
+	public void setProyectoService(ProyectoService proyectoService) {
+		this.proyectoService = proyectoService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 19/12/2013
+	 * @param proyectoUsuarioService
+	 *            the proyectoUsuarioService to set
+	 */
+	public void setProyectoUsuarioService(
+			ProyectoUsuarioService proyectoUsuarioService) {
+		this.proyectoUsuarioService = proyectoUsuarioService;
 	}
 
 	/**
@@ -433,116 +455,96 @@ public class Login extends BaseBean implements Serializable {
 	public void setTengo(Tengo tengo) {
 		this.tengo = tengo;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 7/11/2013
-	 * @param proyectoService the proyectoService to set
-	 */
-	public void setProyectoService(ProyectoService proyectoService) {
-		this.proyectoService = proyectoService;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 7/11/2013
-	 * @param tengoService the tengoService to set
+	 * @param tengoService
+	 *            the tengoService to set
 	 */
 	public void setTengoService(TengoService tengoService) {
 		this.tengoService = tengoService;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 12/11/2013
-	 * @param encoderManager the encoderManager to set
+	 * @date 31/10/2013
+	 * @param user
+	 *            the user to set
 	 */
-	public void setEncoderManager(EncoderManager encoderManager) {
-		this.encoderManager = encoderManager;
+	public void setUser(String user) {
+		this.user = user;
 	}
-	
-	
+
 	/**
+	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 13/11/2013
-	 * @return the verNuevoProyecto1
+	 * @date 31/10/2013
+	 * @param usuario
 	 */
-	public boolean isVerNuevoProyecto1() {
-		return verNuevoProyecto1;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 13/11/2013
-	 * @return the verNuevoProyecto2
-	 */
-	public boolean isVerNuevoProyecto2() {
-		return verNuevoProyecto2;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 13/11/2013
-	 * @param verNuevoProyecto1 the verNuevoProyecto1 to set
-	 */
-	public void setVerNuevoProyecto1(boolean verNuevoProyecto1) {
-		this.verNuevoProyecto1 = verNuevoProyecto1;
-	}
-	
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 13/11/2013
-	 * @param verNuevoProyecto2 the verNuevoProyecto2 to set
-	 */
-	public void setVerNuevoProyecto2(boolean verNuevoProyecto2) {
-		this.verNuevoProyecto2 = verNuevoProyecto2;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 24/11/2013
-	 * @param noticiaService the noticiaService to set
-	 */
-	public void setNoticiaService(NoticiaService noticiaService) {
-		this.noticiaService = noticiaService;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 24/11/2013
-	 * @return the noticiasPorUsuario
-	 */
-	public List<Noticia> getNoticiasPorUsuario() {
-		return noticiasPorUsuario;
-	}
-	
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 24/11/2013
-	 * @param noticiasPorUsuario the noticiasPorUsuario to set
-	 */
-	public void setNoticiasPorUsuario(List<Noticia> noticiasPorUsuario) {
-		this.noticiasPorUsuario = noticiasPorUsuario;
-	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 1/12/2013
-	 * @param usuarioLinkService the usuarioLinkService to set
+	 * @param usuarioLinkService
+	 *            the usuarioLinkService to set
 	 */
 	public void setUsuarioLinkService(UsuarioLinkService usuarioLinkService) {
 		this.usuarioLinkService = usuarioLinkService;
 	}
-	
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 31/10/2013
+	 * @param usuarioService
+	 */
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 19/12/2013
-	 * @param proyectoUsuarioService the proyectoUsuarioService to set
+	 * @date 13/11/2013
+	 * @param verNuevoProyecto1
+	 *            the verNuevoProyecto1 to set
 	 */
-	public void setProyectoUsuarioService(
-			ProyectoUsuarioService proyectoUsuarioService) {
-		this.proyectoUsuarioService = proyectoUsuarioService;
+	public void setVerNuevoProyecto1(boolean verNuevoProyecto1) {
+		this.verNuevoProyecto1 = verNuevoProyecto1;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 * @param verNuevoProyecto2
+	 *            the verNuevoProyecto2 to set
+	 */
+	public void setVerNuevoProyecto2(boolean verNuevoProyecto2) {
+		this.verNuevoProyecto2 = verNuevoProyecto2;
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 */
+	public void verNuevoProyectoVista1() {
+
+		verNuevoProyecto1 = true;
+		verNuevoProyecto2 = false;
+	}
+
+	/**
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 13/11/2013
+	 */
+	public void verNuevoProyectoVista2() {
+		verNuevoProyecto1 = false;
+		verNuevoProyecto2 = false;
+
 	}
 }

@@ -21,29 +21,35 @@ import co.icesi.troca.services.proyecto.ProyectoService;
  * @project troca-co
  * @class ProyectoServiceImpl
  * @date 7/11/2013
- *
+ * 
  */
 @Service("proyectoService")
-public class ProyectoServiceImpl extends GenericServiceImpl<Proyecto, Integer> implements ProyectoService ,Serializable{
+public class ProyectoServiceImpl extends GenericServiceImpl<Proyecto, Integer>
+		implements ProyectoService, Serializable {
 
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private ProyectoDao proyectoDao;
-	
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.proyecto.ProyectoService#findProyectosByParam(java.lang.String)
 	 */
 	@Override
-	public GenericRepository<Proyecto, Integer> getDao() {
-		return proyectoDao;
+	public List<Proyecto> findProyectosByParam(String param) {
+		return proyectoDao.findProyectosByParam(param);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.proyecto.ProyectoService#findProyectosByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
@@ -51,7 +57,9 @@ public class ProyectoServiceImpl extends GenericServiceImpl<Proyecto, Integer> i
 		return proyectoDao.findProyectosByUsuario(usuario);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.proyecto.ProyectoService#findUltimosProyectos(int)
 	 */
 	@Override
@@ -59,12 +67,14 @@ public class ProyectoServiceImpl extends GenericServiceImpl<Proyecto, Integer> i
 		return proyectoDao.findUltimosProyectos(maxResults);
 	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.proyecto.ProyectoService#findProyectosByParam(java.lang.String)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
 	 */
 	@Override
-	public List<Proyecto> findProyectosByParam(String param) {
-		return proyectoDao.findProyectosByParam(param);
+	public GenericRepository<Proyecto, Integer> getDao() {
+		return proyectoDao;
 	}
 
 }

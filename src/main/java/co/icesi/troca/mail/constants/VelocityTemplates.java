@@ -8,10 +8,9 @@ package co.icesi.troca.mail.constants;
  * @project troca-co
  * @class VelocityTemplates
  * @date 3/11/2013
- *
+ * 
  */
 public interface VelocityTemplates {
 
-	String LOGIN_VERIFICATION_TEMPLATE ="notificacion_login";
+	String LOGIN_VERIFICATION_TEMPLATE = "notificacion_login";
 }
-

@@ -15,12 +15,13 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+
 /**
  * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
  * @project troca-co
  * @class BaseUnit
  * @date 31/10/2013
- *
+ * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/test/resources/applicationContextTest.xml" })
@@ -30,16 +31,20 @@ import org.springframework.transaction.annotation.Transactional;
 		TransactionalTestExecutionListener.class })
 @TransactionConfiguration(defaultRollback = true, transactionManager = "transactionManager")
 @Transactional
-public  class BaseUnit  {
+public class BaseUnit {
 
-	protected Logger log=LoggerFactory.getLogger(getClass());
-	
+	protected Logger log = LoggerFactory.getLogger(getClass());
+
 	/**
-	 * Metodo default para evitar la excepcion del sistema al no encontrar metodos Runnables en esta clase
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 5/11/2013
+	 * Metodo default para evitar la excepcion del sistema al no encontrar
+	 * metodos Runnables en esta clase
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 5/11/2013
 	 */
 	@Test
-	public void defaultRunnableTest(){return;}
+	public void defaultRunnableTest() {
+		return;
+	}
 
 }

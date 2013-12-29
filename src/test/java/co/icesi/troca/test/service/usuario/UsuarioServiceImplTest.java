@@ -51,48 +51,18 @@ public class UsuarioServiceImplTest extends BaseUnit {
 	private Logger logger = Logger.getLogger(getClass());
 
 	/**
+	 * test del metodo {@link UsuarioService#loggedIn(Usuario)}
+	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 22/10/2013
+	 * @date 31/10/2013
 	 */
 	@Test
-	public void testFindById() {
-		Usuario temp = saveTestUsuario();
-		assertNotNull(temp);
-		Usuario ret = usuarioService.findById(temp.getId());
-		assertNotNull(ret);
-	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.services.impl.GenericServiceImpl#findAll()}.
-	 */
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 22/10/2013
-	 */
-	@Test
-	public void testFindAll() {
-		List<Usuario> lista = usuarioService.findAll();
-		logger.info(lista);
-		assertNotNull(lista);
+	public void loggedInTest() {
+		Usuario usuario = saveTestUsuario();
+		Usuario uTemp = usuarioService.loggedIn(usuario);
+		assertNotNull(uTemp);
 
 	}
-
-	/**
-	 * Test method for
-	 * {@link co.icesi.troca.services.impl.GenericServiceImpl#save(java.lang.Object)}
-	 * .
-	 */
-	/**
-	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * @date 22/10/2013
-	 */
-	@Test
-	public void testSave() {
-		Usuario temp = saveTestUsuario();
-		assertNotNull(temp.getId());
-	}
-
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -122,18 +92,48 @@ public class UsuarioServiceImplTest extends BaseUnit {
 		Usuario ret = usuarioService.findById(temp.getId());
 		assertNull(ret);
 	}
-	
+
 	/**
-	 * test del metodo {@link UsuarioService#loggedIn(Usuario)}
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 31/10/2013
+	 * Test method for
+	 * {@link co.icesi.troca.services.impl.GenericServiceImpl#findAll()}.
+	 */
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
 	 */
 	@Test
-	public void loggedInTest(){
-		Usuario usuario = saveTestUsuario();
-		Usuario uTemp = usuarioService.loggedIn(usuario);
-		assertNotNull(uTemp);
-		
+	public void testFindAll() {
+		List<Usuario> lista = usuarioService.findAll();
+		logger.info(lista);
+		assertNotNull(lista);
+
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 */
+	@Test
+	public void testFindById() {
+		Usuario temp = saveTestUsuario();
+		assertNotNull(temp);
+		Usuario ret = usuarioService.findById(temp.getId());
+		assertNotNull(ret);
+	}
+
+	/**
+	 * Test method for
+	 * {@link co.icesi.troca.services.impl.GenericServiceImpl#save(java.lang.Object)}
+	 * .
+	 */
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 22/10/2013
+	 */
+	@Test
+	public void testSave() {
+		Usuario temp = saveTestUsuario();
+		assertNotNull(temp.getId());
 	}
 
 }

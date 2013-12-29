@@ -13,19 +13,19 @@ import javax.annotation.PostConstruct;
  */
 public interface StandardInterface<T> {
 
+	String aceptar();
+
+	void buscarrPorCriterio();
+
+	void eliminarItem(T objeto);
+
 	@PostConstruct
 	void init();
 
 	void renderizarItem(T objeto, boolean showForm);
 
-	void eliminarItem(T objeto);
-
 	void verForm();
 
 	void verFormNuevo(boolean showForm);
-
-	String aceptar();
-
-	void buscarrPorCriterio();
 
 }

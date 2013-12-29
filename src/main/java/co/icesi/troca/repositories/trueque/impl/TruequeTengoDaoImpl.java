@@ -33,20 +33,23 @@ public class TruequeTengoDaoImpl extends
 
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * ESTADO_TRUEQUE_FIELD
+	 *         ESTADO_TRUEQUE_FIELD
 	 */
 	private static final String ESTADO_TRUEQUE_FIELD = "trueque.estado";
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * TRUEQUE_USUARIO_TRUEQUE_FIELD
+	 *         TRUEQUE_USUARIO_TRUEQUE_FIELD
 	 */
 	private static final String TRUEQUE_USUARIO_TRUEQUE_FIELD = "trueque.usuarioTrueque1";
 	/**
 	 * 9/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * TENGO_FIELD
+	 *         TENGO_FIELD
 	 */
 	private static final String TENGO_FIELD = "tengo2";
 	/**
@@ -71,10 +74,12 @@ public class TruequeTengoDaoImpl extends
 
 		Criteria crit = session.createCriteria(getEntityClass());
 		crit.createAlias("trueque", "trueque");
-		Criterion criterion = Restrictions.conjunction()
+		Criterion criterion = Restrictions
+				.conjunction()
 				.add(Restrictions.eq(TENGO_FIELD, tengo))
 				.add(Restrictions.eq(TRUEQUE_USUARIO_TRUEQUE_FIELD, usuario))
-				.add(Restrictions.eq(ESTADO_TRUEQUE_FIELD, EstadoTruequeEnum.ACTIVO));
+				.add(Restrictions.eq(ESTADO_TRUEQUE_FIELD,
+						EstadoTruequeEnum.ACTIVO));
 		crit.add(criterion);
 		return crit.list();
 	}

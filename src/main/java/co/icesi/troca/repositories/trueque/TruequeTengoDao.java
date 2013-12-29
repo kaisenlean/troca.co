@@ -15,18 +15,19 @@ import co.icesi.troca.repositories.GenericRepository;
  * @project troca-co
  * @class TruequeTengoDao
  * @date 2/12/2013
- *
+ * 
  */
-public interface TruequeTengoDao extends GenericRepository<TruequeTengo, Integer>  {
+public interface TruequeTengoDao extends
+		GenericRepository<TruequeTengo, Integer> {
 
-	
 	/**
 	 * Método que consulta si hay trueques eb movimiento por usuario y tengo
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 9/12/2013
-	* @param tengo
-	* @param usuario
-	* @return
-	*/
-	public List<TruequeTengo> findByTengoAndSolicitante(Tengo tengo,Usuario usuario);
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 9/12/2013
+	 * @param tengo
+	 * @param usuario
+	 * @return
+	 */
+	List<TruequeTengo> findByTengoAndSolicitante(Tengo tengo, Usuario usuario);
 }

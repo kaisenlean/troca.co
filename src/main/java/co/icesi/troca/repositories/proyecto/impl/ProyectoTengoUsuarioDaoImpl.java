@@ -22,19 +22,24 @@ import co.icesi.troca.repositories.proyecto.ProyectoTengoUsuarioDao;
  * @project troca-co
  * @class ProyectoDaoImpl
  * @date 7/11/2013
- *
+ * 
  */
 @Repository("proyectoTengoUsuarioDao")
-public class ProyectoTengoUsuarioDaoImpl extends GenericJpaRepository<ProyectoTengoUsuario, Integer> implements ProyectoTengoUsuarioDao,Serializable {
+public class ProyectoTengoUsuarioDaoImpl extends
+		GenericJpaRepository<ProyectoTengoUsuario, Integer> implements
+		ProyectoTengoUsuarioDao, Serializable {
 
 	/**
 	 * 7/11/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.repositories.proyecto.ProyectoTengoUsuarioDao#findTengosByProyecto(co.icesi.troca.model.proyecto.Proyecto)
 	 */
 	@Override
@@ -43,19 +48,24 @@ public class ProyectoTengoUsuarioDaoImpl extends GenericJpaRepository<ProyectoTe
 		return findByCriteria(criterion);
 	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.repositories.proyecto.ProyectoTengoUsuarioDao#getByTengoAndProyecto(co.icesi.troca.model.proyecto.Proyecto, co.icesi.troca.model.tengo.Tengo)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.proyecto.ProyectoTengoUsuarioDao#getByTengoAndProyecto(co.icesi.troca.model.proyecto.Proyecto,
+	 *      co.icesi.troca.model.tengo.Tengo)
 	 */
 	@Override
 	public ProyectoTengoUsuario getByTengoAndProyecto(Proyecto proyecto,
 			Tengo tengo) {
-		Criterion criterion=Restrictions.conjunction().add(Restrictions.eq("proyecto", proyecto)).add(Restrictions.eq("tengo", tengo));
-		
+		Criterion criterion = Restrictions.conjunction()
+				.add(Restrictions.eq("proyecto", proyecto))
+				.add(Restrictions.eq("tengo", tengo));
+
 		List<ProyectoTengoUsuario> lista = findByCriteria(criterion);
 		if (lista.isEmpty()) {
 			return null;
-		}else{
-			
+		} else {
+
 			return lista.get(BigInteger.ZERO.intValue());
 		}
 	}

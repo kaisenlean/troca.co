@@ -14,36 +14,36 @@ import co.icesi.troca.repositories.GenericRepository;
  * @project troca-co
  * @class NecesitoDao
  * @date 17/11/2013
- *
+ * 
  */
 public interface NecesitoDao extends GenericRepository<Necesito, Integer> {
 
 	/**
-	 * Método que consulta los ultimos necesitos registrados en el sistema
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 23/11/2013
-	* @return
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/11/2013
+	 * @param proyecto
+	 * @return
 	 */
-	public List<Necesito> findUltimosNecesito(int maxResults);
-	
-	
+	List<Necesito> findNecesitoByParam(String param);
+
 	/**
 	 * Método que consulta los necesitos por proyecto
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 29/11/2013
-	* @param proyecto
-	* @return
-	*/
-	public List<Necesito> findNecesitoByProyecto(Proyecto proyecto);
-	
-	
-	/**
 	 * 
-	* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	* @date 29/11/2013
-	* @param proyecto
-	* @return
-	*/
-	public List<Necesito> findNecesitoByParam(String param);
-	
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 29/11/2013
+	 * @param proyecto
+	 * @return
+	 */
+	List<Necesito> findNecesitoByProyecto(Proyecto proyecto);
+
+	/**
+	 * Método que consulta los ultimos necesitos registrados en el sistema
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 23/11/2013
+	 * @return
+	 */
+	List<Necesito> findUltimosNecesito(int maxResults);
+
 }

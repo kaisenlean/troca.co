@@ -23,20 +23,26 @@ import co.icesi.troca.repositories.notificacion.NotificacionDao;
  * @project troca-co
  * @class NotificacionDaoImpl
  * @date 1/12/2013
- *
+ * 
  */
 @Repository("notificacionDao")
-public class NotificacionDaoImpl extends GenericJpaRepository<Notificacion, Integer> implements NotificacionDao,Serializable {
+public class NotificacionDaoImpl extends
+		GenericJpaRepository<Notificacion, Integer> implements NotificacionDao,
+		Serializable {
 
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.repositories.notificacion.NotificacionDao#findNotificacionesUsuario(co.icesi.troca.model.usuario.Usuario, int)
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.repositories.notificacion.NotificacionDao#findNotificacionesUsuario(co.icesi.troca.model.usuario.Usuario,
+	 *      int)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -51,9 +57,9 @@ public class NotificacionDaoImpl extends GenericJpaRepository<Notificacion, Inte
 		crit.addOrder(order);
 		crit.setFirstResult(0);
 		crit.setMaxResults(maxResults);
-		
+
 		return crit.list();
-		
+
 	}
 
 }

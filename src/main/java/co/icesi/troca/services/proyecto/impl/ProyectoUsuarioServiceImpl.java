@@ -22,39 +22,27 @@ import co.icesi.troca.services.proyecto.ProyectoUsuarioService;
  * @project troca-co
  * @class ProyectoUsuario
  * @date 1/12/2013
- *
+ * 
  */
 @Service("proyectoUsuarioService")
-public class ProyectoUsuarioServiceImpl extends GenericServiceImpl<ProyectoUsuario, Integer>  implements ProyectoUsuarioService,Serializable{
+public class ProyectoUsuarioServiceImpl extends
+		GenericServiceImpl<ProyectoUsuario, Integer> implements
+		ProyectoUsuarioService, Serializable {
 
 	/**
 	 * 1/12/2013
+	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
-	 * serialVersionUID
+	 *         serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private ProyectoUsuarioDao proyectoUsuarioDao;
-	
-	/* (non-Javadoc)
-	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
-	 */
-	@Override
-	public GenericRepository<ProyectoUsuario, Integer> getDao() {
-		return proyectoUsuarioDao;
-	}
 
-	/** (non-Javadoc)
-	 * @see co.icesi.troca.services.proyecto.ProyectoUsuarioService#getByUsuarioAndProyecto(co.icesi.troca.model.usuario.Usuario, co.icesi.troca.model.proyecto.Proyecto)
-	 */
-	@Override
-	public ProyectoUsuario getByUsuarioAndProyecto(Usuario usuario,
-			Proyecto proyecto) {
-		return proyectoUsuarioDao.getByUsuarioAndProyecto(usuario, proyecto);
-	}
-
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.proyecto.ProyectoUsuarioService#findByProyecto(co.icesi.troca.model.proyecto.Proyecto)
 	 */
 	@Override
@@ -62,12 +50,36 @@ public class ProyectoUsuarioServiceImpl extends GenericServiceImpl<ProyectoUsuar
 		return proyectoUsuarioDao.findByProyecto(proyecto);
 	}
 
-	/** (non-Javadoc)
+	/**
+	 * (non-Javadoc)
+	 * 
 	 * @see co.icesi.troca.services.proyecto.ProyectoUsuarioService#findByUsuario(co.icesi.troca.model.usuario.Usuario)
 	 */
 	@Override
 	public List<Proyecto> findByUsuario(Usuario usuario) {
 		return proyectoUsuarioDao.findByUsuario(usuario);
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.proyecto.ProyectoUsuarioService#getByUsuarioAndProyecto(co.icesi.troca.model.usuario.Usuario,
+	 *      co.icesi.troca.model.proyecto.Proyecto)
+	 */
+	@Override
+	public ProyectoUsuario getByUsuarioAndProyecto(Usuario usuario,
+			Proyecto proyecto) {
+		return proyectoUsuarioDao.getByUsuarioAndProyecto(usuario, proyecto);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see co.icesi.troca.services.impl.GenericServiceImpl#getDao()
+	 */
+	@Override
+	public GenericRepository<ProyectoUsuario, Integer> getDao() {
+		return proyectoUsuarioDao;
 	}
 
 }
