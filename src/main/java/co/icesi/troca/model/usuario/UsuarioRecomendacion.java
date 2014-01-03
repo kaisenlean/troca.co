@@ -7,12 +7,14 @@ package co.icesi.troca.model.usuario;
 
 import java.io.Serializable;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ususario_recomendacion")
-public class UsusarioRecomendacion implements Serializable {
+public class UsuarioRecomendacion implements Serializable {
 	/**
 	 * 12/11/2013
 	 * 
@@ -39,7 +41,6 @@ public class UsusarioRecomendacion implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Basic(optional = false)
 	@Column(name = "id")
 	private Integer id;
 	/**
@@ -48,16 +49,19 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 *         usuario
 	 */
-	@Column(name = "usuario")
-	private Integer usuario;
+
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="usuario")
+	private Usuario usuario;
 	/**
 	 * 12/11/2013
 	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 *         usuarioRecomienda
 	 */
-	@Column(name = "usuario_recomienda")
-	private Integer usuarioRecomienda;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "usuario_recomienda")
+	private Usuario usuarioRecomienda;
 	/**
 	 * 12/11/2013
 	 * 
@@ -71,7 +75,7 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 12/11/2013
 	 */
-	public UsusarioRecomendacion() {
+	public UsuarioRecomendacion() {
 	}
 
 	/**
@@ -79,7 +83,7 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @date 12/11/2013
 	 * @param id
 	 */
-	public UsusarioRecomendacion(Integer id) {
+	public UsuarioRecomendacion(Integer id) {
 		this.id = id;
 	}
 
@@ -90,12 +94,10 @@ public class UsusarioRecomendacion implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are
-		// not set
-		if (!(object instanceof UsusarioRecomendacion)) {
+		if (!(object instanceof UsuarioRecomendacion)) {
 			return false;
 		}
-		UsusarioRecomendacion other = (UsusarioRecomendacion) object;
+		UsuarioRecomendacion other = (UsuarioRecomendacion) object;
 		if ((this.id == null && other.id != null)
 				|| (this.id != null && !this.id.equals(other.id))) {
 			return false;
@@ -126,7 +128,7 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @date 12/11/2013
 	 * @return
 	 */
-	public Integer getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
@@ -135,7 +137,7 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @date 12/11/2013
 	 * @return
 	 */
-	public Integer getUsuarioRecomienda() {
+	public Usuario getUsuarioRecomienda() {
 		return usuarioRecomienda;
 	}
 
@@ -174,7 +176,7 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @date 12/11/2013
 	 * @param usuario
 	 */
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -183,7 +185,7 @@ public class UsusarioRecomendacion implements Serializable {
 	 * @date 12/11/2013
 	 * @param usuarioRecomienda
 	 */
-	public void setUsuarioRecomienda(Integer usuarioRecomienda) {
+	public void setUsuarioRecomienda(Usuario usuarioRecomienda) {
 		this.usuarioRecomienda = usuarioRecomienda;
 	}
 

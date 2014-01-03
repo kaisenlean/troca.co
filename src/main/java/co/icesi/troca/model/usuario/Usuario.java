@@ -199,6 +199,11 @@ public class Usuario implements Serializable {
 	@Transient
 	private List<UsuarioLink> usuarioLinks = new ArrayList<UsuarioLink>();
 
+	
+	
+	
+	@Transient
+	private List<UsuarioRecomendacion> recomendaciones = new ArrayList<UsuarioRecomendacion>();
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 22/10/2013
@@ -582,6 +587,24 @@ public class Usuario implements Serializable {
 	 */
 	public void setUsuarioLinks(List<UsuarioLink> usuarioLinks) {
 		this.usuarioLinks = usuarioLinks;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/01/2014
+	 * @return the recomendaciones
+	 */
+	public List<UsuarioRecomendacion> getRecomendaciones() {
+		return recomendaciones;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/01/2014
+	 * @param recomendaciones the recomendaciones to set
+	 */
+	public void setRecomendaciones(List<UsuarioRecomendacion> recomendaciones) {
+		this.recomendaciones = recomendaciones;
 	}
 
 	/**

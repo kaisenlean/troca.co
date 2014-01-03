@@ -4,6 +4,7 @@
 package co.icesi.troca.services.calificacion.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,13 @@ public class CalificacionServiceImpl extends
 	@Override
 	public List<Calificacion> findCalificacionByTruequeCanceladoByUsuario(
 			Usuario usuario) {
+		if (usuario==null) {
+			return new ArrayList<Calificacion>();
+		}
+		if (usuario.getId()==null) {
+			return new ArrayList<Calificacion>();
+		}
+		
 		return calificacionDao
 				.findCalificacionByTruequeCanceladoByUsuario(usuario);
 	}
@@ -58,6 +66,13 @@ public class CalificacionServiceImpl extends
 	 */
 	@Override
 	public List<Calificacion> findCalificacionByUsuario(Usuario usuario) {
+		if (usuario==null) {
+			return new ArrayList<Calificacion>();
+			
+		}
+		if (usuario.getId()==null) {
+			return new ArrayList<Calificacion>();
+		}
 		return calificacionDao.findCalificacionByUsuario(usuario);
 	}
 

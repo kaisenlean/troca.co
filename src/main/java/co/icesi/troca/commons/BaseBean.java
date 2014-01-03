@@ -23,6 +23,12 @@ import org.primefaces.context.RequestContext;
 public class BaseBean {
 
 	/**
+	 * 3/01/2014
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * MENSAJE_TITLE
+	 */
+	private static final String MENSAJE_TITLE = "Mensaje";
+	/**
 	 * 29/12/2013
 	 * 
 	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -141,8 +147,10 @@ public class BaseBean {
 	 * @param mensaje
 	 */
 	public void mensaje(String title, String mensaje) {
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(title, mensaje));
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, MENSAJE_TITLE,
+						mensaje));
 	}
 
 	/**

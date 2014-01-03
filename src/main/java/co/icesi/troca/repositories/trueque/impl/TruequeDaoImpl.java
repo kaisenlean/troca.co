@@ -4,6 +4,7 @@
 package co.icesi.troca.repositories.trueque.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.criterion.Criterion;
@@ -44,7 +45,12 @@ public class TruequeDaoImpl extends GenericJpaRepository<Trueque, Integer>
 	@Override
 	public List<Trueque> findActivosByUsuarioAndEstado(Usuario usuario,
 			EstadoTruequeEnum estado) {
-
+		if (usuario==null) {
+			return new ArrayList<Trueque>();
+		}
+		if (usuario.getId() == null) {
+			return new ArrayList<Trueque>();
+		}
 		Criterion criterion = Restrictions.disjunction()
 				.add(Restrictions.eq("usuarioTrueque1", usuario))
 				.add(Restrictions.eq("usuarioTrueque2", usuario));

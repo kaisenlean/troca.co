@@ -30,6 +30,7 @@ import co.icesi.troca.services.UsuarioService;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.proyecto.ProyectoUsuarioService;
+import co.icesi.troca.services.recomendacion.UsuarioRecomendacionService;
 import co.icesi.troca.services.seguridad.EncoderManager;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
@@ -117,6 +118,10 @@ public class Login extends BaseBean implements Serializable {
 	@ManagedProperty(value = "#{proyectoUsuarioService}")
 	private ProyectoUsuarioService proyectoUsuarioService;
 
+	
+	@ManagedProperty(value = "#{usuarioRecomendacionService}")
+	private UsuarioRecomendacionService usuarioRecomendacionService;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Login.class);
 
 	/**
@@ -188,6 +193,7 @@ public class Login extends BaseBean implements Serializable {
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
+		usuario.setRecomendaciones(usuarioRecomendacionService.findRecomendacionesByUsuario(usuario));
 		noticiasPorUsuario = noticiaService.findNoticiasByUsuario(usuario);
 
 	}
@@ -322,6 +328,7 @@ public class Login extends BaseBean implements Serializable {
 				proyectoUsuarioService.findByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
+		usuario.setRecomendaciones(usuarioRecomendacionService.findRecomendacionesByUsuario(usuario));
 		noticiasPorUsuario = noticiaService.findNoticiasByUsuario(usuario);
 		goTo("/index.jsf");
 	}
@@ -546,5 +553,24 @@ public class Login extends BaseBean implements Serializable {
 		verNuevoProyecto1 = false;
 		verNuevoProyecto2 = false;
 
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/01/2014
+	 * @return the usuarioRecomendacionService
+	 */
+	public UsuarioRecomendacionService getUsuarioRecomendacionService() {
+		return usuarioRecomendacionService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/01/2014
+	 * @param usuarioRecomendacionService the usuarioRecomendacionService to set
+	 */
+	public void setUsuarioRecomendacionService(
+			UsuarioRecomendacionService usuarioRecomendacionService) {
+		this.usuarioRecomendacionService = usuarioRecomendacionService;
 	}
 }

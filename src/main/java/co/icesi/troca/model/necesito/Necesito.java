@@ -111,6 +111,10 @@ public class Necesito implements Serializable {
 	@Column(name = "fecha_creacion")
 	@Temporal(TemporalType.DATE)
 	private Date fechaCreacion;
+	
+	
+	@Transient
+	private String mensaje;
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -269,5 +273,24 @@ public class Necesito implements Serializable {
 	 */
 	public void setUsuario(Usuario owner) {
 		this.usuario = owner;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @return the mensaje
+	 */
+	public String getMensaje() {
+		return mensaje;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @param mensaje the mensaje to set
+	 */
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 }

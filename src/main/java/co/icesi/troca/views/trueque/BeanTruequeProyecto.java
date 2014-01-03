@@ -195,6 +195,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 */
 	public void realizarTrueque(Tengo tengo, int idTengo) {
 		Tengo tenTemp = new Tengo();
+		idTengo=tengo.getIdTengo();
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
 		trueque.setUsuarioTrueque1(login.getUsuario());
@@ -240,7 +241,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		mensaje = new StringBuilder("!!Hola , veo que tienen ")
 				.append(tengo.getNombre())
 				.append(" Yo lo necesito y a cambio te ofrezco ")
-				.append(tenTemp.getNombre()).toString();
+				.append(tenTemp.getNombre()).append(". ").append(tengo.getMensaje()==null?"":tengo.getMensaje()).toString();
 		truequeMensaje.setMensaje(mensaje);
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
@@ -291,7 +292,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		mensaje = new StringBuilder("!!Hola , veo que necesitan ")
 				.append(necesito.getNombre())
 				.append(" Yo lo tengo y a cambio les ofrezco ")
-				.append(tenTemp.getNombre()).toString();
+				.append(tenTemp.getNombre()).append(" .").append(necesito.getMensaje()==null?"":necesito.getMensaje()).toString();
 		truequeMensaje.setMensaje(mensaje);
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());

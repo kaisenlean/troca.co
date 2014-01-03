@@ -140,6 +140,13 @@ public class Tengo implements Serializable {
 	 */
 	@Transient
 	private String extension;
+	
+	
+	@Transient
+	private String mensaje;
+	
+	@Transient
+	private int idTengo;
 
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
@@ -422,6 +429,42 @@ public class Tengo implements Serializable {
 		this.tipo = tipo;
 	}
 
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @return the mensaje
+	 */
+	public String getMensaje() {
+		return mensaje;
+	}
+	
+	 /**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @param mensaje the mensaje to set
+	 */
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @return the idTengo
+	 */
+	public int getIdTengo() {
+		return idTengo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @param idTengo the idTengo to set
+	 */
+	public void setIdTengo(int idTengo) {
+		this.idTengo = idTengo;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 

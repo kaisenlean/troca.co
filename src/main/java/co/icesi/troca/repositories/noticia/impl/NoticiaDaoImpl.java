@@ -1,6 +1,7 @@
 package co.icesi.troca.repositories.noticia.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -70,6 +71,14 @@ public class NoticiaDaoImpl extends GenericJpaRepository<Noticia, Integer>
 	 */
 	@Override
 	public List<Noticia> findNoticiasByUsuario(Usuario usuario) {
+		if (usuario==null) {
+			return new ArrayList<Noticia>();
+		}
+		if (usuario.getId()==null) {
+			return new ArrayList<Noticia>();
+		}
+		
+		
 		Criterion c = Restrictions.eq("usuario", usuario);
 		return findByCriteria(c);
 	}

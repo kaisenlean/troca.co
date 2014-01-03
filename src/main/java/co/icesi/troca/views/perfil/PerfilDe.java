@@ -22,6 +22,7 @@ import co.icesi.troca.services.calificacion.CalificacionService;
 import co.icesi.troca.services.noticia.NoticiaService;
 import co.icesi.troca.services.proyecto.ProyectoService;
 import co.icesi.troca.services.proyecto.ProyectoUsuarioService;
+import co.icesi.troca.services.recomendacion.UsuarioRecomendacionService;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.trueque.TruequeService;
 import co.icesi.troca.services.usuario.UsuarioLinkService;
@@ -76,9 +77,14 @@ public class PerfilDe extends BaseBean implements Serializable {
 
 	@ManagedProperty(value = "#{calificacionService}")
 	private CalificacionService calificacionService;
+	
 	@ManagedProperty(value = "#{login}")
 	private Login login;
 
+	@ManagedProperty(value="#{usuarioRecomendacionService}")
+	private UsuarioRecomendacionService usuarioRecomendacionService;
+	
+	
 	private Usuario usuario = new Usuario();
 
 	private String promedio;
@@ -224,8 +230,12 @@ public class PerfilDe extends BaseBean implements Serializable {
 				usuario, EstadoTruequeEnum.FINALIZADO);
 		truequesCancelados = truequeService.findActivosByUsuarioAndEstado(
 				usuario, EstadoTruequeEnum.CANCELADO);
+		this.usuario.setRecomendaciones(usuarioRecomendacionService.findRecomendacionesByUsuario(usuario));
+		
 		calificaciones = calificacionService.findCalificacionByUsuario(usuario);
 
+		
+		
 		double promTemp = 0.0;
 		for (Calificacion cf : calificaciones) {
 			promTemp += cf.getPuntajeVal().doubleValue();
@@ -358,5 +368,25 @@ public class PerfilDe extends BaseBean implements Serializable {
 	 */
 	public void setUsuarioService(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/01/2014
+	 * @return the usuarioRecomendacionService
+	 */
+	public UsuarioRecomendacionService getUsuarioRecomendacionService() {
+		return usuarioRecomendacionService;
+	}
+
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 3/01/2014
+	 * @param usuarioRecomendacionService the usuarioRecomendacionService to set
+	 */
+	public void setUsuarioRecomendacionService(
+			UsuarioRecomendacionService usuarioRecomendacionService) {
+		this.usuarioRecomendacionService = usuarioRecomendacionService;
 	}
 }

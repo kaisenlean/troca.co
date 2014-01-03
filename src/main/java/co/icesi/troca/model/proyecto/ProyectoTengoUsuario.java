@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import co.icesi.troca.model.tengo.Tengo;
 
@@ -65,6 +66,12 @@ public class ProyectoTengoUsuario implements Serializable {
 	@JoinColumn(name = "proyecto", referencedColumnName = "id")
 	private Proyecto proyecto;
 
+	
+	@Transient
+	private String mensaje;
+	
+	@Transient
+	private int idTengo;
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 12/11/2013
@@ -167,6 +174,45 @@ public class ProyectoTengoUsuario implements Serializable {
 		this.tengo = tengo;
 	}
 
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @return the mensaje
+	 */
+	public String getMensaje() {
+		return mensaje;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @return the idTengo
+	 */
+	public int getIdTengo() {
+		return idTengo;
+	}
+	
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @param idTengo the idTengo to set
+	 */
+	public void setIdTengo(int idTengo) {
+		this.idTengo = idTengo;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 2/01/2014
+	 * @param mensaje the mensaje to set
+	 */
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
