@@ -24,6 +24,7 @@ public class Error implements Serializable {
 	public Error() {
 	}
 
+	@SuppressWarnings("rawtypes")
 	public String getStackTrace() {
 		// Get the current JSF context
 		FacesContext context = FacesContext.getCurrentInstance();
