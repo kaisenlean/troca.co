@@ -8,13 +8,22 @@
 
 <ui:composition template="./template/mainThm.xhtml">
 	<ui:define name="content">
+	<h:form>
+	<br/>
+	<div class="col-md-12 blue">
+			<h2 class="margined-left">Recuperar Clave</h2>
+			</div>
 	<div align="center">
-	<h:panelGrid>
-    <h:outputText value="The follow error occured:" />
-    <h:inputTextarea style="width: 100%;" cols="100" rows="70" readonly="true" 
-                                 value="#{error.stackTrace}" />
-</h:panelGrid>
+	<h:panelGrid columns="3">
+	<h:outputText value="Correo Electrónico" styleClass="blue" />
+		<p:inputText  styleClass="form-control" size="60" value="#{login.user}" />
+		<p:commandButton actionListener="#{login.enviarMailRecuperarPassword()}" process="@all" value="Enviar" styleClass="btn btn-default"></p:commandButton>
+	</h:panelGrid>
 	</div>
+	<br/>
+	<br/>
+	<br/>
+	</h:form>
 	</ui:define>
 </ui:composition>
 </html>

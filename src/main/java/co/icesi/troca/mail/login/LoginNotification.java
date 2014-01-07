@@ -24,4 +24,14 @@ public interface LoginNotification {
 	 */
 	void enviarMailAutenticacionCuenta(Usuario usuario) throws BaseException;
 
+	/**
+	 * Método que envia la clave de recuperacion de password
+	 * 
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @param usuario
+	 * @throws BaseException
+	 */
+	void enviarMailRecuperarPassword(Usuario usuario) throws BaseException;
+
 }

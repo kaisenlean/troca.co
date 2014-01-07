@@ -19,7 +19,9 @@ import co.icesi.troca.model.trueque.EstadoTruequeEnum;
 import co.icesi.troca.model.trueque.Trueque;
 import co.icesi.troca.model.trueque.TruequeMensaje;
 import co.icesi.troca.model.trueque.TruequeTengo;
+import co.icesi.troca.model.usuario.Usuario;
 import co.icesi.troca.services.notificacion.NotificacionService;
+import co.icesi.troca.services.proyecto.ProyectoUsuarioService;
 import co.icesi.troca.services.tengo.TengoService;
 import co.icesi.troca.services.trueque.TruequeMensajeService;
 import co.icesi.troca.services.trueque.TruequeService;
@@ -77,6 +79,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 	@ManagedProperty(value = "#{notificacionService}")
 	private NotificacionService notificacionService;
+	
+	@ManagedProperty(value="#{proyectoUsuarioService}")
+	private ProyectoUsuarioService proyectoUsuarioService;
 
 	private List<Trueque> activos;
 
@@ -194,6 +199,19 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 * @date 2/12/2013
 	 */
 	public void realizarTrueque(Tengo tengo, int idTengo) {
+		
+		
+		if (beanProyecto.getProyecto().getOwner().equals(login.getUsuario())) {
+			mensajeError("No puedes trocar siendo un participante de este proyecto");
+			return;
+		}
+		
+		List<Usuario> users= proyectoUsuarioService.findParticipantesByProyecto(beanProyecto.getProyecto());
+		
+		if (users.contains(login.getUsuario())) {
+			mensajeError("No puedes trocar siendo un participante de este proyecto");
+			return;
+		}
 		Tengo tenTemp = new Tengo();
 		idTengo=tengo.getIdTengo();
 		trueque = new Trueque();
@@ -205,7 +223,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		if (idTengo == 0) {
 
-			tenTemp.setNombre(textOtro);
+			tenTemp.setNombre(tengo.getTextoOtro());
 			tenTemp.setFechaRegistro(new Date());
 			tenTemp.setOwner(beanProyecto.getProyecto().getOwner());
 			tenTemp = tengoService.save(tenTemp);
@@ -238,7 +256,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
 
-		mensaje = new StringBuilder("!!Hola , veo que tienen ")
+		mensaje = new StringBuilder("Hola , veo que tienen ")
 				.append(tengo.getNombre())
 				.append(" Yo lo necesito y a cambio te ofrezco ")
 				.append(tenTemp.getNombre()).append(". ").append(tengo.getMensaje()==null?"":tengo.getMensaje()).toString();
@@ -258,6 +276,20 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 	 * @date 2/12/2013
 	 */
 	public void realizarTruequeN(Necesito necesito, int idTengo2) {
+		try {
+			
+		
+		if (beanProyecto.getProyecto().getOwner().equals(login.getUsuario())) {
+			mensajeError("No puedes trocar siendo un participante de este proyecto");
+			return;
+		}
+		
+		List<Usuario> users= proyectoUsuarioService.findParticipantesByProyecto(beanProyecto.getProyecto());
+		
+		if (users.contains(login.getUsuario())) {
+			mensajeError("No puedes trocar siendo un participante de este proyecto");
+			return;
+		}
 		Tengo tenTemp = new Tengo();
 		trueque = new Trueque();
 		trueque.setEstado(EstadoTruequeEnum.ACTIVO);
@@ -268,7 +300,7 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		if (idTengo2 == 0) {
 
-			tenTemp.setNombre(textOtro);
+			tenTemp.setNombre(necesito.getTextoOtro());
 			tenTemp.setFechaRegistro(new Date());
 			tenTemp.setOwner(beanProyecto.getProyecto().getOwner());
 			tenTemp = tengoService.save(tenTemp);
@@ -289,9 +321,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
 
-		mensaje = new StringBuilder("!!Hola , veo que necesitan ")
+		mensaje = new StringBuilder("Hola , veo que necesitan ")
 				.append(necesito.getNombre())
-				.append(" Yo lo tengo y a cambio les ofrezco ")
+				.append(" Yo lo tengo y  a cambio pido ")
 				.append(tenTemp.getNombre()).append(" .").append(necesito.getMensaje()==null?"":necesito.getMensaje()).toString();
 		truequeMensaje.setMensaje(mensaje);
 		truequeMensaje.setTrueque(trueque);
@@ -303,6 +335,9 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 		notificacionService.crearNotificacionSolicitudTruequeProyecto(tt,
 				mensaje);
 		mensaje = "";
+		} catch (Exception e) {
+			mensajeError(e.toString());
+		}
 	}
 
 	/**
@@ -476,5 +511,24 @@ public class BeanTruequeProyecto extends BaseBean implements Serializable {
 				.findMensajesByTrueque(trueque));
 		addAttribute("trueque", this.trueque);
 		goTo("/paginas/trueque/mensajesTrueque.jsf");
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @return the proyectoUsuarioService
+	 */
+	public ProyectoUsuarioService getProyectoUsuarioService() {
+		return proyectoUsuarioService;
+	}
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @param proyectoUsuarioService the proyectoUsuarioService to set
+	 */
+	public void setProyectoUsuarioService(
+			ProyectoUsuarioService proyectoUsuarioService) {
+		this.proyectoUsuarioService = proyectoUsuarioService;
 	}
 }

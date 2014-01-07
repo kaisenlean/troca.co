@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import co.icesi.troca.commons.BaseBean;
+import co.icesi.troca.mail.login.LoginNotification;
 import co.icesi.troca.model.Opcion;
 import co.icesi.troca.model.noticia.Noticia;
 import co.icesi.troca.model.tengo.Tengo;
@@ -118,10 +119,12 @@ public class Login extends BaseBean implements Serializable {
 	@ManagedProperty(value = "#{proyectoUsuarioService}")
 	private ProyectoUsuarioService proyectoUsuarioService;
 
-	
+	@ManagedProperty(value = "#{loginNotification}")
+	private LoginNotification loginNotification;
+
 	@ManagedProperty(value = "#{usuarioRecomendacionService}")
 	private UsuarioRecomendacionService usuarioRecomendacionService;
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(Login.class);
 
 	/**
@@ -193,9 +196,15 @@ public class Login extends BaseBean implements Serializable {
 		usuario.setProyectos(proyectoService.findProyectosByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
-		usuario.setRecomendaciones(usuarioRecomendacionService.findRecomendacionesByUsuario(usuario));
+		usuario.setRecomendaciones(usuarioRecomendacionService
+				.findRecomendacionesByUsuario(usuario));
 		noticiasPorUsuario = noticiaService.findNoticiasByUsuario(usuario);
 
+	}
+
+	public void goToPassRecovery() {
+
+		goTo("/passRecovery.jsf");
 	}
 
 	/**
@@ -328,7 +337,8 @@ public class Login extends BaseBean implements Serializable {
 				proyectoUsuarioService.findByUsuario(usuario));
 		usuario.setTengos(tengoService.findTengosByUsuario(usuario));
 		usuario.setUsuarioLinks(usuarioLinkService.getLinkByUsuario(usuario));
-		usuario.setRecomendaciones(usuarioRecomendacionService.findRecomendacionesByUsuario(usuario));
+		usuario.setRecomendaciones(usuarioRecomendacionService
+				.findRecomendacionesByUsuario(usuario));
 		noticiasPorUsuario = noticiaService.findNoticiasByUsuario(usuario);
 		goTo("/index.jsf");
 	}
@@ -357,6 +367,21 @@ public class Login extends BaseBean implements Serializable {
 		} catch (IOException ex) {
 			mensaje("Error", ex.toString());
 		}
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 */
+	public void enviarMailRecuperarPassword() {
+		try {
+			Usuario tmp = usuarioService.findByEmail(user);
+			loginNotification.enviarMailRecuperarPassword(tmp);
+			mensaje("Realizado", "Hémos enviado un correo electrónico con la nueva clave , por favor revisa tu bandeja de entrada");
+		} catch (Exception e) {
+			mensajeError(e.toString());
+		}
+
 	}
 
 	/**
@@ -554,7 +579,7 @@ public class Login extends BaseBean implements Serializable {
 		verNuevoProyecto2 = false;
 
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 3/01/2014
@@ -563,14 +588,34 @@ public class Login extends BaseBean implements Serializable {
 	public UsuarioRecomendacionService getUsuarioRecomendacionService() {
 		return usuarioRecomendacionService;
 	}
-	
+
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 3/01/2014
-	 * @param usuarioRecomendacionService the usuarioRecomendacionService to set
+	 * @param usuarioRecomendacionService
+	 *            the usuarioRecomendacionService to set
 	 */
 	public void setUsuarioRecomendacionService(
 			UsuarioRecomendacionService usuarioRecomendacionService) {
 		this.usuarioRecomendacionService = usuarioRecomendacionService;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @return the loginNotification
+	 */
+	public LoginNotification getLoginNotification() {
+		return loginNotification;
+	}
+
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @param loginNotification
+	 *            the loginNotification to set
+	 */
+	public void setLoginNotification(LoginNotification loginNotification) {
+		this.loginNotification = loginNotification;
 	}
 }

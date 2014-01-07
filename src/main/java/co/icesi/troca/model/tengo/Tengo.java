@@ -149,6 +149,14 @@ public class Tengo implements Serializable {
 	private int idTengo;
 
 	/**
+	 * 7/01/2014
+	 * @author <a href="mailto:elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * textoOtro
+	 */
+	@Transient
+	private String textoOtro;
+	
+	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 12/11/2013
 	 */
@@ -457,6 +465,25 @@ public class Tengo implements Serializable {
 		return idTengo;
 	}
 	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @return the textoOtro
+	 */
+	public String getTextoOtro() {
+		return textoOtro;
+	}
+	
+	
+	/**
+	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+	 * @date 7/01/2014
+	 * @param textoOtro the textoOtro to set
+	 */
+	public void setTextoOtro(String textoOtro) {
+		this.textoOtro = textoOtro;
+	}
 	/**
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
 	 * @date 2/01/2014

@@ -554,6 +554,10 @@ public class BeanProyecto extends BaseBean implements Serializable {
 	public void goTo1() {
 		proyecto = new Proyecto();
 		init();
+		if (login.getUsuario().getTengos().isEmpty()) {
+			mensajeError("Debes tener registrado por lo menos un tengo para poder crear un proyecto");
+			return;
+		}
 		goTo("/paginas/proyecto/crear_proyecto_1.jsf");
 	}
 
@@ -575,6 +579,12 @@ public class BeanProyecto extends BaseBean implements Serializable {
 		goTo("/paginas/proyecto/crear_proyecto_3.jsf");
 	}
 
+	
+	
+	public void goToPerfil(){
+		
+		goTo("/paginas/perfil/perfil.jsf");
+	}
 	/**
 	 * 
 	 * @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>

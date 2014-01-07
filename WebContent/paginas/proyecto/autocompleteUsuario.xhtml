@@ -41,7 +41,9 @@
 		</p:dataTable>
 		Agregados
 		<p:dataTable value="#{beanProyecto.unadidos}" var="uad"  widgetVar="tablaRes" id="tablaRes">
-	
+	<p:column >
+		<h:outputText value="#{uad.nombreCompleto}" />
+		</p:column>
 		<p:column >
 		<p:commandButton value="Eliminar" process="@this" update="tablaRes" actionListener="#{beanProyecto.removeUsuariosAnadido(uad)}"></p:commandButton>
 		</p:column>

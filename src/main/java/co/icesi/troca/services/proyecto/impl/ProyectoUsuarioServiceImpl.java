@@ -82,4 +82,12 @@ public class ProyectoUsuarioServiceImpl extends
 		return proyectoUsuarioDao;
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.services.proyecto.ProyectoUsuarioService#findParticipantesByProyecto(co.icesi.troca.model.proyecto.Proyecto)
+	 */
+	@Override
+	public List<Usuario> findParticipantesByProyecto(Proyecto proyecto) {
+		return proyectoUsuarioDao.findParticipantesByProyecto(proyecto);
+	}
+
 }

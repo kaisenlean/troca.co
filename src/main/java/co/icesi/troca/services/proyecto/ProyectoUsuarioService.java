@@ -52,4 +52,14 @@ public interface ProyectoUsuarioService extends
 	 */
 	 ProyectoUsuario getByUsuarioAndProyecto(Usuario usuario,
 			Proyecto proyecto);
+	 
+	 
+		/**
+		 * Método que busca los usuarios participantes de un proyecto
+		* @author <a href="elmerdiazlazo@gmail.com">Elmer Jose Diaz Lazo</a>
+		* @date 7/01/2014
+		* @param proyecto
+		* @return
+		*/
+		List<Usuario> findParticipantesByProyecto(Proyecto proyecto);
 }

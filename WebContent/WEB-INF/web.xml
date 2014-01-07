@@ -71,6 +71,7 @@
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
 
+
 	<error-page>
 		<error-code>500</error-code>
 		<location>/500.jsf</location>

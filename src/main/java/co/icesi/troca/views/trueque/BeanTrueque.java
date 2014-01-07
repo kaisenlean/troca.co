@@ -190,7 +190,7 @@ public class BeanTrueque extends BaseBean implements Serializable {
 
 		if (idTengo == 0) {
 
-			tenTemp.setNombre(textOtro);
+			tenTemp.setNombre(tengo.getTextoOtro());
 			tenTemp.setFechaRegistro(new Date());
 			tenTemp = tengoService.save(tenTemp);
 
@@ -215,20 +215,11 @@ public class BeanTrueque extends BaseBean implements Serializable {
 		tt = truequeTengoService.save(tt);
 
 		TruequeMensaje truequeMensaje = new TruequeMensaje();
-		if (mensajeTrueque != null) {
-			if (!mensajeTrueque.trim().equals("")) {
-				truequeMensaje.setMensaje(mensajeTrueque);
-				truequeMensaje.setTrueque(trueque);
-				truequeMensaje.setUsuarioEmisor(login.getUsuario());
-				truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());
-				truequeMensaje.setFecha(Calendar.getInstance().getTime());
-				truequeMensajeService.save(truequeMensaje);
-			}
-		}
-		truequeMensaje.setMensaje(new StringBuilder("!!Hola , veo que tienes ")
+	
+		truequeMensaje.setMensaje(new StringBuilder("Hola , veo que tienes ")
 				.append(tengo.getNombre())
 				.append(" Yo lo necesito y a cambio te ofrezco ")
-				.append(tenTemp.getNombre()).toString());
+				.append(tenTemp.getNombre()).append(" . ").append(mensajeTrueque==null?"":mensajeTrueque).toString());
 		truequeMensaje.setTrueque(trueque);
 		truequeMensaje.setUsuarioEmisor(login.getUsuario());
 		truequeMensaje.setUsuarioReceptor(perfilDe.getUsuario());

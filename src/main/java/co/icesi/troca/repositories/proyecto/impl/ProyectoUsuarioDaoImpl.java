@@ -86,4 +86,14 @@ public class ProyectoUsuarioDaoImpl extends
 		}
 	}
 
+	/** (non-Javadoc)
+	 * @see co.icesi.troca.repositories.proyecto.ProyectoUsuarioDao#findParticipantesByProyecto(co.icesi.troca.model.proyecto.Proyecto)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Usuario> findParticipantesByProyecto(Proyecto proyecto) {
+		Query query = getEntityManager().createQuery("select p.usuario from ProyectoUsuario p where p.proyecto = :proyecto").setParameter("proyecto", proyecto);
+		return query.getResultList();
+	}
+
 }

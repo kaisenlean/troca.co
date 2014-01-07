@@ -7,8 +7,10 @@ package co.icesi.troca.model.proyecto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,7 +54,7 @@ public class ProyectoTengoUsuario implements Serializable {
 	 *         tengo
 	 */
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "tengo", referencedColumnName = "id")
 	private Tengo tengo;
 

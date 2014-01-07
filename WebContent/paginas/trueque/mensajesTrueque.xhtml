@@ -94,16 +94,19 @@
 							<p>Califica a la persona con la que trocaste, basándote en la
 								experiencia del intercambio y deja luego un comentario para que
 								los demás sepan cómo les fue</p>
-							<p:rating id="ratClif" required="false"
+
+							<p:rating id="ratClif3" required="false" 
 								requiredMessage="Requerido"
-								value="#{beanTruequeMensaje.calificacion.puntajeVal}" stars="5"></p:rating>
-							<p:message for="ratClif"></p:message>
+								value="#{beanTruequeMensaje.calificacion2.puntajeVal}" stars="5"></p:rating>
+							<p:message for="ratClif3"></p:message>
 							<div class="form-group">
 
 								<p class="gray margined-top">Deja un comentario que todos
 									podrán leer</p>
 								<p:inputTextarea styleClass="form-control gap" rows="5"
-									value="#{beanTruequeMensaje.calificacion.puntajeText}"></p:inputTextarea>
+									value="#{beanTruequeMensaje.calificacion2.puntajeText}">
+	<p:ajax event="blur" partialSubmit="true"  ></p:ajax>
+</p:inputTextarea>
 							</div>
 
 
@@ -147,7 +150,7 @@
 							<p:rating id="ratClif2" required="false"
 								requiredMessage="Requerido"
 								value="#{beanTruequeMensaje.calificacion.puntajeVal}" stars="5"></p:rating>
-							<p:message for="ratClif"></p:message>
+							<p:message for="ratClif2"></p:message>
 							<div class="form-group">
 
 								<p class="gray margined-top">Deja un comentario que todos

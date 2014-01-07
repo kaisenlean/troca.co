@@ -40,7 +40,7 @@
 					<h3 class="margined-left red">Video del proyecto</h3>
 					<div class="flex-video widescreen margined-right">
 
-						<p:media value="#{beanProyecto.proyecto.linkVideo eq '' or beanProyecto.proyecto.linkVideo  eq null?'https://www.youtube.com/v/kMNPv_HXffQ':beanProyecto.proyecto.linkVideo }" width="420" height="315" player="flash"/>  
+						<p:media value="#{beanProyecto.proyecto.linkVideo eq '' or beanProyecto.proyecto.linkVideo  eq null?'http://www.youtube.com/v/duLVWClGqsg':beanProyecto.proyecto.linkVideo }" width="420" height="315" player="flash"/>  
 					</div>
 
 					<!-- Creador del proyecto -->
@@ -148,6 +148,7 @@
 												<label  class="black">Otro</label>
 												<h:inputText placeholder="Escribe lo que buscas"
 													styleClass="form-control" id="otro-proyecto-tengo#{np.id}"
+													value="#{np.textoOtro}"
 													readonly="#{np.idTengo ne 0}" />
 											</div>
 
@@ -243,9 +244,9 @@
 													</div>
 													<div class="form-group">
 														<label for="otro-perfil-tengo" class="black">Otro</label>
-														<h:inputText placeholder="Escribe lo que buscas"
+														<h:inputText placeholder="escribe lo que propones"
 															styleClass="form-control" id="tengo-pro-otreq#{tng.id}"
-															readonly="#{tng.tengo.idTengo ne 0}" />
+															readonly="#{tng.tengo.idTengo ne 0}" value="#{tng.tengo.textoOtro}" />
 													</div>
 												</h:form>
 

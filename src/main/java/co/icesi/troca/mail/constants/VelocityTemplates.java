@@ -13,4 +13,5 @@ package co.icesi.troca.mail.constants;
 public interface VelocityTemplates {
 
 	String LOGIN_VERIFICATION_TEMPLATE = "notificacion_login";
+	String ṔASSWORD_RECOVERY_TEMPLATE = "recuperar_clave";
 }
